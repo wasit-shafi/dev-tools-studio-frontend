@@ -1,6 +1,13 @@
 <main class="">
   <div class="">
     <h1 class="text-center text-red-500">devtools studio</h1>
+    @for (item of tempData; track $index) {
+    <div>
+      <span>{{ item._id }}</span> - <span>{{ item.userName }}</span> -
+      <span>{{ item.createdAt }}</span> -
+      <span>{{ item.updatedAt }}</span>
+    </div>
+    }
   </div>
 </main>
 <router-outlet />
