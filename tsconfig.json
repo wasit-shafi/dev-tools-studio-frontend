@@ -1,32 +1,54 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "outDir": "./dist/out-tsc",
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "sourceMap": true,
-    "declaration": false,
-    "experimentalDecorators": true,
-    "moduleResolution": "bundler",
-    "importHelpers": true,
-    "target": "ES2022",
-    "module": "ES2022",
-    "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
-  },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
+	"compileOnSave": false,
+	"compilerOptions": {
+		"baseUrl": "./",
+		"paths": {
+			"@components": ["src/app/components"],
+			"@components/*": ["src/app/components/*"],
+			"@directives": ["src/app/directives"],
+			"@directives/*": ["src/app/directives/*"],
+			"@models": ["src/app/models"],
+			"@models/*": ["src/app/models/*"],
+			"@pipes": ["src/app/pipes"],
+			"@pipes/*": ["src/app/pipes/*"],
+			"@services": ["src/app/services"],
+			"@services/*": ["src/app/services/*"],
+			"@shared": ["src/app/shared"],
+			"@shared/*": ["src/app/shared/*"],
+			"@store": ["src/app/store"],
+			"@store/*": ["src/app/store/*"],
+			"@utils": ["src/app/utils"],
+			"@utils/*": ["src/app/utils/*"],
+			"@views": ["src/app/views"],
+			"@views/*": ["src/app/views/*"],
+			"@assets/*": ["src/assets/*"],
+			"@app/*": ["src/app/*"],
+			"@environments": ["src/environments"],
+			"@environments/*": ["src/environments/*"]
+		},
+		"outDir": "./dist/out-tsc",
+		"strict": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"sourceMap": true,
+		"declaration": false,
+		"experimentalDecorators": true,
+		"moduleResolution": "bundler",
+		"importHelpers": true,
+		"target": "ES2022",
+		"module": "ES2022",
+		"useDefineForClassFields": false,
+		"lib": ["ES2022", "dom"]
+	},
+	"angularCompilerOptions": {
+		"enableI18nLegacyMessageIdFormat": false,
+		"strictInjectionParameters": true,
+		"strictInputAccessModifiers": true,
+		"strictTemplates": true
+	}
 }
