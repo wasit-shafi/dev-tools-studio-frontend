@@ -1,0 +1,29 @@
+<div class="">
+	<table class="border-separate border-spacing-2 border border-slate-500">
+		<thead>
+			<tr>
+				<th class="border border-slate-600">User Name</th>
+				<th class="border border-slate-600">First Name</th>
+				<th class="border border-slate-600">Last Name</th>
+				<th class="border border-slate-600">Display Name</th>
+				<th class="border border-slate-600">E-Mail</th>
+				<th class="border border-slate-600">Password</th>
+				<th class="border border-slate-600">Country</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			@for (item of users; track $index) {
+				<tr>
+					<td class="border border-slate-700">{{ item.userName }}</td>
+					<td class="border border-slate-700">{{ item.firstName }}</td>
+					<td class="border border-slate-700">{{ item.lastName }}</td>
+					<td class="border border-slate-700">{{ item.displayName }}</td>
+					<td class="border border-slate-700">{{ item.email }}</td>
+					<td class="border border-slate-700">{{ item.password }}</td>
+					<td class="border border-slate-700">{{ item.country }}</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>

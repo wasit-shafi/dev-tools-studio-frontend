@@ -1,0 +1,94 @@
+<form
+	#signupForm="ngForm"
+	autocomplete="off"
+	(submit)="handleOnSubmitSignupForm($event, signupForm)"
+>
+	<!--  -->
+	<label for="firstName">First Name</label>
+	<input
+		[(ngModel)]="signupFormDetails.firstName"
+		autocomplete="off"
+		class="border"
+		id="firstName"
+		name="firstName"
+		required
+		type="text"
+	/>
+	<br />
+	<!--  -->
+	<label for="lastName">Last Name</label>
+	<input
+		[(ngModel)]="signupFormDetails.lastName"
+		autocomplete="off"
+		class="border"
+		id="lastName"
+		name="lastName"
+		required
+		type="text"
+	/>
+	<br />
+	<!--  -->
+	<label for="">Email</label>
+	<input
+		[(ngModel)]="signupFormDetails.email"
+		autocomplete="off"
+		class="border"
+		id="email"
+		name="email"
+		required
+		type="email"
+	/>
+	<br />
+	<!--  -->
+	<label for="">Password</label>
+	<input
+		[(ngModel)]="signupFormDetails.password"
+		autocomplete="off"
+		class="border"
+		id="password"
+		name="password"
+		required
+		type="password"
+	/>
+	<br />
+
+	<!--  -->
+	<label for="">Mobile Number</label>
+	<input
+		[(ngModel)]="signupFormDetails.mobileNumber"
+		autocomplete="off"
+		class="border"
+		id="mobileNumber"
+		name="mobileNumber"
+		required
+		type="text"
+	/>
+	<br />
+	<!--  -->
+
+	<label for="">Country</label>
+	<input
+		[(ngModel)]="signupFormDetails.country"
+		autocomplete="off"
+		class="border"
+		id="country"
+		name="country"
+		required
+		type="text"
+	/>
+	<br />
+
+	<button
+		type="submit"
+		class="bg-stone-300"
+	>
+		Submit
+	</button>
+	{{'  '}}
+	<button
+		type="reset"
+		class="bg-stone-300"
+	>
+		Reset
+	</button>
+</form>
