@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
 import { constants } from '@shared/constants';
-import { environment } from '@environments';
+import { environment } from '@environments/';
 
 @Component({
 	selector: 'app-signup',

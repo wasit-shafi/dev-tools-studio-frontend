@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { environment } from '@environments';
+import { environment } from '@environments/';
 import { constants } from '@shared/constants';
 
 @Component({
