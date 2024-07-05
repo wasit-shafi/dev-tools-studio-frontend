@@ -1,4 +1,10 @@
 <nav class="text-center">
-	<a routerLink="/">home</a> |
-	<a routerLink="signup">signup</a>
+	<a [routerLink]="constants.PATHS.ROOT">{{ constants.PATHS.ROOT }}</a> |
+	<a [routerLink]="constants.PATHS.HOME">{{ constants.PATHS.HOME }}</a> |
+	<a [routerLink]="constants.PATHS.SIGNUP">{{ constants.PATHS.SIGNUP }}</a> |
+	<a [routerLink]="constants.PATHS.SIGNIN">{{ constants.PATHS.SIGNIN }}</a> |
+	<a [routerLink]="constants.PATHS.FORGOT_PASSWORD">{{ constants.PATHS.FORGOT_PASSWORD }}</a> |
+	<a [routerLink]="constants.PATHS.GUEST">{{ constants.PATHS.GUEST }}</a> |
+	<a [routerLink]="constants.PATHS.SETTINGS">{{ constants.PATHS.SETTINGS }}</a> |
+	<a [routerLink]="constants.PATHS.ADMIN_HOME">{{ constants.PATHS.ADMIN_HOME }}</a>
 </nav>

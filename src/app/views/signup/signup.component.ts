@@ -2,20 +2,21 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { constants } from '@shared/constants';
+import { Constants } from '@shared/';
 import { environment } from '@environments/';
 
 @Component({
 	selector: 'app-signup',
 	standalone: true,
 	imports: [FormsModule],
+	providers: [Constants],
 	templateUrl: './signup.component.html',
 	styleUrl: './signup.component.scss',
 })
 export class SignupComponent {
 	private http = inject(HttpClient);
 
-	constructor() {}
+	constructor(public constants: Constants) {}
 	public signupFormDetails = {
 		firstName: '',
 		lastName: '',
@@ -28,12 +29,10 @@ export class SignupComponent {
 	handleOnSubmitSignupForm(event: any, signupForm: any) {
 		event.preventDefault();
 
-		const url = `${environment.baseUrl}${constants.api._V1}/user/register`;
+		const url = `${environment.baseUrl}${this.constants.API._V1}/user/register`;
 
 		this.http.post(url, { ...this.signupFormDetails }).subscribe({
-			next: (response) => {
-				console.log('response :: ', response);
-			},
+			next: (response) => {},
 			error: (error) => {
 				console.log('error :: ', error);
 			},
