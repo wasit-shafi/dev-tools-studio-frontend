@@ -1,29 +1,143 @@
-<div class="">
-	<table class="border-separate border-spacing-2 border border-slate-500">
-		<thead>
-			<tr>
-				<th class="border border-slate-600">User Name</th>
-				<th class="border border-slate-600">First Name</th>
-				<th class="border border-slate-600">Last Name</th>
-				<th class="border border-slate-600">Display Name</th>
-				<th class="border border-slate-600">E-Mail</th>
-				<th class="border border-slate-600">Password</th>
-				<th class="border border-slate-600">Country</th>
-			</tr>
-		</thead>
+<div>
+	<div
+		role="tablist"
+		class="tabs tabs-lifted"
+	>
+		<!-- Admin Tab -->
 
-		<tbody>
-			@for (item of users; track $index) {
-				<tr>
-					<td class="border border-slate-700">{{ item.userName }}</td>
-					<td class="border border-slate-700">{{ item.firstName }}</td>
-					<td class="border border-slate-700">{{ item.lastName }}</td>
-					<td class="border border-slate-700">{{ item.displayName }}</td>
-					<td class="border border-slate-700">{{ item.email }}</td>
-					<td class="border border-slate-700">{{ item.password }}</td>
-					<td class="border border-slate-700">{{ item.country }}</td>
-				</tr>
-			}
-		</tbody>
-	</table>
+		<input
+			type="radio"
+			name="primary-tab"
+			role="tab"
+			class="tab"
+			aria-label="Admin"
+			checked="checked"
+		/>
+		<div
+			role="tabpanel"
+			class="m-h-100 tab-content rounded-box border-base-300 bg-base-100 p-6"
+		>
+			<table class="border-separate border-spacing-2 border border-slate-500">
+				<thead>
+					<tr>
+						<th class="border border-slate-600">User Name</th>
+						<th class="border border-slate-600">First Name</th>
+						<th class="border border-slate-600">Last Name</th>
+						<th class="border border-slate-600">Display Name</th>
+						<th class="border border-slate-600">E-Mail</th>
+						<th class="border border-slate-600">Password</th>
+						<th class="border border-slate-600">Country</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					@for (item of users; track $index) {
+						<tr>
+							<td class="border border-slate-700">{{ item.userName }}</td>
+							<td class="border border-slate-700">{{ item.firstName }}</td>
+							<td class="border border-slate-700">{{ item.lastName }}</td>
+							<td class="border border-slate-700">{{ item.displayName }}</td>
+							<td class="border border-slate-700">{{ item.email }}</td>
+							<td class="border border-slate-700">{{ item.password }}</td>
+							<td class="border border-slate-700">{{ item.country }}</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+		<!-- Mail Tab -->
+
+		<input
+			type="radio"
+			name="primary-tab"
+			role="tab"
+			class="tab"
+			aria-label="Mail"
+		/>
+		<div
+			role="tabpanel"
+			class="tab-content rounded-box border-base-300 bg-base-100 p-6"
+		>
+			<form action="">
+				<label class="input input-bordered flex items-center gap-2">
+					Name
+					<input
+						type="text"
+						class="grow"
+						placeholder="Nam"
+					/>
+				</label>
+
+				<button class="btn">Submit</button>
+			</form>
+		</div>
+		<!-- Colors Tab -->
+
+		<input
+			type="radio"
+			name="primary-tab"
+			role="tab"
+			class="tab"
+			aria-label="Colors"
+		/>
+		<div
+			role="tabpanel"
+			class="tab-content rounded-box border-base-300 bg-base-100 p-6"
+		>
+			<div class="bg-emerald-600">
+				<h1 class="text-center">Color Tab Content</h1>
+			</div>
+		</div>
+		<!-- Meta Tags Tab -->
+
+		<input
+			type="radio"
+			name="primary-tab"
+			role="tab"
+			class="tab"
+			aria-label="Meta Tags"
+		/>
+		<div
+			role="tabpanel"
+			class="tab-content rounded-box border-base-300 bg-base-100 p-6"
+		>
+			<div class="bg-cyan-600">
+				<h1 class="text-center">Meta Tags Tab Content</h1>
+			</div>
+		</div>
+		<!-- Open Graph Tab -->
+
+		<input
+			type="radio"
+			name="primary-tab"
+			role="tab"
+			class="tab"
+			aria-label="Open Graph"
+		/>
+		<div
+			role="tabpanel"
+			class="tab-content rounded-box border-base-300 bg-base-100 p-6"
+		>
+			<div class="bg-red-600">
+				<h1 class="text-center">Open Graph Tab Content</h1>
+			</div>
+		</div>
+		<!-- Converters Tab -->
+
+		<input
+			type="radio"
+			name="primary-tab"
+			role="tab"
+			class="tab"
+			aria-label="Converts"
+		/>
+		<div
+			role="tabpanel"
+			class="tab-content rounded-box border-base-300 bg-base-100 p-6"
+		>
+			<div class="bg-violet-600">
+				<h1 class="text-center">Converters Tab Content</h1>
+			</div>
+		</div>
+	</div>
 </div>

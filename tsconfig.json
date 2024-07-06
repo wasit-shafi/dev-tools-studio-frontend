@@ -13,6 +13,7 @@
 			"@store/*": ["src/app/store/*", "src/app/store"],
 			"@utils/*": ["src/app/utils/*", "src/app/utils"],
 			"@views/*": ["src/app/views/*", "src/app/views"],
+			"@adminViews/*": ["src/app/module/admin/views/*", "src/app/module/admin/views"],
 			"@assets/*": ["src/assets/*", "src/assets"],
 			"@app/*": ["src/app/*", "src/app"],
 			"@environments/*": ["src/environments/*", "src/environments"]
