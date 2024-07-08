@@ -11,7 +11,6 @@
 			role="tab"
 			class="tab"
 			aria-label="Admin"
-			checked="checked"
 		/>
 		<div
 			role="tabpanel"
@@ -53,22 +52,103 @@
 			role="tab"
 			class="tab"
 			aria-label="Mail"
+			checked="checked"
 		/>
 		<div
 			role="tabpanel"
 			class="tab-content rounded-box border-base-300 bg-base-100 p-6"
 		>
-			<form action="">
+			<form
+				#sendEmailForm="ngForm"
+				autocomplete="off"
+				(submit)="handleOnSubmitSendEmailForm($event, sendEmailForm)"
+			>
+				<!-- To Email -->
+
 				<label class="input input-bordered flex items-center gap-2">
-					Name
+					To
 					<input
 						type="text"
 						class="grow"
-						placeholder="Nam"
+						name="to"
+						[(ngModel)]="sendEmailFormModel.to"
+						placeholder="Enter Email..."
 					/>
 				</label>
+				<!-- Subject -->
 
-				<button class="btn">Submit</button>
+				<label class="input input-bordered flex items-center gap-2">
+					Subject
+					<input
+						type="text"
+						class="grow"
+						name="subject"
+						[(ngModel)]="sendEmailFormModel.subject"
+						placeholder="Enter Subject..."
+					/>
+				</label>
+				<!-- Salutation -->
+
+				<label class="input input-bordered flex items-center gap-2">
+					Salutation
+					<input
+						type="text"
+						class="grow"
+						name="salutation"
+						[(ngModel)]="sendEmailFormModel.salutation"
+						placeholder="Select Salutation..."
+					/>
+				</label>
+				<!-- Body -->
+
+				<label class="input input-bordered flex items-center gap-2">
+					Body
+					<input
+						type="text"
+						class="grow"
+						name="body"
+						[(ngModel)]="sendEmailFormModel.body"
+						placeholder="Enter Body..."
+					/>
+				</label>
+				<!-- Closing Line -->
+
+				<label class="input input-bordered flex items-center gap-2">
+					Closing Lines
+					<input
+						type="text"
+						class="grow"
+						name="closing"
+						[(ngModel)]="sendEmailFormModel.closing"
+						placeholder="Enter Closing Lines..."
+					/>
+				</label>
+				<!-- signature -->
+
+				<label class="input input-bordered flex items-center gap-2">
+					Signature
+					<input
+						type="text"
+						class="grow"
+						name="signature"
+						[(ngModel)]="sendEmailFormModel.signature"
+						placeholder="Enter signature..."
+					/>
+				</label>
+				<details class="collapse bg-base-200">
+					<summary class="collapse-title text-xl font-medium">
+						Preview Full Email sending to <b [innerText]="sendEmailFormModel.to"></b>
+					</summary>
+					<div class="collapse-content">
+						<p [innerText]="sendEmailFormModel.subject"></p>
+						<p [innerText]="sendEmailFormModel.salutation"></p>
+						<p [innerText]="sendEmailFormModel.body"></p>
+						<p [innerText]="sendEmailFormModel.closing"></p>
+						<p [innerText]="sendEmailFormModel.signature"></p>
+					</div>
+				</details>
+
+				<button class="btn">Send Mail</button>
 			</form>
 		</div>
 		<!-- Colors Tab -->

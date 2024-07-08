@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 import { Constants } from '@shared/';
 import { environment } from '@environments/';
@@ -26,7 +26,7 @@ export class SignupComponent {
 		country: '',
 	};
 
-	handleOnSubmitSignupForm(event: any, signupForm: any) {
+	handleOnSubmitSignupForm(event: any, signupForm: NgForm) {
 		event.preventDefault();
 
 		const url = `${environment.baseUrl}${this.constants.API._V1}/user/register`;
