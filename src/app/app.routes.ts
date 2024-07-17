@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
-import * as CoreViews from '@views/';
-import * as AdminViews from '@adminViews/';
+import * as CoreViews from '@coreViews/';
 
 export const routes: Routes = [
 	// { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -26,24 +25,18 @@ export const routes: Routes = [
 		title: 'Forgot Password - Dev Tools Studio',
 	},
 	{
-		path: 'home',
-		component: CoreViews.HomeComponent,
+		path: 'user-home',
+		loadChildren: () => import('./modules/user/user.module').then((module) => module.UserModule),
 		title: 'Home - Dev Tools Studio',
-	},
-	{
-		path: 'guest',
-		component: CoreViews.GuestComponent,
-		title: 'Guest - Dev Tools Studio',
 	},
 	{
 		path: 'settings',
 		component: CoreViews.SettingsComponent,
 		title: 'Settings - Dev Tools Studio',
 	},
-	// TODO: lazy load admin module/component
 	{
 		path: 'admin-home',
-		component: AdminViews.AdminHomeComponent,
+		loadChildren: () => import('./modules/admin/admin.module').then((module) => module.AdminModule),
 		title: 'Admin Home - Dev Tools Studio',
 	},
 	{

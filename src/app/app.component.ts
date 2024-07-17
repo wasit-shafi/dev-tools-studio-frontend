@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { HeaderComponent, FooterComponent } from '@components/';
+import { HeaderComponent, FooterComponent } from '@coreComponents/';
 
 @Component({
 	selector: 'app-root',

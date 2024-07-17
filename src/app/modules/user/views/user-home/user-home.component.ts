@@ -1,19 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Constants } from '@shared/';
+import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
-	selector: 'app-home',
+	selector: 'app-user-home',
 	standalone: true,
 	imports: [FormsModule],
 	providers: [Constants, NgForm],
-	templateUrl: './home.component.html',
-	styleUrl: './home.component.scss',
+	templateUrl: './user-home.component.html',
+	styleUrl: './user-home.component.scss',
 })
-export class HomeComponent {
+export class UserHomeComponent {
 	title = 'dev-tools-studio';
 	users: any;
 	public sendEmailFormModel = {
