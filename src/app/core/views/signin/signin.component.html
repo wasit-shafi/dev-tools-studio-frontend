@@ -1,1 +1,47 @@
-<p>signin works!</p>
+<form
+	#signinForm="ngForm"
+	autocomplete="off"
+	(submit)="handleOnSubmitSigninForm($event, signinForm)"
+>
+	<!--  -->
+
+	<label for="">Email</label>
+	<input
+		[(ngModel)]="signinFormDetails.email"
+		autocomplete="off"
+		class="border"
+		id="email"
+		name="email"
+		required
+		type="email"
+	/>
+	<br />
+	<!--  -->
+
+	<label for="">Password</label>
+	<input
+		[(ngModel)]="signinFormDetails.password"
+		autocomplete="off"
+		class="border"
+		id="password"
+		name="password"
+		required
+		type="password"
+	/>
+	<br />
+	<!--  -->
+
+	<button
+		type="submit"
+		class="bg-stone-300"
+	>
+		Submit
+	</button>
+	{{ '  ' }}
+	<button
+		type="reset"
+		class="bg-stone-300"
+	>
+		Reset
+	</button>
+</form>
