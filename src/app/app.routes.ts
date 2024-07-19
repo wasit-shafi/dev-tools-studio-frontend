@@ -8,8 +8,11 @@ const constants = new Constants();
 export const routes: Routes = [
 	{
 		path: constants.ROUTES.ROOT,
-		component: CoreViews.HomeComponent,
-		title: `Signup - ${constants.projectName}`,
+		// TODO: temporary redirects it to signin
+		// component: CoreViews.HomeComponent,
+		title: `${constants.projectName}`,
+		redirectTo: 'signin',
+		pathMatch: 'full',
 	},
 	{
 		path: constants.ROUTES.SIGNUP,
