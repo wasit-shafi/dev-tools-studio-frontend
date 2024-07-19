@@ -1,47 +1,52 @@
 import { Routes } from '@angular/router';
 
 import * as CoreViews from '@coreViews/';
+import { Constants } from '@coreShared/constants/constants';
+
+const constants = new Constants();
 
 export const routes: Routes = [
-	// { path: '', redirectTo: 'home', pathMatch: 'full' },
 	{
-		path: '',
+		path: constants.ROUTES.ROOT,
 		component: CoreViews.HomeComponent,
-		title: 'Signup - Dev Tools Studio',
+		title: `Signup - ${constants.projectName}`,
 	},
 	{
-		path: 'signup',
+		path: constants.ROUTES.SIGNUP,
 		component: CoreViews.SignupComponent,
-		title: 'Signup - Dev Tools Studio',
+		title: `Signup - ${constants.projectName}`,
 	},
 	{
-		path: 'signin',
+		path: constants.ROUTES.SIGNIN,
 		component: CoreViews.SigninComponent,
-		title: 'Signin - Dev Tools Studio',
+		title: `Signin - ${constants.projectName}`,
 	},
 	{
-		path: 'forgot-password',
-		component: CoreViews.ForgotPasswordComponent,
-		title: 'Forgot Password - Dev Tools Studio',
+		path: constants.ROUTES.RESET_PASSWORD,
+		component: CoreViews.ResetPasswordComponent,
+		title: `Reset Password - ${constants.projectName}`,
 	},
 	{
-		path: 'user-home',
+		path: constants.ROUTES.CONTACT,
+		component: CoreViews.ContactComponent,
+		title: `Contact Wasit - ${constants.projectName}`,
+	},
+	{
+		path: constants.ROUTES.DASHBOARD,
 		loadChildren: () => import('./modules/user/user.module').then((module) => module.UserModule),
-		title: 'Home - Dev Tools Studio',
 	},
 	{
-		path: 'settings',
+		path: constants.ROUTES.SETTINGS,
 		component: CoreViews.SettingsComponent,
-		title: 'Settings - Dev Tools Studio',
+		title: `Settings - ${constants.projectName}`,
 	},
 	{
-		path: 'admin-home',
+		path: constants.ROUTES.CONTROL_PANEL,
 		loadChildren: () => import('./modules/admin/admin.module').then((module) => module.AdminModule),
-		title: 'Admin Home - Dev Tools Studio',
 	},
 	{
 		path: '**',
-		component: CoreViews.PageNotFoundComponent,
-		title: 'Page Not Found',
+		component: CoreViews.NotFoundComponent,
+		title: `Page Not Found - ${constants.projectName}`,
 	},
 ];

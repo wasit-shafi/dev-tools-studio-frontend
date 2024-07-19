@@ -1,1 +1,1 @@
-export * from './admin-home/admin-home.component';
+export * from './control-panel/control-panel.component';

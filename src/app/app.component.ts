@@ -1,14 +1,27 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { HeaderComponent, FooterComponent } from '@coreComponents/';
+import { Constants } from '@coreShared/';
+import { environment } from '@environments/environment';
 
 @Component({
 	selector: 'app-root',
 	standalone: true,
-	imports: [RouterOutlet, CommonModule, HeaderComponent, FooterComponent],
+	providers: [Constants],
+	imports: [RouterOutlet, CommonModule, HeaderComponent, FooterComponent, RouterLink],
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.scss',
 })
-export class AppComponent {}
+export class AppComponent {
+	public mockLinks;
+	public environment = environment;
+
+	constructor(public constants: Constants) {
+		this.mockLinks = Object.keys(this.constants.ROUTES).map((key) => ({
+			text: key,
+			url: this.constants.ROUTES[key],
+		}));
+	}
+}

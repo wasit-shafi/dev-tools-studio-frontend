@@ -1,17 +1,31 @@
 export class Constants {
-	public API: Record<string, string> = {
+	public readonly projectName = 'Dev Tools Studio';
+
+	public readonly API: Record<string, string> = {
 		_V1: '/v1',
 		_V2: '/v2',
 	};
 
-	public PATHS: Record<string, string> = {
-		ADMIN_HOME: 'admin-home',
-		FORGOT_PASSWORD: 'forgot-password',
-		GUEST: 'guest',
-		HOME: 'home',
-		ROOT: '/',
-		SETTINGS: 'settings',
+	public readonly ROUTES: Record<string, string> = {
+		// GUEST USER ROUTES (UN-PROTECTED)
+
+		CONTACT: 'contact',
+		RESET_PASSWORD: 'rest-password',
+		ROOT: '',
 		SIGNIN: 'signin',
 		SIGNUP: 'signup',
+
+		// LOGGED-IN USER ROUTES (PROTECTED)
+
+		DASHBOARD: 'dashboard',
+		SETTINGS: 'settings',
+
+		// ADMIN ROUTES (PROTECTED)
+
+		CONTROL_PANEL: 'control-panel',
+
+		// OTHERS
+
+		UNKNOWN: 'test-random-unknown-url',
 	};
 }

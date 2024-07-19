@@ -6,14 +6,14 @@ import { environment } from '@environments/';
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
-	selector: 'app-user-home',
+	selector: 'app-dashboard',
 	standalone: true,
 	imports: [FormsModule],
 	providers: [Constants, NgForm],
-	templateUrl: './user-home.component.html',
-	styleUrl: './user-home.component.scss',
+	templateUrl: './dashboard.component.html',
+	styleUrl: './dashboard.component.scss',
 })
-export class UserHomeComponent {
+export class DashboardComponent {
 	title = 'dev-tools-studio';
 	users: any;
 	public sendEmailFormModel = {

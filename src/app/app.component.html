@@ -1,3 +1,13 @@
+@if (!environment.production) {
+	<div  class="text-center"  >
+		@for (item of  mockLinks ; track $index;) {
+			@let url = item.url;
+			@let text = item.text;
+			<a [routerLink]="url" class="link link-primary">{{$index + 1}}-{{text}}</a> {{' _ '}}
+		}
+	</div>
+}
+<br/>
 <main>
 	<app-header></app-header>
 	<router-outlet />
