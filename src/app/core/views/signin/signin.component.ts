@@ -17,14 +17,26 @@ export class SigninComponent {
 
 	constructor(public constants: Constants) {}
 
-	public signinFormDetails = {
+	public signinFormModel = {
 		email: '',
 		password: '',
 	};
 
 	handleOnSubmitSigninForm(event: any, signinForm: NgForm) {
 		event.preventDefault();
+		const url = `${environment.baseUrl}${this.constants.API._V1}/auth/signin`;
 
-		signinForm.reset();
+		this.http.post(url, { ...this.signinFormModel }).subscribe({
+			next: (response) => {
+				console.log('next :: response :: ', response);
+			},
+			error: (error) => {
+				console.log('error :: ', error);
+			},
+			complete: () => {
+				// console.log('i am inside complete back');
+			},
+		});
+		// signinForm.reset();
 	}
 }

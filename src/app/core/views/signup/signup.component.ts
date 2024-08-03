@@ -29,15 +29,20 @@ export class SignupComponent {
 	handleOnSubmitSignupForm(event: any, signupForm: NgForm) {
 		event.preventDefault();
 
-		const url = `${environment.baseUrl}${this.constants.API._V1}/user/register`;
+		const url = `${environment.baseUrl}${this.constants.API._V1}/auth/signup`;
 
 		this.http.post(url, { ...this.signupFormDetails }).subscribe({
-			next: (response) => {},
+			next: (response) => {
+				console.log('next :: response :: ', response);
+			},
 			error: (error) => {
 				console.log('error :: ', error);
 			},
+			complete: () => {
+				// console.log('i am inside complete back');
+			},
 		});
 
-		signupForm.reset();
+		// signupForm.reset();
 	}
 }

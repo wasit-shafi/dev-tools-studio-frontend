@@ -5,42 +5,63 @@
 >
 	<!--  -->
 
-	<label for="">Email</label>
+	<label for="email">Email</label>
 	<input
-		[(ngModel)]="signinFormDetails.email"
+		[(ngModel)]="signinFormModel.email"
 		autocomplete="off"
 		class="border"
 		id="email"
 		name="email"
 		required
+		pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
 		type="email"
+		#email="ngModel"
 	/>
+	<div [hidden]="email.valid || email.pristine">Email is not valid</div>
 	<br />
-	<!--  -->
 
-	<label for="">Password</label>
+	<label for="password">Password</label>
 	<input
-		[(ngModel)]="signinFormDetails.password"
+		[(ngModel)]="signinFormModel.password"
+		#password="ngModel"
 		autocomplete="off"
 		class="border"
 		id="password"
 		name="password"
 		required
+		minlength="4"
 		type="password"
 	/>
+
+	<!--
+		<div [hidden]="password.valid || password.pristine">
+			<span>Password is not valid</span>
+		</div>
+	-->
+	@if (password.invalid && (password.dirty || password.touched)) {
+		<div>
+			@if (password.hasError('required')) {
+				<div>Password is required.</div>
+			}
+			@if (password.hasError('minlength')) {
+				<div>Password must be at least 4 characters long.</div>
+			}
+		</div>
+	}
 	<br />
 	<!--  -->
 
 	<button
 		type="submit"
-		class="bg-stone-300"
+		class="btn btn-success"
+		[disabled]="!signinForm.form.valid"
 	>
 		Submit
 	</button>
 	{{ '  ' }}
 	<button
 		type="reset"
-		class="bg-stone-300"
+		class="btn"
 	>
 		Reset
 	</button>
