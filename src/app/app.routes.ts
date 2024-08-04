@@ -3,6 +3,8 @@ import { Routes } from '@angular/router';
 import * as CoreViews from '@coreViews/';
 import { Constants } from '@coreShared/constants/constants';
 
+import { authGuard } from '@coreGuards/';
+
 const constants = new Constants();
 
 export const routes: Routes = [
@@ -36,15 +38,18 @@ export const routes: Routes = [
 	},
 	{
 		path: constants.ROUTES.DASHBOARD,
+		canMatch: [authGuard],
 		loadChildren: () => import('./modules/user/user.module').then((module) => module.UserModule),
 	},
 	{
 		path: constants.ROUTES.SETTINGS,
+		canMatch: [authGuard],
 		component: CoreViews.SettingsComponent,
 		title: `Settings - ${constants.projectName}`,
 	},
 	{
 		path: constants.ROUTES.CONTROL_PANEL,
+		canMatch: [authGuard],
 		loadChildren: () => import('./modules/admin/admin.module').then((module) => module.AdminModule),
 	},
 	{

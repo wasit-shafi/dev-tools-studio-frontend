@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '@coreServices/auth/auth.service';
 
 import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
@@ -13,9 +15,12 @@ import { environment } from '@environments/';
 	styleUrl: './signin.component.scss',
 })
 export class SigninComponent {
+	private router = inject(Router);
 	private http = inject(HttpClient);
+	public constants = inject(Constants);
+	private authService = inject(AuthService);
 
-	constructor(public constants: Constants) {}
+	constructor() {}
 
 	public signinFormModel = {
 		email: '',
@@ -29,6 +34,8 @@ export class SigninComponent {
 		this.http.post(url, { ...this.signinFormModel }).subscribe({
 			next: (response) => {
 				console.log('next :: response :: ', response);
+				this.authService.setUserLoggedIn(true);
+				this.router.navigate(['/dashboard']);
 			},
 			error: (error) => {
 				console.log('error :: ', error);

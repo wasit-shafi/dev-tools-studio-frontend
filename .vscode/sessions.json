@@ -15,13 +15,6 @@
           "autoExecuteCommands": false
         },
         {
-          "name": "Backend",
-          "commands": [
-            "cd ..; cd dev-tools-studio-backend; npm run tsnd"
-          ],
-          "autoExecuteCommands": false
-        },
-        {
           "name": "Terminal",
           "commands": [
             ""

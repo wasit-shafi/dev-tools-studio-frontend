@@ -6,6 +6,7 @@
 		"paths": {
 			"@coreComponents/*": ["src/app/core/components/*", "src/app/core/components"],
 			"@coreDirectives/*": ["src/app/core/directives/*", "src/app/core/directives"],
+			"@coreGuards/*": ["src/app/core/guards/*", "src/app/core/guards"],
 			"@coreModels/*": ["src/app/core/models/*", "src/app/core/models"],
 			"@corePipes/*": ["src/app/core/pipes/*", "src/app/core/pipes"],
 			"@coreServices/*": ["src/app/core/services/*", "src/app/core/services"],
