@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router';
 
 import * as CoreViews from '@coreViews/';
-import { Constants } from '@coreShared/constants/constants';
 
-import { authGuard } from '@coreGuards/';
+import { Constants } from '@coreShared/';
+
+import { authGuard, alreadySignedInGuard } from '@coreGuards/';
 
 const constants = new Constants();
 
@@ -17,16 +18,19 @@ export const routes: Routes = [
 		pathMatch: 'full',
 	},
 	{
+		canMatch: [alreadySignedInGuard],
 		path: constants.ROUTES.SIGNUP,
 		component: CoreViews.SignupComponent,
 		title: `Signup - ${constants.projectName}`,
 	},
 	{
+		canMatch: [alreadySignedInGuard],
 		path: constants.ROUTES.SIGNIN,
 		component: CoreViews.SigninComponent,
 		title: `Signin - ${constants.projectName}`,
 	},
 	{
+		canMatch: [alreadySignedInGuard],
 		path: constants.ROUTES.RESET_PASSWORD,
 		component: CoreViews.ResetPasswordComponent,
 		title: `Reset Password - ${constants.projectName}`,
@@ -37,19 +41,21 @@ export const routes: Routes = [
 		title: `Contact Wasit - ${constants.projectName}`,
 	},
 	{
-		path: constants.ROUTES.DASHBOARD,
 		canMatch: [authGuard],
+		path: constants.ROUTES.DASHBOARD,
 		loadChildren: () => import('./modules/user/user.module').then((module) => module.UserModule),
 	},
 	{
-		path: constants.ROUTES.SETTINGS,
 		canMatch: [authGuard],
+		path: constants.ROUTES.SETTINGS,
 		component: CoreViews.SettingsComponent,
 		title: `Settings - ${constants.projectName}`,
 	},
+
+	// TODO: added admin guard as well for control panel
 	{
-		path: constants.ROUTES.CONTROL_PANEL,
 		canMatch: [authGuard],
+		path: constants.ROUTES.CONTROL_PANEL,
 		loadChildren: () => import('./modules/admin/admin.module').then((module) => module.AdminModule),
 	},
 	{

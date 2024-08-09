@@ -7,6 +7,7 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
 
 	const newRequest = request.clone({
 		headers: request.headers.set('Authorization', `Bearer ${authService.getAccessToken}`),
+		withCredentials: true,
 	});
 	return next(newRequest);
 };
