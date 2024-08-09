@@ -25,8 +25,9 @@ export class DashboardComponent {
 		signature: '',
 	};
 	private http = inject(HttpClient);
+	private constants = inject(Constants);
 
-	constructor(public constants: Constants) {
+	constructor() {
 		const url = `${environment.baseUrl}${this.constants.API._V1}/user`;
 
 		this.http.get(url).subscribe({

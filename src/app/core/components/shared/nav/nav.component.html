@@ -1,10 +1,17 @@
-<nav class="text-center">
-	<ul class="menu menu-vertical rounded-box bg-base-200 sm:menu-horizontal">
-		<li>
-			<a [routerLink]="'#'">LINK FOR NAV BAR ITEM 1</a>
-		</li>
-		<li>
-			<a [routerLink]="'#'">LINK FOR NAV BAR ITEM 2</a>
-		</li>
+<nav class="flex justify-center">
+	<ul class="menu menu-vertical rounded-box bg-base-200 xs:menu-horizontal">
+		@if (authService.getUserSignedIn) {
+			<li [routerLink]="['/dashboard']"><a>Dashboard</a></li>
+			<li [routerLink]="['/settings']"><a>Settings</a></li>
+			@if (true) {
+				<li [routerLink]="['/control-panel']"><a>Control Panel</a></li>
+			}
+			<li (click)="handleSignOut()"><a>Logout</a></li>
+		} @else {
+			<li [routerLink]="['/']"><a>Home</a></li>
+			<li [routerLink]="['/contact']"><a>Contact</a></li>
+			<li [routerLink]="['/signup']"><a>Sign up</a></li>
+			<li [routerLink]="['/signin']"><a>Sign in</a></li>
+		}
 	</ul>
 </nav>

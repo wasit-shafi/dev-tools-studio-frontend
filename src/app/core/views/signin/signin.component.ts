@@ -1,12 +1,12 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '@coreServices/auth/auth.service';
+import { Observable } from 'rxjs';
+import { Router, RouterLink } from '@angular/router';
 
 import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
-import { Observable } from 'rxjs';
+import { AuthService } from '@coreServices/';
 
 // TODO: update the interface logic to a single file
 
@@ -24,7 +24,7 @@ interface Data {
 @Component({
 	selector: 'app-signin',
 	standalone: true,
-	imports: [FormsModule],
+	imports: [FormsModule, RouterLink],
 	providers: [Constants],
 	templateUrl: './signin.component.html',
 	styleUrl: './signin.component.scss',
@@ -34,8 +34,6 @@ export class SigninComponent {
 	private http = inject(HttpClient);
 	public constants = inject(Constants);
 	private authService = inject(AuthService);
-
-	constructor() {}
 
 	public signinFormModel = {
 		email: '',
@@ -53,11 +51,11 @@ export class SigninComponent {
 		this.postSignin(url, { ...this.signinFormModel }).subscribe({
 			next: (response) => {
 				console.log('next :: response :: ', response);
-				this.authService.setUserLoggedIn(true);
-				this.authService.setAuthTokens({
+				this.authService.setUserSignedIn = true;
+				this.authService.setAuthTokens = {
 					accessToken: response.data.accessToken,
 					refreshToken: response.data.refreshToken,
-				});
+				};
 
 				this.router.navigate(['/dashboard']);
 			},

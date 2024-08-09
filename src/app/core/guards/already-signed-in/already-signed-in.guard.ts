@@ -9,5 +9,5 @@ export const alreadySignedInGuard: CanMatchFn = (route, segments) => {
 	// console.log('alreadySignedInGuard :: route :: ', route);
 	// console.log('alreadySignedInGuard :: segment :: ', segments);
 
-	return authService.getUserLoggedIn ? router.createUrlTree(['/dashboard']) : true;
+	return authService.getUserSignedIn ? router.createUrlTree(['/dashboard']) : true;
 };

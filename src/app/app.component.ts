@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { HeaderComponent, FooterComponent } from '@coreComponents/';
@@ -17,8 +17,9 @@ import { environment } from '@environments/environment';
 export class AppComponent {
 	public mockLinks;
 	public environment = environment;
+	private constants = inject(Constants);
 
-	constructor(public constants: Constants) {
+	constructor() {
 		this.mockLinks = Object.keys(this.constants.ROUTES).map((key) => ({
 			text: key,
 			url: this.constants.ROUTES[key],

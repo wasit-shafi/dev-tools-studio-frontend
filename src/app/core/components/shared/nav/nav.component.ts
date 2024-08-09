@@ -1,8 +1,10 @@
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 import { Constants } from '@coreShared/';
+
+import { AuthService } from '@coreServices/';
 
 @Component({
 	selector: 'app-nav',
@@ -13,5 +15,12 @@ import { Constants } from '@coreShared/';
 	styleUrl: './nav.component.scss',
 })
 export class NavComponent {
-	constructor(public constants: Constants) {}
+	public router = inject(Router);
+	public constants = inject(Constants);
+	public authService = inject(AuthService);
+
+	public handleSignOut = () => {
+		this.authService.setUserSignedIn = false;
+		this.router.navigate(['/']);
+	};
 }

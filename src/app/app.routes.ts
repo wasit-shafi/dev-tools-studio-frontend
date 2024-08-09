@@ -11,10 +11,8 @@ const constants = new Constants();
 export const routes: Routes = [
 	{
 		path: constants.ROUTES.ROOT,
-		// TODO: temporary redirects it to signin
-		// component: CoreViews.HomeComponent,
+		component: CoreViews.HomeComponent,
 		title: `${constants.projectName}`,
-		redirectTo: 'signin',
 		pathMatch: 'full',
 	},
 	{
@@ -51,8 +49,8 @@ export const routes: Routes = [
 		component: CoreViews.SettingsComponent,
 		title: `Settings - ${constants.projectName}`,
 	},
+	// TODO(wasit): added admin guard as well for control panel
 
-	// TODO: added admin guard as well for control panel
 	{
 		canMatch: [authGuard],
 		path: constants.ROUTES.CONTROL_PANEL,

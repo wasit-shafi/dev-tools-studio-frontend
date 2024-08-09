@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { NavComponent } from '../nav/nav.component';
+
+import { AuthService } from '@coreServices/';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-header',
@@ -9,4 +12,12 @@ import { NavComponent } from '../nav/nav.component';
 	templateUrl: './header.component.html',
 	styleUrl: './header.component.scss',
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+	public router = inject(Router);
+	public authService = inject(AuthService);
+
+	public handleSignOut = () => {
+		this.authService.setUserSignedIn = false;
+		this.router.navigate(['/']);
+	};
+}

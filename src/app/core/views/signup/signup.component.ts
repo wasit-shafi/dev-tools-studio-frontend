@@ -15,8 +15,8 @@ import { environment } from '@environments/';
 })
 export class SignupComponent {
 	private http = inject(HttpClient);
+	private constants = inject(Constants);
 
-	constructor(public constants: Constants) {}
 	public signupFormDetails = {
 		firstName: '',
 		lastName: '',

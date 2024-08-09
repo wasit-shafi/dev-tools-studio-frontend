@@ -15,8 +15,7 @@ import { environment } from '@environments/';
 })
 export class ResetPasswordComponent {
 	private http = inject(HttpClient);
-
-	constructor(public constants: Constants) {}
+	private constants = inject(Constants);
 
 	public resetPasswordFormDetails = {
 		email: '',

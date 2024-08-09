@@ -1,20 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class AuthService {
-	private isUserLoggedIn: boolean = false;
 	private accessToken!: string;
 	private refreshToken!: string;
+	private isUserSignedIn: boolean = false;
 
-	public get getUserLoggedIn(): boolean {
-		return this.isUserLoggedIn;
+	public get getUserSignedIn(): boolean {
+		return this.isUserSignedIn;
 	}
-	// TODO: review why setter function is causing problems here
 
-	public setUserLoggedIn(loggedIn: any) {
-		this.isUserLoggedIn = loggedIn;
+	public set setUserSignedIn(signedIn: any) {
+		this.isUserSignedIn = signedIn;
 	}
 
 	public get getAccessToken(): string {
@@ -32,12 +31,13 @@ export class AuthService {
 	public set setAccessToken(accessToken: string) {
 		this.accessToken = accessToken;
 	}
+
 	public set setRefreshToken(refreshToken: string) {
 		this.refreshToken = refreshToken;
 	}
-	// TODO: review why setter function is causing problems here
 
-	public setAuthTokens(tokens: { accessToken: string; refreshToken: string }) {
+	public set setAuthTokens(tokens: any) {
+		// console.log('tokens :: ', tokens);
 		this.accessToken = tokens.accessToken;
 		this.refreshToken = tokens.refreshToken;
 	}
