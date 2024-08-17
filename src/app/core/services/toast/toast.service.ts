@@ -11,6 +11,10 @@ interface IToast {
 	type: ToastAlertType;
 }
 
+interface IToastNotificationQueue extends IToast {
+	timestamp: Date;
+}
+
 @Injectable({
 	providedIn: 'root',
 })
@@ -18,18 +22,16 @@ export class ToastService implements OnDestroy {
 	// TODO: handle no provider issue for DI
 	// private constants = inject(Constants);
 
-	private INTERVAL_DURATION = 4000;
-	public toastNotificationQueue: IToast[] = [];
+	private readonly WORKER_INTERVAL_DELAY = 1000;
+	private readonly TOAST_NOTIFICATION_HOLD_DURATION = 4000;
+	public toastNotificationQueue: IToastNotificationQueue[] = [];
+
+	private platformId;
 	private intervalID?: ReturnType<typeof setInterval>;
 	private isBrowser: WritableSignal<boolean> = signal(false);
 
 	constructor(@Inject(PLATFORM_ID) platformId: object) {
-		this.isBrowser.set(isPlatformBrowser(platformId));
-		// For more about info why using to use this.isBrowser() refer: https://stackoverflow.com/a/78011586/10249156
-
-		if (this.isBrowser()) {
-			this.intervalID = setInterval(this.dequeueToastNotificationWorker, this.INTERVAL_DURATION);
-		}
+		this.platformId = platformId;
 	}
 
 	ngOnDestroy(): void {
@@ -38,17 +40,44 @@ export class ToastService implements OnDestroy {
 		}
 	}
 
+	private startNotificationWorker() {
+		this.isBrowser.set(isPlatformBrowser(this.platformId));
+		// For more info refer: https://stackoverflow.com/a/78011586/10249156
+
+		if (this.isBrowser()) {
+			// executed only if its currently running from browser not on server (SSR)
+			this.intervalID = setInterval(this.dequeueToastNotificationWorker, this.WORKER_INTERVAL_DELAY);
+		}
+	}
+
+	private stopNotificationWorker() {
+		clearInterval(this.intervalID);
+	}
+
 	public enqueueToastNotification = (params: IToast) => {
+		if (!this.toastNotificationQueue.length) {
+			this.startNotificationWorker();
+		}
+
 		this.toastNotificationQueue.push({
 			message: params.message,
 			// type: params.type || this.constants.ALERT_TYPE.SUCCESS,
 			type: params.type || '',
+			timestamp: new Date(),
 		});
 	};
 
-	public dequeueToastNotificationWorker(): void {
+	private dequeueToastNotificationWorker = () => {
 		if (this.toastNotificationQueue?.length) {
-			this.toastNotificationQueue.shift();
+			const timeDifferenceInMs = new Date().getTime() - this.toastNotificationQueue[0].timestamp.getTime();
+
+			if (timeDifferenceInMs > this.TOAST_NOTIFICATION_HOLD_DURATION) {
+				this.toastNotificationQueue.shift();
+
+				if (!this.toastNotificationQueue.length && this.intervalID) {
+					this.stopNotificationWorker();
+				}
+			}
 		}
-	}
+	};
 }

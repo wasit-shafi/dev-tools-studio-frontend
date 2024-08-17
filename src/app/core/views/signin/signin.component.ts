@@ -62,11 +62,10 @@ export class SigninComponent {
 				this.router.navigate(['/dashboard']);
 			},
 			error: (error: CustomHttpErrorResponse) => {
-				// console.log('error :: ', error);
-				// this.toastService.enqueueToastNotification({
-				// 	message: error.error.message || error.message,
-				// 	type: this.constants.ALERT_TYPE.ERROR,
-				// });
+				this.toastService.enqueueToastNotification({
+					message: error.error.message || error.message,
+					type: this.constants.ALERT_TYPE.ERROR,
+				});
 			},
 			complete: () => {
 				// console.log('i am inside complete back');
