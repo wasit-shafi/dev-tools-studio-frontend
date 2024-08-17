@@ -23,7 +23,7 @@
 </main>
 
 @if (toastService.toastNotificationQueue.length) {
-	<div class="toast toast-end toast-top cursor-wait border">
+	<div class="toast toast-end toast-top border">
 		@for (alert of toastService.toastNotificationQueue; track $index) {
 			<div
 				role="alert"
@@ -34,7 +34,8 @@
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 24 24"
-					class="h-6 w-6 shrink-0 stroke-info"
+					class="h-6 w-6 shrink-0"
+					[ngClass]="alert.type === constants.ALERT_TYPE.VOID ? 'stroke-info' : 'stroke-current'"
 				>
 					<path
 						stroke-linecap="round"

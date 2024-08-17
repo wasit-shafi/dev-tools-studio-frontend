@@ -7,6 +7,7 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 
 import { loggingInterceptor, authInterceptor } from '@coreInterceptors/';
 import { errorInterceptor } from '@coreInterceptors/error/error.interceptor';
+import { Constants } from '@coreShared/';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -14,5 +15,6 @@ export const appConfig: ApplicationConfig = {
 		provideRouter(routes),
 		provideClientHydration(),
 		provideHttpClient(withFetch(), withInterceptors([authInterceptor, loggingInterceptor, errorInterceptor])),
+		Constants,
 	],
 };

@@ -19,7 +19,7 @@ import { ToastService } from '@coreServices/';
 export class AppComponent {
 	public mockLinks;
 	public environment = environment;
-	private constants = inject(Constants);
+	public constants = inject(Constants);
 	public toastService = inject(ToastService);
 
 	constructor() {
