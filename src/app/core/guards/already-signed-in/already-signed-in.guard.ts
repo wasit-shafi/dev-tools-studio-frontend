@@ -6,8 +6,7 @@ import { AuthService } from '@coreServices/';
 export const alreadySignedInGuard: CanMatchFn = (route, segments) => {
 	const router = inject(Router);
 	const authService = inject(AuthService);
-	// console.log('alreadySignedInGuard :: route :: ', route);
-	// console.log('alreadySignedInGuard :: segment :: ', segments);
+	// console.log({ route, segments });
 
-	return authService.getUserSignedIn ? router.createUrlTree(['/dashboard']) : true;
+	return authService.isUserSignedIn() ? router.createUrlTree(['/dashboard']) : true;
 };

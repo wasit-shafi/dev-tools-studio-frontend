@@ -3,8 +3,10 @@ import { Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { HeaderComponent, FooterComponent } from '@coreComponents/';
+
 import { Constants } from '@coreShared/';
 import { environment } from '@environments/environment';
+import { ToastService } from '@coreServices/';
 
 @Component({
 	selector: 'app-root',
@@ -18,6 +20,7 @@ export class AppComponent {
 	public mockLinks;
 	public environment = environment;
 	private constants = inject(Constants);
+	public toastService = inject(ToastService);
 
 	constructor() {
 		this.mockLinks = Object.keys(this.constants.ROUTES).map((key) => ({

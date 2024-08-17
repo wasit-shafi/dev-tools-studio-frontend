@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -6,7 +6,8 @@ import { Router, RouterLink } from '@angular/router';
 
 import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
-import { AuthService } from '@coreServices/';
+import { AuthService, ToastService } from '@coreServices/';
+import { CustomHttpErrorResponse } from '@coreModels/';
 
 // TODO: update the interface logic to a single file
 
@@ -34,6 +35,7 @@ export class SigninComponent {
 	private http = inject(HttpClient);
 	public constants = inject(Constants);
 	private authService = inject(AuthService);
+	private toastService = inject(ToastService);
 
 	public signinFormModel = {
 		email: '',
@@ -51,7 +53,7 @@ export class SigninComponent {
 		this.postSignin(url, { ...this.signinFormModel }).subscribe({
 			next: (response) => {
 				console.log('next :: response :: ', response);
-				this.authService.setUserSignedIn = true;
+				this.authService.isUserSignedIn.set(true);
 				this.authService.setAuthTokens = {
 					accessToken: response.data.accessToken,
 					refreshToken: response.data.refreshToken,
@@ -59,8 +61,12 @@ export class SigninComponent {
 
 				this.router.navigate(['/dashboard']);
 			},
-			error: (error: HttpErrorResponse) => {
-				console.log('error :: ', error);
+			error: (error: CustomHttpErrorResponse) => {
+				// console.log('error :: ', error);
+				// this.toastService.enqueueToastNotification({
+				// 	message: error.error.message || error.message,
+				// 	type: this.constants.ALERT_TYPE.ERROR,
+				// });
 			},
 			complete: () => {
 				// console.log('i am inside complete back');

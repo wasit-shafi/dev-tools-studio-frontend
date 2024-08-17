@@ -12,31 +12,31 @@ export const routes: Routes = [
 	{
 		path: constants.ROUTES.ROOT,
 		component: CoreViews.HomeComponent,
-		title: `${constants.projectName}`,
+		title: `${constants.PROJECT_NAME}`,
 		pathMatch: 'full',
 	},
 	{
 		canMatch: [alreadySignedInGuard],
 		path: constants.ROUTES.SIGNUP,
 		component: CoreViews.SignupComponent,
-		title: `Signup - ${constants.projectName}`,
+		title: `Signup - ${constants.PROJECT_NAME}`,
 	},
 	{
 		canMatch: [alreadySignedInGuard],
 		path: constants.ROUTES.SIGNIN,
 		component: CoreViews.SigninComponent,
-		title: `Signin - ${constants.projectName}`,
+		title: `Signin - ${constants.PROJECT_NAME}`,
 	},
 	{
 		canMatch: [alreadySignedInGuard],
 		path: constants.ROUTES.RESET_PASSWORD,
 		component: CoreViews.ResetPasswordComponent,
-		title: `Reset Password - ${constants.projectName}`,
+		title: `Reset Password - ${constants.PROJECT_NAME}`,
 	},
 	{
 		path: constants.ROUTES.CONTACT,
 		component: CoreViews.ContactComponent,
-		title: `Contact Wasit - ${constants.projectName}`,
+		title: `Contact Wasit - ${constants.PROJECT_NAME}`,
 	},
 	{
 		canMatch: [authGuard],
@@ -47,7 +47,7 @@ export const routes: Routes = [
 		canMatch: [authGuard],
 		path: constants.ROUTES.SETTINGS,
 		component: CoreViews.SettingsComponent,
-		title: `Settings - ${constants.projectName}`,
+		title: `Settings - ${constants.PROJECT_NAME}`,
 	},
 	// TODO(wasit): added admin guard as well for control panel
 
@@ -59,6 +59,6 @@ export const routes: Routes = [
 	{
 		path: '**',
 		component: CoreViews.NotFoundComponent,
-		title: `Page Not Found - ${constants.projectName}`,
+		title: `Page Not Found - ${constants.PROJECT_NAME}`,
 	},
 ];

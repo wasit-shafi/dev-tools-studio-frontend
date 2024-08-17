@@ -1,15 +1,52 @@
 @if (!environment.production) {
-	<div  class="text-center"  >
-		@for (item of  mockLinks ; track $index;) {
-			@let url = item.url;
-			@let text = item.text;
-			<a [routerLink]="url" class="link link-primary">{{$index + 1}}-{{text}}</a> {{' _ '}}
+	<div class="text-center">
+		@for (item of mockLinks; track $index) {
+			<!-- TODO: review why @let is not working now with prettier -->
+			<!-- @let url = item.url; -->
+			<!-- @let text = item.text; -->
+			<a
+				[routerLink]="item.url"
+				class="link link-primary"
+			>
+				{{ $index + 1 }}-{{ item.text }}
+			</a>
+			{{ ' _ ' }}
 		}
 	</div>
 }
-<br/>
+<br />
+
 <main class="mx-auto max-w-screen-lg px-[16px] sm:px-[22px] md:px-[28px]">
 	<app-header></app-header>
 	<router-outlet />
 	<app-footer></app-footer>
 </main>
+
+@if (toastService.toastNotificationQueue.length) {
+	<div class="toast toast-end toast-top cursor-wait border">
+		@for (alert of toastService.toastNotificationQueue; track $index) {
+			<div
+				role="alert"
+				class="alert"
+				[ngClass]="alert.type"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					class="h-6 w-6 shrink-0 stroke-info"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+					></path>
+				</svg>
+				<span class="max-w-[550px] text-wrap">
+					{{ alert.message }}
+				</span>
+			</div>
+		}
+	</div>
+}

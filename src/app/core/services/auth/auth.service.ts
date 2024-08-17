@@ -1,4 +1,4 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 
 @Injectable({
 	providedIn: 'root',
@@ -6,15 +6,9 @@ import { Injectable, Input } from '@angular/core';
 export class AuthService {
 	private accessToken!: string;
 	private refreshToken!: string;
-	private isUserSignedIn: boolean = false;
+	public isUserSignedIn: WritableSignal<boolean> = signal(false);
 
-	public get getUserSignedIn(): boolean {
-		return this.isUserSignedIn;
-	}
-
-	public set setUserSignedIn(signedIn: any) {
-		this.isUserSignedIn = signedIn;
-	}
+	public changeAuthStatus(status: boolean): void {}
 
 	public get getAccessToken(): string {
 		return this.accessToken;
@@ -37,7 +31,6 @@ export class AuthService {
 	}
 
 	public set setAuthTokens(tokens: any) {
-		// console.log('tokens :: ', tokens);
 		this.accessToken = tokens.accessToken;
 		this.refreshToken = tokens.refreshToken;
 	}

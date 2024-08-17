@@ -10,7 +10,7 @@ const routes: Routes = [
 	{
 		path: '',
 		component: AdminViews.ControlPanelComponent,
-		title: `Welcome Admin USERNAME - ${constants.projectName}`,
+		title: `Welcome Admin USERNAME - ${constants.PROJECT_NAME}`,
 	},
 ];
 
