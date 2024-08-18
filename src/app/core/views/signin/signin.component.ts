@@ -53,12 +53,11 @@ export class SigninComponent {
 		this.postSignin(url, { ...this.signinFormModel }).subscribe({
 			next: (response) => {
 				console.log('next :: response :: ', response);
-				this.authService.isUserSignedIn.set(true);
-				this.authService.setAuthTokens = {
+				this.authService.changeAuthStatus({
+					status: true,
 					accessToken: response.data.accessToken,
 					refreshToken: response.data.refreshToken,
-				};
-
+				});
 				this.router.navigate(['/dashboard']);
 			},
 			error: (error: CustomHttpErrorResponse) => {

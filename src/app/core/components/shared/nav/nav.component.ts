@@ -20,7 +20,9 @@ export class NavComponent {
 	public authService = inject(AuthService);
 
 	public handleSignOut = () => {
-		this.authService.isUserSignedIn.set(false);
+		this.authService.changeAuthStatus({
+			status: false,
+		});
 		this.router.navigate(['/']);
 	};
 }
