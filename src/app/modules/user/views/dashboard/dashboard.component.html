@@ -1,166 +1,175 @@
-<div>
+<div class="">
 	<div
 		role="tablist"
-		class="tabs tabs-lifted"
+		class="tabs tabs-lifted tabs-sm"
 	>
-		<!-- Admin Tab -->
+		<!-- TODO: only visible for admin user -->
 
-		<input
-			type="radio"
-			name="primary-tab"
-			role="tab"
-			class="tab"
-			aria-label="Admin"
-		/>
-		<div
-			role="tabpanel"
-			class="m-h-100 tab-content rounded-box border-base-300 bg-base-100 p-6"
-		>
-			<table class="border-separate border-spacing-2 border border-slate-500">
-				<thead>
-					<tr>
-						<th class="border border-slate-600">User Name</th>
-						<th class="border border-slate-600">First Name</th>
-						<th class="border border-slate-600">Last Name</th>
-						<th class="border border-slate-600">Display Name</th>
-						<th class="border border-slate-600">E-Mail</th>
-						<th class="border border-slate-600">Password</th>
-						<th class="border border-slate-600">Country</th>
-					</tr>
-				</thead>
+		@if (true) {
+			<!-- Admin Tab -->
 
-				<tbody>
-					@for (item of users; track $index) {
-						<tr>
-							<td class="border border-slate-700">{{ item.userName }}</td>
-							<td class="border border-slate-700">{{ item.firstName }}</td>
-							<td class="border border-slate-700">{{ item.lastName }}</td>
-							<td class="border border-slate-700">{{ item.displayName }}</td>
-							<td class="border border-slate-700">{{ item.email }}</td>
-							<td class="border border-slate-700">{{ item.password }}</td>
-							<td class="border border-slate-700">{{ item.country }}</td>
-						</tr>
-					}
-				</tbody>
-			</table>
-		</div>
+			<input
+				type="radio"
+				name="tab-admin"
+				role="tab"
+				class="tab"
+				aria-label="Admin"
+				checked="checked"
+			/>
+			<div
+				role="tabpanel"
+				class="tab-content rounded-box border-base-300 bg-base-100 p-6"
+			>
+				<div class="w-[800px] overflow-x-auto border">
+					<table class="table table-zebra">
+						<thead>
+							<tr>
+								<th></th>
+								<th>User Name</th>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Display Name</th>
+								<th>E-Mail</th>
+								<th>Password</th>
+								<th>Country</th>
+							</tr>
+						</thead>
+						<tbody>
+							@for (item of users; track $index; let index = $index) {
+								<tr>
+									<td>{{ index + 1 }}</td>
+									<td>{{ item.userName }}</td>
+									<td>{{ item.firstName }}</td>
+									<td>{{ item.lastName }}</td>
+									<td>{{ item.displayName }}</td>
+									<td>{{ item.email }}</td>
+									<td>{{ item.password }}</td>
+									<td>{{ item.country }}</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		}
 		<!-- Mail Tab -->
 
 		<input
 			type="radio"
-			name="primary-tab"
+			name="tab-admin"
 			role="tab"
 			class="tab"
 			aria-label="Mail"
-			checked="checked"
 		/>
 		<div
 			role="tabpanel"
 			class="tab-content rounded-box border-base-300 bg-base-100 p-6"
 		>
-			<form
-				#sendEmailForm="ngForm"
-				autocomplete="off"
-				(submit)="handleOnSubmitSendEmailForm($event, sendEmailForm)"
-			>
-				<!-- To Email -->
-
-				<label class="input input-bordered flex items-center gap-2">
-					To
-					<input
-						type="text"
-						class="grow"
-						name="to"
-						[(ngModel)]="sendEmailFormModel.to"
-						placeholder="Enter Email..."
-					/>
-				</label>
-				<!-- Subject -->
-
-				<label class="input input-bordered flex items-center gap-2">
-					Subject
-					<input
-						type="text"
-						class="grow"
-						name="subject"
-						[(ngModel)]="sendEmailFormModel.subject"
-						placeholder="Enter Subject..."
-					/>
-				</label>
-				<!-- Salutation -->
-
-				<label class="input input-bordered flex items-center gap-2">
-					Salutation
-					<input
-						type="text"
-						class="grow"
-						name="salutation"
-						[(ngModel)]="sendEmailFormModel.salutation"
-						placeholder="Select Salutation..."
-					/>
-				</label>
-				<!-- Body -->
-
-				<label class="input input-bordered flex items-center gap-2">
-					Body
-					<input
-						type="text"
-						class="grow"
-						name="body"
-						[(ngModel)]="sendEmailFormModel.body"
-						placeholder="Enter Body..."
-					/>
-				</label>
-				<!-- Closing Line -->
-
-				<label class="input input-bordered flex items-center gap-2">
-					Closing Lines
-					<input
-						type="text"
-						class="grow"
-						name="closing"
-						[(ngModel)]="sendEmailFormModel.closing"
-						placeholder="Enter Closing Lines..."
-					/>
-				</label>
-				<!-- signature -->
-
-				<label class="input input-bordered flex items-center gap-2">
-					Signature
-					<input
-						type="text"
-						class="grow"
-						name="signature"
-						[(ngModel)]="sendEmailFormModel.signature"
-						placeholder="Enter signature..."
-					/>
-				</label>
-				<details class="collapse bg-base-200">
-					<summary class="collapse-title text-xl font-medium">
-						Preview Full Email sending to <b [innerText]="sendEmailFormModel.to"></b>
-					</summary>
-					<div class="collapse-content">
-						<p [innerText]="sendEmailFormModel.subject"></p>
-						<p [innerText]="sendEmailFormModel.salutation"></p>
-						<p [innerText]="sendEmailFormModel.body"></p>
-						<p [innerText]="sendEmailFormModel.closing"></p>
-						<p [innerText]="sendEmailFormModel.signature"></p>
-					</div>
-				</details>
-
-				<button
-					type="submit"
-					class="btn"
+			<div class="item flex h-[500px] items-center justify-center bg-purple-600">
+				<form
+					#sendEmailForm="ngForm"
+					autocomplete="off"
+					(submit)="handleOnSubmitSendEmailForm($event, sendEmailForm)"
 				>
-					Send Mail
-				</button>
-			</form>
+					<!-- To Email -->
+
+					<label class="input input-bordered flex items-center gap-2">
+						To
+						<input
+							type="text"
+							class="grow"
+							name="to"
+							[(ngModel)]="sendEmailFormModel.to"
+							placeholder="Enter Email..."
+						/>
+					</label>
+					<!-- Subject -->
+
+					<label class="input input-bordered flex items-center gap-2">
+						Subject
+						<input
+							type="text"
+							class="grow"
+							name="subject"
+							[(ngModel)]="sendEmailFormModel.subject"
+							placeholder="Enter Subject..."
+						/>
+					</label>
+					<!-- Salutation -->
+
+					<label class="input input-bordered flex items-center gap-2">
+						Salutation
+						<input
+							type="text"
+							class="grow"
+							name="salutation"
+							[(ngModel)]="sendEmailFormModel.salutation"
+							placeholder="Select Salutation..."
+						/>
+					</label>
+					<!-- Body -->
+
+					<label class="input input-bordered flex items-center gap-2">
+						Body
+						<input
+							type="text"
+							class="grow"
+							name="body"
+							[(ngModel)]="sendEmailFormModel.body"
+							placeholder="Enter Body..."
+						/>
+					</label>
+					<!-- Closing Line -->
+
+					<label class="input input-bordered flex items-center gap-2">
+						Closing Lines
+						<input
+							type="text"
+							class="grow"
+							name="closing"
+							[(ngModel)]="sendEmailFormModel.closing"
+							placeholder="Enter Closing Lines..."
+						/>
+					</label>
+					<!-- signature -->
+
+					<label class="input input-bordered flex items-center gap-2">
+						Signature
+						<input
+							type="text"
+							class="grow"
+							name="signature"
+							[(ngModel)]="sendEmailFormModel.signature"
+							placeholder="Enter signature..."
+						/>
+					</label>
+					<details class="collapse bg-base-200">
+						<summary class="collapse-title text-xl font-medium">
+							Preview Full Email sending to <b [innerText]="sendEmailFormModel.to"></b>
+						</summary>
+						<div class="collapse-content">
+							<p [innerText]="sendEmailFormModel.subject"></p>
+							<p [innerText]="sendEmailFormModel.salutation"></p>
+							<p [innerText]="sendEmailFormModel.body"></p>
+							<p [innerText]="sendEmailFormModel.closing"></p>
+							<p [innerText]="sendEmailFormModel.signature"></p>
+						</div>
+					</details>
+
+					<button
+						type="submit"
+						class="btn"
+					>
+						Send Mail
+					</button>
+				</form>
+			</div>
 		</div>
 		<!-- Colors Tab -->
 
 		<input
 			type="radio"
-			name="primary-tab"
+			name="tab-admin"
 			role="tab"
 			class="tab"
 			aria-label="Colors"
@@ -169,15 +178,15 @@
 			role="tabpanel"
 			class="tab-content rounded-box border-base-300 bg-base-100 p-6"
 		>
-			<div class="bg-emerald-600">
-				<h1 class="text-center">Color Tab Content</h1>
+			<div class="item flex h-[500px] items-center justify-center bg-green-600">
+				<h1 class="text-5xl">Colors</h1>
 			</div>
 		</div>
 		<!-- Meta Tags Tab -->
 
 		<input
 			type="radio"
-			name="primary-tab"
+			name="tab-admin"
 			role="tab"
 			class="tab"
 			aria-label="Meta Tags"
@@ -186,15 +195,15 @@
 			role="tabpanel"
 			class="tab-content rounded-box border-base-300 bg-base-100 p-6"
 		>
-			<div class="bg-cyan-600">
-				<h1 class="text-center">Meta Tags Tab Content</h1>
+			<div class="item flex h-[500px] items-center justify-center bg-amber-200">
+				<h1 class="text-5xl">Meta Tags</h1>
 			</div>
 		</div>
 		<!-- Open Graph Tab -->
 
 		<input
 			type="radio"
-			name="primary-tab"
+			name="tab-admin"
 			role="tab"
 			class="tab"
 			aria-label="Open Graph"
@@ -203,25 +212,8 @@
 			role="tabpanel"
 			class="tab-content rounded-box border-base-300 bg-base-100 p-6"
 		>
-			<div class="bg-red-600">
-				<h1 class="text-center">Open Graph Tab Content</h1>
-			</div>
-		</div>
-		<!-- Converters Tab -->
-
-		<input
-			type="radio"
-			name="primary-tab"
-			role="tab"
-			class="tab"
-			aria-label="Converts"
-		/>
-		<div
-			role="tabpanel"
-			class="tab-content rounded-box border-base-300 bg-base-100 p-6"
-		>
-			<div class="bg-violet-600">
-				<h1 class="text-center">Converters Tab Content</h1>
+			<div class="item flex h-[500px] items-center justify-center bg-fuchsia-600">
+				<h1 class="text-5xl">Open Graph</h1>
 			</div>
 		</div>
 	</div>
