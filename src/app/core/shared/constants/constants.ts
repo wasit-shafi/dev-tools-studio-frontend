@@ -10,7 +10,7 @@ export class Constants {
 		// GUEST USER ROUTES (UN-PROTECTED)
 
 		CONTACT: 'contact',
-		RESET_PASSWORD: 'rest-password',
+		RESET_PASSWORD: 'reset-password',
 		ROOT: '',
 		SIGNIN: 'signin',
 		SIGNUP: 'signup',

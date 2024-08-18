@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { inject, Inject, Injectable, OnDestroy, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable, OnDestroy, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 
 import { Constants } from '@coreShared/';
 
@@ -24,7 +24,7 @@ export class ToastService implements OnDestroy {
 
 	// In a second we can dismiss 3 alerts max
 	private readonly WORKER_INTERVAL_DELAY = 333;
-	private readonly TOAST_NOTIFICATION_HOLD_DURATION = 4000;
+	private readonly TOAST_NOTIFICATION_HOLD_DURATION = 6000;
 	public toastNotificationQueue: IToastNotificationQueue[] = [];
 
 	private intervalID?: ReturnType<typeof setInterval>;

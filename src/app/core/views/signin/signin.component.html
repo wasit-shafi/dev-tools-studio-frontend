@@ -2,73 +2,90 @@
 	#signinForm="ngForm"
 	autocomplete="off"
 	(submit)="handleOnSubmitSigninForm($event, signinForm)"
-	class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center border"
+	class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center gap-4"
 >
 	<!-- Email -->
 
-	<label for="email">Email</label><br />
-	<input
-		[(ngModel)]="signinFormModel.email"
-		autocomplete="off"
-		class="border"
-		id="email"
-		name="email"
-		required
-		pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-		type="email"
-		#email="ngModel"
-	/>
-	<div [hidden]="email.valid || email.pristine">Email is not valid</div>
-	<br />
+	<label
+		for="email"
+		class="input input-bordered flex items-center gap-2"
+	>
+		Email
+		<input
+			#email="ngModel"
+			[(ngModel)]="signinFormModel.email"
+			autocomplete="off"
+			class="grow"
+			id="email"
+			name="email"
+			pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+			placeholder="UserName@DomainName.extension"
+			required
+			type="email"
+		/>
+	</label>
+	<div
+		class="text-red-600"
+		[hidden]="email.valid || email.pristine"
+	>
+		Email is not valid
+	</div>
 	<!-- Password -->
 
-	<label for="password">Password</label><br />
-	<input
-		[(ngModel)]="signinFormModel.password"
-		#password="ngModel"
-		autocomplete="off"
-		class="border"
-		id="password"
-		name="password"
-		required
-		minlength="4"
-		type="password"
-	/>
+	<label
+		for="password"
+		class="input input-bordered flex items-center gap-2"
+	>
+		Password
+		<input
+			#password="ngModel"
+			[(ngModel)]="signinFormModel.password"
+			autocomplete="off"
+			class="grow"
+			id="password"
+			minlength="4"
+			name="password"
+			placeholder="Shush...TypeYourSecretPassword"
+			required
+			type="password"
+		/>
+	</label>
 
 	<!--
 		<div [hidden]="password.valid || password.pristine">
-			<span>Password is not valid</span>
+			<span class="text-red-600">Password is not valid</span>
 		</div>
 	-->
+
 	@if (password.invalid && (password.dirty || password.touched)) {
 		<div>
 			@if (password.hasError('required')) {
-				<div>Password is required.</div>
+				<div class="text-red-600">Password is required.</div>
 			}
 			@if (password.hasError('minlength')) {
-				<div>Password must be at least 4 characters long.</div>
+				<div class="text-red-600">Password must be at least 4 characters long.</div>
 			}
 		</div>
 	}
-	<br />
-	<!--  -->
+	<!-- Reset/Submit Buttons -->
 
-	<button
-		type="submit"
-		class="btn btn-success"
-		[disabled]="!signinForm.form.valid"
-	>
-		Submit
-	</button>
-	{{ '  ' }}
-	<button
-		type="reset"
-		class="btn"
-	>
-		Reset
-	</button>
+	<div class="flex gap-4">
+		<button
+			type="reset"
+			class="btn flex-1"
+		>
+			Reset
+		</button>
+		<button
+			type="submit"
+			class="btn btn-success flex-1"
+			[disabled]="!signinForm.form.valid"
+		>
+			Submit
+		</button>
+	</div>
 	<a
-		class="link link-primary"
+		class="link link-primary text-right"
 		[routerLink]="['/reset-password']"
 	>
 		Forgot Password..?

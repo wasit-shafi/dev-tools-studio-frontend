@@ -4,10 +4,10 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 
-import { Constants } from '@coreShared/';
-import { environment } from '@environments/';
 import { AuthService, ToastService } from '@coreServices/';
+import { Constants } from '@coreShared/';
 import { CustomHttpErrorResponse } from '@coreModels/';
+import { environment } from '@environments/';
 
 // TODO: update the interface logic to a single file
 

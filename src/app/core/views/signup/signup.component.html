@@ -2,93 +2,144 @@
 	#signupForm="ngForm"
 	autocomplete="off"
 	(submit)="handleOnSubmitSignupForm($event, signupForm)"
+	class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center gap-4"
 >
-	<!--  -->
-	<label for="firstName">First Name</label>
-	<input
-		[(ngModel)]="signupFormDetails.firstName"
-		autocomplete="off"
-		class="border"
-		id="firstName"
-		name="firstName"
-		required
-		type="text"
-	/>
-	<br />
-	<!--  -->
-	<label for="lastName">Last Name</label>
-	<input
-		[(ngModel)]="signupFormDetails.lastName"
-		autocomplete="off"
-		class="border"
-		id="lastName"
-		name="lastName"
-		required
-		type="text"
-	/>
-	<br />
-	<!--  -->
-	<label for="">Email</label>
-	<input
-		[(ngModel)]="signupFormDetails.email"
-		autocomplete="off"
-		class="border"
-		id="email"
-		name="email"
-		required
-		type="email"
-	/>
-	<br />
-	<!--  -->
-	<label for="">Password</label>
-	<input
-		[(ngModel)]="signupFormDetails.password"
-		autocomplete="off"
-		class="border"
-		id="password"
-		name="password"
-		required
-		type="password"
-	/>
-	<br />
+	<!-- First Name -->
 
-	<!--  -->
-	<label for="">Mobile Number</label>
-	<input
-		[(ngModel)]="signupFormDetails.mobileNumber"
-		autocomplete="off"
-		class="border"
-		id="mobileNumber"
-		name="mobileNumber"
-		required
-		type="text"
-	/>
-	<br />
-	<!--  -->
-
-	<label for="">Country</label>
-	<input
-		[(ngModel)]="signupFormDetails.country"
-		autocomplete="off"
-		class="border"
-		id="country"
-		name="country"
-		required
-		type="text"
-	/>
-	<br />
-
-	<button
-		type="submit"
-		class="bg-stone-300"
+	<label
+		for="firstName"
+		class="input input-bordered flex items-center gap-2"
 	>
-		Submit
-	</button>
-	{{'  '}}
-	<button
-		type="reset"
-		class="bg-stone-300"
+		First Name
+		<input
+			[(ngModel)]="signupFormDetails.firstName"
+			autocomplete="off"
+			class="grow"
+			id="firstName"
+			name="firstName"
+			placeholder="YourFirstName"
+			required
+			type="text"
+		/>
+	</label>
+	<!-- Last Name -->
+
+	<label
+		for="lastName"
+		class="input input-bordered flex items-center gap-2"
 	>
-		Reset
-	</button>
+		Last Name
+		<input
+			[(ngModel)]="signupFormDetails.lastName"
+			autocomplete="off"
+			class="grow"
+			id="lastName"
+			name="lastName"
+			placeholder="YourLastName"
+			required
+			type="text"
+		/>
+	</label>
+	<!-- Email -->
+
+	<label class="input input-bordered flex items-center gap-2">
+		Email
+		<input
+			[(ngModel)]="signupFormDetails.email"
+			autocomplete="off"
+			class="grow"
+			id="email"
+			name="email"
+			placeholder="EmailId"
+			required
+			type="email"
+		/>
+	</label>
+	<!-- Password -->
+
+	<label
+		for=""
+		class="input input-bordered flex items-center gap-2"
+	>
+		Password
+		<input
+			[(ngModel)]="signupFormDetails.password"
+			autocomplete="off"
+			class="grow"
+			id="password"
+			name="password"
+			placeholder="SuperSecretPassword"
+			required
+			type="password"
+		/>
+	</label>
+	<!-- TODO: Add Confirm password as well -->
+	<!-- Mobile Number -->
+
+	<label
+		for=""
+		class="input input-bordered flex items-center gap-2"
+	>
+		<div
+			class="tooltip"
+			data-tip="Why? Phone Number is required, to make account more secure."
+		>
+			Mobile Number
+		</div>
+
+		<input
+			[(ngModel)]="signupFormDetails.mobileNumber"
+			autocomplete="off"
+			class="grow"
+			id="mobileNumber"
+			name="mobileNumber"
+			placeholder="MobileNumber"
+			required
+			type="text"
+		/>
+	</label>
+	<!--  -->
+	<label
+		for=""
+		class="input input-bordered flex items-center gap-2"
+	>
+		Country
+		<input
+			[(ngModel)]="signupFormDetails.country"
+			autocomplete="off"
+			class="grow"
+			id="country"
+			name="country"
+			placeholder="Daisy"
+			required
+			type="text"
+		/>
+	</label>
+	<div class="flex gap-4">
+		<button
+			type="reset"
+			class="btn flex-1"
+		>
+			Reset
+		</button>
+		<button
+			type="submit"
+			class="btn btn-success flex-1"
+		>
+			Submit
+		</button>
+	</div>
+	<a
+		class="link link-primary text-right"
+		[routerLink]="['/signin']"
+	>
+		Already have an account? Login
+	</a>
 </form>
+<div class="mb-20 mt-10 flex justify-center">
+	<ul class="steps steps-horizontal">
+		<li class="step step-success">&nbsp;&nbsp;Register&nbsp;&nbsp;</li>
+		<li class="step step-success">&nbsp;&nbsp;Verify Email&nbsp;&nbsp;</li>
+		<li class="step">&nbsp;&nbsp;Verify Phone&nbsp;&nbsp;</li>
+	</ul>
+</div>

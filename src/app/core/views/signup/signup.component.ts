@@ -1,14 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 
 import { Constants } from '@coreShared/';
+import { CustomHttpErrorResponse } from '@coreModels/';
+import { AuthService, ToastService } from '@coreServices/';
 import { environment } from '@environments/';
 
 @Component({
 	selector: 'app-signup',
 	standalone: true,
-	imports: [FormsModule],
+	imports: [FormsModule, RouterLink],
 	providers: [Constants],
 	templateUrl: './signup.component.html',
 	styleUrl: './signup.component.scss',
@@ -16,6 +19,9 @@ import { environment } from '@environments/';
 export class SignupComponent {
 	private http = inject(HttpClient);
 	private constants = inject(Constants);
+	private toastService = inject(ToastService);
+	private authService = inject(AuthService);
+	private router = inject(Router);
 
 	public signupFormDetails = {
 		firstName: '',
@@ -32,11 +38,27 @@ export class SignupComponent {
 		const url = `${environment.baseUrl}${this.constants.API._V1}/auth/signup`;
 
 		this.http.post(url, { ...this.signupFormDetails }).subscribe({
-			next: (response) => {
-				console.log('next :: response :: ', response);
+			next: (response: any) => {
+				if (response.success && response.code === this.constants.HTTP_STATUS_CODES.SUCCESSFUL.CREATED) {
+					this.authService.isUserSignedIn.set(true);
+					this.authService.setAuthTokens = {
+						accessToken: response.data.accessToken,
+						refreshToken: response.data.refreshToken,
+					};
+
+					this.toastService.enqueueToastNotification({
+						message: response.message,
+						type: this.constants.ALERT_TYPE.SUCCESS,
+					});
+
+					this.router.navigate(['/dashboard']);
+				}
 			},
-			error: (error) => {
-				console.log('error :: ', error);
+			error: (error: CustomHttpErrorResponse) => {
+				this.toastService.enqueueToastNotification({
+					message: error.error.message || error.message,
+					type: this.constants.ALERT_TYPE.ERROR,
+				});
 			},
 			complete: () => {
 				// console.log('i am inside complete back');

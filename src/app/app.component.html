@@ -1,16 +1,15 @@
 @if (!environment.production) {
-	<div class="text-center">
+	<div class="border-b-2 border-rose-500 text-center">
 		@for (item of mockLinks; track $index) {
-			<!-- TODO: review why @let is not working now with prettier -->
+			<!-- TODO: prettier not able to format code with @let https://github.com/prettier/prettier/pull/16474-->
 			<!-- @let url = item.url; -->
 			<!-- @let text = item.text; -->
 			<a
 				[routerLink]="item.url"
-				class="link link-primary"
+				class="rounded-md px-2 font-medium text-cyan-500 no-underline hover:bg-rose-400/40 hover:text-rose-600 dark:text-cyan-400"
 			>
-				{{ $index + 1 }}-{{ item.text }}
+				{{ item.text }}
 			</a>
-			{{ ' _ ' }}
 		}
 	</div>
 }
@@ -23,7 +22,7 @@
 </main>
 
 @if (toastService.toastNotificationQueue.length) {
-	<div class="toast toast-end toast-top border">
+	<div class="toast toast-end toast-top">
 		@for (alert of toastService.toastNotificationQueue; track $index) {
 			<div
 				role="alert"
