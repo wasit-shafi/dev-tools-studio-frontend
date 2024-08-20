@@ -8,5 +8,5 @@ export const alreadySignedInGuard: CanMatchFn = (route, segments) => {
 	const authService = inject(AuthService);
 	// console.log({ route, segments });
 
-	return authService.isUserSignedIn() ? router.createUrlTree(['/dashboard']) : true;
+	return authService.isAuthenticated ? router.createUrlTree(['/dashboard']) : true;
 };

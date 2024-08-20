@@ -1,6 +1,6 @@
 <nav class="flex justify-center">
 	<ul class="menu menu-vertical rounded-box bg-base-200 xs:menu-horizontal">
-		@if (authService.isUserSignedIn()) {
+		@if (authService.isAuthenticated) {
 			<li [routerLink]="['/dashboard']"><a>Dashboard</a></li>
 			<li [routerLink]="['/settings']"><a>Settings</a></li>
 			@if (true) {

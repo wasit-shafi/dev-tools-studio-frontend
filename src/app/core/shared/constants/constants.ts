@@ -87,4 +87,9 @@ export class Constants {
 		WARNING: 'alert-warning',
 		ERROR: 'alert-error',
 	} as const;
+
+	public readonly JWT = {
+		ACCESS_TOKEN: 'ACCESS_TOKEN',
+		REFRESH_TOKEN: 'REFRESH_TOKEN',
+	} as const;
 }
