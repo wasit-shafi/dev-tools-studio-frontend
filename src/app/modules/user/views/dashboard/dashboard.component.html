@@ -20,36 +20,7 @@
 				role="tabpanel"
 				class="tab-content rounded-box border-base-300 bg-base-100 p-6"
 			>
-				<div class="w-[800px] overflow-x-auto border">
-					<table class="table table-zebra">
-						<thead>
-							<tr>
-								<th></th>
-								<th>User Name</th>
-								<th>First Name</th>
-								<th>Last Name</th>
-								<th>Display Name</th>
-								<th>E-Mail</th>
-								<th>Password</th>
-								<th>Country</th>
-							</tr>
-						</thead>
-						<tbody>
-							@for (item of users; track $index; let index = $index) {
-								<tr>
-									<td>{{ index + 1 }}</td>
-									<td>{{ item.userName }}</td>
-									<td>{{ item.firstName }}</td>
-									<td>{{ item.lastName }}</td>
-									<td>{{ item.displayName }}</td>
-									<td>{{ item.email }}</td>
-									<td>{{ item.password }}</td>
-									<td>{{ item.country }}</td>
-								</tr>
-							}
-						</tbody>
-					</table>
-				</div>
+				<app-admin></app-admin>
 			</div>
 		}
 		<!-- Mail Tab -->
@@ -65,105 +36,7 @@
 			role="tabpanel"
 			class="tab-content rounded-box border-base-300 bg-base-100 p-6"
 		>
-			<div class="item flex h-[500px] items-center justify-center bg-purple-600">
-				<form
-					#sendEmailForm="ngForm"
-					autocomplete="off"
-					(submit)="handleOnSubmitSendEmailForm($event, sendEmailForm)"
-				>
-					<!-- To Email -->
-
-					<label class="input input-bordered flex items-center gap-2">
-						To
-						<input
-							type="text"
-							class="grow"
-							name="to"
-							[(ngModel)]="sendEmailFormModel.to"
-							placeholder="Enter Email..."
-						/>
-					</label>
-					<!-- Subject -->
-
-					<label class="input input-bordered flex items-center gap-2">
-						Subject
-						<input
-							type="text"
-							class="grow"
-							name="subject"
-							[(ngModel)]="sendEmailFormModel.subject"
-							placeholder="Enter Subject..."
-						/>
-					</label>
-					<!-- Salutation -->
-
-					<label class="input input-bordered flex items-center gap-2">
-						Salutation
-						<input
-							type="text"
-							class="grow"
-							name="salutation"
-							[(ngModel)]="sendEmailFormModel.salutation"
-							placeholder="Select Salutation..."
-						/>
-					</label>
-					<!-- Body -->
-
-					<label class="input input-bordered flex items-center gap-2">
-						Body
-						<input
-							type="text"
-							class="grow"
-							name="body"
-							[(ngModel)]="sendEmailFormModel.body"
-							placeholder="Enter Body..."
-						/>
-					</label>
-					<!-- Closing Line -->
-
-					<label class="input input-bordered flex items-center gap-2">
-						Closing Lines
-						<input
-							type="text"
-							class="grow"
-							name="closing"
-							[(ngModel)]="sendEmailFormModel.closing"
-							placeholder="Enter Closing Lines..."
-						/>
-					</label>
-					<!-- signature -->
-
-					<label class="input input-bordered flex items-center gap-2">
-						Signature
-						<input
-							type="text"
-							class="grow"
-							name="signature"
-							[(ngModel)]="sendEmailFormModel.signature"
-							placeholder="Enter signature..."
-						/>
-					</label>
-					<details class="collapse bg-base-200">
-						<summary class="collapse-title text-xl font-medium">
-							Preview Full Email sending to <b [innerText]="sendEmailFormModel.to"></b>
-						</summary>
-						<div class="collapse-content">
-							<p [innerText]="sendEmailFormModel.subject"></p>
-							<p [innerText]="sendEmailFormModel.salutation"></p>
-							<p [innerText]="sendEmailFormModel.body"></p>
-							<p [innerText]="sendEmailFormModel.closing"></p>
-							<p [innerText]="sendEmailFormModel.signature"></p>
-						</div>
-					</details>
-
-					<button
-						type="submit"
-						class="btn"
-					>
-						Send Mail
-					</button>
-				</form>
-			</div>
+			<app-mail></app-mail>
 		</div>
 		<!-- Colors Tab -->
 
@@ -178,9 +51,7 @@
 			role="tabpanel"
 			class="tab-content rounded-box border-base-300 bg-base-100 p-6"
 		>
-			<div class="item flex h-[500px] items-center justify-center bg-green-600">
-				<h1 class="text-5xl">Colors</h1>
-			</div>
+			<app-colors></app-colors>
 		</div>
 		<!-- Meta Tags Tab -->
 
@@ -195,9 +66,7 @@
 			role="tabpanel"
 			class="tab-content rounded-box border-base-300 bg-base-100 p-6"
 		>
-			<div class="item flex h-[500px] items-center justify-center bg-amber-200">
-				<h1 class="text-5xl">Meta Tags</h1>
-			</div>
+			<app-meta-tags></app-meta-tags>
 		</div>
 		<!-- Open Graph Tab -->
 
@@ -212,9 +81,7 @@
 			role="tabpanel"
 			class="tab-content rounded-box border-base-300 bg-base-100 p-6"
 		>
-			<div class="item flex h-[500px] items-center justify-center bg-fuchsia-600">
-				<h1 class="text-5xl">Open Graph</h1>
-			</div>
+			<app-open-graph></app-open-graph>
 		</div>
 	</div>
 </div>
