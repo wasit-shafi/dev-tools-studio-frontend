@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { Constants } from '@coreShared/';
@@ -10,7 +10,7 @@ import { AuthService } from '@coreServices/';
 	selector: 'app-nav',
 	standalone: true,
 	providers: [Constants],
-	imports: [CommonModule, RouterLink],
+	imports: [CommonModule, RouterLink, RouterLinkActive],
 	templateUrl: './nav.component.html',
 	styleUrl: './nav.component.scss',
 })
