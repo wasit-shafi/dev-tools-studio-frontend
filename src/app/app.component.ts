@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 import { HeaderComponent, FooterComponent } from '@coreComponents/';
 
@@ -12,7 +12,7 @@ import { ToastService } from '@coreServices/';
 	selector: 'app-root',
 	standalone: true,
 	providers: [Constants],
-	imports: [RouterOutlet, CommonModule, HeaderComponent, FooterComponent, RouterLink],
+	imports: [RouterOutlet, CommonModule, HeaderComponent, FooterComponent, RouterLink, RouterLinkActive],
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.scss',
 })

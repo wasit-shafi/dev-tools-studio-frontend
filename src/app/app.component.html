@@ -6,7 +6,9 @@
 			<!-- @let text = item.text; -->
 			<a
 				[routerLink]="item.url"
-				class="rounded-md px-2 font-medium text-cyan-500 no-underline hover:bg-rose-400/40 hover:text-rose-600 dark:text-cyan-400"
+				[routerLinkActive]="['bg-rose-400/40', 'text-rose-600']"
+				[routerLinkActiveOptions]="{ exact: true }"
+				class="rounded-md px-2 font-medium text-cyan-500 no-underline hover:bg-sky-400 hover:text-stone-600"
 			>
 				{{ item.text }}
 			</a>
