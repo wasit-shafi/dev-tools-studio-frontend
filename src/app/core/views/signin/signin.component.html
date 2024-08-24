@@ -50,6 +50,24 @@
 			type="password"
 		/>
 	</label>
+	<!-- Remember me & Forgot Password -->
+
+	<div class="flex items-center justify-between">
+		<a
+			class="link-hover link link-neutral"
+			[routerLink]="['/reset-password']"
+		>
+			Forgot Password..?
+		</a>
+		<label class="label cursor-pointer gap-x-4 p-0">
+			<input
+				type="checkbox"
+				checked="checked"
+				class="checkbox-success checkbox"
+			/>
+			<span class="label-text">Remember me</span>
+		</label>
+	</div>
 
 	<!--
 		<div [hidden]="password.valid || password.pristine">
@@ -84,10 +102,4 @@
 			Submit
 		</button>
 	</div>
-	<a
-		class="link link-primary text-right"
-		[routerLink]="['/reset-password']"
-	>
-		Forgot Password..?
-	</a>
 </form>

@@ -1,8 +1,8 @@
-<div class="item flex h-[500px] items-center justify-center bg-purple-600">
+<div class="item flex h-[500px] items-center justify-center">
 	<form
-		#sendEmailForm="ngForm"
 		autocomplete="off"
-		(submit)="handleOnSubmitSendEmailForm($event, sendEmailForm)"
+		[formGroup]="mailForm"
+		(submit)="handleOnSubmitSendEmailForm()"
 	>
 		<!-- To Email -->
 
@@ -11,20 +11,18 @@
 			<input
 				type="text"
 				class="grow"
-				name="to"
-				[(ngModel)]="sendEmailFormModel.to"
+				formControlName="to"
 				placeholder="Enter Email..."
 			/>
 		</label>
 		<!-- Subject -->
-
 		<label class="input input-bordered flex items-center gap-2">
 			Subject
 			<input
 				type="text"
 				class="grow"
 				name="subject"
-				[(ngModel)]="sendEmailFormModel.subject"
+				formControlName="subject"
 				placeholder="Enter Subject..."
 			/>
 		</label>
@@ -36,7 +34,7 @@
 				type="text"
 				class="grow"
 				name="salutation"
-				[(ngModel)]="sendEmailFormModel.salutation"
+				formControlName="salutation"
 				placeholder="Select Salutation..."
 			/>
 		</label>
@@ -48,19 +46,18 @@
 				type="text"
 				class="grow"
 				name="body"
-				[(ngModel)]="sendEmailFormModel.body"
+				formControlName="body"
 				placeholder="Enter Body..."
 			/>
 		</label>
 		<!-- Closing Line -->
-
 		<label class="input input-bordered flex items-center gap-2">
 			Closing Lines
 			<input
 				type="text"
 				class="grow"
 				name="closing"
-				[(ngModel)]="sendEmailFormModel.closing"
+				formControlName="closing"
 				placeholder="Enter Closing Lines..."
 			/>
 		</label>
@@ -72,28 +69,40 @@
 				type="text"
 				class="grow"
 				name="signature"
-				[(ngModel)]="sendEmailFormModel.signature"
+				formControlName="signature"
 				placeholder="Enter signature..."
 			/>
 		</label>
+		<!-- Preview of the mail about to be sent -->
+
 		<details class="collapse bg-base-200">
 			<summary class="collapse-title text-xl font-medium">
-				Preview Full Email sending to <b [innerText]="sendEmailFormModel.to"></b>
+				Preview Full Email sending to <b>{{ mailForm.value.to }}</b>
 			</summary>
 			<div class="collapse-content">
-				<p [innerText]="sendEmailFormModel.subject"></p>
-				<p [innerText]="sendEmailFormModel.salutation"></p>
-				<p [innerText]="sendEmailFormModel.body"></p>
-				<p [innerText]="sendEmailFormModel.closing"></p>
-				<p [innerText]="sendEmailFormModel.signature"></p>
+				<p>{{ mailForm.value.subject }}</p>
+				<p>{{ mailForm.value.salutation }}</p>
+				<p>{{ mailForm.value.body }}</p>
+				<p>{{ mailForm.value.closing }}</p>
+				<p>{{ mailForm.value.signature }}</p>
 			</div>
 		</details>
+		<!-- Wrapper for Reset & Submit button -->
 
-		<button
-			type="submit"
-			class="btn"
-		>
-			Send Mail
-		</button>
+		<div class="flex gap-4">
+			<button
+				type="reset"
+				class="btn flex-1"
+			>
+				Reset
+			</button>
+			<button
+				type="submit"
+				class="btn btn-success flex-1"
+				[disabled]="mailForm.invalid"
+			>
+				Send Mail
+			</button>
+		</div>
 	</form>
 </div>
