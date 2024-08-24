@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { JsonPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
 import { Constants } from '@coreShared/';
@@ -8,7 +9,7 @@ import { environment } from '@environments/';
 @Component({
 	selector: 'app-mail',
 	standalone: true,
-	imports: [ReactiveFormsModule],
+	imports: [ReactiveFormsModule, JsonPipe],
 	providers: [Constants, FormBuilder],
 	templateUrl: './mail.component.html',
 	styleUrl: './mail.component.scss',
@@ -21,15 +22,19 @@ export class MailComponent {
 	private constants = inject(Constants);
 	private formBuilder = inject(FormBuilder);
 
-	public mailForm = this.formBuilder.group({
-		to: ['', Validators.required],
-		subject: ['', Validators.required],
-		salutation: ['', Validators.required],
-		body: ['', Validators.required],
-		closing: ['', Validators.required],
-		signature: ['', Validators.required],
+	public mailForm = this.formBuilder.nonNullable.group({
+		to: ['', [Validators.required, Validators.email]],
+		subject: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
+		salutation: ['', [Validators.required]],
+		body: ['', [Validators.required]],
+		closing: ['', [Validators.required]],
+		signature: ['', [Validators.required]],
 		attachments: this.formBuilder.array([this.formBuilder.control('')]),
 	});
+
+	get subject() {
+		return this.mailForm.get('subject');
+	}
 
 	handleOnSubmitSendEmailForm() {
 		const url = `${environment.baseUrl}${this.constants.API._V1}/mail/send`;

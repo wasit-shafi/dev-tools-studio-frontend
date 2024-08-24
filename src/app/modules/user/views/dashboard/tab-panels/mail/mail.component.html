@@ -1,8 +1,9 @@
-<div class="item flex h-[500px] items-center justify-center">
+<div class="item flex h-[900px] items-start justify-center overflow-scroll">
 	<form
 		autocomplete="off"
 		[formGroup]="mailForm"
 		(submit)="handleOnSubmitSendEmailForm()"
+		class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center gap-4"
 	>
 		<!-- To Email -->
 
@@ -15,17 +16,32 @@
 				placeholder="Enter Email..."
 			/>
 		</label>
+
 		<!-- Subject -->
 		<label class="input input-bordered flex items-center gap-2">
 			Subject
 			<input
 				type="text"
 				class="grow"
-				name="subject"
 				formControlName="subject"
 				placeholder="Enter Subject..."
 			/>
 		</label>
+		<!-- Dummy Validation for subject -->
+
+		@if (subject?.invalid && (subject?.dirty || subject?.touched)) {
+			<div class="text-red-600">
+				@if (subject?.hasError('required')) {
+					Subject is required
+				}
+				@if (subject?.hasError('minlength')) {
+					Subject must be at-least 5 Character
+				}
+				@if (subject?.hasError('maxlength')) {
+					Subject Exceeds 20 Characters Limit
+				}
+			</div>
+		}
 		<!-- Salutation -->
 
 		<label class="input input-bordered flex items-center gap-2">
@@ -33,45 +49,45 @@
 			<input
 				type="text"
 				class="grow"
-				name="salutation"
 				formControlName="salutation"
 				placeholder="Select Salutation..."
 			/>
 		</label>
 		<!-- Body -->
 
-		<label class="input input-bordered flex items-center gap-2">
-			Body
-			<input
-				type="text"
-				class="grow"
-				name="body"
-				formControlName="body"
+		<label class="form-control">
+			<div class="label p-0 pb-1 pl-4">
+				<span class="label-text">Body</span>
+			</div>
+			<textarea
 				placeholder="Enter Body..."
-			/>
+				formControlName="body"
+				class="textarea textarea-bordered textarea-lg w-full"
+			></textarea>
 		</label>
 		<!-- Closing Line -->
-		<label class="input input-bordered flex items-center gap-2">
-			Closing Lines
-			<input
-				type="text"
-				class="grow"
-				name="closing"
+
+		<label class="form-control">
+			<div class="label p-0 pb-1 pl-4">
+				<span class="label-text">Closing Line</span>
+			</div>
+			<textarea
 				formControlName="closing"
 				placeholder="Enter Closing Lines..."
-			/>
+				class="textarea textarea-bordered textarea-lg w-full"
+			></textarea>
 		</label>
-		<!-- signature -->
+		<!-- Signature -->
 
-		<label class="input input-bordered flex items-center gap-2">
-			Signature
-			<input
-				type="text"
-				class="grow"
-				name="signature"
+		<label class="form-control">
+			<div class="label p-0 pb-1 pl-4">
+				<span class="label-text">Your Signature</span>
+			</div>
+			<textarea
 				formControlName="signature"
 				placeholder="Enter signature..."
-			/>
+				class="textarea textarea-bordered textarea-lg w-full"
+			></textarea>
 		</label>
 		<!-- Preview of the mail about to be sent -->
 
@@ -79,13 +95,14 @@
 			<summary class="collapse-title text-xl font-medium">
 				Preview Full Email sending to <b>{{ mailForm.value.to }}</b>
 			</summary>
-			<div class="collapse-content">
+			<div class="collapse-content border">
 				<p>{{ mailForm.value.subject }}</p>
 				<p>{{ mailForm.value.salutation }}</p>
 				<p>{{ mailForm.value.body }}</p>
 				<p>{{ mailForm.value.closing }}</p>
 				<p>{{ mailForm.value.signature }}</p>
 			</div>
+			<p>{{ mailForm.value | json }}</p>
 		</details>
 		<!-- Wrapper for Reset & Submit button -->
 
