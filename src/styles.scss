@@ -2,12 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-label:has(.ng-valid[required]),
-label:has(.ng-valid.required) {
+label:has(.ng-valid:not(textarea)),
+textarea.ng-valid {
 	border-left: 6px solid #42a948 !important;
 }
 
-label:has(.ng-invalid:not(form)) {
+label:has(.ng-invalid:not(textarea)),
+textarea.ng-invalid {
 	border-left: 6px solid #a94442 !important;
 }
 

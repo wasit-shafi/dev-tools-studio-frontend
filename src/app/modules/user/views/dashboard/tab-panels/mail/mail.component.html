@@ -5,6 +5,16 @@
 		(submit)="handleOnSubmitSendEmailForm()"
 		class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center gap-4"
 	>
+		<!-- Date Time Local -->
+
+		<label class="input input-bordered flex items-center gap-2">
+			Date Time
+			<input
+				type="datetime-local"
+				class="grow"
+				formControlName="dateTimeLocal"
+			/>
+		</label>
 		<!-- To Email -->
 
 		<label class="input input-bordered flex items-center gap-2">
@@ -16,8 +26,8 @@
 				placeholder="Enter Email..."
 			/>
 		</label>
-
 		<!-- Subject -->
+
 		<label class="input input-bordered flex items-center gap-2">
 			Subject
 			<input
@@ -96,6 +106,7 @@
 				Preview Full Email sending to <b>{{ mailForm.value.to }}</b>
 			</summary>
 			<div class="collapse-content border">
+				<p>{{ mailForm.value.dateTimeLocal }}</p>
 				<p>{{ mailForm.value.subject }}</p>
 				<p>{{ mailForm.value.salutation }}</p>
 				<p>{{ mailForm.value.body }}</p>
