@@ -26,13 +26,14 @@ export class MailComponent {
 
 	public mailForm = this.formBuilder.nonNullable.group({
 		dateTimeLocal: ['', [Validators.required]],
-		to: ['wasitshafi786@gmail.com', [Validators.required, Validators.email]],
+		to: ['wasitshafi700@gmail.com', [Validators.required, Validators.email]],
 		subject: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
 		salutation: ['', [Validators.required]],
 		body: ['', [Validators.required]],
 		closing: ['', [Validators.required]],
 		signature: ['', [Validators.required]],
 		attachments: this.formBuilder.array([this.formBuilder.control('')]),
+		confirmationMail: [true, [Validators.required]],
 	});
 
 	get subject() {

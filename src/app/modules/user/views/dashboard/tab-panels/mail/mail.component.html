@@ -99,6 +99,16 @@
 				class="textarea textarea-bordered textarea-lg w-full"
 			></textarea>
 		</label>
+		<!-- Status/Confirmation Mail -->
+
+		<label class="label cursor-pointer justify-start gap-x-4 p-0">
+			<input
+				type="checkbox"
+				class="checkbox-primary checkbox"
+				formControlName="confirmationMail"
+			/>
+			<span class="label-text">Receive Status/Confirmation Mail Back</span>
+		</label>
 		<!-- Preview of the mail about to be sent -->
 
 		<details class="collapse bg-base-200">
@@ -129,7 +139,7 @@
 				class="btn btn-success flex-1"
 				[disabled]="mailForm.invalid"
 			>
-				Send Mail
+				Schedule Mail
 			</button>
 		</div>
 	</form>
