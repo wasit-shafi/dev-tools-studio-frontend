@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-label:has(.ng-valid:not(textarea)),
+label:has(.ng-valid:not(textarea, input[type='checkbox'])),
 textarea.ng-valid {
 	border-left: 6px solid #42a948 !important;
 }
 
-label:has(.ng-invalid:not(textarea)),
+label:has(.ng-invalid:not(textarea, input[type='checkbox'])),
 textarea.ng-invalid {
 	border-left: 6px solid #a94442 !important;
 }
