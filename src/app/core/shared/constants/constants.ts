@@ -92,4 +92,10 @@ export class Constants {
 		ACCESS_TOKEN: 'ACCESS_TOKEN',
 		REFRESH_TOKEN: 'REFRESH_TOKEN',
 	} as const;
+
+	public readonly USER_ROLES: Record<string, number> = {
+		SUPER_ADMIN: 1,
+		ADMIN: 2,
+		APP_USER: 3,
+	} as const;
 }

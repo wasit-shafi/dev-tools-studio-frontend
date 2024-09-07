@@ -44,6 +44,7 @@ export class SignupComponent {
 						status: true,
 						accessToken: response.data.accessToken,
 						refreshToken: response.data.refreshToken,
+						roles: response.data.roles,
 					});
 
 					this.toastService.enqueueToastNotification({

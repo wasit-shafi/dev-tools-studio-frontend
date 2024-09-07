@@ -6,6 +6,7 @@ interface IChangeAuthStatus {
 	status: boolean;
 	accessToken?: string;
 	refreshToken?: string;
+	roles?: number[];
 }
 
 @Injectable({
@@ -14,12 +15,14 @@ interface IChangeAuthStatus {
 export class AuthService {
 	private accessToken: string = '';
 	private refreshToken: string = '';
+
+	public roles: WritableSignal<number[]> = signal([]);
 	private isUserSignedIn: WritableSignal<boolean> = signal(false);
 	private isBrowser: WritableSignal<boolean> = signal(false);
+
 	// TODO: create a new service may bu util/app/config service save the platform id, user device info, browser, location info etc
 
-	private constants = inject(Constants);
-	private platformId = inject(PLATFORM_ID);
+
 
 	constructor() {
 		// TODO: Create a localStorage/cookieService to handle io operations
@@ -45,14 +48,16 @@ export class AuthService {
 		}
 
 		if (status) {
-			const { accessToken = '', refreshToken = '' } = params;
+			const { accessToken = '', refreshToken = '', roles = [] } = params;
 
 			this.setAuthTokens = {
 				accessToken: accessToken,
 				refreshToken: refreshToken,
 			};
+			this.roles.set(roles);
 		} else {
 			this.clearAuthTokens();
+			this.clearRoles();
 		}
 
 		this.isUserSignedIn.set(status);
@@ -96,5 +101,9 @@ export class AuthService {
 		this.refreshToken = '';
 		localStorage.removeItem(this.constants.JWT.ACCESS_TOKEN);
 		localStorage.removeItem(this.constants.JWT.REFRESH_TOKEN);
+	}
+
+	public clearRoles(): void {
+		this.roles.set([]);
 	}
 }

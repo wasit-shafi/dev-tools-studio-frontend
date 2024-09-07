@@ -46,9 +46,9 @@
 					Settings
 				</a>
 			</li>
-			@if (true) {
-				<!-- Control Panel -->
+			<!-- Control Panel (only for admin users) -->
 
+			@if (authService.roles().includes(constants.USER_ROLES.ADMIN)) {
 				<li [routerLink]="['/control-panel']">
 					<a [routerLinkActive]="['active']">
 						<svg
@@ -69,6 +69,8 @@
 					</a>
 				</li>
 			}
+			<!-- Sign Out -->
+
 			<li (click)="handleSignOut()">
 				<a [routerLinkActive]="['active']">
 					<svg

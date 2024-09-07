@@ -9,6 +9,12 @@ import { Constants } from '@coreShared/';
 import { CustomHttpErrorResponse } from '@coreModels/';
 import { environment } from '@environments/';
 
+interface Data {
+	id: string;
+	accessToken: string;
+	refreshToken: string;
+	roles: number[];
+}
 // TODO: update the interface logic to a single file
 
 interface ISignin {
@@ -16,11 +22,6 @@ interface ISignin {
 	data: Data;
 	message: string;
 	success: boolean;
-}
-interface Data {
-	id: string;
-	accessToken: string;
-	refreshToken: string;
 }
 @Component({
 	selector: 'app-signin',
@@ -57,6 +58,7 @@ export class SigninComponent {
 					status: true,
 					accessToken: response.data.accessToken,
 					refreshToken: response.data.refreshToken,
+					roles: response.data.roles,
 				});
 				this.router.navigate(['/dashboard']);
 			},
