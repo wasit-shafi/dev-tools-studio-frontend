@@ -3,11 +3,9 @@
 		role="tablist"
 		class="tabs tabs-lifted tabs-sm"
 	>
-		<!-- TODO: only visible for admin user -->
+		<!-- Admin Tab -->
 
-		@if (true) {
-			<!-- Admin Tab -->
-
+		<ng-container *appHasRole="[constants.USER_ROLES.ADMIN]">
 			<input
 				type="radio"
 				name="tab-admin"
@@ -21,7 +19,7 @@
 			>
 				<app-admin></app-admin>
 			</div>
-		}
+		</ng-container>
 		<!-- Mail Tab -->
 
 		<input

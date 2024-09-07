@@ -5,12 +5,13 @@ import { CommonModule } from '@angular/common';
 import { Constants } from '@coreShared/';
 
 import { AuthService } from '@coreServices/';
+import { HasRoleDirective } from '@coreDirectives/';
 
 @Component({
 	selector: 'app-nav',
 	standalone: true,
 	providers: [Constants],
-	imports: [CommonModule, RouterLink, RouterLinkActive],
+	imports: [CommonModule, RouterLink, RouterLinkActive, HasRoleDirective],
 	templateUrl: './nav.component.html',
 	styleUrl: './nav.component.scss',
 })

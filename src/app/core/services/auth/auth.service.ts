@@ -20,8 +20,10 @@ export class AuthService {
 	private isUserSignedIn: WritableSignal<boolean> = signal(false);
 	private isBrowser: WritableSignal<boolean> = signal(false);
 
-	// TODO: create a new service may bu util/app/config service save the platform id, user device info, browser, location info etc
+	// TODO: create a new service may be util/app/config service save the platform id, user device info, browser, location info etc
 
+	private readonly constants = inject(Constants);
+	private readonly platformId = inject(PLATFORM_ID);
 
 
 	constructor() {
@@ -37,6 +39,10 @@ export class AuthService {
 				this.isUserSignedIn.set(true);
 			}
 		}
+	}
+
+	public hasRole(role: number): boolean {
+		return this.roles().includes(role);
 	}
 
 	public changeAuthStatus(params: IChangeAuthStatus) {
