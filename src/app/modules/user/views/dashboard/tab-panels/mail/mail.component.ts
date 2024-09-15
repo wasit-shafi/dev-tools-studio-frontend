@@ -8,7 +8,7 @@ import { environment } from '@environments/';
 import { ToastService } from '@coreServices/index';
 
 @Component({
-	selector: 'app-mail',
+	selector: 'dts-mail',
 	standalone: true,
 	imports: [ReactiveFormsModule, JsonPipe],
 	providers: [Constants, FormBuilder],

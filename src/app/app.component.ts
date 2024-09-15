@@ -9,7 +9,7 @@ import { environment } from '@environments/environment';
 import { ToastService } from '@coreServices/';
 
 @Component({
-	selector: 'app-root',
+	selector: 'dts-root',
 	standalone: true,
 	providers: [Constants],
 	imports: [RouterOutlet, CommonModule, HeaderComponent, FooterComponent, RouterLink, RouterLinkActive],

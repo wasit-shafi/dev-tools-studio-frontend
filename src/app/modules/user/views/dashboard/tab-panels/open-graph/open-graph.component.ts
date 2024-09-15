@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-	selector: 'app-open-graph',
+	selector: 'dts-open-graph',
 	standalone: true,
 	imports: [],
 	templateUrl: './open-graph.component.html',

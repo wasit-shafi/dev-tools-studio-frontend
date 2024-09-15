@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-	selector: 'app-settings',
+	selector: 'dts-settings',
 	standalone: true,
 	imports: [],
 	templateUrl: './settings.component.html',

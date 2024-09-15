@@ -24,7 +24,7 @@ interface ISignin {
 	success: boolean;
 }
 @Component({
-	selector: 'app-signin',
+	selector: 'dts-signin',
 	standalone: true,
 	imports: [FormsModule, RouterLink],
 	providers: [Constants],

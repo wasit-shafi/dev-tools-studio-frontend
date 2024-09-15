@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-	selector: 'app-colors',
+	selector: 'dts-colors',
 	standalone: true,
 	imports: [],
 	templateUrl: './colors.component.html',

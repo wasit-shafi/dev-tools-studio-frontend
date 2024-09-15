@@ -6,7 +6,7 @@ import { AuthService } from '@coreServices/';
 import { Router } from '@angular/router';
 
 @Component({
-	selector: 'app-header',
+	selector: 'dts-header',
 	standalone: true,
 	imports: [NavComponent],
 	templateUrl: './header.component.html',

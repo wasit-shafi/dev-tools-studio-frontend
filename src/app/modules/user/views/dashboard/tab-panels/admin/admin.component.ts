@@ -5,7 +5,7 @@ import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
 
 @Component({
-	selector: 'app-admin',
+	selector: 'dts-admin',
 	standalone: true,
 	imports: [],
 	templateUrl: './admin.component.html',

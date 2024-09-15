@@ -5,7 +5,7 @@ import { AdminComponent, MailComponent, ColorsComponent, MetaTagsComponent, Open
 import { HasRoleDirective } from '@coreDirectives/has-role/has-role.directive';
 
 @Component({
-	selector: 'app-dashboard',
+	selector: 'dts-dashboard',
 	standalone: true,
 	imports: [AdminComponent, MailComponent, ColorsComponent, MetaTagsComponent, OpenGraphComponent, HasRoleDirective],
 	providers: [Constants],

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-	selector: 'app-modal',
+	selector: 'dts-modal',
 	standalone: true,
 	imports: [],
 	templateUrl: './modal.component.html',

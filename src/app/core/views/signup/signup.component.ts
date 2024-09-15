@@ -9,7 +9,7 @@ import { AuthService, ToastService } from '@coreServices/';
 import { environment } from '@environments/';
 
 @Component({
-	selector: 'app-signup',
+	selector: 'dts-signup',
 	standalone: true,
 	imports: [FormsModule, RouterLink],
 	providers: [Constants],

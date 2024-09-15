@@ -6,7 +6,7 @@ import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
 
 @Component({
-	selector: 'app-reset-password',
+	selector: 'dts-reset-password',
 	standalone: true,
 	imports: [FormsModule],
 	providers: [Constants],

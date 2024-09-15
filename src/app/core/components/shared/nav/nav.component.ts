@@ -8,7 +8,7 @@ import { AuthService } from '@coreServices/';
 import { HasRoleDirective } from '@coreDirectives/';
 
 @Component({
-	selector: 'app-nav',
+	selector: 'dts-nav',
 	standalone: true,
 	providers: [Constants],
 	imports: [CommonModule, RouterLink, RouterLinkActive, HasRoleDirective],

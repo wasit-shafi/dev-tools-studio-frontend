@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-	selector: 'app-meta-tags',
+	selector: 'dts-meta-tags',
 	standalone: true,
 	imports: [],
 	templateUrl: './meta-tags.component.html',
