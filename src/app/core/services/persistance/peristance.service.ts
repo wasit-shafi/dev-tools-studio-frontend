@@ -6,6 +6,16 @@ import { Injectable } from '@angular/core';
 export class PersistanceService {
 	constructor() {}
 
+	get(key: string): unknown {
+		try {
+			const localStorageItem = localStorage.getItem(key);
+			return localStorageItem ? JSON.parse(localStorageItem) : null;
+		} catch (error) {
+			console.error('Error while getting data from local storage');
+			return null;
+		}
+	}
+
 	set(key: string, data: unknown): void {
 		try {
 			localStorage.setItem(key, JSON.stringify(data));
@@ -13,13 +23,16 @@ export class PersistanceService {
 			console.error('Error while saving data in local storage');
 		}
 	}
-	get(key: string): unknown {
+
+	remove(key: string): void {
 		try {
-			const localStorageItem = localStorage.getItem(key);
-			return localStorageItem ? JSON.parse(localStorageItem) : null;
+			localStorage.removeItem(key);
 		} catch (error) {
-			console.error('Error while getting data in local storage');
-			return null;
+			console.error('Error while removing data from local storage');
 		}
+	}
+
+	clear(): void {
+		localStorage.clear();
 	}
 }

@@ -1,6 +1,8 @@
 import { isPlatformBrowser } from '@angular/common';
 import { inject, Injectable, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
+
 import { Constants } from '@coreShared/index';
+import { PersistanceService } from '@coreServices/';
 
 interface IChangeAuthStatus {
 	status: boolean;
@@ -23,6 +25,7 @@ export class AuthService {
 	// TODO: create a new service may be util/app/config service save the platform id, user device info, browser, location info etc
 
 	private readonly constants = inject(Constants);
+	private readonly persistance = inject(PersistanceService);
 	private readonly platformId = inject(PLATFORM_ID);
 
 
@@ -87,26 +90,26 @@ export class AuthService {
 
 	public set setAccessToken(accessToken: string) {
 		this.accessToken = accessToken;
-		localStorage.setItem(this.constants.JWT.ACCESS_TOKEN, accessToken);
+		this.persistance.set(this.constants.JWT.ACCESS_TOKEN, accessToken);
 	}
 
 	public set setRefreshToken(refreshToken: string) {
 		this.refreshToken = refreshToken;
-		localStorage.setItem(this.constants.JWT.REFRESH_TOKEN, refreshToken);
+		this.persistance.set(this.constants.JWT.REFRESH_TOKEN, refreshToken);
 	}
 
 	public set setAuthTokens(tokens: any) {
 		this.accessToken = tokens.accessToken;
 		this.refreshToken = tokens.refreshToken;
-		localStorage.setItem(this.constants.JWT.ACCESS_TOKEN, tokens.accessToken);
-		localStorage.setItem(this.constants.JWT.REFRESH_TOKEN, tokens.refreshToken);
+		this.persistance.set(this.constants.JWT.ACCESS_TOKEN, tokens.accessToken);
+		this.persistance.set(this.constants.JWT.REFRESH_TOKEN, tokens.refreshToken);
 	}
 
 	public clearAuthTokens(): void {
 		this.accessToken = '';
 		this.refreshToken = '';
-		localStorage.removeItem(this.constants.JWT.ACCESS_TOKEN);
-		localStorage.removeItem(this.constants.JWT.REFRESH_TOKEN);
+		this.persistance.remove(this.constants.JWT.ACCESS_TOKEN);
+		this.persistance.remove(this.constants.JWT.REFRESH_TOKEN);
 	}
 
 	public clearRoles(): void {
