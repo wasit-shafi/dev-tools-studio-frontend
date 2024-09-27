@@ -98,4 +98,13 @@ export class Constants {
 		ADMIN: 2,
 		APP_USER: 3,
 	} as const;
+
+	public readonly BROADCAST_CHANNELS = {
+		USER: {
+			CHANNEL_NAME: 'USER_CHANNEL',
+			EVENTS: {
+				LOGOUT: 'LOGOUT',
+			},
+		},
+	} as const;
 }

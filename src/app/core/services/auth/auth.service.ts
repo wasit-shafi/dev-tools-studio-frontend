@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { inject, Injectable, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID, signal, WritableSignal, OnDestroy } from '@angular/core';
 
 import { Constants } from '@coreShared/index';
 import { PersistanceService } from '@coreServices/';
@@ -14,7 +14,7 @@ interface IChangeAuthStatus {
 @Injectable({
 	providedIn: 'root',
 })
-export class AuthService {
+export class AuthService implements OnDestroy {
 	private accessToken: string = '';
 	private refreshToken: string = '';
 
@@ -22,16 +22,14 @@ export class AuthService {
 	private isUserSignedIn: WritableSignal<boolean> = signal(false);
 	private isBrowser: WritableSignal<boolean> = signal(false);
 
-	// TODO: create a new service may be util/app/config service save the platform id, user device info, browser, location info etc
-
 	private readonly constants = inject(Constants);
 	private readonly persistance = inject(PersistanceService);
 	private readonly platformId = inject(PLATFORM_ID);
 
+	//Refer for more info:  https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API
+	private readonly userBroadcastChannel = new BroadcastChannel(this.constants.BROADCAST_CHANNELS.USER.CHANNEL_NAME);
 
 	constructor() {
-		// TODO: Create a localStorage/cookieService to handle io operations
-
 		this.isBrowser.set(isPlatformBrowser(this.platformId));
 		// added isBrowser check to make sure below code snippet don't run on server side (SSR)
 
@@ -42,6 +40,13 @@ export class AuthService {
 				this.isUserSignedIn.set(true);
 			}
 		}
+
+		this.userBroadcastChannel.onmessage = this.handleLogoutFromAllTabs.bind(this);
+	}
+
+	ngOnDestroy(): void {
+		// Disconnect userBroadcastChannel channel
+		this.userBroadcastChannel.close();
 	}
 
 	public hasRole(role: number): boolean {
@@ -65,11 +70,25 @@ export class AuthService {
 			};
 			this.roles.set(roles);
 		} else {
-			this.clearAuthTokens();
-			this.clearRoles();
+			// logout
+
+			const data = {
+				event: this.constants.BROADCAST_CHANNELS.USER.EVENTS.LOGOUT,
+				eventParams: {},
+			};
+			this.userBroadcastChannel.postMessage(data);
 		}
 
 		this.isUserSignedIn.set(status);
+	}
+
+	public handleLogoutFromAllTabs(event: any) {
+		const { data } = event;
+		if (data.event == this.constants.BROADCAST_CHANNELS.USER.EVENTS.LOGOUT) {
+			this.clearAuthTokens();
+			this.clearRoles();
+			window.location.reload();
+		}
 	}
 
 	public get isAuthenticated(): boolean {
