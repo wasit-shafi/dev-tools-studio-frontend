@@ -12,7 +12,7 @@
 	>
 		First Name
 		<input
-			[(ngModel)]="signupFormDetails.firstName"
+			[(ngModel)]="signupFormModel.firstName"
 			autocomplete="off"
 			class="grow"
 			id="firstName"
@@ -30,7 +30,7 @@
 	>
 		Last Name
 		<input
-			[(ngModel)]="signupFormDetails.lastName"
+			[(ngModel)]="signupFormModel.lastName"
 			autocomplete="off"
 			class="grow"
 			id="lastName"
@@ -45,7 +45,7 @@
 	<label class="input input-bordered flex items-center gap-2">
 		Email
 		<input
-			[(ngModel)]="signupFormDetails.email"
+			[(ngModel)]="signupFormModel.email"
 			autocomplete="off"
 			class="grow"
 			id="email"
@@ -63,7 +63,7 @@
 	>
 		Password
 		<input
-			[(ngModel)]="signupFormDetails.password"
+			[(ngModel)]="signupFormModel.password"
 			autocomplete="off"
 			class="grow"
 			id="password"
@@ -88,7 +88,7 @@
 		</div>
 
 		<input
-			[(ngModel)]="signupFormDetails.mobileNumber"
+			[(ngModel)]="signupFormModel.mobileNumber"
 			autocomplete="off"
 			class="grow"
 			id="mobileNumber"
@@ -105,7 +105,7 @@
 	>
 		Country
 		<input
-			[(ngModel)]="signupFormDetails.country"
+			[(ngModel)]="signupFormModel.country"
 			autocomplete="off"
 			class="grow"
 			id="country"
@@ -115,21 +115,37 @@
 			type="text"
 		/>
 	</label>
+	<div class="flex justify-center border">
+		<re-captcha
+			#reCaptcha
+			(errored)="handleReCaptchaErrored($event)"
+			(resolved)="handleReCaptchaResolved($event)"
+			[(ngModel)]="signupFormModel.reCaptchaResponse"
+			[siteKey]="environment.reCaptchaSiteKey"
+			errorMode="handled"
+			name="reCaptchaResponse"
+			required
+		>
+		</re-captcha>
+	</div>
 	<!-- Wrapper for Reset & Submit button -->
 
 	<div class="flex gap-4">
-		<button
-			type="reset"
-			class="btn flex-1"
-		>
-			Reset
-		</button>
+		@if (environment.development) {
+			<button
+				type="reset"
+				class="btn flex-1"
+			>
+				Reset
+			</button>
+		}
 		<button
 			type="submit"
-			class="btn btn-success flex-1"
+			class="btn btn-success mx-auto flex-1"
+			[ngClass]="{ 'max-w-[120px]': environment.production }"
 			[disabled]="signupForm.invalid"
 		>
-			Submit
+			Signup
 		</button>
 	</div>
 	<a
