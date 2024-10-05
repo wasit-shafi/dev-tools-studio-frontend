@@ -8,3 +8,4 @@
 - There should be no getter function as it causes performance issues.
 - Avoid calling directly inside template/view as it gets executed on each lifecycle, instead of use custom directives
 - Make use of angular signal instead of BehaviorSubject/Observable.
+- Make use of 'readonly' where ever possible - to restrict any reassignment to service, data members etc

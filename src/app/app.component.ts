@@ -19,8 +19,8 @@ import { ToastService } from '@coreServices/';
 export class AppComponent {
 	public mockLinks;
 	public environment = environment;
-	public constants = inject(Constants);
-	public toastService = inject(ToastService);
+	public readonly constants = inject(Constants);
+	public readonly toastService = inject(ToastService);
 
 	constructor() {
 		this.mockLinks = Object.keys(this.constants.ROUTES).map((key) => ({

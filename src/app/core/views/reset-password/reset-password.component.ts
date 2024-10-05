@@ -14,8 +14,8 @@ import { environment } from '@environments/';
 	styleUrl: './reset-password.component.scss',
 })
 export class ResetPasswordComponent {
-	private http = inject(HttpClient);
-	private constants = inject(Constants);
+	private readonly http = inject(HttpClient);
+	public readonly constants = inject(Constants);
 
 	public resetPasswordFormDetails = {
 		email: '',

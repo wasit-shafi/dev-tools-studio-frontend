@@ -13,5 +13,5 @@ import { HasRoleDirective } from '@coreDirectives/has-role/has-role.directive';
 	styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
-	public constants = inject(Constants);
+	public readonly constants = inject(Constants);
 }

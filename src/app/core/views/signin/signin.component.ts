@@ -36,12 +36,12 @@ interface ISignin {
 export class SigninComponent {
 	@ViewChild('reCaptcha') reCaptcha!: RecaptchaComponent;
 
-	private router = inject(Router);
-	private http = inject(HttpClient);
-	public constants = inject(Constants);
-	private authService = inject(AuthService);
-	private toastService = inject(ToastService);
-	public environment = environment;
+	private readonly router = inject(Router);
+	private readonly http = inject(HttpClient);
+	public readonly constants = inject(Constants);
+	private readonly authService = inject(AuthService);
+	private readonly toastService = inject(ToastService);
+	public readonly environment = environment;
 
 	constructor() {}
 

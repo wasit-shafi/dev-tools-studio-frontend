@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
 	styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-	public router = inject(Router);
-	public authService = inject(AuthService);
+	private readonly router = inject(Router);
+	private readonly authService = inject(AuthService);
 
 	public handleSignOut = () => {
 		this.authService.changeAuthStatus({

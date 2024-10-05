@@ -19,10 +19,10 @@ export class MailComponent {
 	title = 'dev-tools-studio';
 	users: any;
 
-	private http = inject(HttpClient);
-	private constants = inject(Constants);
-	private formBuilder = inject(FormBuilder);
-	private toastService = inject(ToastService);
+	private readonly http = inject(HttpClient);
+	private readonly constants = inject(Constants);
+	private readonly formBuilder = inject(FormBuilder);
+	private readonly toastService = inject(ToastService);
 
 	public mailForm = this.formBuilder.nonNullable.group({
 		dateTimeLocal: ['', [Validators.required]],

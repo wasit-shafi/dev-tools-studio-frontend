@@ -14,8 +14,8 @@ import { environment } from '@environments/';
 export class AdminComponent {
 	users: any;
 
-	private http = inject(HttpClient);
-	private constants = inject(Constants);
+	private readonly http = inject(HttpClient);
+	private readonly constants = inject(Constants);
 
 	constructor() {
 		const url = `${environment.baseUrl}${this.constants.API._V1}/user`;

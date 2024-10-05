@@ -17,11 +17,12 @@ import { environment } from '@environments/';
 	styleUrl: './signup.component.scss',
 })
 export class SignupComponent {
-	private http = inject(HttpClient);
-	private constants = inject(Constants);
-	private toastService = inject(ToastService);
-	private authService = inject(AuthService);
-	private router = inject(Router);
+	private readonly http = inject(HttpClient);
+	private readonly constants = inject(Constants);
+	private readonly toastService = inject(ToastService);
+	private readonly authService = inject(AuthService);
+	private readonly router = inject(Router);
+	public readonly environment = environment;
 
 	public signupFormDetails = {
 		firstName: '',

@@ -16,9 +16,9 @@ import { HasRoleDirective } from '@coreDirectives/';
 	styleUrl: './nav.component.scss',
 })
 export class NavComponent {
-	public router = inject(Router);
-	public constants = inject(Constants);
-	public authService = inject(AuthService);
+	private readonly router = inject(Router);
+	public readonly constants = inject(Constants);
+	public readonly authService = inject(AuthService);
 
 	public handleSignOut = () => {
 		this.authService.changeAuthStatus({
