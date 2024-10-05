@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RecaptchaModule, RecaptchaFormsModule, RecaptchaErrorParameters, RecaptchaComponent } from 'ng-recaptcha';
 
 import { AuthService, ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
@@ -26,21 +28,27 @@ interface ISignin {
 @Component({
 	selector: 'dts-signin',
 	standalone: true,
-	imports: [FormsModule, RouterLink],
+	imports: [FormsModule, RouterLink, RecaptchaModule, RecaptchaFormsModule, CommonModule],
 	providers: [Constants],
 	templateUrl: './signin.component.html',
 	styleUrl: './signin.component.scss',
 })
 export class SigninComponent {
+	@ViewChild('reCaptcha') reCaptcha!: RecaptchaComponent;
+
 	private router = inject(Router);
 	private http = inject(HttpClient);
 	public constants = inject(Constants);
 	private authService = inject(AuthService);
 	private toastService = inject(ToastService);
+	public environment = environment;
+
+	constructor() {}
 
 	public signinFormModel = {
 		email: '',
 		password: '',
+		reCaptchaResponse: '',
 	};
 
 	postSignin(url: string, data: any): Observable<ISignin> {
@@ -73,5 +81,32 @@ export class SigninComponent {
 			},
 		});
 		// signinForm.reset();
+	}
+
+	handleReCaptchaResolved(captchaResponse: string | null) {
+		// console.log({ captchaResponse });
+
+		// TODO: handle avoiding on reset the form, the form input values becomes null, which will trigger toast notification
+		if (captchaResponse == null) {
+			this.toastService.enqueueToastNotification({
+				message: 'reCaptcha has expired. Please check the checkbox again.',
+				type: this.constants.ALERT_TYPE.WARNING,
+			});
+		}
+	}
+
+	// manually reset the recaptcha
+
+	resetReCaptcha(): void {
+		this.reCaptcha.reset();
+	}
+
+	handleReCaptchaErrored(errorDetails: RecaptchaErrorParameters) {
+		// console.warn(errorDetails);
+
+		this.toastService.enqueueToastNotification({
+			message: 'reCAPTCHA encounters an error(usually network connectivity). Please try again',
+			type: this.constants.ALERT_TYPE.ERROR,
+		});
 	}
 }

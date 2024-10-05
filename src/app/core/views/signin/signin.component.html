@@ -85,21 +85,37 @@
 			}
 		</div>
 	}
+	<div class="flex justify-center border">
+		<re-captcha
+			#reCaptcha
+			(errored)="handleReCaptchaErrored($event)"
+			(resolved)="handleReCaptchaResolved($event)"
+			[(ngModel)]="signinFormModel.reCaptchaResponse"
+			[siteKey]="environment.reCaptchaSiteKey"
+			errorMode="handled"
+			name="reCaptchaResponse"
+			required
+		>
+		</re-captcha>
+	</div>
 	<!-- Reset/Submit Buttons -->
 
 	<div class="flex gap-4">
-		<button
-			type="reset"
-			class="btn flex-1"
-		>
-			Reset
-		</button>
+		@if (environment.development) {
+			<button
+				type="reset"
+				[ngClass]="{ 'max-w-[120px]': environment.production }"
+				class="btn flex-1"
+			>
+				Reset
+			</button>
+		}
 		<button
 			type="submit"
 			class="btn btn-success flex-1"
 			[disabled]="!signinForm.form.valid"
 		>
-			Submit
+			Login
 		</button>
 	</div>
 </form>
