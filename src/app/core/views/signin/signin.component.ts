@@ -1,30 +1,15 @@
 import { Component, inject, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RecaptchaModule, RecaptchaFormsModule, RecaptchaErrorParameters, RecaptchaComponent } from 'ng-recaptcha';
 
 import { AuthService, ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
-import { CustomHttpErrorResponse } from '@coreModels/';
 import { environment } from '@environments/';
+import { Store } from '@ngrx/store';
+import { authActions, authFeature } from '@coreStore/index';
 
-interface Data {
-	id: string;
-	accessToken: string;
-	refreshToken: string;
-	roles: number[];
-}
-// TODO: update the interface logic to a single file
-
-interface ISignin {
-	code: number;
-	data: Data;
-	message: string;
-	success: boolean;
-}
 @Component({
 	selector: 'dts-signin',
 	standalone: true,
@@ -36,12 +21,15 @@ interface ISignin {
 export class SigninComponent {
 	@ViewChild('reCaptcha') reCaptcha!: RecaptchaComponent;
 
+	public readonly environment = environment;
+
 	private readonly router = inject(Router);
-	private readonly http = inject(HttpClient);
 	public readonly constants = inject(Constants);
 	private readonly authService = inject(AuthService);
 	private readonly toastService = inject(ToastService);
-	public readonly environment = environment;
+	private readonly store = inject(Store);
+
+	public authState$ = this.store.select(authFeature.selectAuthState);
 
 	constructor() {}
 
@@ -51,36 +39,18 @@ export class SigninComponent {
 		reCaptchaResponse: '',
 	};
 
-	postSignin(url: string, data: any): Observable<ISignin> {
-		return this.http.post<ISignin>(url, data);
-	}
+	public count!: number;
 
 	handleOnSubmitSigninForm(event: any, signinForm: NgForm) {
 		event.preventDefault();
-		const url = `${environment.baseUrl}${this.constants.API._V1}/auth/signin`;
 
-		this.postSignin(url, { ...this.signinFormModel }).subscribe({
-			next: (response) => {
-				console.log('next :: response :: ', response);
-				this.authService.changeAuthStatus({
-					status: true,
-					accessToken: response.data.accessToken,
-					refreshToken: response.data.refreshToken,
-					roles: response.data.roles,
-				});
-				this.router.navigate(['/dashboard']);
-			},
-			error: (error: CustomHttpErrorResponse) => {
-				this.toastService.enqueueToastNotification({
-					message: error.error.message || error.message,
-					type: this.constants.ALERT_TYPE.ERROR,
-				});
-			},
-			complete: () => {
-				// console.log('i am inside complete back');
-			},
-		});
-		// signinForm.reset();
+		this.store.dispatch(
+			authActions.login({
+				email: this.signinFormModel.email,
+				password: this.signinFormModel.password,
+				reCaptchaResponse: this.signinFormModel.reCaptchaResponse,
+			})
+		);
 	}
 
 	handleReCaptchaResolved(captchaResponse: string | null) {

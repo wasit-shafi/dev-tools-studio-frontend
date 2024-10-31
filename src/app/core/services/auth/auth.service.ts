@@ -1,8 +1,12 @@
 import { isPlatformBrowser } from '@angular/common';
 import { inject, Injectable, PLATFORM_ID, signal, WritableSignal, OnDestroy } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Constants } from '@coreShared/index';
 import { PersistanceService } from '@coreServices/';
+import { HttpClient } from '@angular/common/http';
+import { ISigninResponse } from '@coreModels/auth.model';
+import { environment } from '@environments/';
 
 interface IChangeAuthStatus {
 	status: boolean;
@@ -25,6 +29,7 @@ export class AuthService implements OnDestroy {
 	private readonly constants = inject(Constants);
 	private readonly persistance = inject(PersistanceService);
 	private readonly platformId = inject(PLATFORM_ID);
+	private readonly http = inject(HttpClient);
 
 	//Refer for more info:  https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API
 	private readonly userBroadcastChannel = new BroadcastChannel(this.constants.BROADCAST_CHANNELS.USER.CHANNEL_NAME);
@@ -47,6 +52,10 @@ export class AuthService implements OnDestroy {
 	ngOnDestroy(): void {
 		// Disconnect userBroadcastChannel channel
 		this.userBroadcastChannel.close();
+	}
+
+	postSignin(data: any): Observable<ISigninResponse> {
+		return this.http.post<ISigninResponse>(`${environment.baseUrl}${this.constants.API._V1}/auth/signin`, data);
 	}
 
 	public hasRole(role: number): boolean {
