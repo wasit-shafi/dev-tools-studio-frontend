@@ -24,9 +24,7 @@ export class Constants {
 
 		CONTROL_PANEL: 'control-panel',
 
-		// OTHERS
 
-		UNKNOWN: 'test-random-unknown-url',
 	} as const;
 
 	public readonly HTTP_STATUS_CODES_RANGES: Record<string, number> = {

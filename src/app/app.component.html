@@ -1,6 +1,6 @@
 @if (!environment.production) {
-	<div class="border-b-2 border-rose-500 text-center">
-		@for (item of mockLinks; track $index) {
+	<div class="flex justify-center gap-1 border-b-2 border-rose-500 text-center">
+		@for (item of tempTestRoutes; track $index) {
 			<!-- TODO: prettier not able to format code with @let https://github.com/prettier/prettier/pull/16474-->
 			<!-- @let url = item.url; -->
 			<!-- @let text = item.text; -->
@@ -8,7 +8,8 @@
 				[routerLink]="item.url"
 				[routerLinkActive]="['bg-rose-400/40', 'text-rose-600']"
 				[routerLinkActiveOptions]="{ exact: true }"
-				class="rounded-md px-2 font-medium text-cyan-500 no-underline hover:bg-sky-400 hover:text-stone-600"
+				class="my-3 rounded-md px-2 py-2 font-medium no-underline"
+				[ngClass]="item.className"
 			>
 				{{ item.text }}
 			</a>

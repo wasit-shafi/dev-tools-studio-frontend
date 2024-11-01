@@ -17,15 +17,53 @@ import { ToastService } from '@coreServices/';
 	styleUrl: './app.component.scss',
 })
 export class AppComponent {
-	public mockLinks;
 	public environment = environment;
 	public readonly constants = inject(Constants);
 	public readonly toastService = inject(ToastService);
 
+	public tempTestRoutes: any = {
+		guestUserRoutes: {
+			routeList: [
+				{ url: '', text: 'Home' },
+				{ url: 'contact', text: 'Contact' },
+				{ url: 'signup', text: 'Sign Up' },
+				{ url: 'signin', text: 'Sign In' },
+				{ url: 'reset-password', text: 'Reset Password' },
+			],
+			className: 'text-green-500 hover:bg-sky-400 hover:text-stone-600',
+		},
+		regularUserRoutes: {
+			routeList: [
+				{ url: 'dashboard', text: 'Dashboard' },
+				{ url: 'settings', text: 'Settings' },
+			],
+			className: 'text-red-500 hover:bg-sky-400 hover:text-stone-600',
+		},
+		adminUserRoutes: {
+			routeList: [{ url: 'control-panel', text: 'Control Panel' }],
+			className: 'text-purple-500 hover:bg-sky-400 hover:text-stone-600',
+		},
+		otherRoutes: {
+			routeList: [{ url: 'sample-random-url', text: 'Random Url' }],
+			className: 'text-lime-500 hover:bg-sky-400 hover:text-stone-600',
+		},
+	};
 	constructor() {
-		this.mockLinks = Object.keys(this.constants.ROUTES).map((key) => ({
-			text: key,
-			url: this.constants.ROUTES[key],
-		}));
+		// transforming testTempRoutes
+
+		this.tempTestRoutes = [
+			...this.tempTestRoutes.guestUserRoutes.routeList.map((item: any) => {
+				return { ...item, className: this.tempTestRoutes.guestUserRoutes.className };
+			}),
+			...this.tempTestRoutes.regularUserRoutes.routeList.map((item: any) => {
+				return { ...item, className: this.tempTestRoutes.regularUserRoutes.className };
+			}),
+			...this.tempTestRoutes.adminUserRoutes.routeList.map((item: any) => {
+				return { ...item, className: this.tempTestRoutes.adminUserRoutes.className };
+			}),
+			...this.tempTestRoutes.otherRoutes.routeList.map((item: any) => {
+				return { ...item, className: this.tempTestRoutes.otherRoutes.className };
+			}),
+		];
 	}
 }
