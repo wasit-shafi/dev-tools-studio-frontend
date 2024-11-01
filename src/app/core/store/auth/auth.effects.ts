@@ -1,14 +1,13 @@
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-
-import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 
 import { authActions } from './auth.actions';
-import { AuthService, ToastService } from '@coreServices/';
-
 import { Constants } from '@coreShared/';
-import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService, ToastService, PersistanceService } from '@coreServices/';
 
 export const signinEffect = createEffect(
 	(
@@ -22,7 +21,8 @@ export const signinEffect = createEffect(
 			exhaustMap(({ email, password, reCaptchaResponse }) => {
 				return authService.postSignin({ email, password, reCaptchaResponse }).pipe(
 					map((response: any) => {
-						return authActions.loginSuccess(response);
+						const data = { currentUser: response.data };
+						return authActions.loginSuccess(data);
 					}),
 					catchError((errorResponse: HttpErrorResponse) => {
 						return of(authActions.loginFailure(errorResponse));
@@ -35,22 +35,14 @@ export const signinEffect = createEffect(
 );
 
 export const loginSuccessEffect = createEffect(
-	(
-		actions$ = inject(Actions),
-		router = inject(Router),
-		constants = inject(Constants),
-		authService = inject(AuthService)
-	) => {
+	(actions$ = inject(Actions), constants = inject(Constants), persistanceService = inject(PersistanceService)) => {
 		return actions$.pipe(
 			ofType(authActions.loginSuccess),
-			tap((response: any) => {
-				authService.changeAuthStatus({
-					status: true,
-					accessToken: response.data.accessToken,
-					refreshToken: response.data.refreshToken,
-					roles: response.data.roles,
-				});
-				router.navigate([constants.ROUTES.SIGNUP]);
+			tap((currentUser: any) => {
+				const { authToken = '', refreshToken = '' } = currentUser;
+
+				persistanceService.set(constants.LOCAL_STORAGE_KEYS.ACCESS_TOKEN, authToken);
+				persistanceService.set(constants.LOCAL_STORAGE_KEYS.REFRESH_TOKEN, refreshToken);
 			})
 		);
 	},
@@ -62,7 +54,7 @@ export const redirectAfterLoginEffect = createEffect(
 		return actions$.pipe(
 			ofType(authActions.loginSuccess),
 			tap(() => {
-				router.navigate([constants.ROUTES.SIGNUP]);
+				router.navigate([constants.ROUTES.DASHBOARD]);
 			})
 		);
 	},
@@ -83,6 +75,25 @@ export const loginFailureEffect = createEffect(
 					message: error.error.message || error.message,
 					type: constants.ALERT_TYPE.ERROR,
 				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
+export const logoutEffect = createEffect(
+	(
+		actions$ = inject(Actions),
+		router = inject(Router),
+		constants = inject(Constants),
+		persistanceService = inject(PersistanceService)
+	) => {
+		return actions$.pipe(
+			ofType(authActions.logout),
+			tap(() => {
+				persistanceService.remove(constants.LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
+				persistanceService.remove(constants.LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
+				router.navigate(['/']);
 			})
 		);
 	},

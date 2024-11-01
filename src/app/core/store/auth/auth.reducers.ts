@@ -5,17 +5,16 @@ import { createFeature, createReducer, on } from '@ngrx/store';
 const reducer = createReducer(
 	initialAuthState,
 	on(authActions.login, (state, action) => {
-		console.log(action);
 		return { ...state, isLoading: true };
 	}),
 	on(authActions.loginSuccess, (state, action) => {
-		console.log(action);
-
-		return { ...state, isLoading: false };
+		return { ...state, isLoading: false, currentUser: action.currentUser };
 	}),
 	on(authActions.loginFailure, (state, action) => {
-		console.log(action);
 		return { ...state, isLoading: false };
+	}),
+	on(authActions.logout, (state, action) => {
+		return { ...state, currentUser: null };
 	})
 );
 

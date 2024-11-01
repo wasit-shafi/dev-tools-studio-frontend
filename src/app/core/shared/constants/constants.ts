@@ -88,7 +88,7 @@ export class Constants {
 		ERROR: 'alert-error',
 	} as const;
 
-	public readonly JWT = {
+	public readonly LOCAL_STORAGE_KEYS = {
 		ACCESS_TOKEN: 'ACCESS_TOKEN',
 		REFRESH_TOKEN: 'REFRESH_TOKEN',
 	} as const;
@@ -102,6 +102,7 @@ export class Constants {
 	public readonly BROADCAST_CHANNELS = {
 		USER: {
 			CHANNEL_NAME: 'USER_CHANNEL',
+			// TODO: handle login in multiple tabs/windows
 			EVENTS: {
 				LOGOUT: 'LOGOUT',
 			},
