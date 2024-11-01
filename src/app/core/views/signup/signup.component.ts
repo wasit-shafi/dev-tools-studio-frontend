@@ -22,10 +22,11 @@ export class SignupComponent {
 	@ViewChild('reCaptcha') reCaptcha!: RecaptchaComponent;
 
 	private readonly http = inject(HttpClient);
-	private readonly constants = inject(Constants);
+	public readonly constants = inject(Constants);
 	private readonly toastService = inject(ToastService);
 	private readonly authService = inject(AuthService);
 	private readonly router = inject(Router);
+
 	public readonly environment = environment;
 
 	public signupFormModel = {
@@ -58,7 +59,7 @@ export class SignupComponent {
 						type: this.constants.ALERT_TYPE.SUCCESS,
 					});
 
-					this.router.navigate(['/dashboard']);
+					this.router.navigate([this.constants.ROUTES.DASHBOARD]);
 				}
 			},
 			error: (error: CustomHttpErrorResponse) => {

@@ -93,7 +93,7 @@ export const logoutEffect = createEffect(
 			tap(() => {
 				persistanceService.remove(constants.LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
 				persistanceService.remove(constants.LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
-				router.navigate(['/']);
+				router.navigate([constants.ROUTES.ROOT]);
 			})
 		);
 	},

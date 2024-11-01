@@ -5,10 +5,12 @@ import { Store } from '@ngrx/store';
 
 import { authFeature } from '@coreStore/index';
 import { IAuthState } from '@coreStore/auth/auth.model';
+import { Constants } from '@coreShared/index';
 
 export const alreadySignedInGuard: CanMatchFn = (route, segments) => {
-	const router = inject(Router);
 	const store = inject(Store);
+	const router = inject(Router);
+	const constants = inject(Constants);
 
 	// console.log({ route, segments });
 
@@ -22,5 +24,5 @@ export const alreadySignedInGuard: CanMatchFn = (route, segments) => {
 		complete: () => {},
 	});
 
-	return authState.currentUser ? router.createUrlTree(['/dashboard']) : true;
+	return authState.currentUser ? router.createUrlTree([constants.ROUTES.DASHBOARD]) : true;
 };

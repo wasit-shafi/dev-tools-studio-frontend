@@ -12,10 +12,10 @@ export const routes: Routes = [
 	// root
 
 	{
+		pathMatch: 'full',
 		path: constants.ROUTES.ROOT,
 		component: CoreViews.HomeComponent,
 		title: `${constants.PROJECT_NAME}`,
-		pathMatch: 'full',
 	},
 	// signup
 
