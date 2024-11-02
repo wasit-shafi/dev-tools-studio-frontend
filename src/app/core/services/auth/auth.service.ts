@@ -2,9 +2,7 @@ import { Observable } from 'rxjs';
 
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import {
-    inject, Injectable, OnDestroy, OnInit, PLATFORM_ID, signal, WritableSignal
-} from '@angular/core';
+import { inject, Injectable, OnDestroy, OnInit, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { ISigninResponse } from '@coreModels/auth.model';
 import { PersistanceService } from '@coreServices/';
 import { Constants } from '@coreShared/index';
@@ -55,7 +53,7 @@ export class AuthService implements OnInit, OnDestroy {
 			// }
 		}
 
-		this.userBroadcastChannel.onmessage = this.handleLogoutFromAllTabs.bind(this);
+		this.userBroadcastChannel.onmessage = this.handleSignoutFromAllTabs.bind(this);
 	}
 
 	ngOnInit(): void {
@@ -94,10 +92,10 @@ export class AuthService implements OnInit, OnDestroy {
 			};
 			this.roles.set(roles);
 		} else {
-			// logout
+			// signout
 
 			const data = {
-				event: this.constants.BROADCAST_CHANNELS.USER.EVENTS.LOGOUT,
+				event: this.constants.BROADCAST_CHANNELS.USER.EVENTS.SIGNOUT,
 				eventParams: {},
 			};
 			this.userBroadcastChannel.postMessage(data);
@@ -106,9 +104,9 @@ export class AuthService implements OnInit, OnDestroy {
 		// this.isUserSignedIn.set(status);
 	}
 
-	public handleLogoutFromAllTabs(event: any) {
+	public handleSignoutFromAllTabs(event: any) {
 		const { data } = event;
-		if (data.event == this.constants.BROADCAST_CHANNELS.USER.EVENTS.LOGOUT) {
+		if (data.event == this.constants.BROADCAST_CHANNELS.USER.EVENTS.SIGNOUT) {
 			this.clearAuthTokens();
 			this.clearRoles();
 			// https://dev.to/demawo/how-to-logout-of-multiple-tabs-react-web-app-2egf

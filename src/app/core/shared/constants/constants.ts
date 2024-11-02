@@ -23,8 +23,6 @@ export class Constants {
 		// ADMIN ROUTES (PROTECTED)
 
 		CONTROL_PANEL: 'control-panel',
-
-
 	} as const;
 
 	public readonly HTTP_STATUS_CODES_RANGES: Record<string, number> = {
@@ -100,9 +98,8 @@ export class Constants {
 	public readonly BROADCAST_CHANNELS = {
 		USER: {
 			CHANNEL_NAME: 'USER_CHANNEL',
-			// TODO: handle login in multiple tabs/windows
 			EVENTS: {
-				LOGOUT: 'LOGOUT',
+				SIGNOUT: 'SIGNOUT',
 			},
 		},
 	} as const;

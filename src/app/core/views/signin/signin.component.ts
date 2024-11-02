@@ -1,6 +1,4 @@
-import {
-    RecaptchaComponent, RecaptchaErrorParameters, RecaptchaFormsModule, RecaptchaModule
-} from 'ng-recaptcha';
+import { RecaptchaComponent, RecaptchaErrorParameters, RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 
 import { CommonModule } from '@angular/common';
 import { Component, inject, ViewChild } from '@angular/core';
@@ -47,7 +45,7 @@ export class SigninComponent {
 		event.preventDefault();
 
 		this.store.dispatch(
-			authActions.login({
+			authActions.signin({
 				email: this.signinFormModel.email,
 				password: this.signinFormModel.password,
 				reCaptchaResponse: this.signinFormModel.reCaptchaResponse,

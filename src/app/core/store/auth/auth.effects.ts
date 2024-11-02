@@ -17,15 +17,15 @@ export const signinEffect = createEffect(
 		authService = inject(AuthService)
 	) => {
 		return actions$.pipe(
-			ofType(authActions.login),
+			ofType(authActions.signin),
 			exhaustMap(({ email, password, reCaptchaResponse }) => {
 				return authService.postSignin({ email, password, reCaptchaResponse }).pipe(
 					map((response: any) => {
 						const data = { currentUser: response.data };
-						return authActions.loginSuccess(data);
+						return authActions.signinSuccess(data);
 					}),
 					catchError((errorResponse: HttpErrorResponse) => {
-						return of(authActions.loginFailure(errorResponse));
+						return of(authActions.signinFailure(errorResponse));
 					})
 				);
 			})
@@ -34,10 +34,10 @@ export const signinEffect = createEffect(
 	{ functional: true }
 );
 
-export const loginSuccessEffect = createEffect(
+export const signinSuccessEffect = createEffect(
 	(actions$ = inject(Actions), constants = inject(Constants), persistanceService = inject(PersistanceService)) => {
 		return actions$.pipe(
-			ofType(authActions.loginSuccess),
+			ofType(authActions.signinSuccess),
 			tap((currentUser: any) => {
 				const { authToken = '', refreshToken = '' } = currentUser;
 
@@ -49,10 +49,10 @@ export const loginSuccessEffect = createEffect(
 	{ functional: true, dispatch: false }
 );
 
-export const redirectAfterLoginEffect = createEffect(
+export const redirectAfterSigninEffect = createEffect(
 	(actions$ = inject(Actions), router = inject(Router), constants = inject(Constants)) => {
 		return actions$.pipe(
-			ofType(authActions.loginSuccess),
+			ofType(authActions.signinSuccess),
 			tap(() => {
 				router.navigate([constants.ROUTES.DASHBOARD]);
 			})
@@ -61,7 +61,7 @@ export const redirectAfterLoginEffect = createEffect(
 	{ functional: true, dispatch: false }
 );
 
-export const loginFailureEffect = createEffect(
+export const signinFailureEffect = createEffect(
 	(
 		actions$ = inject(Actions),
 		router = inject(Router),
@@ -69,7 +69,7 @@ export const loginFailureEffect = createEffect(
 		toastService = inject(ToastService)
 	) => {
 		return actions$.pipe(
-			ofType(authActions.loginFailure),
+			ofType(authActions.signinFailure),
 			tap((error: any) => {
 				toastService.enqueueToastNotification({
 					message: error.error.message || error.message,
@@ -81,7 +81,7 @@ export const loginFailureEffect = createEffect(
 	{ functional: true, dispatch: false }
 );
 
-export const logoutEffect = createEffect(
+export const signoutEffect = createEffect(
 	(
 		actions$ = inject(Actions),
 		router = inject(Router),
@@ -89,7 +89,7 @@ export const logoutEffect = createEffect(
 		persistanceService = inject(PersistanceService)
 	) => {
 		return actions$.pipe(
-			ofType(authActions.logout),
+			ofType(authActions.signout),
 			tap(() => {
 				persistanceService.remove(constants.LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
 				persistanceService.remove(constants.LOCAL_STORAGE_KEYS.REFRESH_TOKEN);

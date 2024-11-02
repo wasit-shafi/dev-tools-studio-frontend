@@ -32,6 +32,6 @@ export class NavComponent implements OnInit {
 	}
 
 	public handleSignOut = () => {
-		this.store.dispatch(authActions.logout());
+		this.store.dispatch(authActions.signout());
 	};
 }
