@@ -15,13 +15,13 @@ import { environment } from '@environments/';
 	styleUrl: './mail.component.scss',
 })
 export class MailComponent {
-	title = 'dev-tools-studio';
-	users: any;
-
-	private readonly http = inject(HttpClient);
 	private readonly constants = inject(Constants);
 	private readonly formBuilder = inject(FormBuilder);
+	private readonly http = inject(HttpClient);
 	private readonly toastService = inject(ToastService);
+
+	title = 'dev-tools-studio';
+	users: any;
 
 	public mailForm = this.formBuilder.nonNullable.group({
 		dateTimeLocal: ['', [Validators.required]],

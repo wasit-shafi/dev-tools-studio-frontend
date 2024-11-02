@@ -6,9 +6,9 @@ import { authFeature } from '@coreStore/index';
 import { Store } from '@ngrx/store';
 
 export const alreadySignedInGuard: CanMatchFn = (route, segments) => {
-	const store = inject(Store);
-	const router = inject(Router);
 	const constants = inject(Constants);
+	const router = inject(Router);
+	const store = inject(Store);
 
 	// console.log({ route, segments });
 

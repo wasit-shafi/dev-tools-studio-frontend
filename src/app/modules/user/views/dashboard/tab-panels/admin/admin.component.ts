@@ -11,10 +11,10 @@ import { environment } from '@environments/';
 	styleUrl: './admin.component.scss',
 })
 export class AdminComponent {
-	users: any;
-
-	private readonly http = inject(HttpClient);
 	private readonly constants = inject(Constants);
+	private readonly http = inject(HttpClient);
+
+	public users: any;
 
 	constructor() {
 		const url = `${environment.baseUrl}${this.constants.API._V1}/user`;

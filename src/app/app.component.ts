@@ -15,9 +15,10 @@ import { environment } from '@environments/environment';
 	styleUrl: './app.component.scss',
 })
 export class AppComponent {
-	public environment = environment;
 	public readonly constants = inject(Constants);
 	public readonly toastService = inject(ToastService);
+
+	public environment = environment;
 
 	public tempTestRoutes: any = {
 		guestUserRoutes: {

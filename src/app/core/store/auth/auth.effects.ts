@@ -12,9 +12,9 @@ import { authActions } from './auth.actions';
 export const signinEffect = createEffect(
 	(
 		actions$ = inject(Actions),
-		router = inject(Router),
+		authService = inject(AuthService),
 		constants = inject(Constants),
-		authService = inject(AuthService)
+		router = inject(Router)
 	) => {
 		return actions$.pipe(
 			ofType(authActions.signin),
@@ -35,7 +35,7 @@ export const signinEffect = createEffect(
 );
 
 export const signinSuccessEffect = createEffect(
-	(actions$ = inject(Actions), constants = inject(Constants), persistanceService = inject(PersistanceService)) => {
+	(actions$ = inject(Actions), persistanceService = inject(PersistanceService), constants = inject(Constants)) => {
 		return actions$.pipe(
 			ofType(authActions.signinSuccess),
 			tap((currentUser: any) => {
@@ -50,7 +50,7 @@ export const signinSuccessEffect = createEffect(
 );
 
 export const redirectAfterSigninEffect = createEffect(
-	(actions$ = inject(Actions), router = inject(Router), constants = inject(Constants)) => {
+	(constants = inject(Constants), actions$ = inject(Actions), router = inject(Router)) => {
 		return actions$.pipe(
 			ofType(authActions.signinSuccess),
 			tap(() => {
@@ -64,10 +64,10 @@ export const redirectAfterSigninEffect = createEffect(
 export const signinFailureEffect = createEffect(
 	(
 		actions$ = inject(Actions),
-		router = inject(Router),
+		authService = inject(AuthService),
 		constants = inject(Constants),
-		toastService = inject(ToastService),
-		authService = inject(AuthService)
+		router = inject(Router),
+		toastService = inject(ToastService)
 	) => {
 		return actions$.pipe(
 			ofType(authActions.signinFailure),
@@ -87,9 +87,9 @@ export const signinFailureEffect = createEffect(
 export const signoutEffect = createEffect(
 	(
 		actions$ = inject(Actions),
-		router = inject(Router),
 		constants = inject(Constants),
-		persistanceService = inject(PersistanceService)
+		persistanceService = inject(PersistanceService),
+		router = inject(Router)
 	) => {
 		return actions$.pipe(
 			ofType(authActions.signout),

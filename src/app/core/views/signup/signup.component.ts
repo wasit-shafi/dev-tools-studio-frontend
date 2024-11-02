@@ -1,6 +1,4 @@
-import {
-    RecaptchaComponent, RecaptchaErrorParameters, RecaptchaFormsModule, RecaptchaModule
-} from 'ng-recaptcha';
+import { RecaptchaComponent, RecaptchaErrorParameters, RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -23,11 +21,11 @@ import { environment } from '@environments/';
 export class SignupComponent {
 	@ViewChild('reCaptcha') reCaptcha!: RecaptchaComponent;
 
-	private readonly http = inject(HttpClient);
-	public readonly constants = inject(Constants);
-	private readonly toastService = inject(ToastService);
 	private readonly authService = inject(AuthService);
+	private readonly http = inject(HttpClient);
 	private readonly router = inject(Router);
+	private readonly toastService = inject(ToastService);
+	public readonly constants = inject(Constants);
 
 	public readonly environment = environment;
 

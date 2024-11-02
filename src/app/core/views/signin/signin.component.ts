@@ -21,13 +21,13 @@ import { Store } from '@ngrx/store';
 export class SigninComponent {
 	@ViewChild('reCaptcha') reCaptcha!: RecaptchaComponent;
 
-	public readonly environment = environment;
-
-	private readonly router = inject(Router);
-	public readonly constants = inject(Constants);
 	private readonly authService = inject(AuthService);
-	private readonly toastService = inject(ToastService);
+	private readonly router = inject(Router);
 	private readonly store = inject(Store);
+	private readonly toastService = inject(ToastService);
+	public readonly constants = inject(Constants);
+
+	public readonly environment = environment;
 
 	public authState$ = this.store.select(authFeature.selectAuthState);
 

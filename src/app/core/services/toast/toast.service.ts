@@ -18,8 +18,8 @@ interface IToastNotificationQueue extends IToast {
 	providedIn: 'root',
 })
 export class ToastService implements OnDestroy {
-	public readonly constants = inject(Constants);
 	private readonly platformId = inject(PLATFORM_ID);
+	public readonly constants = inject(Constants);
 
 	// In a second we can dismiss 3 alerts max
 	private readonly WORKER_INTERVAL_DELAY = 333;
