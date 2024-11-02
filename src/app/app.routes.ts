@@ -1,10 +1,7 @@
 import { Routes } from '@angular/router';
-
-import * as CoreViews from '@coreViews/';
-
+import { alreadySignedInGuard, authAdminGuard, authGuard } from '@coreGuards/';
 import { Constants } from '@coreShared/';
-
-import { authGuard, alreadySignedInGuard, authAdminGuard } from '@coreGuards/';
+import * as CoreViews from '@coreViews/';
 
 const constants = new Constants();
 

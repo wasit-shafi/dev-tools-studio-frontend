@@ -1,12 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-
-import { HeaderComponent, FooterComponent } from '@coreComponents/';
-
+import { FooterComponent, HeaderComponent } from '@coreComponents/';
+import { ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { environment } from '@environments/environment';
-import { ToastService } from '@coreServices/';
 
 @Component({
 	selector: 'dts-root',

@@ -1,5 +1,4 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
-
 import { AuthService } from '@coreServices/';
 
 @Directive({

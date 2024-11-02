@@ -1,13 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { CommonModule } from '@angular/common';
-
-import { Constants } from '@coreShared/';
-
 import { HasRoleDirective } from '@coreDirectives/';
-import { Store } from '@ngrx/store';
-import { authActions, authFeature } from '@coreStore/index';
+import { Constants } from '@coreShared/';
 import { IAuthState } from '@coreStore/auth/auth.model';
+import { authActions, authFeature } from '@coreStore/index';
+import { Store } from '@ngrx/store';
 
 @Component({
 	selector: 'dts-nav',

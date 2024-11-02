@@ -1,14 +1,16 @@
+import {
+    RecaptchaComponent, RecaptchaErrorParameters, RecaptchaFormsModule, RecaptchaModule
+} from 'ng-recaptcha';
+
+import { CommonModule } from '@angular/common';
 import { Component, inject, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { RecaptchaModule, RecaptchaFormsModule, RecaptchaErrorParameters, RecaptchaComponent } from 'ng-recaptcha';
-
 import { AuthService, ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
+import { authActions, authFeature } from '@coreStore/index';
 import { environment } from '@environments/';
 import { Store } from '@ngrx/store';
-import { authActions, authFeature } from '@coreStore/index';
 
 @Component({
 	selector: 'dts-signin',

@@ -1,11 +1,10 @@
-import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ToastService } from '@coreServices/index';
 import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
-import { ToastService } from '@coreServices/index';
 
 @Component({
 	selector: 'dts-mail',

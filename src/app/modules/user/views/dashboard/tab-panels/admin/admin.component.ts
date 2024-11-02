@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { Component, inject } from '@angular/core';
 import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
 

@@ -1,6 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
 import { inject, Injectable, OnDestroy, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
-
 import { Constants } from '@coreShared/';
 
 // TODO: review how can we get below type from constants + need for separate *.model.ts file

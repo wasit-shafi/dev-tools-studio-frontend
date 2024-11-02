@@ -1,8 +1,10 @@
 import { Component, inject } from '@angular/core';
-
-import { Constants } from '@coreShared/';
-import { AdminComponent, MailComponent, ColorsComponent, MetaTagsComponent, OpenGraphComponent } from './tab-panels';
 import { HasRoleDirective } from '@coreDirectives/has-role/has-role.directive';
+import { Constants } from '@coreShared/';
+
+import {
+    AdminComponent, ColorsComponent, MailComponent, MetaTagsComponent, OpenGraphComponent
+} from './tab-panels';
 
 @Component({
 	selector: 'dts-dashboard',
