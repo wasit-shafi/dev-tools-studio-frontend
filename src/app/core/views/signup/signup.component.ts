@@ -47,12 +47,12 @@ export class SignupComponent {
 		this.http.post(url, { ...this.signupFormModel }).subscribe({
 			next: (response: any) => {
 				if (response.success && response.code === this.constants.HTTP_STATUS_CODES.SUCCESSFUL.CREATED) {
-					this.authService.changeAuthStatus({
-						status: true,
-						accessToken: response.data.accessToken,
-						refreshToken: response.data.refreshToken,
-						roles: response.data.roles,
-					});
+					// this.authService.changeAuthStatus({
+					// 	status: true,
+					// 	accessToken: response.data.accessToken,
+					// 	refreshToken: response.data.refreshToken,
+					// 	roles: response.data.roles,
+					// });
 
 					this.toastService.enqueueToastNotification({
 						message: response.message,
