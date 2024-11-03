@@ -2,7 +2,7 @@ export interface ICurrentUser {
 	id: string;
 	accessToken: string;
 	refreshToken: string;
-	roles: string[];
+	roles: number[];
 }
 
 export interface IAuthState {

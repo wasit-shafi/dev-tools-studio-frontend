@@ -31,7 +31,6 @@ export class AuthService implements OnInit, OnDestroy {
 	private accessToken: string = '';
 	private refreshToken: string = '';
 
-	public roles: WritableSignal<number[]> = signal([]);
 	private isBrowser: WritableSignal<boolean> = signal(false);
 
 	//Refer for more info:  https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API
@@ -77,10 +76,6 @@ export class AuthService implements OnInit, OnDestroy {
 		return this.http.post<ISigninResponse>(`${environment.baseUrl}${this.constants.API._V1}/auth/signin`, data);
 	}
 
-	public hasRole(role: number): boolean {
-		return this.roles().includes(role);
-	}
-
 	public changeAuthStatus(params: IChangeAuthStatus) {
 		const { status } = params;
 		//TODO(wasit): review what to do if new and old status are same
@@ -96,7 +91,6 @@ export class AuthService implements OnInit, OnDestroy {
 				accessToken: accessToken,
 				refreshToken: refreshToken,
 			};
-			this.roles.set(roles);
 		} else {
 			// signout
 
@@ -113,11 +107,8 @@ export class AuthService implements OnInit, OnDestroy {
 	public handleSignoutFromAllTabs(event: any) {
 		const { data } = event;
 		if (data.event == this.constants.BROADCAST_CHANNELS.USER.EVENTS.SIGNOUT) {
-			this.clearAuthTokens();
-			this.clearRoles();
 			// https://dev.to/demawo/how-to-logout-of-multiple-tabs-react-web-app-2egf
-			// TODO: review if i should use different service + review any other way without using reload()
-			window.location.reload();
+			// https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API
 		}
 	}
 
@@ -163,9 +154,5 @@ export class AuthService implements OnInit, OnDestroy {
 		this.refreshToken = '';
 		this.persistance.remove(this.constants.LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
 		this.persistance.remove(this.constants.LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
-	}
-
-	public clearRoles(): void {
-		this.roles.set([]);
 	}
 }
