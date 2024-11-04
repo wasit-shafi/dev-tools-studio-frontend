@@ -1,3 +1,5 @@
+import { provideLottieOptions } from 'ngx-lottie';
+
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, isDevMode, provideZoneChangeDetection } from '@angular/core';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -19,6 +21,10 @@ export const appConfig: ApplicationConfig = {
 		provideZoneChangeDetection({ eventCoalescing: true }),
 		provideRouter(routes),
 		provideClientHydration(),
+		provideLottieOptions({
+			player: () => import('lottie-web'), // lazy loading
+		}),
+
 		provideHttpClient(withFetch(), withInterceptors([authInterceptor, loggingInterceptor, errorInterceptor])),
 		provideStore({ router: routerReducer }),
 		provideRouterStore(),
