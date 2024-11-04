@@ -14,7 +14,7 @@ import { Store } from '@ngrx/store';
 @Injectable({
 	providedIn: 'root',
 })
-export class AuthService implements OnInit, OnDestroy {
+export class AuthService implements OnInit {
 	private readonly constants = inject(Constants);
 	private readonly http = inject(HttpClient);
 	private readonly persistance = inject(PersistanceService);
@@ -22,9 +22,6 @@ export class AuthService implements OnInit, OnDestroy {
 	private readonly store = inject(Store);
 
 	private isBrowser: WritableSignal<boolean> = signal(false);
-
-	//Refer for more info:  https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API
-	private readonly userBroadcastChannel = new BroadcastChannel(this.constants.BROADCAST_CHANNELS.USER.CHANNEL_NAME);
 
 	private authState!: IAuthState;
 
@@ -41,8 +38,6 @@ export class AuthService implements OnInit, OnDestroy {
 				// refetch the user data from backend to populate the store
 			}
 		}
-
-		this.userBroadcastChannel.onmessage = this.handleSignoutFromAllTabs.bind(this);
 	}
 
 	ngOnInit(): void {
@@ -51,24 +46,11 @@ export class AuthService implements OnInit, OnDestroy {
 		});
 	}
 
-	ngOnDestroy(): void {
-		// Disconnect userBroadcastChannel channel
-		this.userBroadcastChannel.close();
-	}
-
 	public handleRegisterCallbackOnSigninFailed(callback: () => void): void {
 		this.handleResetSigninReCaptcha = callback;
 	}
 
 	public postSignin(data: any): Observable<ISigninResponse> {
 		return this.http.post<ISigninResponse>(`${environment.baseUrl}${this.constants.API._V1}/auth/signin`, data);
-	}
-
-	public handleSignoutFromAllTabs(event: any) {
-		const { data } = event;
-		if (data.event == this.constants.BROADCAST_CHANNELS.USER.EVENTS.SIGNOUT) {
-			// https://dev.to/demawo/how-to-logout-of-multiple-tabs-react-web-app-2egf
-			// https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API
-		}
 	}
 }

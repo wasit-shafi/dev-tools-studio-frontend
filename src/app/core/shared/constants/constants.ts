@@ -97,7 +97,7 @@ export class Constants {
 
 	public readonly BROADCAST_CHANNELS = {
 		USER: {
-			CHANNEL_NAME: 'USER_CHANNEL',
+			CHANNEL_NAME: 'USER_EVENTS_CHANNEL',
 			EVENTS: {
 				SIGNOUT: 'SIGNOUT',
 			},

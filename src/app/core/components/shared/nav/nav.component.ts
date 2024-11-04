@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { HasRoleDirective } from '@coreDirectives/';
+import { BcChannelService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { IAuthState } from '@coreStore/auth/auth.model';
 import { authActions, authFeature } from '@coreStore/index';
@@ -18,6 +19,7 @@ import { Store } from '@ngrx/store';
 export class NavComponent implements OnInit {
 	public readonly constants = inject(Constants);
 	public readonly store = inject(Store);
+	public readonly bcChannelService = inject(BcChannelService);
 
 	public authState!: IAuthState;
 
@@ -33,5 +35,6 @@ export class NavComponent implements OnInit {
 
 	public handleSignOut = () => {
 		this.store.dispatch(authActions.signout());
+		this.bcChannelService.handleSignoutFromAllTabs();
 	};
 }
