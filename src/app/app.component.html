@@ -6,7 +6,8 @@
 			<!-- @let text = item.text; -->
 			<a
 				[routerLink]="item.url"
-				[routerLinkActive]="['bg-rose-400/40', 'text-rose-600']"
+				[routerLinkActive]="['bg-slate-400/40', 'text-gray-600']"
+				ariaCurrentWhenActive="page"
 				[routerLinkActiveOptions]="{ exact: true }"
 				class="my-3 rounded-md px-2 py-2 font-medium no-underline"
 				[ngClass]="item.className"

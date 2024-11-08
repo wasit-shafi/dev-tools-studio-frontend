@@ -3,7 +3,10 @@
 		@if (authState.currentUser) {
 			<!-- Dashboard -->
 
-			<li [routerLink]="[constants.ROUTES.DASHBOARD]">
+			<li
+				[routerLink]="[constants.ROUTES._DASHBOARD]"
+				ariaCurrentWhenActive="page"
+			>
 				<a
 					[ngClass]=""
 					[routerLinkActive]="['active']"
@@ -27,7 +30,10 @@
 			</li>
 			<!-- Settings -->
 
-			<li [routerLink]="[constants.ROUTES.SETTINGS]">
+			<li
+				[routerLink]="[constants.ROUTES._SETTINGS]"
+				ariaCurrentWhenActive="page"
+			>
 				<a [routerLinkActive]="['active']">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +55,8 @@
 			<!-- Control Panel (only for admin users) -->
 
 			<li
-				[routerLink]="[constants.ROUTES.CONTROL_PANEL]"
+				[routerLink]="[constants.ROUTES._CONTROL_PANEL]"
+				ariaCurrentWhenActive="page"
 				*appHasRole="[constants.USER_ROLES.ADMIN]"
 			>
 				<a [routerLinkActive]="['active']">
@@ -73,7 +80,7 @@
 			<!-- Sign Out -->
 
 			<li (click)="handleSignOut()">
-				<a [routerLinkActive]="['active']">
+				<a>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						class="h-5 w-5"
@@ -94,7 +101,10 @@
 		} @else {
 			<!-- Home -->
 
-			<li [routerLink]="[constants.ROUTES.ROOT]">
+			<li
+				[routerLink]="[constants.ROUTES.ROOT]"
+				ariaCurrentWhenActive="page"
+			>
 				<a
 					[routerLinkActive]="['active']"
 					[routerLinkActiveOptions]="{ exact: true }"
@@ -118,7 +128,10 @@
 			</li>
 			<!-- Contact -->
 
-			<li [routerLink]="[constants.ROUTES.CONTACT]">
+			<li
+				[routerLink]="[constants.ROUTES._CONTACT]"
+				ariaCurrentWhenActive="page"
+			>
 				<a [routerLinkActive]="['active']">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +152,10 @@
 			</li>
 			<!-- Sign Up -->
 
-			<li [routerLink]="[constants.ROUTES.SIGNUP]">
+			<li
+				[routerLink]="[constants.ROUTES._SIGNUP]"
+				ariaCurrentWhenActive="page"
+			>
 				<a [routerLinkActive]="['active']">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -160,7 +176,10 @@
 			</li>
 			<!-- Sign In -->
 
-			<li [routerLink]="[constants.ROUTES.SIGNIN]">
+			<li
+				[routerLink]="[constants.ROUTES._SIGNIN]"
+				ariaCurrentWhenActive="page"
+			>
 				<a [routerLinkActive]="['active']">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"

@@ -6,7 +6,11 @@ export class Constants {
 		_V2: '/v2',
 	} as const;
 
-	public readonly ROUTES: Record<string, string> = {
+	public readonly REGEX = {
+		EMAIL: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',
+	};
+
+	private readonly ROUTES_PATHS: Record<string, string> = {
 		// GUEST USER ROUTES (UN-PROTECTED)
 
 		CONTACT: 'contact',
@@ -14,15 +18,37 @@ export class Constants {
 		ROOT: '',
 		SIGNIN: 'signin',
 		SIGNUP: 'signup',
-
 		// LOGGED-IN USER ROUTES (PROTECTED)
 
 		DASHBOARD: 'dashboard',
 		SETTINGS: 'settings',
-
 		// ADMIN ROUTES (PROTECTED)
 
 		CONTROL_PANEL: 'control-panel',
+	};
+
+	public readonly ROUTES: Record<string, string> = {
+		// GUEST USER ROUTES (UN-PROTECTED)
+
+		CONTACT: this.ROUTES_PATHS.CONTACT,
+		RESET_PASSWORD: this.ROUTES_PATHS.RESET_PASSWORD,
+		ROOT: this.ROUTES_PATHS.ROOT,
+		SIGNIN: this.ROUTES_PATHS.SIGNIN,
+		SIGNUP: this.ROUTES_PATHS.SIGNUP,
+		_CONTACT: `/${this.ROUTES_PATHS.CONTACT}`,
+		_RESET_PASSWORD: `/${this.ROUTES_PATHS.RESET_PASSWORD}`,
+		_SIGNIN: `/${this.ROUTES_PATHS.SIGNIN}`,
+		_SIGNUP: `/${this.ROUTES_PATHS.SIGNUP}`,
+		// LOGGED-IN USER ROUTES (PROTECTED)
+
+		DASHBOARD: this.ROUTES_PATHS.DASHBOARD,
+		SETTINGS: this.ROUTES_PATHS.SETTINGS,
+		_DASHBOARD: `/${this.ROUTES_PATHS.DASHBOARD}`,
+		_SETTINGS: `/${this.ROUTES_PATHS.SETTINGS}`,
+		// ADMIN ROUTES (PROTECTED)
+
+		CONTROL_PANEL: this.ROUTES_PATHS.CONTROL_PANEL,
+		_CONTROL_PANEL: `/${this.ROUTES_PATHS.CONTROL_PANEL}`,
 	} as const;
 
 	public readonly HTTP_STATUS_CODES_RANGES: Record<string, number> = {

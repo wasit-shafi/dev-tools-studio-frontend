@@ -18,7 +18,7 @@
 			class="grow"
 			id="email"
 			name="email"
-			pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+			[pattern]="constants.REGEX.EMAIL"
 			placeholder="UserName@DomainName.extension"
 			required
 			type="email"
@@ -55,7 +55,7 @@
 	<div class="flex items-center justify-between">
 		<a
 			class="link-hover link link-neutral"
-			[routerLink]="['/' + constants.ROUTES.RESET_PASSWORD]"
+			[routerLink]="[constants.ROUTES._RESET_PASSWORD]"
 		>
 			Forgot Password..?
 		</a>
