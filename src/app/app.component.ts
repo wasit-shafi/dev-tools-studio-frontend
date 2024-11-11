@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FooterComponent, HeaderComponent } from '@coreComponents/';
+import { UiBlockerComponent } from '@coreComponents/shared/ui-blocker/ui-blocker.component';
 import { ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { environment } from '@environments/environment';
@@ -10,7 +11,15 @@ import { environment } from '@environments/environment';
 	selector: 'dts-root',
 	standalone: true,
 	providers: [Constants],
-	imports: [RouterOutlet, CommonModule, HeaderComponent, FooterComponent, RouterLink, RouterLinkActive],
+	imports: [
+		RouterOutlet,
+		CommonModule,
+		HeaderComponent,
+		FooterComponent,
+		RouterLink,
+		RouterLinkActive,
+		UiBlockerComponent,
+	],
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.scss',
 })

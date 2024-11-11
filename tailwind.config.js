@@ -16,6 +16,7 @@ module.exports = {
 				white: 'rgb(255 255 255 / <alpha-value>)',
 				persianGreen: 'rgb(9 166 149 / <alpha-value>)',
 				sunnyYellow: 'rgb(230 255 22 / <alpha-value>)',
+				softPeach: 'rgb(238 283 283 / <alpha-value>)',
 			},
 		},
 	},

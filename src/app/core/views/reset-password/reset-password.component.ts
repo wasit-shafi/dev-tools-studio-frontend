@@ -1,6 +1,5 @@
 import { RecaptchaComponent, RecaptchaErrorParameters, RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 
-import { HttpClient } from '@angular/common/http';
 import { Component, inject, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -9,6 +8,7 @@ import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
 import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
+import { authActions } from '@coreStore/index';
 
 @Component({
 	selector: 'dts-reset-password',
@@ -28,15 +28,14 @@ export class ResetPasswordComponent {
 
 	public resetPasswordFormModel = {
 		email: '',
-		otp: '',
 		reCaptchaResponse: '',
 	};
 
 	handleOnSubmitResetPasswordForm(event: any, resetPasswordForm: NgForm) {
-
 		event.preventDefault();
+		this.store.dispatch(authActions.resetPassword({ ...resetPasswordForm.value }));
 
-		resetPasswordForm.reset();
+		// resetPasswordForm.reset();
 	}
 
 	handleReCaptchaResolved(captchaResponse: string | null) {

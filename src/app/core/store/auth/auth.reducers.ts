@@ -15,6 +15,15 @@ const reducer = createReducer(
 	}),
 	on(authActions.signout, (state, action) => {
 		return { ...state, currentUser: null };
+	}),
+	on(authActions.resetPassword, (state, action) => {
+		return { ...state, isLoading: true };
+	}),
+	on(authActions.resetPasswordSuccess, (state, action) => {
+		return { ...state, isLoading: false };
+	}),
+	on(authActions.resetPasswordFailure, (state, action) => {
+		return { ...state, isLoading: false };
 	})
 );
 

@@ -102,3 +102,64 @@ export const signoutEffect = createEffect(
 	},
 	{ functional: true, dispatch: false }
 );
+
+export const resetPasswordEffect = createEffect(
+	(
+		actions$ = inject(Actions),
+		authService = inject(AuthService),
+		constants = inject(Constants),
+		router = inject(Router)
+	) => {
+		return actions$.pipe(
+			ofType(authActions.resetPassword),
+			exhaustMap(({ email, reCaptchaResponse }) => {
+				return authService.postResetPassword({ email, reCaptchaResponse }).pipe(
+					map((response) => {
+						return authActions.resetPasswordSuccess({ currentUser: response });
+					}),
+					catchError((errorResponse: HttpErrorResponse) => {
+						return of(authActions.resetPasswordFailure(errorResponse));
+					})
+				);
+			})
+		);
+	},
+	{ functional: true }
+);
+
+export const resetPasswordSuccessEffect = createEffect(
+	(actions$ = inject(Actions), persistanceService = inject(PersistanceService), constants = inject(Constants)) => {
+		return actions$.pipe(
+			ofType(authActions.resetPasswordSuccess),
+			tap((currentUser: any) => {
+				const { authToken = '', refreshToken = '' } = currentUser;
+				persistanceService.set(constants.LOCAL_STORAGE_KEYS.ACCESS_TOKEN, authToken);
+				persistanceService.set(constants.LOCAL_STORAGE_KEYS.REFRESH_TOKEN, refreshToken);
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
+export const resetPasswordFailureEffect = createEffect(
+	(
+		actions$ = inject(Actions),
+		authService = inject(AuthService),
+		constants = inject(Constants),
+		router = inject(Router),
+		toastService = inject(ToastService)
+	) => {
+		return actions$.pipe(
+			ofType(authActions.resetPasswordFailure),
+			tap((error: any) => {
+				// authService.handleResetSigninReCaptcha();
+
+				toastService.enqueueToastNotification({
+					message: error.error.message || error.message,
+					type: constants.ALERT_TYPE.ERROR,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);

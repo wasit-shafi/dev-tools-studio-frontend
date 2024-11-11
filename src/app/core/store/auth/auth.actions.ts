@@ -7,5 +7,8 @@ export const authActions = createActionGroup({
 		'Signin Success': props<{ currentUser: any }>(),
 		'Signin Failure': props<{ error: any }>(),
 		Signout: emptyProps(),
+		'Reset Password': props<{ email: string; reCaptchaResponse: string }>(),
+		'Reset Password Success': props<{ currentUser: any }>(),
+		'Reset Password Failure': props<{ error: any }>(),
 	},
 });
