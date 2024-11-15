@@ -8,7 +8,7 @@ import { authInterceptor, loggingInterceptor } from '@coreInterceptors/';
 import { errorInterceptor } from '@coreInterceptors/error/error.interceptor';
 import { Constants } from '@coreShared/';
 import * as authEffects from '@coreStore/auth/auth.effects';
-import { authFeature } from '@coreStore/auth/auth.reducers';
+import { authFeature, uiFeature } from '@coreStore/';
 import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideState, provideStore } from '@ngrx/store';
@@ -37,6 +37,7 @@ export const appConfig: ApplicationConfig = {
 			connectInZone: true, // If set to true, the connection is established within the Angular zone
 		}),
 		provideState(authFeature),
+		provideState(uiFeature),
 		provideEffects(authEffects),
 		Constants,
 	],
