@@ -1,5 +1,6 @@
+import { uiFeature } from '@coreStore/index';
 import { Store } from '@ngrx/store';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 
 @Component({
 	selector: 'dts-ui-blocker',
@@ -8,9 +9,18 @@ import { Component, inject } from '@angular/core';
 	templateUrl: './ui-blocker.component.html',
 	styleUrl: './ui-blocker.component.scss',
 })
-export class UiBlockerComponent {
-	// public store = inject(Store);
-	uiBlockerPrimaryText = 'Loading...';
+export class UiBlockerComponent implements OnInit {
+	public store = inject(Store);
+
+	public blocker: any;
 
 	constructor() {}
+
+	ngOnInit(): void {
+		this.store.select(uiFeature.selectBlocker).subscribe({
+			next: (blocker) => {
+				this.blocker = blocker;
+			},
+		});
+	}
 }

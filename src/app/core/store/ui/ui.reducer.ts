@@ -4,11 +4,11 @@ import { uiActions } from './ui.actions';
 
 const reducer = createReducer(
 	initialUiState,
-	on(uiActions.blockerShow, (state, action) => {
-		return { ...state };
+	on(uiActions.showBlocker, (state, action) => {
+		return { ...state, blocker: { ...state.blocker, isVisible: true } };
 	}),
-	on(uiActions.blockerHide, (state, action) => {
-		return { ...state };
+	on(uiActions.hideBlocker, (state, action) => {
+		return { ...state, blocker: { ...state.blocker, isVisible: false } };
 	})
 );
 

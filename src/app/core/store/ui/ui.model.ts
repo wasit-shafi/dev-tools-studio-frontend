@@ -1,4 +1,5 @@
 interface IBlocker {
+	isVisible: boolean;
 	primaryText: string;
 	secondaryText?: string;
 }
