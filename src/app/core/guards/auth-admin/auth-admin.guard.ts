@@ -1,8 +1,8 @@
 import { inject } from '@angular/core';
 import { CanMatchFn } from '@angular/router';
 import { Constants } from '@coreShared/';
-import { IAuthState } from '@coreStore/auth/auth.model';
-import { authFeature } from '@coreStore/index';
+import { IAuthState } from '@coreModels/';
+import { authFeature } from '@coreStore/';
 import { Store } from '@ngrx/store';
 
 export const authAdminGuard: CanMatchFn = (route, segments) => {

@@ -5,11 +5,22 @@ interface ISigninData {
 	roles: number[];
 }
 
-interface ISigninResponse {
+export interface ISigninResponse {
 	code: number;
 	data: ISigninData;
 	message: string;
 	success: boolean;
 }
 
-export { ISigninResponse };
+export interface ICurrentUser {
+	id: string;
+	accessToken: string;
+	refreshToken: string;
+	roles: number[];
+}
+
+export interface IAuthState {
+	isLoading: boolean;
+	greetingMessage: string;
+	currentUser: ICurrentUser | null;
+}

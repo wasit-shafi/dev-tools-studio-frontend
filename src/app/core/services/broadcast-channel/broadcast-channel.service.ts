@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Constants } from '@coreShared/index';
+import { Constants } from '@coreShared/';
 import { Store } from '@ngrx/store';
 
 @Injectable({

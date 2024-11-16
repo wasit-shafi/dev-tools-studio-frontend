@@ -1,9 +1,9 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { authFeature } from '@coreStore/index';
+import { authFeature } from '@coreStore/';
 import { Store } from '@ngrx/store';
 
-import { IAuthState } from '../../store/auth/auth.model';
+import { IAuthState } from '@coreModels/';
 
 export const authInterceptor: HttpInterceptorFn = (request, next) => {
 	const store = inject(Store);

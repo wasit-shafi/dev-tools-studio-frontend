@@ -3,11 +3,11 @@ import { Observable } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, OnDestroy, OnInit, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
-import { ISigninResponse } from '@coreModels/auth.model';
+import { ISigninResponse } from '@coreModels/';
 import { PersistanceService } from '@coreServices/';
-import { Constants } from '@coreShared/index';
-import { IAuthState } from '@coreStore/auth/auth.model';
-import { authFeature } from '@coreStore/index';
+import { Constants } from '@coreShared/';
+import { IAuthState } from '@coreModels/';
+import { authFeature } from '@coreStore/';
 import { environment } from '@environments/';
 import { Store } from '@ngrx/store';
 

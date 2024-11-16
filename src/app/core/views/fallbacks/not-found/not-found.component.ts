@@ -2,7 +2,7 @@ import { AnimationOptions, LottieComponent } from 'ngx-lottie';
 
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Constants } from '@coreShared/index';
+import { Constants } from '@coreShared/';
 
 @Component({
 	selector: 'dts-not-found',

@@ -6,7 +6,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService, ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
-import { authActions, authFeature } from '@coreStore/index';
+import { authActions, authFeature } from '@coreStore/';
 import { environment } from '@environments/';
 import { Store } from '@ngrx/store';
 

@@ -1,4 +1,4 @@
-import { uiFeature } from '@coreStore/index';
+import { uiFeature } from '@coreStore/';
 import { Store } from '@ngrx/store';
 import { Component, inject, OnInit } from '@angular/core';
 

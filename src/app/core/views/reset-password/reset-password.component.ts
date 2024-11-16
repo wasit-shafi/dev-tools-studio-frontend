@@ -3,12 +3,12 @@ import { RecaptchaComponent, RecaptchaErrorParameters, RecaptchaFormsModule, Rec
 import { Component, inject, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { ToastService } from '@coreServices/index';
+import { ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
 import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
-import { authActions } from '@coreStore/index';
+import { authActions } from '@coreStore/';
 
 @Component({
 	selector: 'dts-reset-password',

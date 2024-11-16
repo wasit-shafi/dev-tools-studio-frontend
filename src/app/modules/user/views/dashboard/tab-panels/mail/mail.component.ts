@@ -2,7 +2,7 @@ import { JsonPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ToastService } from '@coreServices/index';
+import { ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
 

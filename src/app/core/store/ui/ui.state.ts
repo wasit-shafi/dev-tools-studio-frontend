@@ -1,4 +1,4 @@
-import { IUi } from './ui.model';
+import { IUi } from '@coreModels/';
 
 export const initialUiState: IUi = {
 	blocker: {

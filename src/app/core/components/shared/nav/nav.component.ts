@@ -4,8 +4,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { HasRoleDirective } from '@coreDirectives/';
 import { BcChannelService } from '@coreServices/';
 import { Constants } from '@coreShared/';
-import { IAuthState } from '@coreStore/auth/auth.model';
-import { authActions, authFeature } from '@coreStore/index';
+import { IAuthState } from '@coreModels/';
+import { authActions, authFeature } from '@coreStore/';
 import { Store } from '@ngrx/store';
 
 @Component({

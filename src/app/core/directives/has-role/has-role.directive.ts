@@ -1,6 +1,6 @@
 import { Directive, inject, Input, TemplateRef, ViewContainerRef } from '@angular/core';
-import { IAuthState } from '@coreStore/auth/auth.model';
-import { authFeature } from '@coreStore/index';
+import { IAuthState } from '@coreModels/';
+import { authFeature } from '@coreStore/';
 import { Store } from '@ngrx/store';
 
 // import { AuthService } from '@coreServices/';
