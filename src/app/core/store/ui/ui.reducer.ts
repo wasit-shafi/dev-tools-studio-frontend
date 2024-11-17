@@ -13,6 +13,6 @@ const reducer = createReducer(
 );
 
 export const uiFeature = createFeature({
-	name: 'Ui',
+	name: 'ui',
 	reducer,
 });

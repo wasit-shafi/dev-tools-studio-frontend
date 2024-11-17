@@ -28,6 +28,6 @@ const reducer = createReducer(
 );
 
 export const authFeature = createFeature({
-	name: 'Auth',
+	name: 'auth',
 	reducer,
 });

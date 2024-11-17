@@ -28,6 +28,11 @@ export const appConfig: ApplicationConfig = {
 		provideHttpClient(withFetch(), withInterceptors([authInterceptor, loggingInterceptor, errorInterceptor])),
 		provideStore({ router: routerReducer }),
 		provideRouterStore(),
+		// NOTE(wasit): on NgRx official docs =>  'Although you can register reducers in the provideStore() function, we recommend keeping provideStore() empty and using the provideState() function to register feature states in the root providers array.',
+		// Can refer => https://ngrx.io/guide/store/reducers
+		provideState(authFeature),
+		provideState(uiFeature),
+		provideEffects(authEffects),
 		provideStoreDevtools({
 			maxAge: 25, // Retains last 25 states
 			logOnly: !isDevMode(), // Restrict extension to log-only mode
@@ -36,9 +41,6 @@ export const appConfig: ApplicationConfig = {
 			traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
 			connectInZone: true, // If set to true, the connection is established within the Angular zone
 		}),
-		provideState(authFeature),
-		provideState(uiFeature),
-		provideEffects(authEffects),
 		Constants,
 	],
 };
