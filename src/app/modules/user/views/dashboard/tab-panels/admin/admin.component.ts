@@ -5,7 +5,6 @@ import { environment } from '@environments/';
 
 @Component({
 	selector: 'dts-admin',
-	standalone: true,
 	imports: [],
 	templateUrl: './admin.component.html',
 	styleUrl: './admin.component.scss',

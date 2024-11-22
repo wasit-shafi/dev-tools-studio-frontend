@@ -28,10 +28,10 @@
   - private readonly DI = inject(...);
   - ...
   - ...
-  - public var = ___
-  - public readonly var = ___
-  - private var = ___
-  - private readonly var = ___
+  - public var = \_\_\_
+  - public readonly var = \_\_\_
+  - private var = \_\_\_
+  - private readonly var = \_\_\_
   - ...
   - ...
   - constructor() {}

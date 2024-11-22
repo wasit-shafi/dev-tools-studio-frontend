@@ -12,7 +12,6 @@ import { environment } from '@environments/';
 
 @Component({
 	selector: 'dts-signup',
-	standalone: true,
 	imports: [FormsModule, RouterLink, RecaptchaModule, RecaptchaFormsModule, CommonModule],
 	providers: [Constants],
 	templateUrl: './signup.component.html',

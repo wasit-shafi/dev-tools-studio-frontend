@@ -10,7 +10,6 @@ import { Store } from '@ngrx/store';
 
 @Component({
 	selector: 'dts-nav',
-	standalone: true,
 	providers: [Constants],
 	imports: [CommonModule, RouterLink, RouterLinkActive, HasRoleDirective],
 	templateUrl: './nav.component.html',

@@ -6,7 +6,6 @@ import { Constants } from '@coreShared/';
 
 @Component({
 	selector: 'dts-not-found',
-	standalone: true,
 	imports: [RouterLink, LottieComponent],
 	templateUrl: './not-found.component.html',
 	styleUrl: './not-found.component.scss',

@@ -12,7 +12,6 @@ import { Store } from '@ngrx/store';
 
 @Component({
 	selector: 'dts-signin',
-	standalone: true,
 	imports: [FormsModule, RouterLink, RecaptchaModule, RecaptchaFormsModule, CommonModule],
 	providers: [Constants],
 	templateUrl: './signin.component.html',

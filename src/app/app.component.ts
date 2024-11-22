@@ -9,7 +9,6 @@ import { environment } from '@environments/environment';
 
 @Component({
 	selector: 'dts-root',
-	standalone: true,
 	providers: [Constants],
 	imports: [
 		RouterOutlet,

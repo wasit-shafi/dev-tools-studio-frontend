@@ -8,7 +8,6 @@ import { environment } from '@environments/';
 
 @Component({
 	selector: 'dts-mail',
-	standalone: true,
 	imports: [ReactiveFormsModule, JsonPipe],
 	providers: [Constants, FormBuilder],
 	templateUrl: './mail.component.html',

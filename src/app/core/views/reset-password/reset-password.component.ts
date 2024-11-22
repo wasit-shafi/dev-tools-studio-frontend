@@ -12,7 +12,6 @@ import { authActions } from '@coreStore/';
 
 @Component({
 	selector: 'dts-reset-password',
-	standalone: true,
 	imports: [FormsModule, RouterLink, RecaptchaModule, RecaptchaFormsModule, CommonModule],
 	providers: [Constants],
 	templateUrl: './reset-password.component.html',
