@@ -1,18 +1,18 @@
 @if (!environment.production) {
 	<div class="flex flex-wrap justify-center gap-x-1 gap-y-0 border-b-2 border-rose-500 text-center">
 		@for (item of tempTestRoutes; track $index) {
-			<!-- TODO: prettier not able to format code with @let https://github.com/prettier/prettier/pull/16474-->
-			<!-- @let url = item.url; -->
-			<!-- @let text = item.text; -->
+			@let url = item.url;
+			@let text = item.text;
+
 			<a
-				[routerLink]="item.url"
+				[routerLink]="url"
 				[routerLinkActive]="['bg-slate-400/40', 'text-gray-600']"
 				ariaCurrentWhenActive="page"
 				[routerLinkActiveOptions]="{ exact: true }"
 				class="my-3 rounded-md px-2 py-2 font-medium no-underline"
 				[ngClass]="item.className"
 			>
-				{{ item.text }}
+				{{ text }}
 			</a>
 		}
 	</div>
