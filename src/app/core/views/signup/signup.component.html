@@ -98,23 +98,29 @@
 			type="text"
 		/>
 	</label>
-	<!--  -->
-	<label
-		for=""
-		class="input input-bordered flex items-center gap-2"
+	<!-- Country  -->
+
+	<select
+		[(ngModel)]="signupFormModel.country"
+		class="select select-bordered w-full"
+		name="country"
+		required
 	>
-		Country
-		<input
-			[(ngModel)]="signupFormModel.country"
-			autocomplete="off"
-			class="grow"
-			id="country"
-			name="country"
-			placeholder="Daisy"
-			required
-			type="text"
-		/>
-	</label>
+		<option
+			disabled
+			selected
+			value=""
+		>
+			Select Your Country
+		</option>
+		@for (country of constants.COUNTRY_METADATA; track country.id) {
+			<option [value]="country.code">
+				{{ country.name }}
+			</option>
+		}
+	</select>
+	<!-- Recaptcha -->
+
 	<div class="flex justify-center">
 		<re-captcha
 			#reCaptcha

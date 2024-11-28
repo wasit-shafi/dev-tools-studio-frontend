@@ -13,6 +13,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { routes } from './app.routes';
 
@@ -42,5 +43,6 @@ export const appConfig: ApplicationConfig = {
 			connectInZone: true, // If set to true, the connection is established within the Angular zone
 		}),
 		Constants,
+		provideAnimationsAsync(),
 	],
 };
