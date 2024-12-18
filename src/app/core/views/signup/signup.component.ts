@@ -33,6 +33,7 @@ export class SignupComponent {
 		lastName: '',
 		email: '',
 		password: '',
+		countryCode: '',
 		mobileNumber: '',
 		country: '',
 		reCaptchaResponse: '',
@@ -46,19 +47,12 @@ export class SignupComponent {
 		this.http.post(url, { ...this.signupFormModel }).subscribe({
 			next: (response: any) => {
 				if (response.success && response.code === this.constants.HTTP_STATUS_CODES.SUCCESSFUL.CREATED) {
-					// this.authService.changeAuthStatus({
-					// 	status: true,
-					// 	accessToken: response.data.accessToken,
-					// 	refreshToken: response.data.refreshToken,
-					// 	roles: response.data.roles,
-					// });
-
 					this.toastService.enqueueToastNotification({
 						message: response.message,
 						type: this.constants.ALERT_TYPE.SUCCESS,
 					});
 
-					this.router.navigate([this.constants.ROUTES.DASHBOARD]);
+					this.router.navigate([this.constants.ROUTES.SIGNIN]);
 				}
 			},
 			error: (error: CustomHttpErrorResponse) => {

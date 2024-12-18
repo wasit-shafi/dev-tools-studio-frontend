@@ -74,30 +74,42 @@
 		/>
 	</label>
 	<!-- TODO: Add Confirm password as well -->
-	<!-- Mobile Number -->
 
-	<label
-		for=""
-		class="input input-bordered flex items-center gap-2"
-	>
-		<div
-			class="tooltip"
-			data-tip="Why? Phone Number is required, to make account more secure."
+	<!-- country code + mobile no -->
+
+	<div class="flex gap-2">
+		<!-- Country Code -->
+
+		<select
+			[(ngModel)]="signupFormModel.countryCode"
+			class="select select-bordered"
+			name="countryCode"
+			required
 		>
-			Mobile Number
-		</div>
+			<option
+				disabled
+				selected
+				value=""
+			>
+				Country Code
+			</option>
+			@for (country of constants.COUNTRY_METADATA; track country.id) {
+				<option [value]="country.isdCode">{{ country.isdCode }}</option>
+			}
+		</select>
+		<!-- Mobile Number -->
 
 		<input
-			[(ngModel)]="signupFormModel.mobileNumber"
-			autocomplete="off"
-			class="grow"
-			id="mobileNumber"
-			name="mobileNumber"
-			placeholder="MobileNumber"
-			required
 			type="text"
+			placeholder="Mobile Number"
+			class="input input-bordered w-full"
+			[(ngModel)]="signupFormModel.mobileNumber"
+			name="mobileNumber"
+			required
+			autocomplete="off"
+			id="mobileNumber"
 		/>
-	</label>
+	</div>
 	<!-- Country  -->
 
 	<select
