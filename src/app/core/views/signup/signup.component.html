@@ -1,127 +1,153 @@
 <form
+	class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center gap-4"
 	#signupForm="ngForm"
 	autocomplete="off"
 	(submit)="handleOnSubmitSignupForm($event, signupForm)"
-	class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center gap-4"
 >
 	<!-- First Name -->
 
 	<label
-		for="firstName"
 		class="input input-bordered flex items-center gap-2"
+		for="firstName"
 	>
 		First Name
 		<input
-			[(ngModel)]="signupFormModel.firstName"
-			autocomplete="off"
 			class="grow"
 			id="firstName"
 			name="firstName"
+			type="text"
+			[(ngModel)]="signupFormModel.firstName"
+			autocomplete="off"
 			placeholder="YourFirstName"
 			required
-			type="text"
 		/>
 	</label>
+
 	<!-- Last Name -->
 
 	<label
-		for="lastName"
 		class="input input-bordered flex items-center gap-2"
+		for="lastName"
 	>
 		Last Name
 		<input
-			[(ngModel)]="signupFormModel.lastName"
-			autocomplete="off"
 			class="grow"
 			id="lastName"
 			name="lastName"
+			type="text"
+			[(ngModel)]="signupFormModel.lastName"
+			autocomplete="off"
 			placeholder="YourLastName"
 			required
-			type="text"
 		/>
 	</label>
 	<!-- Email -->
 
-	<label class="input input-bordered flex items-center gap-2">
+	<label
+		class="input input-bordered flex items-center gap-2"
+		for="email"
+	>
 		Email
 		<input
-			[(ngModel)]="signupFormModel.email"
-			autocomplete="off"
 			class="grow"
 			id="email"
 			name="email"
+			type="email"
+			[(ngModel)]="signupFormModel.email"
+			autocomplete="off"
 			placeholder="EmailId"
 			required
-			type="email"
 		/>
 	</label>
 	<!-- Password -->
 
 	<label
-		for=""
 		class="input input-bordered flex items-center gap-2"
+		for="password"
 	>
 		Password
 		<input
-			[(ngModel)]="signupFormModel.password"
-			autocomplete="off"
 			class="grow"
 			id="password"
 			name="password"
+			type="password"
+			[(ngModel)]="signupFormModel.password"
+			autocomplete="off"
 			placeholder="SuperSecretPassword"
 			required
-			type="password"
 		/>
 	</label>
-	<!-- TODO: Add Confirm password as well -->
+	<!-- Confirm Password -->
 
-	<!-- country code + mobile no -->
-
-	<div class="flex gap-2">
-		<!-- Country Code -->
-
-		<select
-			[(ngModel)]="signupFormModel.countryCode"
-			class="select select-bordered"
-			name="countryCode"
-			required
-		>
-			<option
-				disabled
-				selected
-				value=""
-			>
-				Country Code
-			</option>
-			@for (country of constants.COUNTRY_METADATA; track country.id) {
-				<option [value]="country.isdCode">{{ country.isdCode }}</option>
-			}
-		</select>
-		<!-- Mobile Number -->
-
+	<label
+		class="input input-bordered flex items-center gap-2"
+		for="confirmPassword"
+	>
+		Confirm
 		<input
-			type="text"
-			placeholder="Mobile Number"
-			class="input input-bordered w-full"
-			[(ngModel)]="signupFormModel.mobileNumber"
-			name="mobileNumber"
-			required
+			class="grow"
+			id="confirmPassword"
+			name="confirmPassword"
+			type="password"
+			[(ngModel)]="signupFormModel.confirmPassword"
 			autocomplete="off"
-			id="mobileNumber"
+			placeholder="SuperSecretPassword"
+			required
 		/>
-	</div>
-	<!-- Country  -->
+	</label>
+
+	<!-- Country Code -->
 
 	<select
-		[(ngModel)]="signupFormModel.country"
-		class="select select-bordered w-full"
-		name="country"
+		class="select select-bordered"
+		name="countryCode"
+		[(ngModel)]="signupFormModel.countryCode"
 		required
 	>
 		<option
 			disabled
 			selected
-			value=""
+			value
+		>
+			Select Country Code
+		</option>
+		@for (country of constants.COUNTRY_METADATA; track country.id) {
+			<option [value]="country.isdCode">{{ country.name }} ({{ country.isdCode }})</option>
+		}
+	</select>
+	<!-- country code + mobile no -->
+
+	<!-- Mobile Number -->
+
+	<label
+		class="input input-bordered flex items-center gap-2"
+		for="mobileNumber"
+	>
+		Mobile no.
+		<input
+			class="grow"
+			id="mobileNumber"
+			name="mobileNumber"
+			type="text"
+			[(ngModel)]="signupFormModel.mobileNumber"
+			autocomplete="off"
+			placeholder="Mobile Number"
+			required
+		/>
+	</label>
+	<!-- <div class="flex gap-2"></div> -->
+	<!-- Country  -->
+
+	<select
+		class="select select-bordered w-full"
+		name="country"
+		[(ngModel)]="signupFormModel.country"
+		required
+	>
+		<option
+			disabled
+			selected
+			value
 		>
 			Select Your Country
 		</option>
@@ -135,13 +161,13 @@
 
 	<div class="flex justify-center">
 		<re-captcha
+			name="reCaptchaResponse"
 			#reCaptcha
 			(errored)="handleReCaptchaErrored($event)"
 			(resolved)="handleReCaptchaResolved($event)"
 			[(ngModel)]="signupFormModel.reCaptchaResponse"
 			[siteKey]="environment.reCaptchaSiteKey"
 			errorMode="handled"
-			name="reCaptchaResponse"
 			required
 		>
 		</re-captcha>
@@ -151,15 +177,15 @@
 	<div class="flex gap-4">
 		@if (environment.development) {
 			<button
-				type="reset"
 				class="btn flex-1"
+				type="reset"
 			>
 				Reset
 			</button>
 		}
 		<button
-			type="submit"
 			class="btn btn-success mx-auto flex-1"
+			type="submit"
 			[ngClass]="{ 'max-w-[120px]': environment.production }"
 			[disabled]="signupForm.invalid"
 		>

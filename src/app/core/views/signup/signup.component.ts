@@ -33,6 +33,7 @@ export class SignupComponent {
 		lastName: '',
 		email: '',
 		password: '',
+		confirmPassword: '',
 		countryCode: '',
 		mobileNumber: '',
 		country: '',
