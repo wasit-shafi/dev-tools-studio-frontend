@@ -18,7 +18,6 @@
 			type="text"
 			[(ngModel)]="signupFormModel.firstName"
 			autocomplete="off"
-			placeholder="YourFirstName"
 			required
 		/>
 	</label>
@@ -37,7 +36,6 @@
 			type="text"
 			[(ngModel)]="signupFormModel.lastName"
 			autocomplete="off"
-			placeholder="YourLastName"
 			required
 		/>
 	</label>
@@ -55,7 +53,6 @@
 			type="email"
 			[(ngModel)]="signupFormModel.email"
 			autocomplete="off"
-			placeholder="EmailId"
 			required
 		/>
 	</label>
@@ -73,7 +70,6 @@
 			type="password"
 			[(ngModel)]="signupFormModel.password"
 			autocomplete="off"
-			placeholder="SuperSecretPassword"
 			required
 		/>
 	</label>
@@ -83,7 +79,7 @@
 		class="input input-bordered flex items-center gap-2"
 		for="confirmPassword"
 	>
-		Confirm
+		Verify Password
 		<input
 			class="grow"
 			id="confirmPassword"
@@ -91,7 +87,6 @@
 			type="password"
 			[(ngModel)]="signupFormModel.confirmPassword"
 			autocomplete="off"
-			placeholder="SuperSecretPassword"
 			required
 		/>
 	</label>
@@ -131,7 +126,6 @@
 			type="text"
 			[(ngModel)]="signupFormModel.mobileNumber"
 			autocomplete="off"
-			placeholder="Mobile Number"
 			required
 		/>
 	</label>

@@ -3,12 +3,14 @@
 @tailwind utilities;
 
 label:has(.ng-valid:not(textarea, input[type='checkbox'])),
-textarea.ng-valid {
+textarea.ng-valid,
+select.ng-valid {
 	border-left: 6px solid #42a948 !important;
 }
 
 label:has(.ng-invalid:not(textarea, input[type='checkbox'])),
-textarea.ng-invalid {
+textarea.ng-invalid,
+select.ng-invalid {
 	border-left: 6px solid #a94442 !important;
 }
 
