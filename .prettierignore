@@ -4,4 +4,4 @@ dist
 .vscode
 .angular
 .idea
-package-lock.json
+# package-lock.json
