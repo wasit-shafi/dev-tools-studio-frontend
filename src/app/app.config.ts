@@ -1,19 +1,21 @@
 import { provideLottieOptions } from 'ngx-lottie';
+import { providePrimeNG } from 'primeng/config';
 
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, isDevMode, provideZoneChangeDetection } from '@angular/core';
 import { provideClientHydration } from '@angular/platform-browser';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
 import { authInterceptor, loggingInterceptor } from '@coreInterceptors/';
 import { errorInterceptor } from '@coreInterceptors/error/error.interceptor';
 import { Constants } from '@coreShared/';
-import * as authEffects from '@coreStore/auth/auth.effects';
 import { authFeature, uiFeature } from '@coreStore/';
+import * as authEffects from '@coreStore/auth/auth.effects';
 import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import Aura from '@primeng/themes/aura';
 
 import { routes } from './app.routes';
 
@@ -44,5 +46,19 @@ export const appConfig: ApplicationConfig = {
 		}),
 		Constants,
 		provideAnimationsAsync(),
+		providePrimeNG({
+			ripple: true,
+			// TODO(wasit): review why aura theme is not working correctly at all places
+
+			theme: {
+				preset: Aura,
+				options: {
+					cssLayer: {
+						name: 'primeng',
+						order: 'app-styles, primeng, another-css-library',
+					},
+				},
+			},
+		}),
 	],
 };
