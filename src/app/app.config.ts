@@ -1,4 +1,3 @@
-import { provideLottieOptions } from 'ngx-lottie';
 import { providePrimeNG } from 'primeng/config';
 
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
@@ -24,10 +23,6 @@ export const appConfig: ApplicationConfig = {
 		provideZoneChangeDetection({ eventCoalescing: true }),
 		provideRouter(routes),
 		provideClientHydration(),
-		provideLottieOptions({
-			player: () => import('lottie-web'), // lazy loading
-		}),
-
 		provideHttpClient(withFetch(), withInterceptors([authInterceptor, loggingInterceptor, errorInterceptor])),
 		provideStore({ router: routerReducer }),
 		provideRouterStore(),
