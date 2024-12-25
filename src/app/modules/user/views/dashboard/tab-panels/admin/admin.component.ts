@@ -13,7 +13,7 @@ export class AdminComponent {
 	private readonly constants = inject(Constants);
 	private readonly http = inject(HttpClient);
 
-	public users: any;
+	protected users: any;
 
 	constructor() {
 		const url = `${environment.baseUrl}${this.constants.API._V1}/user`;

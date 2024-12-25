@@ -12,5 +12,5 @@ import { AdminComponent, ColorsComponent, MailComponent, MetaTagsComponent, Open
 	styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
-	public readonly constants = inject(Constants);
+	protected readonly constants = inject(Constants);
 }

@@ -24,11 +24,11 @@ export class SignupComponent {
 	private readonly http = inject(HttpClient);
 	private readonly router = inject(Router);
 	private readonly toastService = inject(ToastService);
-	public readonly constants = inject(Constants);
+	protected readonly constants = inject(Constants);
 
-	public readonly environment = environment;
+	protected readonly environment = environment;
 
-	public signupFormModel = {
+	protected signupFormModel = {
 		firstName: '',
 		lastName: '',
 		email: '',
@@ -40,7 +40,7 @@ export class SignupComponent {
 		reCaptchaResponse: '',
 	};
 
-	handleOnSubmitSignupForm(event: any, signupForm: NgForm) {
+	handleOnSubmitSignupForm(event: Event, signupForm: NgForm) {
 		event.preventDefault();
 
 		const url = `${environment.baseUrl}${this.constants.API._V1}/auth/signup`;

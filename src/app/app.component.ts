@@ -23,12 +23,12 @@ import { environment } from '@environments/environment';
 	styleUrl: './app.component.scss',
 })
 export class AppComponent {
-	public readonly constants = inject(Constants);
-	public readonly toastService = inject(ToastService);
+	protected readonly constants = inject(Constants);
+	protected readonly toastService = inject(ToastService);
 
-	public environment = environment;
+	protected environment = environment;
 
-	public tempTestRoutes: any = {
+	protected tempTestRoutes: any = {
 		guestUserRoutes: {
 			routeList: [
 				{ url: '', text: 'Home' },

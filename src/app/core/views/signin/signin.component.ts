@@ -24,11 +24,11 @@ export class SigninComponent {
 	private readonly router = inject(Router);
 	private readonly store = inject(Store);
 	private readonly toastService = inject(ToastService);
-	public readonly constants = inject(Constants);
+	protected readonly constants = inject(Constants);
 
-	public readonly environment = environment;
+	protected readonly environment = environment;
 
-	public authState$ = this.store.select(authFeature.selectAuthState);
+	protected authState$ = this.store.select(authFeature.selectAuthState);
 
 	constructor() {}
 
@@ -36,15 +36,15 @@ export class SigninComponent {
 		this.authService.handleRegisterCallbackOnSigninFailed(this.resetReCaptcha.bind(this));
 	}
 
-	public signinFormModel = {
+	protected signinFormModel = {
 		email: '',
 		password: '',
 		reCaptchaResponse: '',
 	};
 
-	public count!: number;
+	protected count!: number;
 
-	handleOnSubmitSigninForm(event: any, signinForm: NgForm) {
+	handleOnSubmitSigninForm(event: Event, signinForm: NgForm) {
 		event.preventDefault();
 
 		this.store.dispatch(

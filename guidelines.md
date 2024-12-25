@@ -9,6 +9,9 @@
 - Avoid calling directly inside template/view as it gets executed on each lifecycle, instead of use custom directives
 - Make use of angular signal instead of BehaviorSubject/Observable.
 - Make use of 'readonly' where ever possible - to restrict any reassignment to service, data members etc
+<!-- for more info ref: https://www.angulartraining.com/daily-newsletter/best-practices-for-using-visibility-modifiers/ -->
+- The access specifier preferences should follow - private => protected => public
+
 - Content Order of component file:
 
   - @ViewChild()
@@ -26,6 +29,7 @@
   - ...
   - public readonly DI = inject(...); // should be in sorted order
   - private readonly DI = inject(...);
+  - protected readonly DI = inject(...);
   - ...
   - ...
   - public var = \_\_\_

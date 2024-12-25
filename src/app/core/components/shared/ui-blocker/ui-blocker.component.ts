@@ -1,6 +1,6 @@
+import { Component, inject, OnInit } from '@angular/core';
 import { uiFeature } from '@coreStore/';
 import { Store } from '@ngrx/store';
-import { Component, inject, OnInit } from '@angular/core';
 
 @Component({
 	selector: 'dts-ui-blocker',
@@ -9,9 +9,9 @@ import { Component, inject, OnInit } from '@angular/core';
 	styleUrl: './ui-blocker.component.scss',
 })
 export class UiBlockerComponent implements OnInit {
-	public store = inject(Store);
+	protected store = inject(Store);
 
-	public blocker: any;
+	protected blocker: any;
 
 	constructor() {}
 

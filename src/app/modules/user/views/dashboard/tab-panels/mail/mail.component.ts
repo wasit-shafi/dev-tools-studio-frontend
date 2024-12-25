@@ -22,7 +22,7 @@ export class MailComponent {
 	title = 'dev-tools-studio';
 	users: any;
 
-	public mailForm = this.formBuilder.nonNullable.group({
+	protected mailForm = this.formBuilder.nonNullable.group({
 		dateTimeLocal: ['', [Validators.required]],
 		to: ['wasitshafi700@gmail.com', [Validators.required, Validators.email]],
 		subject: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],

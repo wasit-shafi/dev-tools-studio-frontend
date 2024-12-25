@@ -9,7 +9,7 @@ import { Constants } from '@coreShared/';
 	styleUrl: './not-found.component.scss',
 })
 export class NotFoundComponent {
-	public readonly constants = inject(Constants);
+	protected readonly constants = inject(Constants);
 
 	constructor() {}
 }

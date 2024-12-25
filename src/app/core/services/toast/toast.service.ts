@@ -19,15 +19,15 @@ interface IToastNotificationQueue extends IToast {
 })
 export class ToastService implements OnDestroy {
 	private readonly platformId = inject(PLATFORM_ID);
-	public readonly constants = inject(Constants);
+	private readonly constants = inject(Constants);
 
 	// In a second we can dismiss 3 alerts max
 	private readonly WORKER_INTERVAL_DELAY = 333;
 	private readonly TOAST_NOTIFICATION_HOLD_DURATION = 6000;
-	public toastNotificationQueue: IToastNotificationQueue[] = [];
+	public readonly toastNotificationQueue: IToastNotificationQueue[] = [];
 
 	private intervalID?: ReturnType<typeof setInterval>;
-	private isBrowser: WritableSignal<boolean> = signal(false);
+	private readonly isBrowser: WritableSignal<boolean> = signal(false);
 
 	ngOnDestroy(): void {
 		if (this.intervalID) {

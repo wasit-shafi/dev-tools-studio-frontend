@@ -3,10 +3,9 @@ import { Observable } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, OnDestroy, OnInit, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
-import { ISigninResponse } from '@coreModels/';
+import { IAuthState, ISigninResponse } from '@coreModels/';
 import { PersistanceService } from '@coreServices/';
 import { Constants } from '@coreShared/';
-import { IAuthState } from '@coreModels/';
 import { authFeature } from '@coreStore/';
 import { environment } from '@environments/';
 import { Store } from '@ngrx/store';
@@ -21,7 +20,7 @@ export class AuthService implements OnInit {
 	private readonly platformId = inject(PLATFORM_ID);
 	private readonly store = inject(Store);
 
-	private isBrowser: WritableSignal<boolean> = signal(false);
+	private readonly isBrowser: WritableSignal<boolean> = signal(false);
 
 	private authState!: IAuthState;
 
