@@ -1,18 +1,19 @@
 <div class="item flex h-[900px] items-start justify-center overflow-scroll">
 	<form
+		class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center gap-4"
 		autocomplete="off"
 		[formGroup]="mailForm"
 		(submit)="handleOnSubmitSendEmailForm()"
-		class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center gap-4"
 	>
 		<!-- Date Time Local -->
 
 		<label class="input input-bordered flex items-center gap-2">
 			Date Time
 			<input
-				type="datetime-local"
 				class="grow"
+				type="datetime-local"
 				formControlName="dateTimeLocal"
+				autofocus
 			/>
 		</label>
 		<!-- To Email -->
@@ -20,8 +21,8 @@
 		<label class="input input-bordered flex items-center gap-2">
 			To
 			<input
-				type="text"
 				class="grow"
+				type="text"
 				formControlName="to"
 				placeholder="Enter Email..."
 			/>
@@ -31,8 +32,8 @@
 		<label class="input input-bordered flex items-center gap-2">
 			Subject
 			<input
-				type="text"
 				class="grow"
+				type="text"
 				formControlName="subject"
 				placeholder="Enter Subject..."
 			/>
@@ -57,8 +58,8 @@
 		<label class="input input-bordered flex items-center gap-2">
 			Salutation
 			<input
-				type="text"
 				class="grow"
+				type="text"
 				formControlName="salutation"
 				placeholder="Select Salutation..."
 			/>
@@ -70,9 +71,9 @@
 				<span class="label-text">Body</span>
 			</div>
 			<textarea
+				class="textarea textarea-bordered textarea-lg w-full"
 				placeholder="Enter Body..."
 				formControlName="body"
-				class="textarea textarea-bordered textarea-lg w-full"
 			></textarea>
 		</label>
 		<!-- Closing Line -->
@@ -82,9 +83,9 @@
 				<span class="label-text">Closing Line</span>
 			</div>
 			<textarea
+				class="textarea textarea-bordered textarea-lg w-full"
 				formControlName="closing"
 				placeholder="Enter Closing Lines..."
-				class="textarea textarea-bordered textarea-lg w-full"
 			></textarea>
 		</label>
 		<!-- Signature -->
@@ -94,17 +95,17 @@
 				<span class="label-text">Your Signature</span>
 			</div>
 			<textarea
+				class="textarea textarea-bordered textarea-lg w-full"
 				formControlName="signature"
 				placeholder="Enter signature..."
-				class="textarea textarea-bordered textarea-lg w-full"
 			></textarea>
 		</label>
 		<!-- Status/Confirmation Mail -->
 
 		<label class="label cursor-pointer justify-start gap-x-4 p-0">
 			<input
-				type="checkbox"
 				class="checkbox-success checkbox"
+				type="checkbox"
 				formControlName="confirmationMail"
 			/>
 			<span class="label-text">Receive Status/Confirmation Mail Back</span>
@@ -129,14 +130,14 @@
 
 		<div class="flex gap-4">
 			<button
-				type="reset"
 				class="btn flex-1"
+				type="reset"
 			>
 				Reset
 			</button>
 			<button
-				type="submit"
 				class="btn btn-success flex-1"
+				type="submit"
 				[disabled]="mailForm.invalid"
 			>
 				Schedule Mail

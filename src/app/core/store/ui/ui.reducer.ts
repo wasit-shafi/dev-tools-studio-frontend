@@ -1,6 +1,7 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { initialUiState } from './ui.state';
+
 import { uiActions } from './ui.actions';
+import { initialUiState } from './ui.state';
 
 const reducer = createReducer(
 	initialUiState,

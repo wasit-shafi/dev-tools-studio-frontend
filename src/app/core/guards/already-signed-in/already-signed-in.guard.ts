@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { CanMatchFn, Router } from '@angular/router';
-import { Constants } from '@coreShared/';
 import { IAuthState } from '@coreModels/';
+import { Constants } from '@coreShared/';
 import { authFeature } from '@coreStore/';
 import { Store } from '@ngrx/store';
 

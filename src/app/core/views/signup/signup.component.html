@@ -17,8 +17,8 @@
 			name="firstName"
 			type="text"
 			[(ngModel)]="signupFormModel.firstName"
-			autocomplete="off"
 			required
+			autofocus
 		/>
 	</label>
 
@@ -35,7 +35,6 @@
 			name="lastName"
 			type="text"
 			[(ngModel)]="signupFormModel.lastName"
-			autocomplete="off"
 			required
 		/>
 	</label>
@@ -52,7 +51,6 @@
 			name="email"
 			type="email"
 			[(ngModel)]="signupFormModel.email"
-			autocomplete="off"
 			required
 		/>
 	</label>
@@ -69,8 +67,8 @@
 			name="password"
 			type="password"
 			[(ngModel)]="signupFormModel.password"
-			autocomplete="off"
 			required
+			autocomplete="new-password"
 		/>
 	</label>
 	<!-- Confirm Password -->
@@ -86,7 +84,6 @@
 			name="confirmPassword"
 			type="password"
 			[(ngModel)]="signupFormModel.confirmPassword"
-			autocomplete="off"
 			required
 		/>
 	</label>
@@ -118,14 +115,13 @@
 		class="input input-bordered flex items-center gap-2"
 		for="mobileNumber"
 	>
-		Mobile no.
+		Mobile No
 		<input
 			class="grow"
 			id="mobileNumber"
 			name="mobileNumber"
 			type="text"
 			[(ngModel)]="signupFormModel.mobileNumber"
-			autocomplete="off"
 			required
 		/>
 	</label>

@@ -5,11 +5,11 @@
 			@let text = item.text;
 
 			<a
+				class="my-3 rounded-md px-2 py-2 font-medium no-underline"
 				[routerLink]="url"
 				[routerLinkActive]="['bg-slate-400/40', 'text-gray-600']"
 				ariaCurrentWhenActive="page"
 				[routerLinkActiveOptions]="{ exact: true }"
-				class="my-3 rounded-md px-2 py-2 font-medium no-underline"
 				[ngClass]="item.className"
 			>
 				{{ text }}
@@ -21,23 +21,24 @@
 
 <main class="mx-auto max-w-screen-lg px-[16px] sm:px-[22px] md:px-[28px]">
 	<dts-header></dts-header>
-	<router-outlet />
-	<dts-footer></dts-footer>
+	<router-outlet>
+		<dts-footer></dts-footer>
+	</router-outlet>
 </main>
 
 @if (toastService.toastNotificationQueue.length) {
 	<div class="toast toast-end toast-top">
 		@for (alert of toastService.toastNotificationQueue; track $index) {
 			<div
-				role="alert"
 				class="alert"
+				role="alert"
 				[ngClass]="alert.type"
 			>
 				<svg
+					class="h-6 w-6 shrink-0"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 24 24"
-					class="h-6 w-6 shrink-0"
 					[ngClass]="alert.type === constants.ALERT_TYPE.VOID ? 'stroke-info' : 'stroke-current'"
 				>
 					<path

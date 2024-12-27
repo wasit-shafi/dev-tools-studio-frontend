@@ -1,27 +1,27 @@
 <form
+	class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center gap-4"
+	(submit)="handleOnSubmitSigninForm($event, signinForm)"
 	#signinForm="ngForm"
 	autocomplete="off"
-	(submit)="handleOnSubmitSigninForm($event, signinForm)"
-	class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center gap-4"
 >
 	<!-- Email -->
 
 	<label
-		for="email"
 		class="input input-bordered flex items-center gap-2"
+		for="email"
 	>
 		Email
 		<input
-			#email="ngModel"
-			[(ngModel)]="signinFormModel.email"
-			autocomplete="off"
 			class="grow"
 			id="email"
 			name="email"
-			[pattern]="constants.REGEX.EMAIL"
-			title="Enter your email/username"
-			required
 			type="email"
+			title="Enter your email/username"
+			[(ngModel)]="signinFormModel.email"
+			[pattern]="constants.REGEX.EMAIL"
+			autofocus
+			#email="ngModel"
+			required
 		/>
 	</label>
 	<div
@@ -33,40 +33,39 @@
 	<!-- Password -->
 
 	<label
-		for="password"
 		class="input input-bordered flex items-center gap-2"
+		for="password"
 	>
 		Password
 		<input
-			#password="ngModel"
-			[(ngModel)]="signinFormModel.password"
-			autocomplete="off"
 			class="grow"
 			id="password"
-			minlength="4"
 			name="password"
-			title="Shush...Type your secret password"
-			required
 			type="password"
+			title="Shush...Type your secret password"
+			[(ngModel)]="signinFormModel.password"
+			#password="ngModel"
+			minlength="4"
+			required
 		/>
 	</label>
 	<!-- Forgot Password & Remember Me -->
 
 	<div class="flex items-center justify-between">
+		<label class="label cursor-pointer gap-x-4 p-0">
+			<input
+				class="checkbox checkbox-sm"
+				type="checkbox"
+				checked="checked"
+			/>
+			<span class="label-text">Remember me</span>
+		</label>
 		<a
 			class="link-hover link link-neutral"
 			[routerLink]="[constants.ROUTES._RESET_PASSWORD]"
 		>
 			Forgot Password..?
 		</a>
-		<label class="label cursor-pointer gap-x-4 p-0">
-			<input
-				type="checkbox"
-				checked="checked"
-				class="checkbox-success checkbox"
-			/>
-			<span class="label-text">Remember me</span>
-		</label>
 	</div>
 
 	<!--
@@ -87,13 +86,13 @@
 	}
 	<div class="flex justify-center">
 		<re-captcha
-			#reCaptcha
-			(errored)="handleReCaptchaErrored($event)"
-			(resolved)="handleReCaptchaResolved($event)"
+			name="reCaptchaResponse"
 			[(ngModel)]="signinFormModel.reCaptchaResponse"
 			[siteKey]="environment.reCaptchaSiteKey"
+			(errored)="handleReCaptchaErrored($event)"
+			(resolved)="handleReCaptchaResolved($event)"
+			#reCaptcha
 			errorMode="handled"
-			name="reCaptchaResponse"
 			required
 		>
 		</re-captcha>
@@ -103,16 +102,16 @@
 	<div class="flex gap-4">
 		@if (environment.development) {
 			<button
+				class="btn flex-1"
 				type="reset"
 				[ngClass]="{ 'max-w-[120px]': environment.production }"
-				class="btn flex-1"
 			>
 				Reset
 			</button>
 		}
 		<button
-			type="submit"
 			class="btn btn-success flex-1"
+			type="submit"
 			[disabled]="!signinForm.form.valid"
 		>
 			Sign In
