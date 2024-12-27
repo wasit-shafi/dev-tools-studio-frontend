@@ -21,9 +21,8 @@
 
 <main class="mx-auto max-w-screen-lg px-[16px] sm:px-[22px] md:px-[28px]">
 	<dts-header></dts-header>
-	<router-outlet>
-		<dts-footer></dts-footer>
-	</router-outlet>
+	<router-outlet></router-outlet>
+	<dts-footer></dts-footer>
 </main>
 
 @if (toastService.toastNotificationQueue.length) {
