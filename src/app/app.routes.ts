@@ -30,6 +30,15 @@ export const routes: Routes = [
 		component: CoreViews.SigninComponent,
 		title: `Signin - ${constants.PROJECT_NAME}`,
 	},
+	// forgot-password
+
+	{
+		canMatch: [alreadySignedInGuard],
+		path: constants.ROUTES.FORGOT_PASSWORD,
+		component: CoreViews.ForgotPasswordComponent,
+		title: `Forgot Password - ${constants.PROJECT_NAME}`,
+	},
+
 	// reset-password
 
 	{

@@ -3,10 +3,7 @@
 		@if (authState && authState.currentUser) {
 			<!-- Dashboard -->
 
-			<li
-				[routerLink]="[constants.ROUTES._DASHBOARD]"
-				ariaCurrentWhenActive="page"
-			>
+			<li [routerLink]="[constants.ROUTES._DASHBOARD]">
 				<a
 					[ngClass]
 					[routerLinkActive]="['active']"
@@ -30,10 +27,7 @@
 			</li>
 			<!-- Settings -->
 
-			<li
-				[routerLink]="[constants.ROUTES._SETTINGS]"
-				ariaCurrentWhenActive="page"
-			>
+			<li [routerLink]="[constants.ROUTES._SETTINGS]">
 				<a [routerLinkActive]="['active']">
 					<svg
 						class="h-5 w-5"
@@ -56,7 +50,6 @@
 
 			<li
 				[routerLink]="[constants.ROUTES._CONTROL_PANEL]"
-				ariaCurrentWhenActive="page"
 				*appHasRole="[constants.USER_ROLES.ADMIN]"
 			>
 				<a [routerLinkActive]="['active']">
@@ -101,10 +94,7 @@
 		} @else {
 			<!-- Home -->
 
-			<li
-				[routerLink]="[constants.ROUTES.ROOT]"
-				ariaCurrentWhenActive="page"
-			>
+			<li [routerLink]="[constants.ROUTES.ROOT]">
 				<a
 					[routerLinkActive]="['active']"
 					[routerLinkActiveOptions]="{ exact: true }"
@@ -128,10 +118,7 @@
 			</li>
 			<!-- Contact -->
 
-			<li
-				[routerLink]="[constants.ROUTES._CONTACT]"
-				ariaCurrentWhenActive="page"
-			>
+			<li [routerLink]="[constants.ROUTES._CONTACT]">
 				<a [routerLinkActive]="['active']">
 					<svg
 						class="h-5 w-5"
@@ -152,10 +139,7 @@
 			</li>
 			<!-- Sign Up -->
 
-			<li
-				[routerLink]="[constants.ROUTES._SIGNUP]"
-				ariaCurrentWhenActive="page"
-			>
+			<li [routerLink]="[constants.ROUTES._SIGNUP]">
 				<a [routerLinkActive]="['active']">
 					<svg
 						class="h-5 w-5"
@@ -176,10 +160,7 @@
 			</li>
 			<!-- Sign In -->
 
-			<li
-				[routerLink]="[constants.ROUTES._SIGNIN]"
-				ariaCurrentWhenActive="page"
-			>
+			<li [routerLink]="[constants.ROUTES._SIGNIN]">
 				<a [routerLinkActive]="['active']">
 					<svg
 						class="h-5 w-5"

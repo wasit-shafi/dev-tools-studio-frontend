@@ -1,3 +1,4 @@
+import { routerNavigatedAction } from '@ngrx/router-store';
 import { createFeature, createReducer, on } from '@ngrx/store';
 
 import { uiActions } from './ui.actions';
@@ -10,6 +11,11 @@ const reducer = createReducer(
 	}),
 	on(uiActions.hideBlocker, (state, action) => {
 		return { ...state, blocker: { ...state.blocker, isVisible: false } };
+	}),
+	// resetting to initial auth state on router navigation
+
+	on(routerNavigatedAction, () => {
+		return initialUiState;
 	})
 );
 

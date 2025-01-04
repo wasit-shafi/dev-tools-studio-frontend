@@ -35,6 +35,7 @@ export class AppComponent {
 				{ url: 'contact', text: 'Contact' },
 				{ url: 'signup', text: 'Sign Up' },
 				{ url: 'signin', text: 'Sign In' },
+				{ url: 'forgot-password', text: 'Forgot Password' },
 				{ url: 'reset-password', text: 'Reset Password' },
 			],
 			className: 'text-green-500 hover:bg-sky-400 hover:text-stone-600',

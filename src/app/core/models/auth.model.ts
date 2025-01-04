@@ -12,6 +12,20 @@ export interface ISigninResponse {
 	success: boolean;
 }
 
+export interface IForgotPasswordResponse {
+	code: number;
+	data: null;
+	message: string;
+	success: boolean;
+}
+
+export interface IResetPasswordResponse {
+	code: number;
+	data: null;
+	message: string;
+	success: boolean;
+}
+
 export interface ICurrentUser {
 	id: string;
 	accessToken: string;
@@ -19,8 +33,12 @@ export interface ICurrentUser {
 	roles: number[];
 }
 
+export interface IForgotPasswordUi {
+	isEmailSent: boolean;
+}
+
 export interface IAuthState {
 	isLoading: boolean;
-	greetingMessage: string;
 	currentUser: ICurrentUser | null;
+	forgotPasswordUi: IForgotPasswordUi | null;
 }

@@ -3,12 +3,14 @@ import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService, PersistanceService, ToastService } from '@coreServices/';
+import { AuthService, PersistenceService, ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { uiActions } from '@coreStore/';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { authActions } from './auth.actions';
+
+// signin
 
 export const signinEffect = createEffect(
 	(
@@ -26,7 +28,7 @@ export const signinEffect = createEffect(
 						return authActions.signinSuccess(data);
 					}),
 					catchError((errorResponse: HttpErrorResponse) => {
-						return of(authActions.signinFailure(errorResponse));
+						return of(authActions.signinFailure({ message: errorResponse.error.message }));
 					})
 				);
 			})
@@ -36,14 +38,14 @@ export const signinEffect = createEffect(
 );
 
 export const signinSuccessEffect = createEffect(
-	(actions$ = inject(Actions), persistanceService = inject(PersistanceService), constants = inject(Constants)) => {
+	(actions$ = inject(Actions), persistenceService = inject(PersistenceService), constants = inject(Constants)) => {
 		return actions$.pipe(
 			ofType(authActions.signinSuccess),
 			tap((currentUser: any) => {
 				const { authToken = '', refreshToken = '' } = currentUser;
 
-				persistanceService.set(constants.LOCAL_STORAGE_KEYS.ACCESS_TOKEN, authToken);
-				persistanceService.set(constants.LOCAL_STORAGE_KEYS.REFRESH_TOKEN, refreshToken);
+				persistenceService.set(constants.LOCAL_STORAGE_KEYS.ACCESS_TOKEN, authToken);
+				persistenceService.set(constants.LOCAL_STORAGE_KEYS.REFRESH_TOKEN, refreshToken);
 			})
 		);
 	},
@@ -72,11 +74,92 @@ export const signinFailureEffect = createEffect(
 	) => {
 		return actions$.pipe(
 			ofType(authActions.signinFailure),
-			tap((error: any) => {
+			tap((error) => {
 				authService.handleResetSigninReCaptcha();
 
 				toastService.enqueueToastNotification({
-					message: error.error.message || error.message,
+					message: error.message,
+					type: constants.ALERT_TYPE.ERROR,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+// signout
+
+export const signoutEffect = createEffect(
+	(
+		actions$ = inject(Actions),
+		constants = inject(Constants),
+		persistenceService = inject(PersistenceService),
+		router = inject(Router)
+	) => {
+		return actions$.pipe(
+			ofType(authActions.signout),
+			tap(() => {
+				persistenceService.remove(constants.LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
+				persistenceService.remove(constants.LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
+				router.navigate([constants.ROUTES.ROOT]);
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+// forgotPassword
+
+export const forgotPasswordEffect = createEffect(
+	(
+		actions$ = inject(Actions),
+		authService = inject(AuthService),
+		constants = inject(Constants),
+		router = inject(Router)
+	) => {
+		return actions$.pipe(
+			ofType(authActions.forgotPassword),
+			exhaustMap(({ email, reCaptchaResponse }) => {
+				return authService.postForgotPassword({ email, reCaptchaResponse }).pipe(
+					map((response) => {
+						return authActions.forgotPasswordSuccess({ message: response.message });
+					}),
+					catchError((errorResponse: HttpErrorResponse) => {
+						return of(authActions.forgotPasswordFailure({ message: errorResponse.error.message }));
+					})
+				);
+			})
+		);
+	},
+	{ functional: true }
+);
+
+export const forgotPasswordSuccessEffect = createEffect(
+	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(authActions.forgotPasswordSuccess),
+			tap((response: any) => {
+				toastService.enqueueToastNotification({
+					message: response.message,
+					type: constants.ALERT_TYPE.SUCCESS,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
+export const forgotPasswordFailureEffect = createEffect(
+	(
+		actions$ = inject(Actions),
+		authService = inject(AuthService),
+		constants = inject(Constants),
+		router = inject(Router),
+		toastService = inject(ToastService)
+	) => {
+		return actions$.pipe(
+			ofType(authActions.forgotPasswordFailure),
+			tap((error) => {
+				toastService.enqueueToastNotification({
+					message: error.message,
 					type: constants.ALERT_TYPE.ERROR,
 				});
 			})
@@ -85,24 +168,7 @@ export const signinFailureEffect = createEffect(
 	{ functional: true, dispatch: false }
 );
 
-export const signoutEffect = createEffect(
-	(
-		actions$ = inject(Actions),
-		constants = inject(Constants),
-		persistanceService = inject(PersistanceService),
-		router = inject(Router)
-	) => {
-		return actions$.pipe(
-			ofType(authActions.signout),
-			tap(() => {
-				persistanceService.remove(constants.LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
-				persistanceService.remove(constants.LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
-				router.navigate([constants.ROUTES.ROOT]);
-			})
-		);
-	},
-	{ functional: true, dispatch: false }
-);
+// resetPassword
 
 export const resetPasswordEffect = createEffect(
 	(
@@ -113,13 +179,13 @@ export const resetPasswordEffect = createEffect(
 	) => {
 		return actions$.pipe(
 			ofType(authActions.resetPassword),
-			exhaustMap(({ email, reCaptchaResponse }) => {
-				return authService.postResetPassword({ email, reCaptchaResponse }).pipe(
+			exhaustMap(({ password, confirmPassword, reCaptchaResponse, token }) => {
+				return authService.patchResetPassword({ password, confirmPassword, reCaptchaResponse, token }).pipe(
 					map((response) => {
-						return authActions.resetPasswordSuccess({ currentUser: response });
+						return authActions.resetPasswordSuccess({ message: response.message });
 					}),
 					catchError((errorResponse: HttpErrorResponse) => {
-						return of(authActions.resetPasswordFailure(errorResponse));
+						return of(authActions.resetPasswordFailure({ message: errorResponse.error.message }));
 					})
 				);
 			})
@@ -129,13 +195,27 @@ export const resetPasswordEffect = createEffect(
 );
 
 export const resetPasswordSuccessEffect = createEffect(
-	(actions$ = inject(Actions), persistanceService = inject(PersistanceService), constants = inject(Constants)) => {
+	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
 		return actions$.pipe(
 			ofType(authActions.resetPasswordSuccess),
-			tap((currentUser: any) => {
-				const { authToken = '', refreshToken = '' } = currentUser;
-				persistanceService.set(constants.LOCAL_STORAGE_KEYS.ACCESS_TOKEN, authToken);
-				persistanceService.set(constants.LOCAL_STORAGE_KEYS.REFRESH_TOKEN, refreshToken);
+			tap((response) => {
+				toastService.enqueueToastNotification({
+					message: response.message,
+					type: constants.ALERT_TYPE.SUCCESS,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
+export const redirectAfterResetPasswordSuccessEffect = createEffect(
+	(constants = inject(Constants), actions$ = inject(Actions), router = inject(Router)) => {
+		return actions$.pipe(
+			ofType(authActions.resetPasswordSuccess),
+
+			tap(() => {
+				router.navigate([constants.ROUTES.SIGNIN]);
 			})
 		);
 	},
@@ -152,11 +232,9 @@ export const resetPasswordFailureEffect = createEffect(
 	) => {
 		return actions$.pipe(
 			ofType(authActions.resetPasswordFailure),
-			tap((error: any) => {
-				// authService.handleResetSigninReCaptcha();
-
+			tap((error) => {
 				toastService.enqueueToastNotification({
-					message: error.error.message || error.message,
+					message: error.message,
 					type: constants.ALERT_TYPE.ERROR,
 				});
 			})
@@ -164,11 +242,12 @@ export const resetPasswordFailureEffect = createEffect(
 	},
 	{ functional: true, dispatch: false }
 );
+// ui blocker
 
 export const showBlockerEffect = createEffect(
 	(actions$ = inject(Actions)) => {
 		return actions$.pipe(
-			ofType(authActions.signin, authActions.resetPassword),
+			ofType(authActions.signin, authActions.forgotPassword, authActions.resetPassword),
 			exhaustMap(() => {
 				return of(uiActions.showBlocker());
 			})
@@ -183,6 +262,10 @@ export const hideBlockerEffect = createEffect(
 			ofType(
 				authActions.signinSuccess,
 				authActions.signinFailure,
+
+				authActions.forgotPasswordSuccess,
+				authActions.forgotPasswordFailure,
+
 				authActions.resetPasswordSuccess,
 				authActions.resetPasswordFailure
 			),

@@ -21,4 +21,7 @@ module.exports = {
 		},
 	},
 	plugins: [require('daisyui'), require('tailwindcss-primeui')],
+	daisyui: {
+		themes: ['light'],
+	},
 };

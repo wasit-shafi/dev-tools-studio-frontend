@@ -1,9 +1,9 @@
 import { RecaptchaComponent, RecaptchaErrorParameters, RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 
 import { CommonModule } from '@angular/common';
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { authActions } from '@coreStore/';
@@ -17,22 +17,33 @@ import { Store } from '@ngrx/store';
 	templateUrl: './reset-password.component.html',
 	styleUrl: './reset-password.component.scss',
 })
-export class ResetPasswordComponent {
+export class ResetPasswordComponent implements OnInit {
 	@ViewChild('reCaptcha') reCaptcha!: RecaptchaComponent;
 
 	private readonly store = inject(Store);
 	private readonly toastService = inject(ToastService);
 	protected readonly constants = inject(Constants);
 	protected readonly environment = environment;
+	protected readonly activatedRoute = inject(ActivatedRoute);
 
+	protected token: string = '';
 	protected resetPasswordFormModel = {
-		email: '',
+		password: '',
+		confirmPassword: '',
 		reCaptchaResponse: '',
 	};
 
+	ngOnInit(): void {
+		this.activatedRoute.queryParamMap.subscribe({
+			next: (params) => {
+				this.token = params.get('token') ?? '';
+			},
+		});
+	}
+
 	handleOnSubmitResetPasswordForm(event: Event, resetPasswordForm: NgForm): void {
 		event.preventDefault();
-		this.store.dispatch(authActions.resetPassword({ ...resetPasswordForm.value }));
+		this.store.dispatch(authActions.resetPassword({ ...resetPasswordForm.value, token: this.token }));
 
 		// resetPasswordForm.reset();
 	}
