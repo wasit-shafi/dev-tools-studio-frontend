@@ -1,18 +1,20 @@
-@if (blocker?.isVisible) {
-	<div class="fixed inset-x-0 inset-y-0 flex cursor-wait items-center justify-center">
-		<!-- backdrop -->
+@if (blocker$ | async; as blocker) {
+	@if (blocker.isVisible) {
+		<div class="fixed inset-x-0 inset-y-0 flex cursor-wait items-center justify-center">
+			<!-- backdrop -->
 
-		<div class="absolute h-screen w-screen bg-softPeach opacity-50"></div>
-		<!-- progress meter -->
+			<div class="absolute h-screen w-screen bg-softPeach opacity-50"></div>
+			<!-- progress meter -->
 
-		<progress class="w-100 progress absolute top-0 rounded-none"></progress>
+			<progress class="w-100 progress absolute top-0 rounded-none"></progress>
 
-		<div class="relative max-w-[600px] px-9 text-center">
-			<p class="text-4xl text-black/75">{{ blocker.primaryText }}</p>
+			<div class="relative max-w-[600px] px-9 text-center">
+				<p class="text-4xl text-black/75">{{ blocker.primaryText }}</p>
 
-			@if (blocker.secondaryText) {
-				<p class="mt-3 text-xl text-black/75">{{ blocker.secondaryText }}</p>
-			}
+				@if (blocker.secondaryText) {
+					<p class="mt-3 text-xl text-black/75">{{ blocker.secondaryText }}</p>
+				}
+			</div>
 		</div>
-	</div>
+	}
 }

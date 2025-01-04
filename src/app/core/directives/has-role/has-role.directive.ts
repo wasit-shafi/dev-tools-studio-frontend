@@ -31,8 +31,10 @@ export class HasRoleDirective {
 		private templateRef: TemplateRef<any>,
 		private viewContainerRef: ViewContainerRef
 	) {
-		this.store.select(authFeature.selectAuthState).subscribe((data) => {
-			this.authState = data;
+		this.store.select(authFeature.selectAuthState).subscribe({
+			next: (data) => {
+				this.authState = data;
+			},
 		});
 	}
 }

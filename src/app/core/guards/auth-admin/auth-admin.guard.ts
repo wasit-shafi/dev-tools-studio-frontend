@@ -11,8 +11,10 @@ export const authAdminGuard: CanMatchFn = (route, segments) => {
 
 	let authState!: IAuthState;
 
-	store.select(authFeature.selectAuthState).subscribe((data) => {
-		authState = data;
+	store.select(authFeature.selectAuthState).subscribe({
+		next: (data) => {
+			authState = data;
+		},
 	});
 
 	return (authState?.currentUser?.roles || []).includes(constants.USER_ROLES.ADMIN);

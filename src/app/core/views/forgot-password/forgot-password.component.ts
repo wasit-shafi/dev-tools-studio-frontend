@@ -25,12 +25,12 @@ export class ForgotPasswordComponent {
 	protected readonly constants = inject(Constants);
 	protected readonly environment = environment;
 
-	protected forgotPasswordFormModel = {
+	protected readonly forgotPasswordFormModel = {
 		email: '',
 		reCaptchaResponse: '',
 	};
 
-	protected data$ = combineLatest({
+	protected readonly data$ = combineLatest({
 		forgotPasswordUi: this.store.select(authFeature.selectForgotPasswordUi),
 	});
 

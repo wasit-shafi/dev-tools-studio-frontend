@@ -22,7 +22,7 @@ export class MailComponent {
 	title = 'dev-tools-studio';
 	users: any;
 
-	protected mailForm = this.formBuilder.nonNullable.group({
+	protected readonly mailForm = this.formBuilder.nonNullable.group({
 		dateTimeLocal: ['', [Validators.required]],
 		to: ['wasitshafi700@gmail.com', [Validators.required, Validators.email]],
 		subject: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
@@ -38,7 +38,7 @@ export class MailComponent {
 		return this.mailForm.get('subject');
 	}
 
-	handleOnSubmitSendEmailForm() {
+	handleOnSubmitSendEmailForm(): void {
 		const url = `${environment.baseUrl}${this.constants.API._V1}/mail/send`;
 
 		this.http.post(url, { ...this.mailForm.value }).subscribe({

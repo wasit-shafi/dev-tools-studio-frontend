@@ -8,8 +8,10 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
 	const store = inject(Store);
 	let authState!: IAuthState;
 
-	store.select(authFeature.selectAuthState).subscribe((data) => {
-		authState = data;
+	store.select(authFeature.selectAuthState).subscribe({
+		next: (data) => {
+			authState = data;
+		},
 	});
 
 	const accessToken = authState?.currentUser?.accessToken || '';

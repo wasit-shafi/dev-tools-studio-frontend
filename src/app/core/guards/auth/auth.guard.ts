@@ -14,8 +14,10 @@ export const authGuard: CanMatchFn = (route, segments) => {
 
 	// console.log({ route, segments });
 
-	store.select(authFeature.selectAuthState).subscribe((data) => {
-		authState = data;
+	store.select(authFeature.selectAuthState).subscribe({
+		next: (data) => {
+			authState = data;
+		},
 	});
 
 	// NOTE: to avoid navigating to signin and return false i have used createUrlTree(), for more info refer : https://medium.com/@aaaronnte/how-to-redirect-inside-a-guard-in-angular-v7-1-0-5e860bd0ba1c

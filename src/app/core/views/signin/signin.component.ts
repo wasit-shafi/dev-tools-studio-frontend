@@ -28,23 +28,21 @@ export class SigninComponent {
 
 	protected readonly environment = environment;
 
-	protected authState$ = this.store.select(authFeature.selectAuthState);
+	protected readonly authState$ = this.store.select(authFeature.selectAuthState);
 
 	constructor() {}
 
-	ngOnInit() {
+	ngOnInit(): void {
 		this.authService.handleRegisterCallbackOnSigninFailed(this.resetReCaptcha.bind(this));
 	}
 
-	protected signinFormModel = {
+	protected readonly signinFormModel = {
 		email: '',
 		password: '',
 		reCaptchaResponse: '',
 	};
 
-	protected count!: number;
-
-	handleOnSubmitSigninForm(event: Event, signinForm: NgForm) {
+	handleOnSubmitSigninForm(event: Event, signinForm: NgForm): void {
 		event.preventDefault();
 
 		this.store.dispatch(
@@ -56,7 +54,7 @@ export class SigninComponent {
 		);
 	}
 
-	handleReCaptchaResolved(captchaResponse: string | null) {
+	handleReCaptchaResolved(captchaResponse: string | null): void {
 		// console.log({ captchaResponse });
 
 		// TODO: handle avoiding on reset the form, the form input values becomes null, which will trigger toast notification
@@ -73,7 +71,7 @@ export class SigninComponent {
 		this.reCaptcha.reset();
 	}
 
-	handleReCaptchaErrored(errorDetails: RecaptchaErrorParameters) {
+	handleReCaptchaErrored(errorDetails: RecaptchaErrorParameters): void {
 		// console.log({errorDetails})
 		this.toastService.enqueueToastNotification({
 			message: 'reCAPTCHA encounters an error(usually network connectivity). Please try again',

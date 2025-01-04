@@ -1,15 +1,16 @@
 @if (!environment.production) {
 	<div class="flex flex-wrap justify-center gap-x-1 gap-y-0 border-b-2 border-rose-500 text-center">
-		@for (item of tempTestRoutes; track $index) {
+		@for (item of mocks.mockRoutes; track $index) {
 			@let url = item.url;
 			@let text = item.text;
+			@let className = item.className;
 
 			<a
 				class="my-3 rounded-md px-2 py-2 font-medium no-underline"
 				[routerLink]="url"
 				[routerLinkActive]="['bg-slate-400/40', 'text-gray-600']"
 				[routerLinkActiveOptions]="{ exact: true }"
-				[ngClass]="item.className"
+				[ngClass]="className"
 			>
 				{{ text }}
 			</a>

@@ -40,8 +40,10 @@ export class AuthService implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.store.select(authFeature.selectAuthState).subscribe((authState) => {
-			this.authState = authState;
+		this.store.select(authFeature.selectAuthState).subscribe({
+			next: (authState) => {
+				this.authState = authState;
+			},
 		});
 	}
 

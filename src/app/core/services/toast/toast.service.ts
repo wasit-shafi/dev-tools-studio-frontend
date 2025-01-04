@@ -35,7 +35,7 @@ export class ToastService implements OnDestroy {
 		}
 	}
 
-	private startNotificationWorker() {
+	private startNotificationWorker(): void {
 		this.isBrowser.set(isPlatformBrowser(this.platformId));
 		// For more info refer: https://stackoverflow.com/a/78011586/10249156
 
@@ -45,11 +45,11 @@ export class ToastService implements OnDestroy {
 		}
 	}
 
-	private stopNotificationWorker() {
+	private stopNotificationWorker(): void {
 		clearInterval(this.intervalID);
 	}
 
-	public enqueueToastNotification = (params: IToast) => {
+	public enqueueToastNotification(params: IToast): void {
 		if (!this.toastNotificationQueue.length) {
 			this.startNotificationWorker();
 		}
@@ -59,9 +59,9 @@ export class ToastService implements OnDestroy {
 			type: params.type || this.constants.ALERT_TYPE.SUCCESS,
 			timestamp: new Date(),
 		});
-	};
+	}
 
-	private dequeueToastNotificationWorker = () => {
+	private dequeueToastNotificationWorker(): void {
 		if (this.toastNotificationQueue?.length) {
 			const timeDifferenceInMs = new Date().getTime() - this.toastNotificationQueue[0].timestamp.getTime();
 
@@ -73,5 +73,5 @@ export class ToastService implements OnDestroy {
 				}
 			}
 		}
-	};
+	}
 }

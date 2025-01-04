@@ -28,7 +28,7 @@ export class SignupComponent {
 
 	protected readonly environment = environment;
 
-	protected signupFormModel = {
+	protected readonly signupFormModel = {
 		firstName: '',
 		lastName: '',
 		email: '',
@@ -40,7 +40,7 @@ export class SignupComponent {
 		reCaptchaResponse: '',
 	};
 
-	handleOnSubmitSignupForm(event: Event, signupForm: NgForm) {
+	handleOnSubmitSignupForm(event: Event, signupForm: NgForm): void {
 		event.preventDefault();
 
 		const url = `${environment.baseUrl}${this.constants.API._V1}/auth/signup`;
@@ -70,7 +70,7 @@ export class SignupComponent {
 		// signupForm.reset();
 	}
 
-	handleReCaptchaResolved(captchaResponse: string | null) {
+	handleReCaptchaResolved(captchaResponse: string | null): void {
 		// console.log({ captchaResponse });
 
 		// TODO: handle avoiding on reset the form, the form input values becomes null, which will trigger toast notification
@@ -82,7 +82,7 @@ export class SignupComponent {
 		}
 	}
 
-	handleReCaptchaErrored(errorDetails: RecaptchaErrorParameters) {
+	handleReCaptchaErrored(errorDetails: RecaptchaErrorParameters): void {
 		// console.warn(errorDetails);
 
 		this.toastService.enqueueToastNotification({

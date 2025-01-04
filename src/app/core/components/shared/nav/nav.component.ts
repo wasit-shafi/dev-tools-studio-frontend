@@ -32,8 +32,8 @@ export class NavComponent implements OnInit {
 		});
 	}
 
-	protected handleSignOut = () => {
+	protected handleSignOut(): void {
 		this.store.dispatch(authActions.signout());
 		this.bcChannelService.handleSignoutFromAllTabs();
-	};
+	}
 }

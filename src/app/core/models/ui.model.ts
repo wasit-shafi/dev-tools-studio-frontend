@@ -1,4 +1,4 @@
-interface IBlocker {
+export interface IBlocker {
 	isVisible: boolean;
 	primaryText: string;
 	secondaryText?: string;

@@ -27,7 +27,7 @@ export class ResetPasswordComponent implements OnInit {
 	protected readonly activatedRoute = inject(ActivatedRoute);
 
 	protected token: string = '';
-	protected resetPasswordFormModel = {
+	protected readonly resetPasswordFormModel = {
 		password: '',
 		confirmPassword: '',
 		reCaptchaResponse: '',
