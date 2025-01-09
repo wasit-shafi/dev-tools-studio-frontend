@@ -41,7 +41,7 @@ export class ToastService implements OnDestroy {
 
 		if (this.isBrowser()) {
 			// executed only if its currently running from browser not on server (SSR)
-			this.intervalID = setInterval(this.dequeueToastNotificationWorker, this.WORKER_INTERVAL_DELAY);
+			this.intervalID = setInterval(this.dequeueToastNotificationWorker.bind(this), this.WORKER_INTERVAL_DELAY);
 		}
 	}
 
