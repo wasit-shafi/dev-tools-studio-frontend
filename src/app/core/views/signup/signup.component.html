@@ -82,9 +82,15 @@
 			class="grow"
 			id="confirmPassword"
 			name="confirmPassword"
-			type="password"
+			[type]="isConfirmPasswordVisible ? 'text' : 'password'"
 			[(ngModel)]="signupFormModel.confirmPassword"
 			required
+		/>
+		<img
+			class="size-4 cursor-pointer"
+			alt="eye-icon"
+			[src]="'assets/images/eye-' + (isConfirmPasswordVisible ? 'unmasked' : 'masked') + '.svg'"
+			(click)="isConfirmPasswordVisible = !isConfirmPasswordVisible"
 		/>
 	</label>
 

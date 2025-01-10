@@ -41,12 +41,18 @@
 			class="grow"
 			id="password"
 			name="password"
-			type="password"
 			title="Shush...Type your secret password"
+			[type]="isPasswordVisible ? 'text' : 'password'"
 			[(ngModel)]="signinFormModel.password"
 			#password="ngModel"
 			minlength="4"
 			required
+		/>
+		<img
+			class="size-4 cursor-pointer"
+			alt="eye-icon"
+			[src]="'assets/images/eye-' + (isPasswordVisible ? 'unmasked' : 'masked') + '.svg'"
+			(click)="isPasswordVisible = !isPasswordVisible"
 		/>
 	</label>
 	<!-- Forgot Password & Remember Me -->

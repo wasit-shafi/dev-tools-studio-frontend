@@ -28,6 +28,8 @@ export class SignupComponent {
 
 	protected readonly environment = environment;
 
+	protected isConfirmPasswordVisible: boolean = false;
+
 	protected readonly signupFormModel = {
 		firstName: '',
 		lastName: '',

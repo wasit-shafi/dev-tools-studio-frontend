@@ -30,17 +30,19 @@ export class SigninComponent {
 
 	protected readonly authState$ = this.store.select(authFeature.selectAuthState);
 
-	constructor() {}
-
-	ngOnInit(): void {
-		this.authService.handleRegisterCallbackOnSigninFailed(this.resetReCaptcha.bind(this));
-	}
+	protected isPasswordVisible: boolean = false;
 
 	protected readonly signinFormModel = {
 		email: '',
 		password: '',
 		reCaptchaResponse: '',
 	};
+
+	constructor() {}
+
+	ngOnInit(): void {
+		this.authService.handleRegisterCallbackOnSigninFailed(this.resetReCaptcha.bind(this));
+	}
 
 	handleOnSubmitSigninForm(event: Event, signinForm: NgForm): void {
 		event.preventDefault();
