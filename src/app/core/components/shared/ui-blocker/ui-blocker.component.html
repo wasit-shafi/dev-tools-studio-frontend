@@ -3,16 +3,27 @@
 		<div class="fixed inset-x-0 inset-y-0 flex cursor-wait items-center justify-center">
 			<!-- backdrop -->
 
-			<div class="absolute h-screen w-screen bg-softPeach opacity-50"></div>
+			<div class="absolute h-screen w-screen bg-softPeach/[.15] backdrop-blur-[2px]"></div>
 			<!-- progress meter -->
 
 			<progress class="w-100 progress absolute top-0 rounded-none"></progress>
 
 			<div class="relative max-w-[600px] px-9 text-center">
-				<p class="text-4xl text-black/75">{{ blocker.primaryText }}</p>
+				<span class="flex justify-center gap-3">
+					<span class="text-caribbeanGreen text-4xl text-black/75">
+						{{ blocker.primaryText }}
+					</span>
+					<img
+						class="mt-2 size-10"
+						src="assets/images/bean-eater.svg "
+						alt="bean-eater-icon"
+					/>
+				</span>
 
 				@if (blocker.secondaryText) {
-					<p class="mt-3 text-xl text-black/75">{{ blocker.secondaryText }}</p>
+					<p class="text-orangePeel mt-3 text-xl text-black/75">
+						{{ blocker.secondaryText }}
+					</p>
 				}
 			</div>
 		</div>

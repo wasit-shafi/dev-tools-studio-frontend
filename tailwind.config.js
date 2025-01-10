@@ -17,6 +17,8 @@ module.exports = {
 				persianGreen: 'rgb(9 166 149 / <alpha-value>)',
 				sunnyYellow: 'rgb(230 255 22 / <alpha-value>)',
 				softPeach: 'rgb(238 283 283 / <alpha-value>)',
+				caribbeanGreen: 'rgb(26 209 165 / <alpha-value>)', // color referred from daisyui logo
+				orangePeel: 'rgb(255 153 3 / <alpha-value>)', // color referred from daisyui logo
 			},
 		},
 	},
