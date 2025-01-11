@@ -7,13 +7,14 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService, ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { authActions, authFeature } from '@coreStore/';
+import { Notifications } from '@coreUtils/';
 import { environment } from '@environments/';
 import { Store } from '@ngrx/store';
 
 @Component({
 	selector: 'dts-signin',
 	imports: [FormsModule, RouterLink, RecaptchaModule, RecaptchaFormsModule, CommonModule],
-	providers: [Constants],
+	providers: [Constants, Notifications],
 	templateUrl: './signin.component.html',
 	styleUrl: './signin.component.scss',
 })
@@ -25,6 +26,7 @@ export class SigninComponent {
 	private readonly store = inject(Store);
 	private readonly toastService = inject(ToastService);
 	protected readonly constants = inject(Constants);
+	protected readonly notifications = inject(Notifications);
 
 	protected readonly environment = environment;
 
@@ -63,7 +65,7 @@ export class SigninComponent {
 
 		if (captchaResponse == null) {
 			this.toastService.enqueueToastNotification({
-				message: 'reCaptcha has expired. Please check the checkbox again.',
+				message: this.notifications.alerts.shared.recaptchaExpired,
 				type: this.constants.ALERT_TYPE.WARNING,
 			});
 		}
@@ -76,7 +78,7 @@ export class SigninComponent {
 	protected handleReCaptchaErrored(errorDetails: RecaptchaErrorParameters): void {
 		// console.log({errorDetails})
 		this.toastService.enqueueToastNotification({
-			message: 'reCAPTCHA encounters an error(usually network connectivity). Please try again',
+			message: this.notifications.alerts.shared.recaptchaError,
 			type: this.constants.ALERT_TYPE.ERROR,
 		});
 	}

@@ -7,13 +7,14 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { authActions } from '@coreStore/';
+import { Notifications } from '@coreUtils/';
 import { environment } from '@environments/';
 import { Store } from '@ngrx/store';
 
 @Component({
 	selector: 'dts-reset-password',
 	imports: [FormsModule, RouterLink, RecaptchaModule, RecaptchaFormsModule, CommonModule],
-	providers: [Constants],
+	providers: [Constants, Notifications],
 	templateUrl: './reset-password.component.html',
 	styleUrl: './reset-password.component.scss',
 })
@@ -25,6 +26,7 @@ export class ResetPasswordComponent implements OnInit {
 	protected readonly constants = inject(Constants);
 	protected readonly environment = environment;
 	protected readonly activatedRoute = inject(ActivatedRoute);
+	protected readonly notifications = inject(Notifications);
 
 	protected token: string = '';
 	protected isConfirmPasswordVisible: boolean = false;
@@ -57,7 +59,7 @@ export class ResetPasswordComponent implements OnInit {
 
 		if (captchaResponse == null) {
 			this.toastService.enqueueToastNotification({
-				message: 'reCaptcha has expired. Please check the checkbox again.',
+				message: this.notifications.alerts.shared.recaptchaExpired,
 				type: this.constants.ALERT_TYPE.WARNING,
 			});
 		}
@@ -69,7 +71,7 @@ export class ResetPasswordComponent implements OnInit {
 
 	protected handleReCaptchaErrored(errorDetails: RecaptchaErrorParameters): void {
 		this.toastService.enqueueToastNotification({
-			message: 'reCAPTCHA encounters an error(usually network connectivity). Please try again',
+			message: this.notifications.alerts.shared.recaptchaError,
 			type: this.constants.ALERT_TYPE.ERROR,
 		});
 	}

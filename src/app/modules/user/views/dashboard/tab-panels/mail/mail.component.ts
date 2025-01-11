@@ -46,7 +46,6 @@ export class MailComponent {
 				// console.log('response ::', response);
 				this.toastService.enqueueToastNotification({
 					message: response.message,
-					type: this.constants.ALERT_TYPE.SUCCESS,
 				});
 			},
 			error: (error) => {

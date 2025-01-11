@@ -139,7 +139,6 @@ export const forgotPasswordSuccessEffect = createEffect(
 			tap((response: any) => {
 				toastService.enqueueToastNotification({
 					message: response.message,
-					type: constants.ALERT_TYPE.SUCCESS,
 				});
 			})
 		);
@@ -201,7 +200,6 @@ export const resetPasswordSuccessEffect = createEffect(
 			tap((response) => {
 				toastService.enqueueToastNotification({
 					message: response.message,
-					type: constants.ALERT_TYPE.SUCCESS,
 				});
 			})
 		);

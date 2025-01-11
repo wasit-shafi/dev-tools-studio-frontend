@@ -7,10 +7,12 @@ type ToastAlertType = '' | 'alert-info' | 'alert-success' | 'alert-warning' | 'a
 
 interface IToast {
 	message: string;
-	type: ToastAlertType;
+	type?: ToastAlertType;
 }
 
-interface IToastNotificationQueue extends IToast {
+interface IToastNotificationQueue {
+	message: string;
+	type: ToastAlertType;
 	timestamp: Date;
 }
 

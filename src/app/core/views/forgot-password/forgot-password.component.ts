@@ -8,12 +8,14 @@ import { RouterLink } from '@angular/router';
 import { ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { authActions, authFeature } from '@coreStore/';
+import { Notifications } from '@coreUtils/';
 import { environment } from '@environments/';
 import { Store } from '@ngrx/store';
 
 @Component({
 	selector: 'dts-forgot-password',
 	imports: [FormsModule, RouterLink, RecaptchaModule, RecaptchaFormsModule, CommonModule],
+	providers: [Constants, Notifications],
 	templateUrl: './forgot-password.component.html',
 	styleUrl: './forgot-password.component.scss',
 })
@@ -23,6 +25,8 @@ export class ForgotPasswordComponent {
 	private readonly store = inject(Store);
 	private readonly toastService = inject(ToastService);
 	protected readonly constants = inject(Constants);
+	protected readonly notifications = inject(Notifications);
+
 	protected readonly environment = environment;
 
 	protected readonly forgotPasswordFormModel = {
@@ -46,7 +50,7 @@ export class ForgotPasswordComponent {
 
 		if (captchaResponse == null) {
 			this.toastService.enqueueToastNotification({
-				message: 'reCaptcha has expired. Please check the checkbox again.',
+				message: this.notifications.alerts.shared.recaptchaExpired,
 				type: this.constants.ALERT_TYPE.WARNING,
 			});
 		}
@@ -58,7 +62,7 @@ export class ForgotPasswordComponent {
 
 	protected handleReCaptchaErrored(errorDetails: RecaptchaErrorParameters): void {
 		this.toastService.enqueueToastNotification({
-			message: 'reCAPTCHA encounters an error(usually network connectivity). Please try again',
+			message: this.notifications.alerts.shared.recaptchaError,
 			type: this.constants.ALERT_TYPE.ERROR,
 		});
 	}
