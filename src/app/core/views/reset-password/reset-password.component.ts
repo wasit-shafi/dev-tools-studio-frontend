@@ -43,14 +43,14 @@ export class ResetPasswordComponent implements OnInit {
 		});
 	}
 
-	handleOnSubmitResetPasswordForm(event: Event, resetPasswordForm: NgForm): void {
+	protected handleOnSubmitResetPasswordForm(event: Event, resetPasswordForm: NgForm): void {
 		event.preventDefault();
 		this.store.dispatch(authActions.resetPassword({ ...resetPasswordForm.value, token: this.token }));
 
 		// resetPasswordForm.reset();
 	}
 
-	handleReCaptchaResolved(captchaResponse: string | null): void {
+	protected handleReCaptchaResolved(captchaResponse: string | null): void {
 		// console.log({ captchaResponse });
 
 		// TODO: handle avoiding on reset the form, the form input values becomes null, which will trigger toast notification
@@ -63,11 +63,11 @@ export class ResetPasswordComponent implements OnInit {
 		}
 	}
 
-	resetReCaptcha(): void {
+	protected resetReCaptcha(): void {
 		this.reCaptcha.reset();
 	}
 
-	handleReCaptchaErrored(errorDetails: RecaptchaErrorParameters): void {
+	protected handleReCaptchaErrored(errorDetails: RecaptchaErrorParameters): void {
 		this.toastService.enqueueToastNotification({
 			message: 'reCAPTCHA encounters an error(usually network connectivity). Please try again',
 			type: this.constants.ALERT_TYPE.ERROR,

@@ -11,6 +11,7 @@
 - Make use of 'readonly' where ever possible - to restrict any reassignment to service, data members etc
 <!-- for more info ref: https://www.angulartraining.com/daily-newsletter/best-practices-for-using-visibility-modifiers/ -->
 - The access specifier preferences should follow - private => protected => public
+- Access Specifier must be mentions even if its **public**, to avoid any doubts later.
 
 - Content Order of component file:
 

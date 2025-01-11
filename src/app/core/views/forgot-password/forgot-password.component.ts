@@ -39,7 +39,7 @@ export class ForgotPasswordComponent {
 		this.store.dispatch(authActions.forgotPassword({ ...forgotPasswordForm.value }));
 	}
 
-	handleReCaptchaResolved(captchaResponse: string | null): void {
+	protected handleReCaptchaResolved(captchaResponse: string | null): void {
 		// console.log({ captchaResponse });
 
 		// TODO: handle avoiding on reset the form, the form input values becomes null, which will trigger toast notification
@@ -52,11 +52,11 @@ export class ForgotPasswordComponent {
 		}
 	}
 
-	resetReCaptcha(): void {
+	protected resetReCaptcha(): void {
 		this.reCaptcha.reset();
 	}
 
-	handleReCaptchaErrored(errorDetails: RecaptchaErrorParameters): void {
+	protected handleReCaptchaErrored(errorDetails: RecaptchaErrorParameters): void {
 		this.toastService.enqueueToastNotification({
 			message: 'reCAPTCHA encounters an error(usually network connectivity). Please try again',
 			type: this.constants.ALERT_TYPE.ERROR,
