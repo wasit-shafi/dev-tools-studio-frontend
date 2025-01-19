@@ -31,7 +31,7 @@ export class ForgotPasswordComponent {
 
 	protected readonly forgotPasswordFormModel = {
 		email: '',
-		reCaptchaResponse: '',
+		reCaptcha: '',
 	};
 
 	protected readonly data$ = combineLatest({

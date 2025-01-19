@@ -153,41 +153,29 @@
 			</option>
 		}
 	</select>
-	<!-- Recaptcha -->
+	<!-- reCaptcha -->
 
-	<div class="flex justify-center">
-		<re-captcha
-			name="reCaptchaResponse"
-			#reCaptcha
-			(errored)="handleReCaptchaErrored($event)"
-			(resolved)="handleReCaptchaResolved($event)"
-			[(ngModel)]="signupFormModel.reCaptchaResponse"
-			[siteKey]="environment.reCaptchaSiteKey"
-			errorMode="handled"
-			required
-		>
-		</re-captcha>
-	</div>
-	<!-- Wrapper for Reset & Submit button -->
+	<re-captcha
+		class="mx-auto"
+		name="reCaptcha"
+		#reCaptcha
+		(errored)="handleReCaptchaErrored($event)"
+		(resolved)="handleReCaptchaResolved($event)"
+		[(ngModel)]="signupFormModel.reCaptcha"
+		[siteKey]="environment.reCaptchaSiteKey"
+		errorMode="handled"
+		required
+	>
+	</re-captcha>
+	<!-- Submit Button -->
 
-	<div class="flex gap-4">
-		@if (environment.development) {
-			<button
-				class="btn flex-1"
-				type="reset"
-			>
-				Reset
-			</button>
-		}
-		<button
-			class="btn btn-success mx-auto flex-1 text-white"
-			type="submit"
-			[ngClass]="{ 'max-w-[120px]': environment.production }"
-			[disabled]="signupForm.invalid"
-		>
-			Signup
-		</button>
-	</div>
+	<button
+		class="btn btn-success w-full text-white"
+		type="submit"
+		[disabled]="signupForm.invalid"
+	>
+		Signup
+	</button>
 	<a
 		class="link link-primary text-right"
 		[routerLink]="[constants.ROUTES._SIGNIN]"

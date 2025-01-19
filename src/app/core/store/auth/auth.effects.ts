@@ -21,8 +21,8 @@ export const signinEffect = createEffect(
 	) => {
 		return actions$.pipe(
 			ofType(authActions.signin),
-			exhaustMap(({ email, password, reCaptchaResponse }) => {
-				return authService.postSignin({ email, password, reCaptchaResponse }).pipe(
+			exhaustMap(({ email, password, reCaptcha }) => {
+				return authService.postSignin({ email, password, reCaptcha }).pipe(
 					map((response: any) => {
 						const data = { currentUser: response.data };
 						return authActions.signinSuccess(data);
@@ -117,8 +117,8 @@ export const forgotPasswordEffect = createEffect(
 	) => {
 		return actions$.pipe(
 			ofType(authActions.forgotPassword),
-			exhaustMap(({ email, reCaptchaResponse }) => {
-				return authService.postForgotPassword({ email, reCaptchaResponse }).pipe(
+			exhaustMap(({ email, reCaptcha }) => {
+				return authService.postForgotPassword({ email, reCaptcha }).pipe(
 					map((response) => {
 						return authActions.forgotPasswordSuccess({ message: response.message });
 					}),
@@ -178,8 +178,8 @@ export const resetPasswordEffect = createEffect(
 	) => {
 		return actions$.pipe(
 			ofType(authActions.resetPassword),
-			exhaustMap(({ password, confirmPassword, reCaptchaResponse, token }) => {
-				return authService.patchResetPassword({ password, confirmPassword, reCaptchaResponse, token }).pipe(
+			exhaustMap(({ password, confirmPassword, reCaptcha, token }) => {
+				return authService.patchResetPassword({ password, confirmPassword, reCaptcha, token }).pipe(
 					map((response) => {
 						return authActions.resetPasswordSuccess({ message: response.message });
 					}),

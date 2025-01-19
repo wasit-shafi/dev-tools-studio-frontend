@@ -34,7 +34,7 @@ export class ResetPasswordComponent implements OnInit {
 	protected readonly resetPasswordFormModel = {
 		password: '',
 		confirmPassword: '',
-		reCaptchaResponse: '',
+		reCaptcha: '',
 	};
 
 	ngOnInit(): void {

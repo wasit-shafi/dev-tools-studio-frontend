@@ -37,7 +37,7 @@ export class SigninComponent {
 	protected readonly signinFormModel = {
 		email: '',
 		password: '',
-		reCaptchaResponse: '',
+		reCaptcha: '',
 	};
 
 	constructor() {}
@@ -53,7 +53,7 @@ export class SigninComponent {
 			authActions.signin({
 				email: this.signinFormModel.email,
 				password: this.signinFormModel.password,
-				reCaptchaResponse: this.signinFormModel.reCaptchaResponse,
+				reCaptcha: this.signinFormModel.reCaptcha,
 			})
 		);
 	}

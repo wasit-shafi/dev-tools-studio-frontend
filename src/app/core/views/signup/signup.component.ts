@@ -41,7 +41,7 @@ export class SignupComponent {
 		countryCode: '',
 		mobileNumber: '',
 		country: '',
-		reCaptchaResponse: '',
+		reCaptcha: '',
 	};
 
 	handleOnSubmitSignupForm(event: Event, signupForm: NgForm): void {
