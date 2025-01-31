@@ -49,10 +49,12 @@
 			required
 		/>
 		<img
-			class="size-4 cursor-pointer"
+			class="cursor-pointer"
 			alt="eye-icon"
-			[src]="'assets/images/eye-' + (isPasswordVisible ? 'unmasked' : 'masked') + '.svg'"
+			[ngSrc]="'assets/images/eye-' + (isPasswordVisible ? 'unmasked' : 'masked') + '.svg'"
 			(click)="isPasswordVisible = !isPasswordVisible"
+			width="16"
+			width="16"
 		/>
 	</label>
 	<!-- Forgot Password & Remember Me -->

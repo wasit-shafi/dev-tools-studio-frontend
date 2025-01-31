@@ -15,7 +15,7 @@ export class HasRoleDirective {
 
 	@Input()
 	set appHasRole(roles: number[]) {
-		// TODO(Wasit): add support to use some() or every() based on usage
+		// TODO(WASIT): add support to use some() or every() based on usage
 		// something like this: https://juri.dev/blog/2018/02/angular-permission-directive/
 
 		const hasAllRoles = roles.every((role) => (this.authState?.currentUser?.roles || []).includes(role));

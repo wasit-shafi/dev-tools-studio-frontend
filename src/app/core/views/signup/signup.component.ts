@@ -1,6 +1,6 @@
 import { RecaptchaComponent, RecaptchaErrorParameters, RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -13,7 +13,7 @@ import { environment } from '@environments/';
 
 @Component({
 	selector: 'dts-signup',
-	imports: [FormsModule, RouterLink, RecaptchaModule, RecaptchaFormsModule, CommonModule],
+	imports: [FormsModule, RouterLink, RecaptchaModule, RecaptchaFormsModule, CommonModule, NgOptimizedImage],
 	providers: [Constants, Notifications],
 	templateUrl: './signup.component.html',
 	styleUrl: './signup.component.scss',

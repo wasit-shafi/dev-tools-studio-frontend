@@ -1,8 +1,9 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
 	selector: 'dts-footer',
-	imports: [],
+	imports: [NgOptimizedImage],
 	templateUrl: './footer.component.html',
 	styleUrl: './footer.component.scss',
 })

@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { IBlocker } from '@coreModels/ui.model';
 import { uiFeature } from '@coreStore/';
@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 
 @Component({
 	selector: 'dts-ui-blocker',
-	imports: [AsyncPipe],
+	imports: [AsyncPipe, NgOptimizedImage],
 	templateUrl: './ui-blocker.component.html',
 	styleUrl: './ui-blocker.component.scss',
 })

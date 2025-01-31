@@ -87,10 +87,12 @@
 			required
 		/>
 		<img
-			class="size-4 cursor-pointer"
+			class="cursor-pointer"
 			alt="eye-icon"
-			[src]="'assets/images/eye-' + (isConfirmPasswordVisible ? 'unmasked' : 'masked') + '.svg'"
+			[ngSrc]="'assets/images/eye-' + (isConfirmPasswordVisible ? 'unmasked' : 'masked') + '.svg'"
 			(click)="isConfirmPasswordVisible = !isConfirmPasswordVisible"
+			width="16"
+			height="16"
 		/>
 	</label>
 

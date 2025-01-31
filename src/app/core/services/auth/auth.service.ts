@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, OnDestroy, OnInit, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable, OnInit, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { IAuthState, IForgotPasswordResponse, IResetPasswordResponse, ISigninResponse } from '@coreModels/';
 import { PersistenceService } from '@coreServices/';
 import { Constants } from '@coreShared/';
@@ -34,7 +34,7 @@ export class AuthService implements OnInit {
 			const accessToken = this.persistence.get(this.constants.LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
 
 			if (!!accessToken) {
-				// refetch the user data from backend to populate the store
+				// fetch the user data from backend to populate the store
 			}
 		}
 	}

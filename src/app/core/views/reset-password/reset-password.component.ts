@@ -1,6 +1,6 @@
 import { RecaptchaComponent, RecaptchaErrorParameters, RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -13,7 +13,7 @@ import { Store } from '@ngrx/store';
 
 @Component({
 	selector: 'dts-reset-password',
-	imports: [FormsModule, RouterLink, RecaptchaModule, RecaptchaFormsModule, CommonModule],
+	imports: [FormsModule, RouterLink, RecaptchaModule, RecaptchaFormsModule, CommonModule, NgOptimizedImage],
 	providers: [Constants, Notifications],
 	templateUrl: './reset-password.component.html',
 	styleUrl: './reset-password.component.scss',

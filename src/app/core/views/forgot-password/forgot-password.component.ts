@@ -1,7 +1,7 @@
 import { RecaptchaComponent, RecaptchaErrorParameters, RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 import { combineLatest } from 'rxjs';
 
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, inject, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -14,7 +14,7 @@ import { Store } from '@ngrx/store';
 
 @Component({
 	selector: 'dts-forgot-password',
-	imports: [FormsModule, RouterLink, RecaptchaModule, RecaptchaFormsModule, CommonModule],
+	imports: [FormsModule, RouterLink, RecaptchaModule, RecaptchaFormsModule, CommonModule, NgOptimizedImage],
 	providers: [Constants, Notifications],
 	templateUrl: './forgot-password.component.html',
 	styleUrl: './forgot-password.component.scss',
