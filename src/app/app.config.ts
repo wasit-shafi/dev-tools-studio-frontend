@@ -26,7 +26,7 @@ export const appConfig: ApplicationConfig = {
 		provideHttpClient(withFetch(), withInterceptors([authInterceptor, loggingInterceptor, errorInterceptor])),
 		provideStore({ router: routerReducer }),
 		provideRouterStore(),
-		// NOTE(wasit): on NgRx official docs =>  'Although you can register reducers in the provideStore() function, we recommend keeping provideStore() empty and using the provideState() function to register feature states in the root providers array.',
+		// NOTE(WASIT): on NgRx official docs =>  'Although you can register reducers in the provideStore() function, we recommend keeping provideStore() empty and using the provideState() function to register feature states in the root providers array.',
 		// Can refer => https://ngrx.io/guide/store/reducers
 		provideState(authFeature),
 		provideState(uiFeature),
@@ -43,7 +43,7 @@ export const appConfig: ApplicationConfig = {
 		provideAnimationsAsync(),
 		providePrimeNG({
 			ripple: true,
-			// TODO(wasit): review why aura theme is not working correctly at all places
+			// TODO(WASIT): review why aura theme is not working correctly at all places
 
 			theme: {
 				preset: Aura,

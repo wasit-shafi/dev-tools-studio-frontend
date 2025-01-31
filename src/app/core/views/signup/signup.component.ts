@@ -55,7 +55,6 @@ export class SignupComponent {
 					this.toastService.enqueueToastNotification({
 						message: response.message,
 					});
-
 					this.router.navigate([this.constants.ROUTES.SIGNIN]);
 				}
 			},
@@ -65,9 +64,7 @@ export class SignupComponent {
 					type: this.constants.ALERT_TYPE.ERROR,
 				});
 			},
-			complete: () => {
-				// console.log('i am inside complete back');
-			},
+			complete: () => {},
 		});
 
 		// signupForm.reset();

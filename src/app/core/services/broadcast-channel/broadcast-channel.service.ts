@@ -25,7 +25,7 @@ export class BcChannelService {
 		const { data } = event;
 
 		if (data.event == this.constants.BROADCAST_CHANNELS.USER.EVENTS.SIGNOUT) {
-			//TODO: temporarily reloading the page
+			//TODO(WASIT): temporarily reloading the page
 			location.reload();
 		}
 	}

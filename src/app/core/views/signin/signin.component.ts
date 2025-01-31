@@ -43,6 +43,8 @@ export class SigninComponent {
 	constructor() {}
 
 	ngOnInit(): void {
+		// review changes required for other recaptcha what to do there
+
 		this.authService.handleRegisterCallbackOnSigninFailed(this.resetReCaptcha.bind(this));
 	}
 
