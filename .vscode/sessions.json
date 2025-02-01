@@ -1,26 +1,22 @@
 {
-  "$schema": "https://cdn.statically.io/gh/nguyenngoclongdev/cdn/main/schema/v10/terminal-keeper.json",
-  "theme": "tribe",
-  "active": "default",
-  "activateOnStartup": true,
-  "keepExistingTerminals": false,
-  "sessions": {
-    "default": [
-      [
-        {
-          "name": "Frontend",
-          "commands": [
-            "npm run start"
-          ],
-          "autoExecuteCommands": false
-        },
-        {
-          "name": "Terminal",
-          "commands": [
-            ""
-          ]
-        }
-      ]
-    ]
-  }
+	"$schema": "https://cdn.statically.io/gh/nguyenngoclongdev/cdn/main/schema/v10/terminal-keeper.json",
+	"theme": "tribe",
+	"active": "default",
+	"activateOnStartup": true,
+	"keepExistingTerminals": false,
+	"sessions": {
+		"default": [
+			[
+				{
+					"name": "Frontend",
+					"commands": ["npm run start"],
+					"autoExecuteCommands": false
+				},
+				{
+					"name": "Terminal",
+					"commands": [""]
+				}
+			]
+		]
+	}
 }

@@ -1,3 +1,8 @@
 {
-  "recommendations": ["angular.ng-template", "mike-co.import-sorter","nguyenngoclong.terminal-keeper", "esbenp.prettier-vscode"]
+	"recommendations": [
+		"angular.ng-template",
+		"mike-co.import-sorter",
+		"nguyenngoclong.terminal-keeper",
+		"esbenp.prettier-vscode"
+	]
 }
