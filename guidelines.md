@@ -49,12 +49,9 @@
   - ...
   - regular methods
   -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
 
+- All the service DI must suffix 'Service' eg: appService, authService etc, in-order to differentiate service across application
+  - Correct : `private readonly authService = inject(...);`
+  - Incorrect: `private readonly auth = inject(...);`
+-
 -

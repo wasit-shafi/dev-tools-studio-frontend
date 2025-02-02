@@ -1,3 +1,4 @@
+export * from './app/app.service';
 export * from './auth/auth.service';
 export * from './broadcast-channel/broadcast-channel.service';
 export * from './persistence/persistence.service';

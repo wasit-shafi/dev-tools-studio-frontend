@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FooterComponent, HeaderComponent } from '@coreComponents/';
 import { UiBlockerComponent } from '@coreComponents/shared/ui-blocker/ui-blocker.component';
 import { ToastService } from '@coreServices/';
+import { AppService } from '@coreServices/app/app.service';
 import { Constants, Mocks } from '@coreShared/';
 import { environment } from '@environments/environment';
 
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit {
 	protected readonly constants = inject(Constants);
 	protected readonly mocks = inject(Mocks);
 	protected readonly toastService = inject(ToastService);
+	private readonly appService = inject(AppService);
 
 	protected readonly environment = environment;
 	private readonly CONSOLE_MESSAGE = `Dev Tools Studio: WARNING!\nUsing this console may allow attackers to impersonate you and steal your information using an attack called Self-XSS.Do not enter or paste code that you do not understand.`;
@@ -33,9 +35,11 @@ export class AppComponent implements OnInit {
 	constructor() {}
 
 	ngOnInit(): void {
-		console.warn(
-			`%c${this.CONSOLE_MESSAGE}`,
-			'display: inline-block ; background-color: red ; color: black ;font-size:20px; font-weight: bold ; padding: 5px 7px;'
-		);
+		if (this.appService.isBrowser()) {
+			console.warn(
+				`%c${this.CONSOLE_MESSAGE}`,
+				'display: inline-block ; background-color: red ; color: black ;font-size:20px; font-weight: bold ; padding: 5px 7px;'
+			);
+		}
 	}
 }

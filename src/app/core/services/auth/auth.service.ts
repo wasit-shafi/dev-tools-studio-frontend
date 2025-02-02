@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs';
 
-import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, OnInit, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable, OnInit } from '@angular/core';
 import { IAuthState, IForgotPasswordResponse, IResetPasswordResponse, ISigninResponse } from '@coreModels/';
 import { PersistenceService } from '@coreServices/';
+import { AppService } from '@coreServices/app/app.service';
 import { Constants } from '@coreShared/';
 import { authFeature } from '@coreStore/';
 import { environment } from '@environments/';
@@ -16,22 +16,19 @@ import { Store } from '@ngrx/store';
 export class AuthService implements OnInit {
 	private readonly constants = inject(Constants);
 	private readonly http = inject(HttpClient);
-	private readonly persistence = inject(PersistenceService);
-	private readonly platformId = inject(PLATFORM_ID);
+	private readonly persistenceService = inject(PersistenceService);
 	private readonly store = inject(Store);
-
-	private readonly isBrowser: WritableSignal<boolean> = signal(false);
+	private readonly appService = inject(AppService);
 
 	private authState!: IAuthState;
 
 	public handleResetSigninReCaptcha!: () => void;
 
 	constructor() {
-		this.isBrowser.set(isPlatformBrowser(this.platformId));
 		// added isBrowser check to make sure below code snippet don't run on server side (SSR)
 
-		if (this.isBrowser()) {
-			const accessToken = this.persistence.get(this.constants.LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
+		if (this.appService.isBrowser()) {
+			const accessToken = this.persistenceService.get(this.constants.LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
 
 			if (!!accessToken) {
 				// fetch the user data from backend to populate the store

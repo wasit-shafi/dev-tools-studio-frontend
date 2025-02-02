@@ -1,5 +1,5 @@
-import { isPlatformBrowser } from '@angular/common';
-import { inject, Injectable, OnDestroy, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable, OnDestroy } from '@angular/core';
+import { AppService } from '@coreServices/app/app.service';
 import { Constants } from '@coreShared/';
 
 // TODO: review how can we get below type from constants + need for separate *.model.ts file
@@ -20,8 +20,8 @@ interface IToastNotificationQueue {
 	providedIn: 'root',
 })
 export class ToastService implements OnDestroy {
-	private readonly platformId = inject(PLATFORM_ID);
 	private readonly constants = inject(Constants);
+	private readonly appService = inject(AppService);
 
 	// In a second we can dismiss 3 alerts max
 	private readonly WORKER_INTERVAL_DELAY = 333;
@@ -29,7 +29,6 @@ export class ToastService implements OnDestroy {
 	public readonly toastNotificationQueue: IToastNotificationQueue[] = [];
 
 	private intervalID?: ReturnType<typeof setInterval>;
-	private readonly isBrowser: WritableSignal<boolean> = signal(false);
 
 	ngOnDestroy(): void {
 		if (this.intervalID) {
@@ -38,10 +37,9 @@ export class ToastService implements OnDestroy {
 	}
 
 	private startNotificationWorker(): void {
-		this.isBrowser.set(isPlatformBrowser(this.platformId));
 		// For more info refer: https://stackoverflow.com/a/78011586/10249156
 
-		if (this.isBrowser()) {
+		if (this.appService.isBrowser()) {
 			// executed only if it's currently running from browser not on server (SSR)
 			this.intervalID = setInterval(this.dequeueToastNotificationWorker.bind(this), this.WORKER_INTERVAL_DELAY);
 		}
