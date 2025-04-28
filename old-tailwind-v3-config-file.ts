@@ -1,3 +1,5 @@
+// TODO (wasit): delete this file later, kept as of now for reference
+
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require('tailwindcss/defaultTheme');
 
@@ -22,7 +24,7 @@ module.exports = {
 			},
 		},
 	},
-	plugins: [require('daisyui'), require('tailwindcss-primeui')],
+	plugins: [require('daisyui')],
 	daisyui: {
 		themes: ['light'],
 	},

@@ -1,19 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@use 'tailwindcss';
+@plugin 'daisyui';
 
-//TODO(WASIT): review why aura/primeng theme is not correctly applied
-
-// @layer tailwind-base, primeng, tailwind-utilities;
-
-// @layer tailwind-base {
-// 	@tailwind base;
-// }
-
-// @layer tailwind-utilities {
-// 	@tailwind components;
-// 	@tailwind utilities;
-// }
+@theme {
+	--breakpoint-3xs: 300px;
+	--breakpoint-2xs: 413px;
+	--breakpoint-xs: 526px;
+	--color-black: rgb(00, 00, 00);
+	--color-white: rgb(255, 255, 255);
+	--color-persianGreen: rgb(9, 166, 149);
+	--color-sunnyYellow: rgb(230, 255, 22);
+	--color-softPeach: rgb(238, 283, 283);
+	--color-caribbeanGreen: rgb(26, 209, 165); // color referred from daisyui logo
+	--color-orangePeel: rgb(255, 153, 3); // color referred from daisyui logo
+}
 
 label:has(.ng-valid:not(textarea, input[type='checkbox'])),
 textarea.ng-valid,

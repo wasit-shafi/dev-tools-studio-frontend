@@ -1,5 +1,3 @@
-import { providePrimeNG } from 'primeng/config';
-
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, isDevMode, provideZoneChangeDetection } from '@angular/core';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -14,7 +12,6 @@ import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import Aura from '@primeng/themes/aura';
 
 import { routes } from './app.routes';
 
@@ -41,19 +38,5 @@ export const appConfig: ApplicationConfig = {
 		}),
 		Constants,
 		provideAnimationsAsync(),
-		providePrimeNG({
-			ripple: true,
-			// TODO(WASIT): review why aura theme is not working correctly at all places
-
-			theme: {
-				preset: Aura,
-				options: {
-					cssLayer: {
-						name: 'primeng',
-						order: 'app-styles, primeng, another-css-library',
-					},
-				},
-			},
-		}),
 	],
 };
