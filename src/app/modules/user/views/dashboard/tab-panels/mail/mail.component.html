@@ -3,10 +3,9 @@
 		class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center gap-4"
 		autocomplete="off"
 		[formGroup]="mailForm"
-		(submit)="handleOnSubmitSendEmailForm()"
+		(submit)="handleOnSubmitSendEmailForm(mailForm)"
 	>
 		<!-- Date Time Local -->
-
 		<label class="input input-bordered flex items-center gap-2">
 			Date Time
 			<input
@@ -14,8 +13,19 @@
 				type="datetime-local"
 				formControlName="dateTimeLocal"
 				autofocus
+				[min]="minDateTimeLocal"
 			/>
 		</label>
+		@if (dateTimeLocal?.invalid && (dateTimeLocal?.dirty || dateTimeLocal?.touched)) {
+			<div class="text-red-600">
+				@if (dateTimeLocal?.hasError('required')) {
+					dateTimeLocal is required
+				}
+				@if (dateTimeLocal?.hasError('min')) {
+					{{ dateTimeLocal?.errors?.min }}
+				}
+			</div>
+		}
 		<!-- To Email -->
 
 		<label class="input input-bordered flex items-center gap-2">
@@ -112,7 +122,7 @@
 		</label>
 		<!-- Preview of the mail about to be sent -->
 
-		<details class="collapse bg-base-200">
+		<details class="bg-base-200 collapse">
 			<summary class="collapse-title text-xl font-medium">
 				Preview Full Email sending to <b>{{ mailForm.value.to }}</b>
 			</summary>
