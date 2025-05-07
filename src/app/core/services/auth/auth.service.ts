@@ -49,19 +49,26 @@ export class AuthService implements OnInit {
 	}
 
 	public postSignin(data: any): Observable<ISigninResponse> {
-		return this.http.post<ISigninResponse>(`${environment.baseUrl}${this.constants.API._V1}/auth/signin`, data);
+		return this.http.post<ISigninResponse>(
+			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/auth/signin`,
+			data
+		);
+	}
+
+	public postSignout() {
+		return this.http.post(`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/auth/signout`, {});
 	}
 
 	public postForgotPassword(data: any): Observable<IForgotPasswordResponse> {
 		return this.http.post<IForgotPasswordResponse>(
-			`${environment.baseUrl}${this.constants.API._V1}/auth/forgot-password`,
+			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/auth/forgot-password`,
 			data
 		);
 	}
 
 	public patchResetPassword(data: any): Observable<IResetPasswordResponse> {
 		return this.http.patch<IResetPasswordResponse>(
-			`${environment.baseUrl}${this.constants.API._V1}/auth/reset-password/${data.token}`,
+			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/auth/reset-password/${data.token}`,
 			data
 		);
 	}

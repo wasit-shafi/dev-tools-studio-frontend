@@ -1,3 +1,4 @@
+import { IAuthState } from '@coreModels/';
 import { authActions } from '@coreStore/';
 import { initialAuthState } from '@coreStore/auth/auth.state';
 import { routerNavigatedAction } from '@ngrx/router-store';
@@ -7,47 +8,53 @@ const reducer = createReducer(
 	initialAuthState,
 	// signin
 
-	on(authActions.signin, (state, action) => {
-		return { ...state, isLoading: true };
+	// on(authActions.signin, (state, action): IAuthState => {
+	// 	return { ...state };
+	// }),
+	on(authActions.signinSuccess, (state, action): IAuthState => {
+		return { ...state, currentUser: action.currentUser };
 	}),
-	on(authActions.signinSuccess, (state, action) => {
-		return { ...state, isLoading: false, currentUser: action.currentUser };
-	}),
-	on(authActions.signinFailure, (state, action) => {
-		return { ...state, isLoading: false };
-	}),
+	// on(authActions.signinFailure, (state, action): IAuthState => {
+	// 	return { ...state };
+	// }),
 	// signout
 
-	on(authActions.signout, (state, action) => {
+	// on(authActions.signout, (state, action): IAuthState => {
+	// 	return { ...state };
+	// }),
+	on(authActions.signoutSuccess, (state, action): IAuthState => {
 		return { ...state, currentUser: null };
 	}),
+	// on(authActions.signoutFailure, (state, action): IAuthState => {
+	// 	return { ...state };
+	// }),
 	// forgot password
 
-	on(authActions.forgotPassword, (state, action) => {
-		return { ...state, isLoading: true };
+	// on(authActions.forgotPassword, (state, action): IAuthState => {
+	// 	return { ...state };
+	// }),
+	on(authActions.forgotPasswordSuccess, (state, action): IAuthState => {
+		return { ...state, forgotPasswordUi: { isEmailSent: true } };
 	}),
-	on(authActions.forgotPasswordSuccess, (state, action) => {
-		return { ...state, isLoading: false, forgotPasswordUi: { isEmailSent: true } };
-	}),
-	on(authActions.forgotPasswordFailure, (state, action) => {
-		return { ...state, isLoading: false, forgotPasswordUi: { isEmailSent: false } };
-	}),
+	on(authActions.forgotPasswordFailure, (state, action): IAuthState => {
+		return { ...state, forgotPasswordUi: { isEmailSent: false } };
+	})
 	// reset password
 
-	on(authActions.resetPassword, (state, action) => {
-		return { ...state, isLoading: true };
-	}),
-	on(authActions.resetPasswordSuccess, (state, action) => {
-		return { ...state, isLoading: false };
-	}),
-	on(authActions.resetPasswordFailure, (state, action) => {
-		return { ...state, isLoading: false };
-	}),
+	// on(authActions.resetPassword, (state, action): IAuthState => {
+	// 	return { ...state };
+	// }),
+	// on(authActions.resetPasswordSuccess, (state, action): IAuthState => {
+	// 	return { ...state };
+	// }),
+	// on(authActions.resetPasswordFailure, (state, action): IAuthState => {
+	// 	return { ...state };
+	// })
 	// resetting to initial auth state on router navigation
 
-	on(routerNavigatedAction, () => {
-		return initialAuthState;
-	})
+	// on(routerNavigatedAction, ():IAuthState => {
+	// 	return initialAuthState;
+	// })
 );
 
 export const authFeature = createFeature({

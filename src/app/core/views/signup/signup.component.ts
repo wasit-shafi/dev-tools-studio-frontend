@@ -47,7 +47,7 @@ export class SignupComponent {
 	handleOnSubmitSignupForm(event: Event, signupForm: NgForm): void {
 		event.preventDefault();
 
-		const url = `${environment.baseUrl}${this.constants.API._V1}/auth/signup`;
+		const url = `${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/auth/signup`;
 
 		this.http.post(url, { ...this.signupFormModel }).subscribe({
 			next: (response: any) => {

@@ -1,10 +1,10 @@
 export class Constants {
 	public readonly PROJECT_NAME = 'Dev Tools Studio';
 
-	public readonly API: Record<string, string> = {
-		_V1: '/v1',
-		_V2: '/v2',
-	} as const;
+	public readonly API_PREFIX: Record<string, string> = {
+		API_V1: 'api/v1',
+		API_V2: 'api/v2',
+	};
 
 	public readonly REGEX = {
 		EMAIL: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',

@@ -11,6 +11,8 @@ export const authActions = createActionGroup({
 		// signout
 
 		signout: emptyProps(),
+		signoutSuccess: props<{ message: string }>(),
+		signoutFailure: props<{ message: string }>(),
 		// forgot password
 
 		forgotPassword: props<{ email: string; reCaptcha: string }>(),

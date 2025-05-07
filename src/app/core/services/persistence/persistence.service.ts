@@ -16,11 +16,11 @@ export class PersistenceService {
 		}
 	}
 
-	public set(key: string, data: unknown): void {
+	public set(key: string, value: unknown): void {
 		try {
-			localStorage.setItem(key, JSON.stringify(data));
+			localStorage.setItem(key, JSON.stringify(value));
 		} catch (error) {
-			console.error('Error while saving data in local storage');
+			console.error('Error while saving value in local storage :', value);
 		}
 	}
 

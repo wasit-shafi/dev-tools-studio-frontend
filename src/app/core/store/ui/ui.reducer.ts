@@ -1,3 +1,4 @@
+import { IUi } from '@coreModels/';
 import { routerNavigatedAction } from '@ngrx/router-store';
 import { createFeature, createReducer, on } from '@ngrx/store';
 
@@ -6,15 +7,15 @@ import { initialUiState } from './ui.state';
 
 const reducer = createReducer(
 	initialUiState,
-	on(uiActions.showBlocker, (state, action) => {
+	on(uiActions.showBlocker, (state, action): IUi => {
 		return { ...state, blocker: { ...state.blocker, isVisible: true } };
 	}),
-	on(uiActions.hideBlocker, (state, action) => {
+	on(uiActions.hideBlocker, (state, action): IUi => {
 		return { ...state, blocker: { ...state.blocker, isVisible: false } };
 	}),
 	// resetting to initial auth state on router navigation
 
-	on(routerNavigatedAction, () => {
+	on(routerNavigatedAction, (): IUi => {
 		return initialUiState;
 	})
 );

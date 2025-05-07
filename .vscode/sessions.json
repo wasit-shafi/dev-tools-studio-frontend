@@ -9,12 +9,13 @@
 			[
 				{
 					"name": "Frontend",
-					"commands": ["npm run start"],
-					"autoExecuteCommands": false
+					"commands": ["clear; npm run start"],
+					"autoExecuteCommands": true
 				},
 				{
 					"name": "Terminal",
-					"commands": [""]
+					"commands": ["clear"],
+					"autoExecuteCommands": true
 				}
 			]
 		]

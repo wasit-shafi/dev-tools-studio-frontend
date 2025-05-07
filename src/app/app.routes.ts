@@ -38,7 +38,6 @@ export const routes: Routes = [
 		component: CoreViews.ForgotPasswordComponent,
 		title: `Forgot Password - ${constants.PROJECT_NAME}`,
 	},
-
 	// reset-password
 
 	{

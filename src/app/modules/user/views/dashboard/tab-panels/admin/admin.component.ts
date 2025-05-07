@@ -16,7 +16,7 @@ export class AdminComponent {
 	protected users: any;
 
 	constructor() {
-		const url = `${environment.baseUrl}${this.constants.API._V1}/user`;
+		const url = `${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user`;
 
 		this.http.get(url).subscribe({
 			next: (response) => {

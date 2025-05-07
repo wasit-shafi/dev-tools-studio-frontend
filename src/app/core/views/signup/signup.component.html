@@ -1,5 +1,5 @@
 <form
-	class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center gap-4"
+	class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center gap-4 rounded-lg bg-slate-100 p-3"
 	#signupForm="ngForm"
 	autocomplete="off"
 	(submit)="handleOnSubmitSignupForm($event, signupForm)"
@@ -137,7 +137,7 @@
 	<!-- Country  -->
 
 	<select
-		class="select select-bordered w-full"
+		class="select select-bordered"
 		name="country"
 		[(ngModel)]="signupFormModel.country"
 		required
@@ -185,7 +185,7 @@
 		Already have an account? Signin
 	</a>
 </form>
-<div class="mb-20 mt-10 flex justify-center">
+<div class="mt-10 mb-20 flex justify-center">
 	<ul class="steps steps-horizontal">
 		<li class="step step-success">&nbsp;&nbsp;Register&nbsp;&nbsp;</li>
 		<li class="step step-success">&nbsp;&nbsp;Verify Email&nbsp;&nbsp;</li>

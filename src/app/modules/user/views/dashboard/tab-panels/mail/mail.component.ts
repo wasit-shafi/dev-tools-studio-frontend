@@ -55,7 +55,7 @@ export class MailComponent {
 	// TODO(Wasit): review what should be the type of 'form' here
 
 	handleOnSubmitSendEmailForm(form: any): void {
-		const url = `${environment.baseUrl}${this.constants.API._V1}/mail/send`;
+		const url = `${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/mail/send`;
 
 		this.http
 			.post(url, {

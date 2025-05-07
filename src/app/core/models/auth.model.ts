@@ -1,13 +1,27 @@
-interface ISigninData {
-	id: string;
+export interface IUser {
+	_id: string;
 	accessToken: string;
+	country: string;
+	countryCode: string;
+	createdAt: Date;
+	displayName: string;
+	email: string;
+	firstName: string;
+	isEmailVerified: boolean;
+	isMobileNumberVerified: boolean;
+	lastName: string;
+	mobileNumber: string;
 	refreshToken: string;
 	roles: number[];
+	userName: string;
 }
 
+export interface IPostSigninData {
+	user: IUser;
+}
 export interface ISigninResponse {
 	code: number;
-	data: ISigninData;
+	data: IPostSigninData;
 	message: string;
 	success: boolean;
 }
@@ -26,19 +40,11 @@ export interface IResetPasswordResponse {
 	success: boolean;
 }
 
-export interface ICurrentUser {
-	id: string;
-	accessToken: string;
-	refreshToken: string;
-	roles: number[];
-}
-
 export interface IForgotPasswordUi {
 	isEmailSent: boolean;
 }
 
 export interface IAuthState {
-	isLoading: boolean;
-	currentUser: ICurrentUser | null;
+	currentUser: IUser | null;
 	forgotPasswordUi: IForgotPasswordUi | null;
 }

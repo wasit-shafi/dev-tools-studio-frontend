@@ -2,7 +2,7 @@ import { commonEnvironment } from './environment.common';
 
 export const environment = {
 	...commonEnvironment,
-	baseUrl: 'http://localhost:3000/api',
+	baseUrl: 'http://localhost:3000',
 	production: false,
 	development: true,
 	reCaptchaSiteKey: '6LeF8lcqAAAAAI3HmM1x5AQXUFiPVewrYKmTSxlj',
