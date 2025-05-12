@@ -72,4 +72,17 @@ export class AuthService implements OnInit {
 			data
 		);
 	}
+
+	public getMe() {
+		return this.http.get(`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/auth/me`);
+	}
+
+	public getRefresh() {
+		return this.http.post(`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/auth/refresh`, {
+			refreshToken:
+				this.authState.currentUser?.refreshToken ||
+				this.persistenceService.get(this.constants.LOCAL_STORAGE_KEYS.REFRESH_TOKEN) ||
+				'',
+		});
+	}
 }

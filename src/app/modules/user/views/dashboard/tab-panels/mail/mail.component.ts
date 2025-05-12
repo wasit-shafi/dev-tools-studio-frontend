@@ -1,10 +1,13 @@
 import { JsonPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
+import { Store } from '@ngrx/store';
+import { ICredentialData } from '@userModels/';
+import { userFeature } from '@userStore/';
 
 @Component({
 	selector: 'dts-mail',
@@ -13,21 +16,36 @@ import { environment } from '@environments/';
 	templateUrl: './mail.component.html',
 	styleUrl: './mail.component.scss',
 })
-export class MailComponent {
+export class MailComponent implements OnInit {
 	private readonly constants = inject(Constants);
 	private readonly formBuilder = inject(FormBuilder);
 	private readonly http = inject(HttpClient);
+	private readonly store = inject(Store);
 	private readonly toastService = inject(ToastService);
+
 	private readonly date = new Date();
 	// NOTE(Wasit): the min should strictly follow the format YYYY-MM-DDTHH:MM, used padStart to make sure the 0 are prefixed incase of value is less than 10 eg 2025-4-9T5:9 => 2025-04-09T05:09
 
 	protected readonly minDateTimeLocal = `${this.date.getFullYear()}-${String(this.date.getMonth() + 1).padStart(2, '0')}-${String(this.date.getDate()).padStart(2, '0')}T${String(this.date.getHours()).padStart(2, '0')}:${String(this.date.getMinutes()).padStart(2, '0')}:00.00`;
 
-	users: any;
+	protected credentialList: ICredentialData[] = [];
+
+	private readonly INITIAL_SMTP_CREDENTIALS = {
+		credentialType: 0,
+		host: '',
+		port: 0,
+		user: '',
+		pass: '',
+	};
+
+	protected currentSmtpCredentials = {
+		...this.INITIAL_SMTP_CREDENTIALS,
+	};
 
 	protected readonly mailForm = this.formBuilder.nonNullable.group({
+		from: ['', [Validators.required, Validators.email]],
 		dateTimeLocal: ['', [Validators.required, this.customValidatorForDateTimeLocal]],
-		to: ['wasitshafi700@gmail.com', [Validators.required, Validators.email]],
+		to: ['', [Validators.required, Validators.email]],
 		subject: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
 		salutation: ['', [Validators.required]],
 		body: ['', [Validators.required]],
@@ -36,6 +54,16 @@ export class MailComponent {
 		attachments: this.formBuilder.array([this.formBuilder.control('')]),
 		confirmationMail: [true, [Validators.required]],
 	});
+
+	ngOnInit(): void {
+		this.store.select(userFeature.selectCredentialList).subscribe({
+			next: (data) => {
+				this.credentialList = data ?? [];
+			},
+			error: () => {},
+			complete: () => {},
+		});
+	}
 
 	get subject() {
 		return this.mailForm.get('subject');
@@ -77,5 +105,10 @@ export class MailComponent {
 					});
 				},
 			});
+	}
+
+	protected handleOnFromEmailChange(selectedEmailId: string) {
+		const item = this.credentialList.find((item) => item.emailId === selectedEmailId);
+		this.currentSmtpCredentials = item ? { ...item } : { ...this.INITIAL_SMTP_CREDENTIALS };
 	}
 }

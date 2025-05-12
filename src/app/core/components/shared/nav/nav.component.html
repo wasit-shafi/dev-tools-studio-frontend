@@ -1,6 +1,28 @@
 <nav class="flex justify-center">
 	<ul class="menu menu-vertical rounded-box bg-base-200 xs:menu-horizontal gap-x-3 gap-y-2">
 		@if (authState && authState.currentUser) {
+			<!-- TODO(Wasit): Add DP upload feature -->
+
+			@if (true) {
+				<div class="avatar avatar-placeholder">
+					<div class="bg-neutral text-neutral-content w-9 rounded-full">
+						<span class="text-xs">{{
+							authState.currentUser.displayName.split(' ')[0].charAt(0).toUpperCase() +
+								authState.currentUser.displayName.split(' ')[1].charAt(0).toUpperCase()
+						}}</span>
+					</div>
+				</div>
+			} @else {
+				<div class="avatar">
+					<div class="ring-primary ring-offset-base-100 w-9 rounded-full ring-2 ring-offset-2">
+						<img
+							src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp"
+							alt="profile_img"
+						/>
+					</div>
+				</div>
+			}
+
 			<!-- Dashboard -->
 
 			<li [routerLink]="[constants.ROUTES._DASHBOARD]">

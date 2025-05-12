@@ -1,3 +1,10 @@
+export interface IApiBaseResponse {
+	code: number;
+	success: boolean;
+	message: string;
+	data: unknown;
+}
+
 export interface IUser {
 	_id: string;
 	accessToken: string;
@@ -19,25 +26,16 @@ export interface IUser {
 export interface IPostSigninData {
 	user: IUser;
 }
-export interface ISigninResponse {
-	code: number;
+export interface ISigninResponse extends IApiBaseResponse {
 	data: IPostSigninData;
-	message: string;
-	success: boolean;
 }
 
-export interface IForgotPasswordResponse {
-	code: number;
+export interface IForgotPasswordResponse extends IApiBaseResponse {
 	data: null;
-	message: string;
-	success: boolean;
 }
 
-export interface IResetPasswordResponse {
-	code: number;
+export interface IResetPasswordResponse extends IApiBaseResponse {
 	data: null;
-	message: string;
-	success: boolean;
 }
 
 export interface IForgotPasswordUi {

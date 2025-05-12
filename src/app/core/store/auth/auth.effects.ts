@@ -7,6 +7,7 @@ import { AuthService, PersistenceService, ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { uiActions } from '@coreStore/';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { userActions } from '@userStore/';
 
 import { authActions } from './auth.actions';
 
@@ -284,7 +285,13 @@ export const resetPasswordFailureEffect = createEffect(
 export const showBlockerEffect = createEffect(
 	(actions$ = inject(Actions)) => {
 		return actions$.pipe(
-			ofType(authActions.signin, authActions.signout, authActions.forgotPassword, authActions.resetPassword),
+			ofType(
+				authActions.signin,
+				authActions.signout,
+				authActions.forgotPassword,
+				authActions.resetPassword,
+				userActions.addCredential
+			),
 			exhaustMap(() => {
 				return of(uiActions.showBlocker());
 			})
@@ -307,7 +314,10 @@ export const hideBlockerEffect = createEffect(
 				authActions.forgotPasswordFailure,
 
 				authActions.resetPasswordSuccess,
-				authActions.resetPasswordFailure
+				authActions.resetPasswordFailure,
+
+				userActions.addCredentialSuccess,
+				userActions.addCredentialFailure
 			),
 			exhaustMap(() => {
 				return of(uiActions.hideBlocker());

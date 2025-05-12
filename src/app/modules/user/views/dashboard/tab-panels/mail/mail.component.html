@@ -1,12 +1,64 @@
-<div class="item flex h-[900px] items-start justify-center overflow-scroll">
+<div class="item flex items-start justify-center">
 	<form
 		class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center gap-4"
 		autocomplete="off"
 		[formGroup]="mailForm"
 		(submit)="handleOnSubmitSendEmailForm(mailForm)"
 	>
+		<select
+			class="select w-full"
+			formControlName="from"
+			(ngModelChange)="handleOnFromEmailChange($event)"
+		>
+			<option
+				selected
+				disabled
+				value=""
+			>
+				Select email Account
+			</option>
+			@for (credential of credentialList; track $index) {
+				<option [value]="credential.emailId">{{ credential.emailId }}</option>
+			}
+		</select>
+		<!-- View Credentials -->
+
+		<div class="collapse">
+			<input
+				type="checkbox"
+				class="peer"
+			/>
+			<div
+				class="collapse-title text-primary-content peer-checked:text-secondary-content bg-slate-400 peer-checked:bg-slate-600"
+			>
+				View Credentials...
+			</div>
+			<div
+				class="collapse-content text-primary-content peer-checked:text-secondary-content bg-yellow-100 peer-checked:bg-yellow-600"
+			>
+				<div class="divider">{{ mailForm.getRawValue().from }}</div>
+				<div>
+					<div>
+						<span>Host:</span>
+						<span>{{ currentSmtpCredentials.host }}</span>
+					</div>
+					<div>
+						<span>Port:</span>
+						<span>{{ currentSmtpCredentials.port }}</span>
+					</div>
+					<div>
+						<span>User:</span>
+						<span>{{ currentSmtpCredentials.user }}</span>
+					</div>
+					<div>
+						<span>Pass:</span>
+						<span>{{ currentSmtpCredentials.pass }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- Date Time Local -->
-		<label class="input input-bordered flex items-center gap-2">
+		<label class="input input-bordered flex w-full items-center gap-2">
 			Date Time
 			<input
 				class="grow"
@@ -28,7 +80,7 @@
 		}
 		<!-- To Email -->
 
-		<label class="input input-bordered flex items-center gap-2">
+		<label class="input input-bordered flex w-full items-center gap-2">
 			To
 			<input
 				class="grow"
@@ -39,7 +91,7 @@
 		</label>
 		<!-- Subject -->
 
-		<label class="input input-bordered flex items-center gap-2">
+		<label class="input input-bordered flex w-full items-center gap-2">
 			Subject
 			<input
 				class="grow"
@@ -65,7 +117,7 @@
 		}
 		<!-- Salutation -->
 
-		<label class="input input-bordered flex items-center gap-2">
+		<label class="input input-bordered flex w-full items-center gap-2">
 			Salutation
 			<input
 				class="grow"
@@ -134,7 +186,6 @@
 				<p>{{ mailForm.value.closing }}</p>
 				<p>{{ mailForm.value.signature }}</p>
 			</div>
-			<p>{{ mailForm.value | json }}</p>
 		</details>
 		<!-- Wrapper for Reset & Submit button -->
 

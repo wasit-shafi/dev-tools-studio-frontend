@@ -4,6 +4,9 @@
 	"compilerOptions": {
 		"baseUrl": "./",
 		"paths": {
+			"@adminViews/*": ["src/app/modules/admin/views/*", "src/app/modules/admin/views"],
+			"@app/*": ["src/app/*", "src/app"],
+			"@assets/*": ["src/assets/*", "src/assets"],
 			"@coreComponents/*": ["src/app/core/components/*", "src/app/core/components"],
 			"@coreDirectives/*": ["src/app/core/directives/*", "src/app/core/directives"],
 			"@coreGuards/*": ["src/app/core/guards/*", "src/app/core/guards"],
@@ -15,11 +18,11 @@
 			"@coreStore/*": ["src/app/core/store/*", "src/app/core/store"],
 			"@coreUtils/*": ["src/app/core/utils/*", "src/app/core/utils"],
 			"@coreViews/*": ["src/app/core/views/*", "src/app/core/views"],
-			"@adminViews/*": ["src/app/modules/admin/views/*", "src/app/modules/admin/views"],
+			"@environments/*": ["src/environments/*", "src/environments"],
+			"@userServices/*": ["src/app/modules/user/services/*", "src/app/modules/user/services"],
+			"@userModels/*": ["src/app/modules/user/models/*", "src/app/modules/user/models"],
 			"@userViews/*": ["src/app/modules/user/views/*", "src/app/modules/user/views"],
-			"@assets/*": ["src/assets/*", "src/assets"],
-			"@app/*": ["src/app/*", "src/app"],
-			"@environments/*": ["src/environments/*", "src/environments"]
+			"@userStore/*": ["src/app/modules/user/store/*", "src/app/modules/user/store"]
 		},
 		"outDir": "./dist/out-tsc",
 		"strict": true,

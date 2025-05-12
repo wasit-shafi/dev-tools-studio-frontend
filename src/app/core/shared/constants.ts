@@ -133,6 +133,24 @@ export class Constants {
 		},
 	} as const;
 
+	public readonly REGULAR_SMTP_PORTS = [25, 465, 587, 2465, 2525, 2587];
+
+	public readonly CREDENTIAL_TYPE = {
+		SMTP: {
+			LABEL: 'SMTP',
+			VALUE: 1,
+		},
+		OAUTH: {
+			LABEL: 'OAuth',
+			VALUE: 2,
+		},
+	} as const;
+
+	public readonly CREDENTIAL_TYPE_MAPPING: Record<number, string> = {
+		[this.CREDENTIAL_TYPE.SMTP.VALUE]: this.CREDENTIAL_TYPE.SMTP.LABEL,
+		[this.CREDENTIAL_TYPE.OAUTH.VALUE]: this.CREDENTIAL_TYPE.OAUTH.LABEL,
+	} as const;
+
 	// Referred from https://www.html-code-generator.com/javascript/array/country-names
 
 	public readonly COUNTRY_METADATA = [

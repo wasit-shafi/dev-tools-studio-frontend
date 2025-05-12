@@ -12,6 +12,8 @@ import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import * as userEffects from '@userStore/user/user.effects';
+import { userFeature } from '@userStore/user/user.reducers';
 
 import { routes } from './app.routes';
 
@@ -27,7 +29,9 @@ export const appConfig: ApplicationConfig = {
 		// Can refer => https://ngrx.io/guide/store/reducers
 		provideState(authFeature),
 		provideState(uiFeature),
+		provideState(userFeature),
 		provideEffects(authEffects),
+		provideEffects(userEffects),
 		provideStoreDevtools({
 			maxAge: 25, // Retains last 25 states
 			logOnly: !isDevMode(), // Restrict extension to log-only mode
