@@ -1,4 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { EditCredentialComponent } from '@coreComponents/';
 import { Constants } from '@coreShared/';
 import { Store } from '@ngrx/store';
 import { ICredentialData, IUserState } from '@userModels/';
@@ -6,12 +7,14 @@ import { userActions, userFeature } from '@userStore/user';
 
 @Component({
 	selector: 'dts-list-credential',
-	imports: [],
+	imports: [EditCredentialComponent],
 	providers: [Constants],
 	templateUrl: './list-credential.component.html',
 	styleUrl: './list-credential.component.scss',
 })
 export class ListCredentialComponent implements OnInit {
+	@ViewChild('editCredentialComponent') editCredentialComponent!: EditCredentialComponent;
+
 	protected userState!: IUserState;
 
 	protected readonly constants = inject(Constants);
@@ -30,10 +33,10 @@ export class ListCredentialComponent implements OnInit {
 	}
 
 	protected handleEditCredential(credential: ICredentialData) {
-		console.log('show edit modal to update credential :: ', credential);
+		this.editCredentialComponent.handleOnModalOpen({ ...credential });
 	}
 
-	protected handleDeleteCredential(credentialId: string) {
-		console.log('Delete :: ', credentialId);
+	protected handleDeleteCredential(_id: string) {
+		this.store.dispatch(userActions.deleteCredential({ _id }));
 	}
 }

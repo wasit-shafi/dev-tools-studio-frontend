@@ -1,4 +1,5 @@
 export * from './shared/add-credential/add-credential.component';
+export * from './shared/edit-credential/edit-credential.component';
 export * from './shared/footer/footer.component';
 export * from './shared/header/header.component';
 export * from './shared/list-credential/list-credential.component';

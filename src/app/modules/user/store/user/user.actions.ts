@@ -14,5 +14,15 @@ export const userActions = createActionGroup({
 		addCredential: props<IAddCredential>(),
 		addCredentialSuccess: props<{ message: string }>(),
 		addCredentialFailure: props<{ message: string }>(),
+		// Delete Credential
+
+		deleteCredential: props<{ _id: string }>(),
+		deleteCredentialSuccess: props<{ message: string }>(),
+		deleteCredentialFailure: props<{ message: string }>(),
+		// Edit Credential
+
+		editCredential: props<{ _id: string; data: IAddCredential }>(),
+		editCredentialSuccess: props<{ message: string }>(),
+		editCredentialFailure: props<{ message: string }>(),
 	},
 });

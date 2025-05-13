@@ -1,9 +1,4 @@
-export interface IApiBaseResponse {
-	code: number;
-	success: boolean;
-	message: string;
-	data: unknown;
-}
+import { IApiBaseResponse } from '@coreModels/';
 
 export interface IUser {
 	_id: string;

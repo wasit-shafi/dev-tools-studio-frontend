@@ -1,31 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
-import { ToastService } from '@coreServices/';
+import { FormsModule } from '@angular/forms';
 import { Constants } from '@coreShared/';
-import { Notifications } from '@coreUtils/';
 import { Store } from '@ngrx/store';
 import { IAddCredential } from '@userModels/';
-import { UserService } from '@userServices/';
 import { userActions } from '@userStore/user';
 
 @Component({
 	selector: 'dts-add-credential',
 	imports: [FormsModule, CommonModule],
-	providers: [Constants, Notifications],
+	providers: [Constants],
 	templateUrl: './add-credential.component.html',
 	styleUrl: './add-credential.component.scss',
 })
 export class AddCredentialComponent {
-	@ViewChild('credentialDialog') credentialDialog!: ElementRef;
-	// private readonly store = inject(Store);
-	private readonly toastService = inject(ToastService);
+	@ViewChild('addCredentialDialog') addCredentialDialog!: ElementRef;
+
 	protected readonly constants = inject(Constants);
-	protected readonly notifications = inject(Notifications);
-	protected readonly userService = inject(UserService);
 	private readonly store = inject(Store);
 
-	private readonly INITIAL_CREDENTIAL_FORM_MODEL = {
+	private readonly INITIAL_ADD_CREDENTIAL_FORM_MODEL: IAddCredential = {
 		credentialType: 0,
 		emailId: '',
 		host: '',
@@ -33,25 +27,29 @@ export class AddCredentialComponent {
 		user: '',
 		pass: '',
 	};
-	protected credentialFormModel: IAddCredential = {
-		...this.INITIAL_CREDENTIAL_FORM_MODEL,
+	protected addCredentialFormModel: IAddCredential = {
+		...this.INITIAL_ADD_CREDENTIAL_FORM_MODEL,
 	};
 
-	handleOnSubmitCredentialForm(event: Event, credentialForm: NgForm) {
-		this.store.dispatch(userActions.addCredential(this.credentialFormModel));
+	protected handleOnSubmitAddCredentialForm(event: Event): void {
+		this.store.dispatch(userActions.addCredential(this.addCredentialFormModel));
 		// TODO(Wasit): close modal only if the new credential is added successfully
 
 		this.handleOnModalClose();
 	}
 
-	handleOnModalOpen() {
-		this.credentialDialog.nativeElement.showModal();
+	protected handleOnModalOpen(): void {
+		this.addCredentialDialog.nativeElement.showModal();
 	}
 
-	handleOnModalClose() {
-		this.credentialDialog.nativeElement.close();
-		this.credentialFormModel = {
-			...this.INITIAL_CREDENTIAL_FORM_MODEL,
+	protected handleOnModalClose(): void {
+		this.addCredentialDialog.nativeElement.close();
+		this.handleResetAddCredentialFrom();
+	}
+
+	protected handleResetAddCredentialFrom(): void {
+		this.addCredentialFormModel = {
+			...this.INITIAL_ADD_CREDENTIAL_FORM_MODEL,
 		};
 	}
 }

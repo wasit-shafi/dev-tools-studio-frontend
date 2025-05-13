@@ -5,7 +5,8 @@ import { inject, Injectable } from '@angular/core';
 import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
 import {
-    IGetCredentialListResponse, IGetCredentialResponse, IPostCredentialRequestBody, IPostCredentialResponse
+    IDeleteCredentialResponse, IEditCredentialRequestBody, IEditCredentialResponse, IGetCredentialListResponse,
+    IGetCredentialResponse, IPostCredentialRequestBody, IPostCredentialResponse
 } from '@userModels/';
 
 @Injectable({
@@ -27,6 +28,19 @@ export class UserService {
 	public getCredential(_id: string): Observable<IGetCredentialResponse> {
 		return this.http.get<IGetCredentialResponse>(
 			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/credential/${_id}`
+		);
+	}
+
+	public deleteCredential(_id: string): Observable<IDeleteCredentialResponse> {
+		return this.http.delete<IDeleteCredentialResponse>(
+			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/credential/${_id}`
+		);
+	}
+
+	public editCredential(_id: string, data: IEditCredentialRequestBody): Observable<IEditCredentialResponse> {
+		return this.http.patch<IEditCredentialResponse>(
+			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/credential/${_id}`,
+			data
 		);
 	}
 

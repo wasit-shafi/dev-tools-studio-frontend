@@ -9,14 +9,8 @@ export interface IAddCredential {
 	pass: string;
 }
 
-export interface ICredentialData {
+export interface ICredentialData extends IAddCredential {
 	_id: string;
-	credentialType: number;
-	emailId: string;
-	host: string;
-	port: number;
-	user: string;
-	pass: string;
 }
 
 export interface IGetCredentialResponse extends IApiBaseResponse {
@@ -31,19 +25,22 @@ export interface IGetCredentialListResponse extends IApiBaseResponse {
 	};
 }
 
-export interface IPostCredentialRequestBody {
-	credentialType: number;
-	emailId: string;
-	host: string;
-	port: number;
-	user: string;
-	pass: string;
-}
+export interface IPostCredentialRequestBody extends Omit<ICredentialData, '_id'> {}
 
 export interface IPostCredentialResponse extends IApiBaseResponse {
 	data: {
 		_id: string;
 	};
+}
+
+export interface IDeleteCredentialResponse extends IApiBaseResponse {
+	data: null;
+}
+
+export interface IEditCredentialRequestBody extends Omit<ICredentialData, '_id'> {}
+
+export interface IEditCredentialResponse extends IApiBaseResponse {
+	data: ICredentialData;
 }
 
 export interface IUserState {

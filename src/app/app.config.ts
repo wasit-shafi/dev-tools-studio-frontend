@@ -8,6 +8,7 @@ import { errorInterceptor } from '@coreInterceptors/error/error.interceptor';
 import { Constants } from '@coreShared/';
 import { authFeature, uiFeature } from '@coreStore/';
 import * as authEffects from '@coreStore/auth/auth.effects';
+import * as uiEffects from '@coreStore/ui/ui.effect';
 import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideState, provideStore } from '@ngrx/store';
@@ -31,6 +32,7 @@ export const appConfig: ApplicationConfig = {
 		provideState(uiFeature),
 		provideState(userFeature),
 		provideEffects(authEffects),
+		provideEffects(uiEffects),
 		provideEffects(userEffects),
 		provideStoreDevtools({
 			maxAge: 25, // Retains last 25 states
