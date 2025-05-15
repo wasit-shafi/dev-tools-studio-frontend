@@ -23,5 +23,6 @@ export const authActions = createActionGroup({
 		resetPassword: props<{ password: string; confirmPassword: string; reCaptcha: string; token: string }>(),
 		resetPasswordSuccess: props<{ message: string }>(),
 		resetPasswordFailure: props<{ message: string }>(),
+		autoLoginSuccess: props<{ currentUser: any }>(),
 	},
 });
