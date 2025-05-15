@@ -26,7 +26,7 @@
 			<!-- Dashboard -->
 
 			<li [routerLink]="[constants.ROUTES._DASHBOARD]">
-				<a [routerLinkActive]="['active']">
+				<a [routerLinkActive]="['menu-active']">
 					<svg
 						class="h-5 w-5"
 						xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@
 			<!-- Settings -->
 
 			<li [routerLink]="[constants.ROUTES._SETTINGS]">
-				<a [routerLinkActive]="['active']">
+				<a [routerLinkActive]="['menu-active']">
 					<svg
 						class="h-5 w-5"
 						xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +71,7 @@
 				[routerLink]="[constants.ROUTES._CONTROL_PANEL]"
 				*appHasRole="[constants.USER_ROLES.ADMIN]"
 			>
-				<a [routerLinkActive]="['active']">
+				<a [routerLinkActive]="['menu-active']">
 					<svg
 						class="h-5 w-5"
 						xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +115,7 @@
 
 			<li [routerLink]="[constants.ROUTES.ROOT]">
 				<a
-					[routerLinkActive]="['active']"
+					[routerLinkActive]="['menu-active']"
 					[routerLinkActiveOptions]="{ exact: true }"
 				>
 					<svg
@@ -138,7 +138,7 @@
 			<!-- Contact -->
 
 			<li [routerLink]="[constants.ROUTES._CONTACT]">
-				<a [routerLinkActive]="['active']">
+				<a [routerLinkActive]="['menu-active']">
 					<svg
 						class="h-5 w-5"
 						xmlns="http://www.w3.org/2000/svg"
@@ -159,7 +159,7 @@
 			<!-- Sign Up -->
 
 			<li [routerLink]="[constants.ROUTES._SIGNUP]">
-				<a [routerLinkActive]="['active']">
+				<a [routerLinkActive]="['menu-active']">
 					<svg
 						class="h-5 w-5"
 						xmlns="http://www.w3.org/2000/svg"
@@ -180,7 +180,7 @@
 			<!-- Sign In -->
 
 			<li [routerLink]="[constants.ROUTES._SIGNIN]">
-				<a [routerLinkActive]="['active']">
+				<a [routerLinkActive]="['menu-active']">
 					<svg
 						class="h-5 w-5"
 						xmlns="http://www.w3.org/2000/svg"

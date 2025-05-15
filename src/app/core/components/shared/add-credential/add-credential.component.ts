@@ -21,6 +21,7 @@ export class AddCredentialComponent {
 
 	private readonly INITIAL_ADD_CREDENTIAL_FORM_MODEL: IAddCredential = {
 		credentialType: 0,
+		displayName: '',
 		emailId: '',
 		host: '',
 		port: 0,

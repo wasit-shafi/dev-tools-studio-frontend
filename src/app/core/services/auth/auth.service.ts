@@ -55,7 +55,7 @@ export class AuthService implements OnInit {
 		);
 	}
 
-	public postSignout() {
+	public postSignout(): Observable<any> {
 		return this.http.post(`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/auth/signout`, {});
 	}
 
@@ -73,11 +73,11 @@ export class AuthService implements OnInit {
 		);
 	}
 
-	public getMe() {
+	public getMe(): Observable<any> {
 		return this.http.get(`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/auth/me`);
 	}
 
-	public getRefresh() {
+	public getRefresh(): Observable<any> {
 		return this.http.post(`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/auth/refresh`, {
 			refreshToken:
 				this.authState.currentUser?.refreshToken ||

@@ -52,7 +52,7 @@ export class MailComponent implements OnInit {
 		closing: ['', [Validators.required]],
 		signature: ['', [Validators.required]],
 		attachments: this.formBuilder.array([this.formBuilder.control('')]),
-		confirmationMail: [true, [Validators.required]],
+		receiveConfirmationEmail: [true, [Validators.required]],
 	});
 
 	ngOnInit(): void {
@@ -71,7 +71,6 @@ export class MailComponent implements OnInit {
 	get dateTimeLocal() {
 		return this.mailForm.get('dateTimeLocal');
 	}
-
 	// Added custom validator for dateTimeLocal, as the min validation for 'time' only was not working properly
 
 	private customValidatorForDateTimeLocal(control: AbstractControl): ValidationErrors | null {
@@ -80,10 +79,9 @@ export class MailComponent implements OnInit {
 
 		return scheduledDate < currentDate ? { min: "Date & Time can't be less than current date & time" } : null;
 	}
-	// TODO(Wasit): review what should be the type of 'form' here
 
-	handleOnSubmitSendEmailForm(form: any): void {
-		const url = `${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/mail/send`;
+	handleOnSubmitSendEmailForm(): void {
+		const url = `${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/email`;
 
 		this.http
 			.post(url, {
@@ -107,7 +105,7 @@ export class MailComponent implements OnInit {
 			});
 	}
 
-	protected handleOnFromEmailChange(selectedEmailId: string) {
+	protected handleOnFromEmailChange(selectedEmailId: string): void {
 		const item = this.credentialList.find((item) => item.emailId === selectedEmailId);
 		this.currentSmtpCredentials = item ? { ...item } : { ...this.INITIAL_SMTP_CREDENTIALS };
 	}

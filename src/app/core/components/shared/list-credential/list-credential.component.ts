@@ -32,11 +32,11 @@ export class ListCredentialComponent implements OnInit {
 		});
 	}
 
-	protected handleEditCredential(credential: ICredentialData) {
+	protected handleEditCredential(credential: ICredentialData): void {
 		this.editCredentialComponent.handleOnModalOpen({ ...credential });
 	}
 
-	protected handleDeleteCredential(_id: string) {
+	protected handleDeleteCredential(_id: string): void {
 		this.store.dispatch(userActions.deleteCredential({ _id }));
 	}
 }

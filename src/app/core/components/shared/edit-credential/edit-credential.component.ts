@@ -21,6 +21,7 @@ export class EditCredentialComponent {
 	private readonly INITIAL_EDIT_CREDENTIAL_FORM_MODEL: ICredentialData = {
 		_id: '',
 		credentialType: 0,
+		displayName: '',
 		emailId: '',
 		host: '',
 		port: 0,

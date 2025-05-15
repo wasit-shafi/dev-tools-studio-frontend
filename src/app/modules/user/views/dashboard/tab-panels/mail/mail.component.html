@@ -3,7 +3,7 @@
 		class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center gap-4"
 		autocomplete="off"
 		[formGroup]="mailForm"
-		(submit)="handleOnSubmitSendEmailForm(mailForm)"
+		(submit)="handleOnSubmitSendEmailForm()"
 	>
 		<select
 			class="select w-full"
@@ -168,7 +168,7 @@
 			<input
 				class="checkbox-success checkbox"
 				type="checkbox"
-				formControlName="confirmationMail"
+				formControlName="receiveConfirmationEmail"
 			/>
 			<span class="label-text">Receive Status/Confirmation Mail Back</span>
 		</label>

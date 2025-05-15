@@ -2,6 +2,7 @@ import { IApiBaseResponse } from '@coreModels/';
 
 export interface IAddCredential {
 	credentialType: number;
+	displayName: string;
 	emailId: string;
 	host: string;
 	port: number;
