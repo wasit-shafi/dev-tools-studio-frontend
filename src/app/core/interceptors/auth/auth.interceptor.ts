@@ -19,13 +19,19 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
 		},
 	});
 
-	const accessToken: string =
-		String(authState?.currentUser?.accessToken) ||
-		String(persistenceService.get(constants.LOCAL_STORAGE_KEYS.REFRESH_TOKEN)) ||
-		'';
+	let token: string = '';
+
+	if (request.url.endsWith('/auth/refresh')) {
+		token =
+			authState?.currentUser?.refreshToken ??
+			String(persistenceService.get(constants.LOCAL_STORAGE_KEYS.REFRESH_TOKEN));
+	} else {
+		token =
+			authState?.currentUser?.accessToken ?? String(persistenceService.get(constants.LOCAL_STORAGE_KEYS.ACCESS_TOKEN));
+	}
 
 	const newRequest = request.clone({
-		headers: request.headers.set('Authorization', `Bearer ${accessToken}`),
+		headers: request.headers.set('Authorization', `Bearer ${token}`),
 		withCredentials: true,
 	});
 	return next(newRequest);
