@@ -4,7 +4,6 @@ interface CustomErrorResponse {
 	code: number;
 	data: any;
 	message: string;
-	isOperational?: boolean;
 }
 
 interface CustomHttpErrorResponse extends HttpErrorResponse {
