@@ -1,3 +1,4 @@
+import { IUser } from '@coreModels/';
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 
 export const authActions = createActionGroup({
@@ -6,8 +7,11 @@ export const authActions = createActionGroup({
 		// signin
 
 		signin: props<{ email: string; password: string; reCaptcha: string }>(),
-		signinSuccess: props<{ currentUser: any }>(),
+		signinSuccess: props<{ currentUser: IUser }>(),
 		signinFailure: props<{ message: string }>(),
+		// auto signin (using access/refresh token)
+
+		autoSigninSuccess: props<{ currentUser: IUser }>(),
 		// signout
 
 		signout: emptyProps(),
@@ -23,6 +27,5 @@ export const authActions = createActionGroup({
 		resetPassword: props<{ password: string; confirmPassword: string; reCaptcha: string; token: string }>(),
 		resetPasswordSuccess: props<{ message: string }>(),
 		resetPasswordFailure: props<{ message: string }>(),
-		autoLoginSuccess: props<{ currentUser: any }>(),
 	},
 });

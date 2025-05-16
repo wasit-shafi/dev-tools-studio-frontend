@@ -85,6 +85,29 @@ export const signinFailureEffect = createEffect(
 	},
 	{ functional: true, dispatch: false }
 );
+// Auto Signin
+
+export const autoSigninSuccessEffect = createEffect(
+	(actions$ = inject(Actions), persistenceService = inject(PersistenceService), constants = inject(Constants)) => {
+		return actions$.pipe(
+			ofType(authActions.autoSigninSuccess),
+			tap(({ currentUser }) => {
+				const { accessToken = '', refreshToken = '' } = currentUser;
+				// NOTE:  '*/auth/refresh' endpoint return the existing accessToken only while the '*/auth/me' returns both the newly created accessToken as well as refreshToken
+
+				if (accessToken) {
+					persistenceService.set(constants.LOCAL_STORAGE_KEYS.ACCESS_TOKEN, accessToken);
+				}
+
+				if (refreshToken) {
+					persistenceService.set(constants.LOCAL_STORAGE_KEYS.REFRESH_TOKEN, refreshToken);
+				}
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
 // signout
 
 export const signoutEffect = createEffect(

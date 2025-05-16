@@ -39,7 +39,7 @@ const reducer = createReducer(
 	on(authActions.forgotPasswordFailure, (state, action): IAuthState => {
 		return { ...state, forgotPasswordUi: { isEmailSent: false } };
 	}),
-	on(authActions.autoLoginSuccess, (state, action): IAuthState => {
+	on(authActions.autoSigninSuccess, (state, action): IAuthState => {
 		return { ...state, currentUser: action.currentUser };
 	})
 	// reset password

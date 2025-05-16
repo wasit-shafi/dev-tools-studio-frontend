@@ -41,27 +41,27 @@ export const appConfig: ApplicationConfig = {
 			}
 
 			return firstValueFrom(
-				// Attempt 1: Auto login with using accessToken
+				// Attempt 1: Auto Signin with using accessToken
 
 				http.get(`${environment.baseUrl}/${constants.API_PREFIX.API_V1}/auth/me`).pipe(
 					tap((response: any) => {
-						store.dispatch(authActions.autoLoginSuccess({ currentUser: response?.data?.user }));
+						store.dispatch(authActions.autoSigninSuccess({ currentUser: response?.data?.user }));
 					}),
 					catchError((error) => {
-						// Attempt 2: Auto login with using refreshToken
+						// Attempt 2: Auto Signin with using refreshToken
 
 						// NOTE(Wasit): the auth interceptor with inject the refreshToken for API endpoint ending with '*/auth/refresh'
 
 						return http.post(`${environment.baseUrl}/${constants.API_PREFIX.API_V1}/auth/refresh`, {}).pipe(
 							tap((response: any) => {
-								store.dispatch(authActions.autoLoginSuccess({ currentUser: response?.data?.user }));
+								store.dispatch(authActions.autoSigninSuccess({ currentUser: response?.data?.user }));
 							}),
 							catchError((error) => {
 								// Assuming the refresh token has also expired
 
 								persistenceService.remove(constants.LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
 								persistenceService.remove(constants.LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
-								// TODO: remove/delete the cookies as from the browser
+								// TODO: remove/delete the cookies as from the browser + also check if the new assess and refresh token is getting saved or not in redux state
 
 								router.navigate([constants.ROUTES.ROOT]);
 								return of(null);
