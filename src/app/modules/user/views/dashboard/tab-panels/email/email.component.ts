@@ -70,6 +70,7 @@ export class EmailComponent implements OnInit {
 	get subject() {
 		return this.mailForm.get('subject');
 	}
+
 	get dateTimeLocal() {
 		return this.mailForm.get('dateTimeLocal');
 	}

@@ -145,15 +145,15 @@ export class Constants {
 			LABEL: 'SMTP',
 			VALUE: 1,
 		},
-		OAUTH: {
-			LABEL: 'OAuth',
+		OAUTH2: {
+			LABEL: 'OAuth2',
 			VALUE: 2,
 		},
 	} as const;
 
 	public readonly CREDENTIAL_TYPE_MAPPING: Record<number, string> = {
 		[this.CREDENTIAL_TYPE.SMTP.VALUE]: this.CREDENTIAL_TYPE.SMTP.LABEL,
-		[this.CREDENTIAL_TYPE.OAUTH.VALUE]: this.CREDENTIAL_TYPE.OAUTH.LABEL,
+		[this.CREDENTIAL_TYPE.OAUTH2.VALUE]: this.CREDENTIAL_TYPE.OAUTH2.LABEL,
 	} as const;
 
 	// Referred from https://www.html-code-generator.com/javascript/array/country-names

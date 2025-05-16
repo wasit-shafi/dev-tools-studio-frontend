@@ -3,6 +3,7 @@ import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { CustomHttpErrorResponse } from '@app/core/models';
 import { AuthService, PersistenceService, ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -26,7 +27,7 @@ export const signinEffect = createEffect(
 						const data = { currentUser: response.data.user };
 						return authActions.signinSuccess(data);
 					}),
-					catchError((errorResponse: HttpErrorResponse) => {
+					catchError((errorResponse: CustomHttpErrorResponse) => {
 						return of(authActions.signinFailure({ message: errorResponse.error.message }));
 					})
 				);
@@ -119,7 +120,7 @@ export const signoutEffect = createEffect(
 					map((response: any) => {
 						return authActions.signoutSuccess({ message: response.message });
 					}),
-					catchError((errorResponse: HttpErrorResponse) => {
+					catchError((errorResponse: CustomHttpErrorResponse) => {
 						return of(authActions.signoutFailure({ message: errorResponse.error.message }));
 					})
 				);
@@ -183,7 +184,7 @@ export const forgotPasswordEffect = createEffect(
 					map((response) => {
 						return authActions.forgotPasswordSuccess({ message: response.message });
 					}),
-					catchError((errorResponse: HttpErrorResponse) => {
+					catchError((errorResponse: CustomHttpErrorResponse) => {
 						return of(authActions.forgotPasswordFailure({ message: errorResponse.error.message }));
 					})
 				);
@@ -244,7 +245,7 @@ export const resetPasswordEffect = createEffect(
 					map((response) => {
 						return authActions.resetPasswordSuccess({ message: response.message });
 					}),
-					catchError((errorResponse: HttpErrorResponse) => {
+					catchError((errorResponse: CustomHttpErrorResponse) => {
 						return of(authActions.resetPasswordFailure({ message: errorResponse.error.message }));
 					})
 				);

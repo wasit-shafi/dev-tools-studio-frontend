@@ -2,6 +2,7 @@ import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 
 import { HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
+import { CustomHttpErrorResponse } from '@coreModels/';
 import { ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -21,7 +22,7 @@ export const getCredentialListEffect = createEffect(
 					map((response: IGetCredentialListResponse) => {
 						return userActions.getCredentialListSuccess({ credentialList: response.data.credentialList });
 					}),
-					catchError((errorResponse: HttpErrorResponse) => {
+					catchError((errorResponse: CustomHttpErrorResponse) => {
 						return of(userActions.getCredentialListFailure({ message: errorResponse.error.message }));
 					})
 				);
@@ -55,7 +56,7 @@ export const addCredentialEffect = createEffect(
 					map((response: IPostCredentialResponse) => {
 						return userActions.addCredentialSuccess({ message: response.message });
 					}),
-					catchError((errorResponse: HttpErrorResponse) => {
+					catchError((errorResponse: CustomHttpErrorResponse) => {
 						return of(userActions.addCredentialFailure({ message: errorResponse.error.message }));
 					})
 				);
@@ -106,7 +107,7 @@ export const deleteCredentialEffect = createEffect(
 					map((response: IDeleteCredentialResponse) => {
 						return userActions.deleteCredentialSuccess({ message: response.message });
 					}),
-					catchError((errorResponse: HttpErrorResponse) => {
+					catchError((errorResponse: CustomHttpErrorResponse) => {
 						return of(userActions.deleteCredentialFailure({ message: errorResponse.error.message }));
 					})
 				);
@@ -156,7 +157,7 @@ export const editCredentialEffect = createEffect(
 					map((response: IEditCredentialResponse) => {
 						return userActions.editCredentialSuccess({ message: response.message });
 					}),
-					catchError((errorResponse: HttpErrorResponse) => {
+					catchError((errorResponse: CustomHttpErrorResponse) => {
 						return of(userActions.editCredentialFailure({ message: errorResponse.error.message }));
 					})
 				);
