@@ -4,3 +4,8 @@ export interface IApiBaseResponse {
 	message: string;
 	data: unknown;
 }
+
+export interface IHasPermissionDirective {
+	roles: number[];
+	operation: string;
+}

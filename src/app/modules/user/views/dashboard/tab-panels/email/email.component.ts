@@ -7,16 +7,16 @@ import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
 import { Store } from '@ngrx/store';
 import { ICredentialData } from '@userModels/';
-import { userFeature } from '@userStore/';
+import { userActions, userFeature } from '@userStore/';
 
 @Component({
-	selector: 'dts-mail',
+	selector: 'dts-email',
 	imports: [ReactiveFormsModule, JsonPipe],
 	providers: [Constants, FormBuilder],
-	templateUrl: './mail.component.html',
-	styleUrl: './mail.component.scss',
+	templateUrl: './email.component.html',
+	styleUrl: './email.component.scss',
 })
-export class MailComponent implements OnInit {
+export class EmailComponent implements OnInit {
 	private readonly constants = inject(Constants);
 	private readonly formBuilder = inject(FormBuilder);
 	private readonly http = inject(HttpClient);
@@ -56,6 +56,8 @@ export class MailComponent implements OnInit {
 	});
 
 	ngOnInit(): void {
+		this.store.dispatch(userActions.getCredentialList());
+
 		this.store.select(userFeature.selectCredentialList).subscribe({
 			next: (data) => {
 				this.credentialList = data ?? [];

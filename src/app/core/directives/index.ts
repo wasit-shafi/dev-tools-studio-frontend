@@ -1,1 +1,1 @@
-export * from './has-role/has-role.directive';
+export * from './has-permission/has-permission.directive';

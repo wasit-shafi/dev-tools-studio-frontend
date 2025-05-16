@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 interface CustomErrorResponse {
 	code: number;
-	data: any;
+	data: unknown;
 	message: string;
 }
 

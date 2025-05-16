@@ -17,5 +17,7 @@ export const authAdminGuard: CanMatchFn = (route, segments) => {
 		},
 	});
 
-	return (authState?.currentUser?.roles || []).includes(constants.USER_ROLES.ADMIN);
+	const roles = authState?.currentUser?.roles || [];
+
+	return roles.includes(constants.ACCESS_ROLES.ADMIN) || roles.includes(constants.ACCESS_ROLES.SUPER_ADMIN);
 };

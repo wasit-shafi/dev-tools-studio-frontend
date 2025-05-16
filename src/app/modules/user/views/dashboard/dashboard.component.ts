@@ -1,12 +1,20 @@
+import { AdminComponent } from '@adminViews/';
 import { Component, inject } from '@angular/core';
-import { HasRoleDirective } from '@coreDirectives/has-role/has-role.directive';
+import { HasPermissionDirective } from '@coreDirectives/';
 import { Constants } from '@coreShared/';
 
-import { AdminComponent, ColorsComponent, MailComponent, MetaTagsComponent, OpenGraphComponent } from './tab-panels';
+import { ColorsComponent, EmailComponent, MetaTagsComponent, OpenGraphComponent } from './tab-panels';
 
 @Component({
 	selector: 'dts-dashboard',
-	imports: [AdminComponent, MailComponent, ColorsComponent, MetaTagsComponent, OpenGraphComponent, HasRoleDirective],
+	imports: [
+		EmailComponent,
+		ColorsComponent,
+		MetaTagsComponent,
+		OpenGraphComponent,
+		HasPermissionDirective,
+		AdminComponent,
+	],
 	providers: [Constants],
 	templateUrl: './dashboard.component.html',
 	styleUrl: './dashboard.component.scss',

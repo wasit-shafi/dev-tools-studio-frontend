@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { HasRoleDirective } from '@coreDirectives/';
+import { HasPermissionDirective } from '@coreDirectives/';
 import { IAuthState } from '@coreModels/';
 import { BcChannelService } from '@coreServices/';
 import { Constants } from '@coreShared/';
@@ -11,7 +11,7 @@ import { Store } from '@ngrx/store';
 @Component({
 	selector: 'dts-nav',
 	providers: [Constants],
-	imports: [CommonModule, RouterLink, RouterLinkActive, HasRoleDirective],
+	imports: [CommonModule, RouterLink, RouterLinkActive, HasPermissionDirective],
 	templateUrl: './nav.component.html',
 	styleUrl: './nav.component.scss',
 })

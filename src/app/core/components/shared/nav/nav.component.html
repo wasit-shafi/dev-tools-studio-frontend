@@ -69,7 +69,10 @@
 
 			<li
 				[routerLink]="[constants.ROUTES._CONTROL_PANEL]"
-				*appHasRole="[constants.USER_ROLES.ADMIN]"
+				*dtsHasPermission="{
+					roles: [constants.ACCESS_ROLES.ADMIN, constants.ACCESS_ROLES.SUPER_ADMIN],
+					operation: constants.ACCESS_OPERATIONS.OR,
+				}"
 			>
 				<a [routerLinkActive]="['menu-active']">
 					<svg

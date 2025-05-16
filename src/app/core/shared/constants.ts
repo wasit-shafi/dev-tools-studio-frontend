@@ -118,11 +118,16 @@ export class Constants {
 		REFRESH_TOKEN: 'REFRESH_TOKEN',
 	} as const;
 
-	public readonly USER_ROLES: Record<string, number> = {
+	public readonly ACCESS_ROLES = {
 		SUPER_ADMIN: 1,
 		ADMIN: 2,
 		APP_USER: 3,
-	} as const;
+	} as const satisfies Record<string, number>;
+
+	public readonly ACCESS_OPERATIONS = {
+		AND: '&&',
+		OR: '||',
+	} as const satisfies Record<string, string>;
 
 	public readonly BROADCAST_CHANNELS = {
 		USER: {

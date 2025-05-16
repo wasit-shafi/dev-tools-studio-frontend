@@ -5,7 +5,12 @@
 	>
 		<!-- Admin Tab -->
 
-		<ng-container *appHasRole="[constants.USER_ROLES.ADMIN]">
+		<ng-container
+			*dtsHasPermission="{
+				roles: [constants.ACCESS_ROLES.ADMIN, constants.ACCESS_ROLES.SUPER_ADMIN],
+				operation: constants.ACCESS_OPERATIONS.OR,
+			}"
+		>
 			<input
 				class="tab [--tab-bg:lavender]"
 				name="tab-admin"
@@ -34,7 +39,7 @@
 			class="tab-content border-base-300 bg-[lavender] p-6"
 			role="tabpanel"
 		>
-			<dts-mail></dts-mail>
+			<dts-email></dts-email>
 		</div>
 		<!-- Colors Tab -->
 
