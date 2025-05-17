@@ -5,8 +5,9 @@ import { inject, Injectable } from '@angular/core';
 import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
 import {
-    IDeleteCredentialResponse, IEditCredentialRequestBody, IEditCredentialResponse, IGetCredentialListResponse,
-    IGetCredentialResponse, IPostCredentialRequestBody, IPostCredentialResponse
+    IDeleteCredentialResponse, IDeleteEmailTemplateResponse, IEditCredentialRequestBody, IEditCredentialResponse,
+    IGetCredentialListResponse, IGetCredentialResponse, IGetEmailTemplateListResponse, IPostCredentialRequestBody,
+    IPostCredentialResponse, IPostEmailTemplateRequestBody, IPostEmailTemplateResponse
 } from '@userModels/';
 
 @Injectable({
@@ -50,7 +51,22 @@ export class UserService {
 		);
 	}
 
-	public postEmailTemplate(data: any): Observable<any> {
-		return this.http.post(`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/email-template`, data);
+	public postEmailTemplate(data: IPostEmailTemplateRequestBody): Observable<IPostEmailTemplateResponse> {
+		return this.http.post<IPostEmailTemplateResponse>(
+			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/email-template`,
+			data
+		);
+	}
+
+	public getEmailTemplateList(): Observable<IGetEmailTemplateListResponse> {
+		return this.http.get<IGetEmailTemplateListResponse>(
+			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/email-template-list`
+		);
+	}
+
+	public deleteEmailTemplate(_id: string): Observable<IDeleteEmailTemplateResponse> {
+		return this.http.delete<IDeleteEmailTemplateResponse>(
+			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/email-template/${_id}`
+		);
 	}
 }

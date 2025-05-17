@@ -41,9 +41,42 @@ export interface IDeleteCredentialResponse extends IApiBaseResponse {
 export interface IEditCredentialRequestBody extends Omit<ICredentialData, '_id'> {}
 
 export interface IEditCredentialResponse extends IApiBaseResponse {
-	data: ICredentialData;
+	data: { _id: string };
+}
+
+export interface IAddEmailTemplate {
+	templateName: string;
+	subject: string;
+	salutation: string;
+	body: string;
+	closing: string;
+	signature: string;
+	tags: string[];
+}
+
+export interface IEmailTemplateData extends IAddEmailTemplate {
+	_id: string;
+}
+
+export interface IGetEmailTemplateListResponse extends IApiBaseResponse {
+	data: {
+		emailTemplateList: IEmailTemplateData[];
+	};
+}
+
+export interface IDeleteEmailTemplateResponse extends IApiBaseResponse {
+	data: null;
+}
+
+export interface IPostEmailTemplateRequestBody extends Omit<IEmailTemplateData, '_id'> {}
+
+export interface IPostEmailTemplateResponse extends IApiBaseResponse {
+	data: {
+		_id: string;
+	};
 }
 
 export interface IUserState {
 	credentialList: ICredentialData[] | null;
+	emailTemplateList: IEmailTemplateData[] | null;
 }

@@ -3,7 +3,7 @@ import { EditCredentialComponent } from '@coreComponents/';
 import { Constants } from '@coreShared/';
 import { Store } from '@ngrx/store';
 import { ICredentialData, IUserState } from '@userModels/';
-import { userActions, userFeature } from '@userStore/user';
+import { userActions, userFeature } from '@userStore/';
 
 @Component({
 	selector: 'dts-list-credential',

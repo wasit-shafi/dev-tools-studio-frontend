@@ -13,12 +13,7 @@ import { authActions } from './auth.actions';
 // signin
 
 export const signinEffect = createEffect(
-	(
-		actions$ = inject(Actions),
-		authService = inject(AuthService),
-		constants = inject(Constants),
-		router = inject(Router)
-	) => {
+	(actions$ = inject(Actions), authService = inject(AuthService)) => {
 		return actions$.pipe(
 			ofType(authActions.signin),
 			exhaustMap(({ email, password, reCaptcha }) => {
@@ -69,7 +64,6 @@ export const signinFailureEffect = createEffect(
 		actions$ = inject(Actions),
 		authService = inject(AuthService),
 		constants = inject(Constants),
-		router = inject(Router),
 		toastService = inject(ToastService)
 	) => {
 		return actions$.pipe(
@@ -146,7 +140,6 @@ export const signoutSuccessEffect = createEffect(
 				router.navigate([constants.ROUTES.ROOT]);
 				toastService.enqueueToastNotification({
 					message: data.message,
-					type: constants.ALERT_TYPE.SUCCESS,
 				});
 			})
 		);
@@ -171,12 +164,7 @@ export const signoutFailureEffect = createEffect(
 // forgotPassword
 
 export const forgotPasswordEffect = createEffect(
-	(
-		actions$ = inject(Actions),
-		authService = inject(AuthService),
-		constants = inject(Constants),
-		router = inject(Router)
-	) => {
+	(actions$ = inject(Actions), authService = inject(AuthService)) => {
 		return actions$.pipe(
 			ofType(authActions.forgotPassword),
 			exhaustMap(({ email, reCaptcha }) => {
@@ -195,7 +183,7 @@ export const forgotPasswordEffect = createEffect(
 );
 
 export const forgotPasswordSuccessEffect = createEffect(
-	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+	(actions$ = inject(Actions), toastService = inject(ToastService)) => {
 		return actions$.pipe(
 			ofType(authActions.forgotPasswordSuccess),
 			tap((response: any) => {
@@ -209,13 +197,7 @@ export const forgotPasswordSuccessEffect = createEffect(
 );
 
 export const forgotPasswordFailureEffect = createEffect(
-	(
-		actions$ = inject(Actions),
-		authService = inject(AuthService),
-		constants = inject(Constants),
-		router = inject(Router),
-		toastService = inject(ToastService)
-	) => {
+	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
 		return actions$.pipe(
 			ofType(authActions.forgotPasswordFailure),
 			tap((error) => {
@@ -232,12 +214,7 @@ export const forgotPasswordFailureEffect = createEffect(
 // resetPassword
 
 export const resetPasswordEffect = createEffect(
-	(
-		actions$ = inject(Actions),
-		authService = inject(AuthService),
-		constants = inject(Constants),
-		router = inject(Router)
-	) => {
+	(actions$ = inject(Actions), authService = inject(AuthService)) => {
 		return actions$.pipe(
 			ofType(authActions.resetPassword),
 			exhaustMap(({ password, confirmPassword, reCaptcha, token }) => {
@@ -256,7 +233,7 @@ export const resetPasswordEffect = createEffect(
 );
 
 export const resetPasswordSuccessEffect = createEffect(
-	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+	(actions$ = inject(Actions), toastService = inject(ToastService)) => {
 		return actions$.pipe(
 			ofType(authActions.resetPasswordSuccess),
 			tap((response) => {
@@ -283,13 +260,7 @@ export const redirectAfterResetPasswordSuccessEffect = createEffect(
 );
 
 export const resetPasswordFailureEffect = createEffect(
-	(
-		actions$ = inject(Actions),
-		authService = inject(AuthService),
-		constants = inject(Constants),
-		router = inject(Router),
-		toastService = inject(ToastService)
-	) => {
+	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
 		return actions$.pipe(
 			ofType(authActions.resetPasswordFailure),
 			tap((error) => {

@@ -8,6 +8,9 @@ const reducer = createReducer(
 	initialUserState,
 	on(userActions.getCredentialListSuccess, (state, action): IUserState => {
 		return { ...state, credentialList: action.credentialList };
+	}),
+	on(userActions.getEmailTemplateListSuccess, (state, action): IUserState => {
+		return { ...state, emailTemplateList: action.emailTemplateList };
 	})
 );
 

@@ -1,0 +1,67 @@
+<div>
+	@for (emailTemplate of emailTemplateList$ | async; track $index) {
+		<div class="collapse-plus bg-base-100 border-base-300 collapse mb-2 border">
+			<input
+				type="checkbox"
+				name="list-email-template-accordion"
+			/>
+			<div class="collapse-title font-semibold">{{ $index + 1 }}. {{ emailTemplate.templateName }}</div>
+			<div class="collapse-content text-sm">
+				<div class="flex items-center gap-x-2">
+					<button
+						class="btn btn-sm w-9 p-0"
+						(click)="handleDeleteEmailTemplate(emailTemplate._id)"
+						title="Delete EmailTemplate"
+					>
+						<img
+							class="inline-block size-5"
+							src="assets/images/delete-24.svg"
+							alt="delete"
+						/>
+					</button>
+					<button
+						class="btn btn-sm w-9 p-0"
+						(click)="handleEditEmailTemplate(emailTemplate)"
+						title="Edit EmailTemplate"
+					>
+						<img
+							class="inline-block size-5"
+							src="assets/images/edit-pencil-24.svg"
+							alt="edit"
+						/>
+					</button>
+				</div>
+				<div>
+					<span>subject:</span>
+					<span> {{ emailTemplate.subject }}</span>
+				</div>
+				<div>
+					<span>salutation:</span>
+					<span> {{ emailTemplate.salutation }}</span>
+				</div>
+				<div>
+					<span>body:</span>
+					<span> {{ emailTemplate.body }}</span>
+				</div>
+				<div>
+					<span>closing:</span>
+					<span> {{ emailTemplate.closing }}</span>
+				</div>
+				<div>
+					<span>signature:</span>
+					<span> {{ emailTemplate.signature }}</span>
+				</div>
+				<div>
+					<span>tags:</span>
+					@for (tag of emailTemplate.tags; track $index) {
+						<div class="badge badge-soft badge-primary mx-1">{{ tag }}</div>
+					}
+				</div>
+			</div>
+		</div>
+	} @empty {
+		<h1>No Email Template Added Yet</h1>
+	}
+</div>
+
+<dts-edit-email-template #editEmailTemplateComponent></dts-edit-email-template>

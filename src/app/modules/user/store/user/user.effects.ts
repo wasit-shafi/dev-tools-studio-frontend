@@ -1,13 +1,13 @@
 import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 
-import { HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { CustomHttpErrorResponse } from '@coreModels/';
 import { ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
-    IDeleteCredentialResponse, IEditCredentialResponse, IGetCredentialListResponse, IPostCredentialResponse
+    IDeleteCredentialResponse, IDeleteEmailTemplateResponse, IEditCredentialResponse, IGetCredentialListResponse,
+    IGetEmailTemplateListResponse, IPostCredentialResponse, IPostEmailTemplateResponse
 } from '@userModels/';
 import { UserService } from '@userServices/';
 
@@ -67,7 +67,7 @@ export const addCredentialEffect = createEffect(
 );
 
 export const addCredentialSuccessEffect = createEffect(
-	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+	(actions$ = inject(Actions), toastService = inject(ToastService)) => {
 		return actions$.pipe(
 			ofType(userActions.addCredentialSuccess),
 			tap(({ message }) => {
@@ -118,7 +118,7 @@ export const deleteCredentialEffect = createEffect(
 );
 
 export const deleteCredentialSuccessEffect = createEffect(
-	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+	(actions$ = inject(Actions), toastService = inject(ToastService)) => {
 		return actions$.pipe(
 			ofType(userActions.deleteCredentialSuccess),
 			tap(({ message }) => {
@@ -168,7 +168,7 @@ export const editCredentialEffect = createEffect(
 );
 
 export const editCredentialSuccessEffect = createEffect(
-	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+	(actions$ = inject(Actions), toastService = inject(ToastService)) => {
 		return actions$.pipe(
 			ofType(userActions.editCredentialSuccess),
 			tap(({ message }) => {
@@ -177,6 +177,7 @@ export const editCredentialSuccessEffect = createEffect(
 				});
 			}),
 			// Dispatching getCredentialList on success so that the state data & app UI gets auto updated
+
 			map(userActions.getCredentialList)
 		);
 	},
@@ -187,6 +188,142 @@ export const editCredentialFailureEffect = createEffect(
 	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
 		return actions$.pipe(
 			ofType(userActions.editCredentialFailure),
+			tap((error) => {
+				toastService.enqueueToastNotification({
+					message: error.message,
+					type: constants.ALERT_TYPE.ERROR,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
+export const getEmailTemplateListEffect = createEffect(
+	(actions$ = inject(Actions), userService = inject(UserService)) => {
+		return actions$.pipe(
+			ofType(userActions.getEmailTemplateList),
+			exhaustMap(() => {
+				return userService.getEmailTemplateList().pipe(
+					map((response: IGetEmailTemplateListResponse) => {
+						return userActions.getEmailTemplateListSuccess({ emailTemplateList: response.data.emailTemplateList });
+					}),
+					catchError((errorResponse: CustomHttpErrorResponse) => {
+						return of(userActions.getEmailTemplateListFailure({ message: errorResponse.error.message }));
+					})
+				);
+			})
+		);
+	},
+	{ functional: true }
+);
+
+export const getEmailTemplateListFailureEffect = createEffect(
+	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(userActions.getEmailTemplateListFailure),
+			tap((error) => {
+				toastService.enqueueToastNotification({
+					message: error.message,
+					type: constants.ALERT_TYPE.ERROR,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
+export const deleteEmailTemplateEffect = createEffect(
+	(actions$ = inject(Actions), userService = inject(UserService)) => {
+		return actions$.pipe(
+			ofType(userActions.deleteEmailTemplate),
+			exhaustMap(({ _id }) => {
+				return userService.deleteEmailTemplate(_id).pipe(
+					map((response: IDeleteEmailTemplateResponse) => {
+						return userActions.deleteEmailTemplateSuccess({ message: response.message });
+					}),
+					catchError((errorResponse: CustomHttpErrorResponse) => {
+						return of(userActions.deleteEmailTemplateFailure({ message: errorResponse.error.message }));
+					})
+				);
+			})
+		);
+	},
+	{ functional: true }
+);
+
+export const deleteEmailTemplateSuccessEffect = createEffect(
+	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(userActions.deleteEmailTemplateSuccess),
+			tap(({ message }) => {
+				toastService.enqueueToastNotification({
+					message,
+				});
+			}),
+			// Dispatching getEmailTemplateList on success so that the state data & app UI gets auto updated
+
+			map(userActions.getEmailTemplateList)
+		);
+	},
+	{ functional: true }
+);
+
+export const deleteEmailTemplateFailureEffect = createEffect(
+	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(userActions.deleteEmailTemplateFailure),
+			tap((error) => {
+				toastService.enqueueToastNotification({
+					message: error.message,
+					type: constants.ALERT_TYPE.ERROR,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
+export const addEmailTemplateEffect = createEffect(
+	(actions$ = inject(Actions), userService = inject(UserService)) => {
+		return actions$.pipe(
+			ofType(userActions.addEmailTemplate),
+			exhaustMap((addEmailTemplateData) => {
+				return userService.postEmailTemplate(addEmailTemplateData).pipe(
+					map((response: IPostEmailTemplateResponse) => {
+						return userActions.addEmailTemplateSuccess({ message: response.message });
+					}),
+					catchError((errorResponse: CustomHttpErrorResponse) => {
+						return of(userActions.addEmailTemplateFailure({ message: errorResponse.error.message }));
+					})
+				);
+			})
+		);
+	},
+	{ functional: true }
+);
+
+export const addEmailTemplateSuccessEffect = createEffect(
+	(actions$ = inject(Actions), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(userActions.addEmailTemplateSuccess),
+			tap(({ message }) => {
+				toastService.enqueueToastNotification({
+					message,
+				});
+			}),
+			// Dispatching getEmailTemplateList on success so that the state data & app UI gets auto updated
+
+			map(userActions.getEmailTemplateList)
+		);
+	},
+	{ functional: true }
+);
+
+export const addEmailTemplateFailureEffect = createEffect(
+	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(userActions.addEmailTemplateFailure),
 			tap((error) => {
 				toastService.enqueueToastNotification({
 					message: error.message,

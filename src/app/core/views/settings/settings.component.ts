@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { AddCredentialComponent, ListCredentialComponent } from '@app/core/components';
+import {
+    AddCredentialComponent, AddEmailTemplateComponent, ListCredentialComponent, ListEmailTemplateComponent
+} from '@coreComponents/';
 
 @Component({
 	selector: 'dts-settings',
-	imports: [AddCredentialComponent, ListCredentialComponent],
+	imports: [AddCredentialComponent, ListCredentialComponent, AddEmailTemplateComponent, ListEmailTemplateComponent],
 	templateUrl: './settings.component.html',
 	styleUrl: './settings.component.scss',
 })

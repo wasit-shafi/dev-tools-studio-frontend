@@ -1,0 +1,153 @@
+<button
+	class="btn btn-success ml-auto"
+	(click)="handleOnModalOpen()"
+>
+	<img
+		src="assets/images/circular-plus-24.svg "
+		alt="add-icon"
+	/>
+	Add New EmailTemplate
+</button>
+
+<dialog
+	#addEmailTemplateDialog
+	class="modal"
+>
+	<div class="modal-box">
+		<h3 class="mb-4 text-lg font-bold">Add New EmailTemplate</h3>
+		<form
+			#addEmailTemplateForm="ngForm"
+			(ngSubmit)="handleOnSubmitAddEmailTemplateForm($event)"
+			class="mx-auto flex flex-1 flex-col justify-center gap-4"
+		>
+			<!-- Template Name -->
+
+			<label
+				class="input input-bordered flex w-full items-center gap-2"
+				for="templateName_addEmailTemplateForm"
+			>
+				Template Name
+				<input
+					class="grow"
+					id="templateName_addEmailTemplateForm"
+					name="templateName"
+					type="text"
+					[(ngModel)]="addEmailTemplateFormModel.templateName"
+					autofocus
+					required
+				/>
+			</label>
+			<!-- Subject  -->
+
+			<label
+				class="input input-bordered flex w-full items-center gap-2"
+				for="subject_addEmailTemplateForm"
+			>
+				Subject
+				<input
+					class="grow"
+					id="subject_addEmailTemplateForm"
+					name="subject"
+					type="text"
+					[(ngModel)]="addEmailTemplateFormModel.subject"
+					autofocus
+					required
+				/>
+			</label>
+			<!-- Salutation  -->
+
+			<label
+				class="input input-bordered flex w-full items-center gap-2"
+				for="salutaion_addEmailTemplateForm"
+			>
+				Salutation
+				<input
+					class="grow"
+					id="salutaion_addEmailTemplateForm"
+					name="salutation"
+					type="text"
+					[(ngModel)]="addEmailTemplateFormModel.salutation"
+					autofocus
+					required
+				/>
+			</label>
+			<!-- Body -->
+
+			<label class="form-control">
+				<div class="label p-0 pb-1 pl-4">
+					<span class="label-text">Body</span>
+				</div>
+				<textarea
+					class="textarea textarea-bordered textarea-lg w-full"
+					placeholder="Enter Body..."
+					name="body"
+					[(ngModel)]="addEmailTemplateFormModel.body"
+					required
+				></textarea>
+			</label>
+			<!-- Closing -->
+
+			<label class="form-control">
+				<div class="label p-0 pb-1 pl-4">
+					<span class="label-text">Closing</span>
+				</div>
+				<textarea
+					class="textarea textarea-bordered textarea-lg w-full"
+					placeholder="Enter closing lines..."
+					name="closing"
+					[(ngModel)]="addEmailTemplateFormModel.closing"
+					required
+				></textarea>
+			</label>
+			<!-- Signature -->
+
+			<label class="form-control">
+				<div class="label p-0 pb-1 pl-4">
+					<span class="label-text">Signature</span>
+				</div>
+				<textarea
+					class="textarea textarea-bordered textarea-lg w-full"
+					placeholder="Enter Signature..."
+					name="signature"
+					[(ngModel)]="addEmailTemplateFormModel.signature"
+					required
+				></textarea>
+			</label>
+			<!-- Tags -->
+
+			<label
+				class="input input-bordered flex w-full items-center gap-2"
+				for="tags_addEmailTemplateForm"
+			>
+				Tags
+				<input
+					class="grow"
+					id="tags_addEmailTemplateForm"
+					name="tags"
+					type="text"
+					autofocus
+					disabled
+				/>
+			</label>
+
+			<div class="modal-action">
+				<button
+					class="btn btn-success flex-1 text-white"
+					type="submit"
+					[disabled]="!addEmailTemplateForm.form.valid"
+				>
+					Submit
+				</button>
+				<button
+					class="btn flex-1"
+					type="button"
+					(click)="handleOnModalClose()"
+				>
+					Cancel
+				</button>
+
+				<p></p>
+			</div>
+		</form>
+	</div>
+</dialog>
