@@ -24,7 +24,7 @@ export class ListEmailTemplateComponent {
 	}
 
 	protected handleEditEmailTemplate(emailTemplate: IEmailTemplateData): void {
-		// this.editEmailTemplateComponent.handleOnModalOpen({ ...emailTemplate });
+		this.editEmailTemplateComponent.handleOnModalOpen({ ...emailTemplate });
 	}
 
 	protected handleDeleteEmailTemplate(_id: string): void {

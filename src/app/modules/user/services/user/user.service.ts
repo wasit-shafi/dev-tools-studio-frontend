@@ -5,9 +5,19 @@ import { inject, Injectable } from '@angular/core';
 import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
 import {
-    IDeleteCredentialResponse, IDeleteEmailTemplateResponse, IEditCredentialRequestBody, IEditCredentialResponse,
-    IGetCredentialListResponse, IGetCredentialResponse, IGetEmailTemplateListResponse, IPostCredentialRequestBody,
-    IPostCredentialResponse, IPostEmailTemplateRequestBody, IPostEmailTemplateResponse
+	IDeleteCredentialResponse,
+	IDeleteEmailTemplateResponse,
+	IEditCredentialRequestBody,
+	IEditCredentialResponse,
+	IEditEmailTemplateRequestBody,
+	IEditEmailTemplateResponse,
+	IGetCredentialListResponse,
+	IGetCredentialResponse,
+	IGetEmailTemplateListResponse,
+	IPostCredentialRequestBody,
+	IPostCredentialResponse,
+	IPostEmailTemplateRequestBody,
+	IPostEmailTemplateResponse,
 } from '@userModels/';
 
 @Injectable({
@@ -61,6 +71,13 @@ export class UserService {
 	public getEmailTemplateList(): Observable<IGetEmailTemplateListResponse> {
 		return this.http.get<IGetEmailTemplateListResponse>(
 			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/email-template-list`
+		);
+	}
+
+	public editEmailTemplate(_id: string, data: IEditEmailTemplateRequestBody): Observable<IEditEmailTemplateResponse> {
+		return this.http.patch<IEditEmailTemplateResponse>(
+			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/email-template/${_id}`,
+			data
 		);
 	}
 

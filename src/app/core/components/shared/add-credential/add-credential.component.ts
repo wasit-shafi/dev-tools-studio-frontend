@@ -32,7 +32,7 @@ export class AddCredentialComponent {
 		...this.INITIAL_ADD_CREDENTIAL_FORM_MODEL,
 	};
 
-	protected handleOnSubmitAddCredentialForm(event: Event): void {
+	protected handleOnSubmitAddCredentialForm(): void {
 		this.store.dispatch(userActions.addCredential(this.addCredentialFormModel));
 		// TODO(Wasit): close modal only if the new credential is added successfully
 

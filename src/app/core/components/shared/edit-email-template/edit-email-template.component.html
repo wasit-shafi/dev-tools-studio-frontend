@@ -1,0 +1,140 @@
+<dialog
+	#editEmailTemplateDialog
+	class="modal"
+>
+	<div class="modal-box">
+		<h3 class="mb-4 text-lg font-bold">Edit Email Template</h3>
+		<form
+			#editEmailTemplateForm="ngForm"
+			(ngSubmit)="handleOnSubmitEditEmailTemplateForm()"
+			class="mx-auto flex flex-1 flex-col justify-center gap-4"
+		>
+			<!-- Template Name -->
+
+			<label
+				class="input input-bordered flex w-full items-center gap-2"
+				for="templateName_editEmailTemplateForm"
+			>
+				Template Name
+				<input
+					class="grow"
+					id="templateName_editEmailTemplateForm"
+					name="templateName"
+					type="text"
+					[(ngModel)]="editEmailTemplateFormModel.templateName"
+					autofocus
+					required
+				/>
+			</label>
+			<!-- Subject  -->
+
+			<label
+				class="input input-bordered flex w-full items-center gap-2"
+				for="subject_editEmailTemplateForm"
+			>
+				Subject
+				<input
+					class="grow"
+					id="subject_editEmailTemplateForm"
+					name="subject"
+					type="text"
+					[(ngModel)]="editEmailTemplateFormModel.subject"
+					required
+				/>
+			</label>
+			<!-- Salutation  -->
+
+			<label
+				class="input input-bordered flex w-full items-center gap-2"
+				for="salutaion_editEmailTemplateForm"
+			>
+				Salutation
+				<input
+					class="grow"
+					id="salutaion_editEmailTemplateForm"
+					name="salutation"
+					type="text"
+					[(ngModel)]="editEmailTemplateFormModel.salutation"
+					required
+				/>
+			</label>
+			<!-- Body -->
+
+			<label class="form-control">
+				<div class="label p-0 pb-1 pl-4">
+					<span class="label-text">Body</span>
+				</div>
+				<textarea
+					class="textarea textarea-bordered textarea-lg w-full"
+					placeholder="Enter Body..."
+					name="body"
+					[(ngModel)]="editEmailTemplateFormModel.body"
+					required
+				></textarea>
+			</label>
+			<!-- Closing -->
+
+			<label class="form-control">
+				<div class="label p-0 pb-1 pl-4">
+					<span class="label-text">Closing</span>
+				</div>
+				<textarea
+					class="textarea textarea-bordered textarea-lg w-full"
+					placeholder="Enter closing lines..."
+					name="closing"
+					[(ngModel)]="editEmailTemplateFormModel.closing"
+					required
+				></textarea>
+			</label>
+			<!-- Signature -->
+
+			<label class="form-control">
+				<div class="label p-0 pb-1 pl-4">
+					<span class="label-text">Signature</span>
+				</div>
+				<textarea
+					class="textarea textarea-bordered textarea-lg w-full"
+					placeholder="Enter Signature..."
+					name="signature"
+					[(ngModel)]="editEmailTemplateFormModel.signature"
+					required
+				></textarea>
+			</label>
+			<!-- Tags -->
+
+			<label
+				class="input input-bordered flex w-full items-center gap-2"
+				for="tags_editEmailTemplateForm"
+			>
+				Tags
+				<input
+					class="grow"
+					id="tags_editEmailTemplateForm"
+					name="tags"
+					type="text"
+					disabled
+				/>
+			</label>
+			<p>
+				{{ editEmailTemplateFormModel | json }}
+			</p>
+
+			<div class="modal-action">
+				<button
+					class="btn btn-success flex-1 text-white"
+					type="submit"
+					[disabled]="!editEmailTemplateForm.form.valid"
+				>
+					Submit
+				</button>
+				<button
+					class="btn flex-1"
+					type="button"
+					(click)="handleOnModalClose()"
+				>
+					Cancel
+				</button>
+			</div>
+		</form>
+	</div>
+</dialog>

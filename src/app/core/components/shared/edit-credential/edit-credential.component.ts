@@ -32,7 +32,7 @@ export class EditCredentialComponent {
 		...this.INITIAL_EDIT_CREDENTIAL_FORM_MODEL,
 	};
 
-	protected handleOnSubmitEditCredentialForm(event: Event): void {
+	protected handleOnSubmitEditCredentialForm(): void {
 		const { _id, ...data } = this.editCredentialFormModel;
 
 		this.store.dispatch(userActions.editCredential({ _id, data }));

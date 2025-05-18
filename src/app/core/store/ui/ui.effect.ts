@@ -16,8 +16,11 @@ export const showBlockerEffect = createEffect(
 				authActions.forgotPassword,
 				authActions.resetPassword,
 				userActions.addCredential,
+				userActions.editCredential,
 				userActions.deleteCredential,
-				userActions.editCredential
+				userActions.addEmailTemplate,
+				userActions.editEmailTemplate,
+				userActions.deleteEmailTemplate
 			),
 			exhaustMap(() => {
 				return of(uiActions.showBlocker());
@@ -46,11 +49,20 @@ export const hideBlockerEffect = createEffect(
 				userActions.addCredentialSuccess,
 				userActions.addCredentialFailure,
 
+				userActions.editCredentialSuccess,
+				userActions.editCredentialFailure,
+
 				userActions.deleteCredentialSuccess,
 				userActions.deleteCredentialFailure,
 
-				userActions.editCredentialSuccess,
-				userActions.editCredentialFailure
+				userActions.addEmailTemplateSuccess,
+				userActions.addEmailTemplateFailure,
+
+				userActions.editEmailTemplateSuccess,
+				userActions.editEmailTemplateFailure,
+
+				userActions.deleteEmailTemplateSuccess,
+				userActions.deleteEmailTemplateFailure
 			),
 			exhaustMap(() => {
 				return of(uiActions.hideBlocker());

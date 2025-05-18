@@ -6,8 +6,14 @@ import { ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
-    IDeleteCredentialResponse, IDeleteEmailTemplateResponse, IEditCredentialResponse, IGetCredentialListResponse,
-    IGetEmailTemplateListResponse, IPostCredentialResponse, IPostEmailTemplateResponse
+	IDeleteCredentialResponse,
+	IDeleteEmailTemplateResponse,
+	IEditCredentialResponse,
+	IEditEmailTemplateResponse,
+	IGetCredentialListResponse,
+	IGetEmailTemplateListResponse,
+	IPostCredentialResponse,
+	IPostEmailTemplateResponse,
 } from '@userModels/';
 import { UserService } from '@userServices/';
 
@@ -324,6 +330,57 @@ export const addEmailTemplateFailureEffect = createEffect(
 	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
 		return actions$.pipe(
 			ofType(userActions.addEmailTemplateFailure),
+			tap((error) => {
+				toastService.enqueueToastNotification({
+					message: error.message,
+					type: constants.ALERT_TYPE.ERROR,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
+export const editEmailTemplateEffect = createEffect(
+	(actions$ = inject(Actions), userService = inject(UserService)) => {
+		return actions$.pipe(
+			ofType(userActions.editEmailTemplate),
+			exhaustMap(({ _id, data }) => {
+				return userService.editEmailTemplate(_id, data).pipe(
+					map((response: IEditEmailTemplateResponse) => {
+						return userActions.editEmailTemplateSuccess({ message: response.message });
+					}),
+					catchError((errorResponse: CustomHttpErrorResponse) => {
+						return of(userActions.editEmailTemplateFailure({ message: errorResponse.error.message }));
+					})
+				);
+			})
+		);
+	},
+	{ functional: true }
+);
+
+export const editEmailTemplateSuccessEffect = createEffect(
+	(actions$ = inject(Actions), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(userActions.editEmailTemplateSuccess),
+			tap(({ message }) => {
+				toastService.enqueueToastNotification({
+					message,
+				});
+			}),
+			// Dispatching getEmailTemplateList on success so that the state data & app UI gets auto updated
+
+			map(userActions.getEmailTemplateList)
+		);
+	},
+	{ functional: true }
+);
+
+export const editEmailTemplateFailureEffect = createEffect(
+	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(userActions.editEmailTemplateFailure),
 			tap((error) => {
 				toastService.enqueueToastNotification({
 					message: error.message,

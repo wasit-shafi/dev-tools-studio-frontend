@@ -75,6 +75,11 @@ export interface IPostEmailTemplateResponse extends IApiBaseResponse {
 		_id: string;
 	};
 }
+export interface IEditEmailTemplateRequestBody extends Omit<IEmailTemplateData, '_id'> {}
+
+export interface IEditEmailTemplateResponse extends IApiBaseResponse {
+	data: { _id: string };
+}
 
 export interface IUserState {
 	credentialList: ICredentialData[] | null;

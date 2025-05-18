@@ -30,7 +30,7 @@ export class AddEmailTemplateComponent {
 		...this.INITIAL_ADD_CREDENTIAL_FORM_MODEL,
 	};
 
-	protected handleOnSubmitAddEmailTemplateForm(event: Event): void {
+	protected handleOnSubmitAddEmailTemplateForm(): void {
 		this.store.dispatch(userActions.addEmailTemplate(this.addEmailTemplateFormModel));
 
 		// TODO(Wasit): close modal only if the new email template is added successfully

@@ -17,7 +17,7 @@
 		<h3 class="mb-4 text-lg font-bold">Add New EmailTemplate</h3>
 		<form
 			#addEmailTemplateForm="ngForm"
-			(ngSubmit)="handleOnSubmitAddEmailTemplateForm($event)"
+			(ngSubmit)="handleOnSubmitAddEmailTemplateForm()"
 			class="mx-auto flex flex-1 flex-col justify-center gap-4"
 		>
 			<!-- Template Name -->
@@ -50,7 +50,6 @@
 					name="subject"
 					type="text"
 					[(ngModel)]="addEmailTemplateFormModel.subject"
-					autofocus
 					required
 				/>
 			</label>
@@ -67,7 +66,6 @@
 					name="salutation"
 					type="text"
 					[(ngModel)]="addEmailTemplateFormModel.salutation"
-					autofocus
 					required
 				/>
 			</label>
@@ -125,7 +123,6 @@
 					id="tags_addEmailTemplateForm"
 					name="tags"
 					type="text"
-					autofocus
 					disabled
 				/>
 			</label>
