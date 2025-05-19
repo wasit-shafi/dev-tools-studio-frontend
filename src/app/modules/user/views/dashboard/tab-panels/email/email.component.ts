@@ -6,7 +6,7 @@ import { ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
 import { Store } from '@ngrx/store';
-import { ICredentialData } from '@userModels/';
+import { ICredentialData, IEmailTemplateData } from '@userModels/';
 import { userActions, userFeature } from '@userStore/';
 
 @Component({
@@ -29,6 +29,20 @@ export class EmailComponent implements OnInit {
 	protected readonly minDateTimeLocal = `${this.date.getFullYear()}-${String(this.date.getMonth() + 1).padStart(2, '0')}-${String(this.date.getDate()).padStart(2, '0')}T${String(this.date.getHours()).padStart(2, '0')}:${String(this.date.getMinutes()).padStart(2, '0')}:00.00`;
 
 	protected credentialList: ICredentialData[] = [];
+	protected emailTemplateList: IEmailTemplateData[] = [];
+	protected dataListData: {
+		SUBJECT: string[];
+		SALUTATION: string[];
+		BODY: string[];
+		CLOSING: string[];
+		SIGNATURE: string[];
+	} = {
+		SUBJECT: [],
+		SALUTATION: [],
+		BODY: [],
+		CLOSING: [],
+		SIGNATURE: [],
+	};
 
 	private readonly INITIAL_SMTP_CREDENTIALS = {
 		credentialType: 0,
@@ -42,21 +56,25 @@ export class EmailComponent implements OnInit {
 		...this.INITIAL_SMTP_CREDENTIALS,
 	};
 
-	protected readonly mailForm = this.formBuilder.nonNullable.group({
-		from: ['', [Validators.required, Validators.email]],
-		dateTimeLocal: ['', [Validators.required, this.customValidatorForDateTimeLocal]],
-		to: ['', [Validators.required, Validators.email]],
-		subject: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
-		salutation: ['', [Validators.required]],
-		body: ['', [Validators.required]],
-		closing: ['', [Validators.required]],
-		signature: ['', [Validators.required]],
+	protected readonly emailForm = this.formBuilder.nonNullable.group({
+		emailTemplateId: ['', [Validators.required]],
+		from: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
+		dateTimeLocal: [{ value: '', disabled: true }, [Validators.required, this.customValidatorForDateTimeLocal]],
+		to: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
+		subject: [{ value: '', disabled: true }, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+		salutation: [{ value: '', disabled: true }, [Validators.required]],
+		body: [{ value: '', disabled: true }, [Validators.required]],
+		closing: [{ value: '', disabled: true }, [Validators.required]],
+		signature: [{ value: '', disabled: true }, [Validators.required]],
 		attachments: this.formBuilder.array([this.formBuilder.control('')]),
 		receiveConfirmationEmail: [true, [Validators.required]],
 	});
 
 	ngOnInit(): void {
+		//  https://ngrx.io/guide/eslint-plugin/rules/avoid-dispatching-multiple-actions-sequentially
+
 		this.store.dispatch(userActions.getCredentialList());
+		this.store.dispatch(userActions.getEmailTemplateList());
 
 		this.store.select(userFeature.selectCredentialList).subscribe({
 			next: (data) => {
@@ -65,14 +83,80 @@ export class EmailComponent implements OnInit {
 			error: () => {},
 			complete: () => {},
 		});
+
+		this.store.select(userFeature.selectEmailTemplateList).subscribe((emailTemplateList) => {
+			this.emailTemplateList = emailTemplateList ?? [];
+
+			const subject = new Set<string>();
+			const salutation = new Set<string>();
+			// TODO(Wasit): textarea don't support datalist, need some alternate way to handle multi-line text with datalist support
+
+			const body = new Set<string>();
+			const closing = new Set<string>();
+			const signature = new Set<string>();
+
+			emailTemplateList?.forEach((emailTemplate) => {
+				subject.add(emailTemplate.subject);
+				salutation.add(emailTemplate.salutation);
+				body.add(emailTemplate.body);
+				closing.add(emailTemplate.closing);
+				signature.add(emailTemplate.signature);
+			});
+
+			this.dataListData.SUBJECT = Array.from(subject);
+			this.dataListData.SALUTATION = Array.from(salutation);
+			this.dataListData.BODY = Array.from(body);
+			this.dataListData.CLOSING = Array.from(closing);
+			this.dataListData.SIGNATURE = Array.from(signature);
+		});
+
+		this.emailForm.controls['emailTemplateId'].valueChanges.subscribe((newValue) => {
+			const oldValue = this.emailForm.value['emailTemplateId'];
+			const disabledControlNames: string[] = [
+				'from',
+				'dateTimeLocal',
+				'to',
+				'subject',
+				'salutation',
+				'body',
+				'closing',
+				'signature',
+			];
+
+			if (!oldValue) {
+				this.handleEnableEmailFormInputs(disabledControlNames);
+			}
+
+			this.handleUpdateEmailFormInputs();
+		});
+	}
+
+	private handleEnableEmailFormInputs(controlNames: string[]): void {
+		controlNames.forEach((controlNames) => {
+			this.emailForm.get(controlNames)?.enable();
+		});
+	}
+
+	private handleUpdateEmailFormInputs(): void {
+		const emailTemplate = this.emailTemplateList.find(
+			(emailTemplate) => emailTemplate._id == this.emailForm.value.emailTemplateId
+		);
+
+		if (emailTemplate) {
+			this.emailForm.get('subject')?.setValue(emailTemplate.subject);
+			this.emailForm.get('salutation')?.setValue(emailTemplate.salutation);
+			this.emailForm.get('body')?.setValue(emailTemplate.body);
+			this.emailForm.get('closing')?.setValue(emailTemplate.closing);
+			this.emailForm.get('signature')?.setValue(emailTemplate.signature);
+		}
 	}
 
 	get subject() {
-		return this.mailForm.get('subject');
+		return this.emailForm.get('subject');
 	}
 
 	get dateTimeLocal() {
-		return this.mailForm.get('dateTimeLocal');
+		return this.emailForm.get('dateTimeLocal');
 	}
 	// Added custom validator for dateTimeLocal, as the min validation for 'time' only was not working properly
 
@@ -83,13 +167,13 @@ export class EmailComponent implements OnInit {
 		return scheduledDate < currentDate ? { min: "Date & Time can't be less than current date & time" } : null;
 	}
 
-	handleOnSubmitSendEmailForm(): void {
+	protected handleOnSubmitSendEmailForm(): void {
 		const url = `${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/email`;
 
 		this.http
 			.post(url, {
-				...this.mailForm.value,
-				dateTimeLocal: new Date(this.mailForm.getRawValue().dateTimeLocal).toISOString(),
+				...this.emailForm.value,
+				dateTimeLocal: new Date(this.emailForm.getRawValue().dateTimeLocal).toISOString(),
 			})
 			.subscribe({
 				next: (response: any) => {

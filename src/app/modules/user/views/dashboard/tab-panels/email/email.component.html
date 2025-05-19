@@ -1,10 +1,29 @@
 <div class="item flex items-start justify-center">
 	<form
-		class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center gap-4"
+		class="mx-auto mt-[30px] flex max-w-[600px] flex-col justify-center gap-4"
 		autocomplete="off"
-		[formGroup]="mailForm"
+		[formGroup]="emailForm"
 		(submit)="handleOnSubmitSendEmailForm()"
 	>
+		<!-- Email Template -->
+
+		<select
+			class="select w-full"
+			formControlName="emailTemplateId"
+		>
+			<option
+				selected
+				disabled
+				value=""
+			>
+				Select Email Template
+			</option>
+			@for (emailTemplate of emailTemplateList; track $index) {
+				<option [value]="emailTemplate._id">{{ emailTemplate.templateName }}</option>
+			}
+		</select>
+		<!-- Email Credential -->
+
 		<select
 			class="select w-full"
 			formControlName="from"
@@ -36,7 +55,7 @@
 			<div
 				class="collapse-content text-primary-content peer-checked:text-secondary-content bg-yellow-100 peer-checked:bg-yellow-600"
 			>
-				<div class="divider">{{ mailForm.getRawValue().from }}</div>
+				<div class="divider">{{ emailForm.getRawValue().from }}</div>
 				<div>
 					<div>
 						<span>Host:</span>
@@ -98,7 +117,13 @@
 				type="text"
 				formControlName="subject"
 				placeholder="Enter Subject..."
+				list="subject_emailForm"
 			/>
+			<datalist id="subject_emailForm">
+				@for (subject of dataListData.SUBJECT; track $index) {
+					<option [value]="subject">{{ subject }}</option>
+				}
+			</datalist>
 		</label>
 		<!-- Dummy Validation for subject -->
 
@@ -124,7 +149,13 @@
 				type="text"
 				formControlName="salutation"
 				placeholder="Select Salutation..."
+				list="salutation_emailForm"
 			/>
+			<datalist id="salutation_emailForm">
+				@for (salutation of dataListData.SALUTATION; track $index) {
+					<option [value]="salutation">{{ salutation }}</option>
+				}
+			</datalist>
 		</label>
 		<!-- Body -->
 
@@ -133,7 +164,7 @@
 				<span class="label-text">Body</span>
 			</div>
 			<textarea
-				class="textarea textarea-bordered textarea-lg w-full"
+				class="textarea w-full"
 				placeholder="Enter Body..."
 				formControlName="body"
 			></textarea>
@@ -145,7 +176,7 @@
 				<span class="label-text">Closing Line</span>
 			</div>
 			<textarea
-				class="textarea textarea-bordered textarea-lg w-full"
+				class="textarea w-full"
 				formControlName="closing"
 				placeholder="Enter Closing Lines..."
 			></textarea>
@@ -157,11 +188,17 @@
 				<span class="label-text">Your Signature</span>
 			</div>
 			<textarea
-				class="textarea textarea-bordered textarea-lg w-full"
+				class="textarea w-full"
 				formControlName="signature"
 				placeholder="Enter signature..."
 			></textarea>
 		</label>
+		<!-- File Upload -->
+
+		<input
+			type="file"
+			class="file-input w-full"
+		/>
 		<!-- Status/Confirmation Mail -->
 
 		<label class="label cursor-pointer justify-start gap-x-4 p-0">
@@ -176,15 +213,15 @@
 
 		<details class="bg-base-200 collapse">
 			<summary class="collapse-title text-xl font-medium">
-				Preview Full Email sending to <b>{{ mailForm.value.to }}</b>
+				Preview Full Email sending to <b>{{ emailForm.value.to }}</b>
 			</summary>
 			<div class="collapse-content border">
-				<p>{{ mailForm.value.dateTimeLocal }}</p>
-				<p>{{ mailForm.value.subject }}</p>
-				<p>{{ mailForm.value.salutation }}</p>
-				<p>{{ mailForm.value.body }}</p>
-				<p>{{ mailForm.value.closing }}</p>
-				<p>{{ mailForm.value.signature }}</p>
+				<p>{{ emailForm.value.dateTimeLocal }}</p>
+				<p>{{ emailForm.value.subject }}</p>
+				<p>{{ emailForm.value.salutation }}</p>
+				<p>{{ emailForm.value.body }}</p>
+				<p>{{ emailForm.value.closing }}</p>
+				<p>{{ emailForm.value.signature }}</p>
 			</div>
 		</details>
 		<!-- Wrapper for Reset & Submit button -->
@@ -199,7 +236,7 @@
 			<button
 				class="btn btn-success flex-1 text-white"
 				type="submit"
-				[disabled]="mailForm.invalid"
+				[disabled]="emailForm.invalid"
 			>
 				Schedule Mail
 			</button>
