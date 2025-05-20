@@ -4,10 +4,166 @@
 	<div class="mb-6 rounded-lg bg-zinc-200 p-4 shadow-xl shadow-slate-500/30">
 		<h1 class="text-accent mb-6 text-2xl">Account</h1>
 		<div>
-			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere saepe quia porro amet quisquam ullam fuga
-				eligendi maxime quod laboriosam! Dignissimos, obcaecati animi! Nostrum in sunt quidem? Inventore, similique ut.
-			</p>
+			@if (currentUser$ | async; as currentUser) {
+				<!--  Display Name -->
+
+				<div class="flex gap-4">
+					<span class="basis-3xs">Display Name</span>
+					<span class="font-bold">{{ currentUser.displayName }}</span>
+				</div>
+				<!--  First Name -->
+
+				<div class="flex gap-4">
+					<span class="basis-3xs">First Name</span>
+					<span class="font-bold">{{ currentUser.firstName }}</span>
+				</div>
+				<!--  Last Name -->
+
+				<div class="flex gap-4">
+					<span class="basis-3xs">Last Name</span>
+					<span class="font-bold">{{ currentUser.lastName }}</span>
+				</div>
+				<!--  Email ID -->
+
+				<div class="flex gap-4">
+					<span class="basis-3xs">Email ID</span>
+					<span class="font-bold">
+						{{ currentUser.email }}
+
+						@if (currentUser.isEmailVerified) {
+							<div class="badge badge-success badge-xs">
+								<svg
+									class="size-[1em]"
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+								>
+									<g
+										fill="currentColor"
+										stroke-linejoin="miter"
+										stroke-linecap="butt"
+									>
+										<circle
+											cx="12"
+											cy="12"
+											r="10"
+											fill="none"
+											stroke="currentColor"
+											stroke-linecap="square"
+											stroke-miterlimit="10"
+											stroke-width="2"
+										></circle>
+										<polyline
+											points="7 13 10 16 17 8"
+											fill="none"
+											stroke="currentColor"
+											stroke-linecap="square"
+											stroke-miterlimit="10"
+											stroke-width="2"
+										></polyline>
+									</g>
+								</svg>
+								Verified
+							</div>
+						} @else {
+							<div class="badge badge-error badge-xs">
+								<svg
+									class="size-[1em]"
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+								>
+									<g fill="currentColor">
+										<rect
+											x="1.972"
+											y="11"
+											width="20.056"
+											height="2"
+											transform="translate(-4.971 12) rotate(-45)"
+											fill="currentColor"
+											stroke-width="0"
+										></rect>
+										<path
+											d="m12,23c-6.065,0-11-4.935-11-11S5.935,1,12,1s11,4.935,11,11-4.935,11-11,11Zm0-20C7.038,3,3,7.037,3,12s4.038,9,9,9,9-4.037,9-9S16.962,3,12,3Z"
+											stroke-width="0"
+											fill="currentColor"
+										></path>
+									</g>
+								</svg>
+								Not Verified
+							</div>
+						}
+					</span>
+				</div>
+				<!--  Mobile No -->
+
+				<div class="flex gap-4">
+					<span class="basis-3xs">Mobile No</span>
+					<span class="font-bold">
+						{{ currentUser.countryCode }} {{ currentUser.mobileNumber }}
+
+						@if (currentUser.isMobileNumberVerified) {
+							<div class="badge badge-success badge-xs">
+								<svg
+									class="size-[1em]"
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+								>
+									<g
+										fill="currentColor"
+										stroke-linejoin="miter"
+										stroke-linecap="butt"
+									>
+										<circle
+											cx="12"
+											cy="12"
+											r="10"
+											fill="none"
+											stroke="currentColor"
+											stroke-linecap="square"
+											stroke-miterlimit="10"
+											stroke-width="2"
+										></circle>
+										<polyline
+											points="7 13 10 16 17 8"
+											fill="none"
+											stroke="currentColor"
+											stroke-linecap="square"
+											stroke-miterlimit="10"
+											stroke-width="2"
+										></polyline>
+									</g>
+								</svg>
+								Verified
+							</div>
+						} @else {
+							<div class="badge badge-error badge-xs">
+								<svg
+									class="size-[1em]"
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+								>
+									<g fill="currentColor">
+										<rect
+											x="1.972"
+											y="11"
+											width="20.056"
+											height="2"
+											transform="translate(-4.971 12) rotate(-45)"
+											fill="currentColor"
+											stroke-width="0"
+										></rect>
+										<path
+											d="m12,23c-6.065,0-11-4.935-11-11S5.935,1,12,1s11,4.935,11,11-4.935,11-11,11Zm0-20C7.038,3,3,7.037,3,12s4.038,9,9,9,9-4.037,9-9S16.962,3,12,3Z"
+											stroke-width="0"
+											fill="currentColor"
+										></path>
+									</g>
+								</svg>
+								Not Verified
+							</div>
+						}
+					</span>
+				</div>
+			}
 		</div>
 	</div>
 	<!-- Email Templates Section -->
