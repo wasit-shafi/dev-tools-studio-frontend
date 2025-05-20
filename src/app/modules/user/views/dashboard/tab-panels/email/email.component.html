@@ -66,8 +66,8 @@
 						<span>{{ currentSmtpCredentials.port }}</span>
 					</div>
 					<div>
-						<span>User:</span>
-						<span>{{ currentSmtpCredentials.user }}</span>
+						<span>Email ID:</span>
+						<span>{{ currentSmtpCredentials.emailId }}</span>
 					</div>
 					<div>
 						<span>Pass:</span>
@@ -76,7 +76,18 @@
 				</div>
 			</div>
 		</div>
+		<!-- Send Now -->
+
+		<label class="label cursor-pointer justify-start gap-x-4 p-0">
+			<input
+				class="checkbox-neutral checkbox checkbox-xs"
+				type="checkbox"
+				formControlName="sendNow"
+			/>
+			<span class="label-text">Send Now Email</span>
+		</label>
 		<!-- Date Time Local -->
+
 		<label class="input input-bordered flex w-full items-center gap-2">
 			Date Time
 			<input
@@ -203,7 +214,7 @@
 
 		<label class="label cursor-pointer justify-start gap-x-4 p-0">
 			<input
-				class="checkbox-success checkbox"
+				class="checkbox checkbox-neutral checkbox-xs"
 				type="checkbox"
 				formControlName="receiveConfirmationEmail"
 			/>
@@ -238,7 +249,7 @@
 				type="submit"
 				[disabled]="emailForm.invalid"
 			>
-				Schedule Mail
+				{{ emailForm.value.sendNow ? 'Send Now' : 'Schedule Send' }}
 			</button>
 		</div>
 	</form>

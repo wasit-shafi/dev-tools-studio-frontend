@@ -48,7 +48,7 @@ export class EmailComponent implements OnInit {
 		credentialType: 0,
 		host: '',
 		port: 0,
-		user: '',
+		emailId: '',
 		pass: '',
 	};
 
@@ -60,6 +60,7 @@ export class EmailComponent implements OnInit {
 		emailTemplateId: ['', [Validators.required]],
 		from: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
 		dateTimeLocal: [{ value: '', disabled: true }, [Validators.required, this.customValidatorForDateTimeLocal]],
+		sendNow: [{ value: false, disabled: true }, [Validators.required]],
 		to: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
 		subject: [{ value: '', disabled: true }, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
 		salutation: [{ value: '', disabled: true }, [Validators.required]],
@@ -67,7 +68,7 @@ export class EmailComponent implements OnInit {
 		closing: [{ value: '', disabled: true }, [Validators.required]],
 		signature: [{ value: '', disabled: true }, [Validators.required]],
 		attachments: this.formBuilder.array([this.formBuilder.control('')]),
-		receiveConfirmationEmail: [true, [Validators.required]],
+		receiveConfirmationEmail: [{ value: false, disabled: true }, [Validators.required]],
 	});
 
 	ngOnInit(): void {
@@ -115,25 +116,44 @@ export class EmailComponent implements OnInit {
 			const disabledControlNames: string[] = [
 				'from',
 				'dateTimeLocal',
+				'sendNow',
 				'to',
 				'subject',
 				'salutation',
 				'body',
 				'closing',
 				'signature',
+				'receiveConfirmationEmail',
 			];
 
 			if (!oldValue) {
-				this.handleEnableEmailFormInputs(disabledControlNames);
+				this.handleEnableOrDisableEmailFormInputs(disabledControlNames);
 			}
 
 			this.handleUpdateEmailFormInputs();
 		});
+
+		this.emailForm.controls['sendNow'].valueChanges.subscribe((sendNow) => {
+			if (!sendNow) {
+				this.emailForm.controls['dateTimeLocal'].setValidators([Validators.required]);
+				this.handleEnableOrDisableEmailFormInputs(['dateTimeLocal']);
+			} else {
+				this.emailForm.controls['dateTimeLocal'].clearValidators();
+				this.emailForm.controls['dateTimeLocal'].setValue('');
+				this.handleEnableOrDisableEmailFormInputs(['dateTimeLocal'], false);
+			}
+
+			this.emailForm.controls['dateTimeLocal'].updateValueAndValidity();
+		});
 	}
 
-	private handleEnableEmailFormInputs(controlNames: string[]): void {
+	private handleEnableOrDisableEmailFormInputs(controlNames: string[], enableControl = true): void {
 		controlNames.forEach((controlNames) => {
-			this.emailForm.get(controlNames)?.enable();
+			if (enableControl) {
+				this.emailForm.get(controlNames)?.enable();
+			} else {
+				this.emailForm.get(controlNames)?.disable();
+			}
 		});
 	}
 
@@ -173,7 +193,9 @@ export class EmailComponent implements OnInit {
 		this.http
 			.post(url, {
 				...this.emailForm.value,
-				dateTimeLocal: new Date(this.emailForm.getRawValue().dateTimeLocal).toISOString(),
+				dateTimeLocal: this.emailForm.getRawValue().sendNow
+					? ''
+					: new Date(this.emailForm.getRawValue().dateTimeLocal).toISOString(),
 			})
 			.subscribe({
 				next: (response: any) => {

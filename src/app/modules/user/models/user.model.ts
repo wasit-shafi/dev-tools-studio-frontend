@@ -6,7 +6,6 @@ export interface IAddCredential {
 	emailId: string;
 	host: string;
 	port: number;
-	user: string;
 	pass: string;
 }
 

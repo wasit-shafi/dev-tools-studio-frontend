@@ -25,7 +25,6 @@ export class EditCredentialComponent {
 		emailId: '',
 		host: '',
 		port: 0,
-		user: '',
 		pass: '',
 	};
 	protected editCredentialFormModel: ICredentialData = {

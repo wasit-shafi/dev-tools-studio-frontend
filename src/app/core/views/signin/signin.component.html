@@ -16,7 +16,6 @@
 			id="email"
 			name="email"
 			type="email"
-			title="Enter your email/username"
 			[(ngModel)]="signinFormModel.email"
 			[pattern]="constants.REGEX.EMAIL"
 			autofocus
@@ -42,7 +41,6 @@
 			class="grow"
 			id="password"
 			name="password"
-			title="Shush...Type your secret password"
 			[type]="isPasswordVisible ? 'text' : 'password'"
 			[(ngModel)]="signinFormModel.password"
 			#password="ngModel"

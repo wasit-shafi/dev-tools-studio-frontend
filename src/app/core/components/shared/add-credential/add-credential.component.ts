@@ -25,7 +25,6 @@ export class AddCredentialComponent {
 		emailId: '',
 		host: '',
 		port: 0,
-		user: '',
 		pass: '',
 	};
 	protected addCredentialFormModel: IAddCredential = {
