@@ -80,7 +80,36 @@ export interface IEditEmailTemplateResponse extends IApiBaseResponse {
 	data: { _id: string };
 }
 
+export interface IAddProfilePicture {
+	formData: FormData;
+}
+
+export interface IAddAttachment {
+	formData: FormData;
+}
+
+export interface IAttachmentData {
+	_id: string;
+	attachmentName: string;
+	fileName: string;
+}
+
+export interface IAddAttachmentResponse extends IApiBaseResponse {
+	data: null;
+}
+
+export interface IDeleteAttachmentResponse extends IApiBaseResponse {
+	data: null;
+}
+
+export interface IGetAttachmentListResponse extends IApiBaseResponse {
+	data: {
+		attachmentList: IAttachmentData[];
+	};
+}
+
 export interface IUserState {
 	credentialList: ICredentialData[] | null;
 	emailTemplateList: IEmailTemplateData[] | null;
+	attachmentList: IAttachmentData[] | null;
 }

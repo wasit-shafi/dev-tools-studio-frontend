@@ -273,3 +273,55 @@ export const resetPasswordFailureEffect = createEffect(
 	},
 	{ functional: true, dispatch: false }
 );
+// Profile Picture
+
+export const profilePictureEffect = createEffect(
+	(actions$ = inject(Actions), authService = inject(AuthService)) => {
+		return actions$.pipe(
+			ofType(authActions.profilePicture),
+			exhaustMap(({ formData }) => {
+				return authService.postProfilePicture(formData).pipe(
+					map((response) => {
+						return authActions.profilePictureSuccess({
+							message: response.message,
+							profilePicture: response.data.profilePicture,
+						});
+					}),
+					catchError((errorResponse: CustomHttpErrorResponse) => {
+						return of(authActions.profilePictureFailure({ message: errorResponse.error.message }));
+					})
+				);
+			})
+		);
+	},
+	{ functional: true }
+);
+
+export const profilePictureSuccessEffect = createEffect(
+	(actions$ = inject(Actions), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(authActions.profilePictureSuccess),
+			tap(({ message }) => {
+				toastService.enqueueToastNotification({
+					message,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
+export const profilePictureFailureEffect = createEffect(
+	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(authActions.profilePictureFailure),
+			tap((error) => {
+				toastService.enqueueToastNotification({
+					message: error.message,
+					type: constants.ALERT_TYPE.ERROR,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);

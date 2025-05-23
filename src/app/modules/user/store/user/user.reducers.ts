@@ -11,6 +11,9 @@ const reducer = createReducer(
 	}),
 	on(userActions.getEmailTemplateListSuccess, (state, action): IUserState => {
 		return { ...state, emailTemplateList: action.emailTemplateList };
+	}),
+	on(userActions.getAttachmentListSuccess, (state, action): IUserState => {
+		return { ...state, attachmentList: action.attachmentList };
 	})
 );
 

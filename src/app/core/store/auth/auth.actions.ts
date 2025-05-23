@@ -1,5 +1,6 @@
 import { IUser } from '@coreModels/';
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
+import { IAddProfilePicture } from '@userModels/';
 
 export const authActions = createActionGroup({
 	source: 'Auth',
@@ -27,5 +28,10 @@ export const authActions = createActionGroup({
 		resetPassword: props<{ password: string; confirmPassword: string; reCaptcha: string; token: string }>(),
 		resetPasswordSuccess: props<{ message: string }>(),
 		resetPasswordFailure: props<{ message: string }>(),
+		// add profile
+
+		profilePicture: props<IAddProfilePicture>(),
+		profilePictureSuccess: props<{ message: string; profilePicture: string }>(),
+		profilePictureFailure: props<{ message: string }>(),
 	},
 });

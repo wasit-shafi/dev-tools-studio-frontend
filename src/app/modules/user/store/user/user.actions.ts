@@ -1,5 +1,12 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { IAddCredential, IAddEmailTemplate, ICredentialData, IEmailTemplateData } from '@userModels/';
+import {
+	IAddAttachment,
+	IAddCredential,
+	IAddEmailTemplate,
+	IAttachmentData,
+	ICredentialData,
+	IEmailTemplateData,
+} from '@userModels/';
 
 export const userActions = createActionGroup({
 	source: 'User',
@@ -44,5 +51,20 @@ export const userActions = createActionGroup({
 		editEmailTemplate: props<{ _id: string; data: IAddEmailTemplate }>(),
 		editEmailTemplateSuccess: props<{ message: string }>(),
 		editEmailTemplateFailure: props<{ message: string }>(),
+		// Post Attachment
+
+		addAttachment: props<IAddAttachment>(),
+		addAttachmentSuccess: props<{ message: string }>(),
+		addAttachmentFailure: props<{ message: string }>(),
+		// Delete Attachment
+
+		deleteAttachment: props<{ _id: string }>(),
+		deleteAttachmentSuccess: props<{ message: string }>(),
+		deleteAttachmentFailure: props<{ message: string }>(),
+		// Get Attachment List
+
+		getAttachmentList: emptyProps(),
+		getAttachmentListSuccess: props<{ attachmentList: IAttachmentData[] }>(),
+		getAttachmentListFailure: props<{ message: string }>(),
 	},
 });

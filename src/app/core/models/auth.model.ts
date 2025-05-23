@@ -10,6 +10,7 @@ export interface IUser {
 	email: string;
 	firstName: string;
 	isEmailVerified: boolean;
+	profilePicture: string;
 	isMobileNumberVerified: boolean;
 	lastName: string;
 	mobileNumber: string;

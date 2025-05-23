@@ -1,7 +1,8 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
-    AddCredentialComponent, AddEmailTemplateComponent, ListCredentialComponent, ListEmailTemplateComponent
+    AddAttachmentComponent, AddCredentialComponent, AddEmailTemplateComponent, ListAttachmentComponent,
+    ListCredentialComponent, ListEmailTemplateComponent
 } from '@coreComponents/';
 import { authFeature } from '@coreStore/';
 import { Store } from '@ngrx/store';
@@ -14,6 +15,8 @@ import { Store } from '@ngrx/store';
 		AddEmailTemplateComponent,
 		ListEmailTemplateComponent,
 		AsyncPipe,
+		AddAttachmentComponent,
+		ListAttachmentComponent,
 	],
 	templateUrl: './settings.component.html',
 	styleUrl: './settings.component.scss',

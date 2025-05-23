@@ -1,27 +1,35 @@
 <nav class="flex justify-center">
 	<ul class="menu menu-vertical rounded-box bg-base-200 xs:menu-horizontal gap-x-3 gap-y-2">
-		@if (authState && authState.currentUser) {
-			<!-- TODO(Wasit): Add DP upload feature -->
+		@if (currentUser$ | async; as currentUser) {
+			<!-- Profile Picture -->
 
-			@if (true) {
-				<div class="avatar avatar-placeholder">
-					<div class="bg-neutral text-neutral-content w-9 rounded-full">
-						<span class="text-xs">{{
-							authState.currentUser.displayName.split(' ')[0].charAt(0).toUpperCase() +
-								authState.currentUser.displayName.split(' ')[1].charAt(0).toUpperCase()
-						}}</span>
-					</div>
-				</div>
-			} @else {
+			<form #addProfilePictureForm="ngForm">
 				<div class="avatar">
-					<div class="ring-primary ring-offset-base-100 w-9 rounded-full ring-2 ring-offset-2">
+					<div class="mask mask-hexagon-2 w-9">
 						<img
-							src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp"
+							class="bg-slate-300"
+							[src]="
+								currentUser.profilePicture ? currentUser.profilePicture : 'assets/images/profile-picture-fallback.svg'
+							"
 							alt="profile_img"
+							priority
+						/>
+						<img
+							class="absolute top-0 left-0 cursor-pointer rounded-full bg-pink-500 opacity-0 transition-opacity duration-150 ease-in hover:opacity-75"
+							src="assets/images/circle-with-plus-24.svg"
+							alt="add_new"
+							(click)="profile_picture.click()"
+							priority
+						/>
+						<input
+							type="file"
+							class="hidden"
+							#profile_picture
+							(change)="handleUploadProfilePicture($event)"
 						/>
 					</div>
 				</div>
-			}
+			</form>
 
 			<!-- Dashboard -->
 

@@ -5,12 +5,14 @@ import { inject, Injectable } from '@angular/core';
 import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
 import {
+	IAddAttachmentResponse,
 	IDeleteCredentialResponse,
 	IDeleteEmailTemplateResponse,
 	IEditCredentialRequestBody,
 	IEditCredentialResponse,
 	IEditEmailTemplateRequestBody,
 	IEditEmailTemplateResponse,
+	IGetAttachmentListResponse,
 	IGetCredentialListResponse,
 	IGetCredentialResponse,
 	IGetEmailTemplateListResponse,
@@ -84,6 +86,23 @@ export class UserService {
 	public deleteEmailTemplate(_id: string): Observable<IDeleteEmailTemplateResponse> {
 		return this.http.delete<IDeleteEmailTemplateResponse>(
 			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/email-template/${_id}`
+		);
+	}
+
+	public postAttachment(data: FormData): Observable<IAddAttachmentResponse> {
+		return this.http.post<IAddAttachmentResponse>(
+			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/attachment`,
+			data
+		);
+	}
+
+	public deleteAttachment(_id: string): Observable<any> {
+		return this.http.delete(`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/attachment/${_id}`);
+	}
+
+	public getAttachmentList(): Observable<IGetAttachmentListResponse> {
+		return this.http.get<IGetAttachmentListResponse>(
+			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/attachment-list`
 		);
 	}
 }

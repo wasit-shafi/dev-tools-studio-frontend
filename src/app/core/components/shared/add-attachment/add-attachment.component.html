@@ -1,0 +1,79 @@
+<button
+	class="btn btn-success ml-auto"
+	(click)="handleOnModalOpen()"
+>
+	<img
+		src="assets/images/circular-plus-24.svg "
+		alt="add-icon"
+	/>
+	Add New Attachment
+</button>
+
+<dialog
+	#addAttachmentDialog
+	class="modal"
+>
+	<div class="modal-box">
+		<h3 class="mb-4 text-lg font-bold">Add New Attachment</h3>
+		<form
+			#addAttachmentForm="ngForm"
+			(ngSubmit)="handleOnSubmitAddAttachmentForm()"
+			class="mx-auto flex flex-1 flex-col justify-center gap-4"
+		>
+			<!-- Attachment Name  -->
+
+			<label
+				class="input input-bordered flex w-full items-center gap-2"
+				for="attachmentName_addAttachmentForm"
+			>
+				Attachment Name
+				<input
+					class="grow"
+					id="attachmentName_addAttachmentForm"
+					name="attachmentName"
+					type="text"
+					[(ngModel)]="addAttachmentFormModel.attachmentName"
+					#email="ngModel"
+					required
+				/>
+			</label>
+			<!-- File Upload -->
+
+			<div>
+				<label
+					class="mb-3 inline-block text-sm font-light"
+					for="attachment"
+				>
+					Upload File less than 3MB (audio/*,video/*,image/*,.pdf,.docx,doc)
+				</label>
+
+				<input
+					type="file"
+					class="file-input file-input-neutral w-full"
+					accept="audio/*,video/*,image/*,.pdf,.docx,doc"
+					id="attachment"
+					name="attachment"
+					required
+					[(ngModel)]="addAttachmentFormModel.attachment"
+					(change)="onFileSelected($event)"
+				/>
+			</div>
+			<div class="modal-action">
+				<button
+					class="btn btn-success flex-1 text-white"
+					type="submit"
+					[disabled]="!addAttachmentForm.form.valid"
+				>
+					Submit
+				</button>
+				<button
+					class="btn flex-1"
+					type="button"
+					(click)="handleOnModalClose()"
+				>
+					Cancel
+				</button>
+			</div>
+		</form>
+	</div>
+</dialog>

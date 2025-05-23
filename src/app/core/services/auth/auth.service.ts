@@ -85,4 +85,8 @@ export class AuthService implements OnInit {
 				'',
 		});
 	}
+
+	public postProfilePicture(data: any): Observable<any> {
+		return this.http.post(`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/profile-picture`, data);
+	}
 }

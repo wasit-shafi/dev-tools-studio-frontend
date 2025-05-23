@@ -6,10 +6,13 @@ import { ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
+	IAddAttachmentResponse,
+	IDeleteAttachmentResponse,
 	IDeleteCredentialResponse,
 	IDeleteEmailTemplateResponse,
 	IEditCredentialResponse,
 	IEditEmailTemplateResponse,
+	IGetAttachmentListResponse,
 	IGetCredentialListResponse,
 	IGetEmailTemplateListResponse,
 	IPostCredentialResponse,
@@ -381,6 +384,142 @@ export const editEmailTemplateFailureEffect = createEffect(
 	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
 		return actions$.pipe(
 			ofType(userActions.editEmailTemplateFailure),
+			tap((error) => {
+				toastService.enqueueToastNotification({
+					message: error.message,
+					type: constants.ALERT_TYPE.ERROR,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
+export const addAttachmentEffect = createEffect(
+	(actions$ = inject(Actions), userService = inject(UserService)) => {
+		return actions$.pipe(
+			ofType(userActions.addAttachment),
+			exhaustMap(({ formData }) => {
+				return userService.postAttachment(formData).pipe(
+					map((response: IAddAttachmentResponse) => {
+						return userActions.addAttachmentSuccess({ message: response.message });
+					}),
+					catchError((errorResponse: CustomHttpErrorResponse) => {
+						return of(userActions.addAttachmentFailure({ message: errorResponse.error.message }));
+					})
+				);
+			})
+		);
+	},
+	{ functional: true }
+);
+
+export const addAttachmentSuccessEffect = createEffect(
+	(actions$ = inject(Actions), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(userActions.addAttachmentSuccess),
+			tap(({ message }) => {
+				toastService.enqueueToastNotification({
+					message,
+				});
+			}),
+			// Dispatching getAttachmentList on success so that the state data & app UI gets auto updated
+
+			map(userActions.getAttachmentList)
+		);
+	},
+	{ functional: true }
+);
+
+export const addAttachmentFailureEffect = createEffect(
+	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(userActions.addAttachmentFailure),
+			tap((error) => {
+				toastService.enqueueToastNotification({
+					message: error.message,
+					type: constants.ALERT_TYPE.ERROR,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
+export const deleteAttachmentEffect = createEffect(
+	(actions$ = inject(Actions), userService = inject(UserService)) => {
+		return actions$.pipe(
+			ofType(userActions.deleteAttachment),
+			exhaustMap(({ _id }) => {
+				return userService.deleteAttachment(_id).pipe(
+					map((response: IDeleteAttachmentResponse) => {
+						return userActions.deleteAttachmentSuccess({ message: response.message });
+					}),
+					catchError((errorResponse: CustomHttpErrorResponse) => {
+						return of(userActions.deleteAttachmentFailure({ message: errorResponse.error.message }));
+					})
+				);
+			})
+		);
+	},
+	{ functional: true }
+);
+
+export const deleteAttachmentSuccessEffect = createEffect(
+	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(userActions.deleteAttachmentSuccess),
+			tap(({ message }) => {
+				toastService.enqueueToastNotification({
+					message,
+				});
+			}),
+			// Dispatching getAttachmentList on success so that the state data & app UI gets auto updated
+
+			map(userActions.getAttachmentList)
+		);
+	},
+	{ functional: true }
+);
+
+export const deleteAttachmentFailureEffect = createEffect(
+	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(userActions.deleteAttachmentFailure),
+			tap((error) => {
+				toastService.enqueueToastNotification({
+					message: error.message,
+					type: constants.ALERT_TYPE.ERROR,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
+export const getAttachmentListEffect = createEffect(
+	(actions$ = inject(Actions), userService = inject(UserService)) => {
+		return actions$.pipe(
+			ofType(userActions.getAttachmentList),
+			exhaustMap(() => {
+				return userService.getAttachmentList().pipe(
+					map((response: IGetAttachmentListResponse) => {
+						return userActions.getAttachmentListSuccess({ attachmentList: response.data.attachmentList });
+					}),
+					catchError((errorResponse: CustomHttpErrorResponse) => {
+						return of(userActions.getAttachmentListFailure({ message: errorResponse.error.message }));
+					})
+				);
+			})
+		);
+	},
+	{ functional: true }
+);
+
+export const getAttachmentListFailureEffect = createEffect(
+	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(userActions.getAttachmentListFailure),
 			tap((error) => {
 				toastService.enqueueToastNotification({
 					message: error.message,
