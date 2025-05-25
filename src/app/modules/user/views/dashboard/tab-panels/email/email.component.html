@@ -210,7 +210,7 @@
 			<summary class="btn m-1 w-full">Select Attachments</summary>
 			<div
 				class="menu dropdown-content bg-base-100 rounded-box z-1 w-52 w-full p-2 shadow-sm"
-				formArrayName="attachments"
+				formArrayName="attachmentIds"
 			>
 				@for (attachment of attachmentList; track $index) {
 					<label class="label mb-2">
@@ -248,12 +248,15 @@
 					<span class="label">Subject:</span> <b>{{ emailForm.value.subject }}</b>
 				</p>
 			</summary>
-			<div class="collapse-content border">
-				<p>{{ emailForm.value.dateTimeLocal }}</p>
-				<pre>{{ emailForm.value.salutation }}</pre>
-				<pre>{{ emailForm.value.body }}</pre>
-				<pre>{{ emailForm.value.closing }}</pre>
-				<pre>{{ emailForm.value.signature }}</pre>
+			<div class="collapse-content">
+				<!-- NOTE(Wasit): Keep the html preview in sync with backend (html content) -->
+
+				<p class="whitespace-pre-wrap">
+					{{ emailForm.value.salutation }}<br />
+					{{ emailForm.value.body }}<br />
+					{{ emailForm.value.closing }}<br /><br />
+					{{ emailForm.value.signature }}
+				</p>
 			</div>
 		</details>
 		<!-- Wrapper for Reset & Submit button -->

@@ -2,13 +2,7 @@ import { JsonPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import {
-	AbstractControl,
-	FormArray,
-	FormBuilder,
-	FormControl,
-	ReactiveFormsModule,
-	ValidationErrors,
-	Validators,
+    AbstractControl, FormArray, FormBuilder, FormControl, ReactiveFormsModule, ValidationErrors, Validators
 } from '@angular/forms';
 import { ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
@@ -76,7 +70,7 @@ export class EmailComponent implements OnInit {
 		body: [{ value: '', disabled: true }, [Validators.required]],
 		closing: [{ value: '', disabled: true }, [Validators.required]],
 		signature: [{ value: '', disabled: true }, [Validators.required]],
-		attachments: this.formBuilder.array([]),
+		attachmentIds: this.formBuilder.array([]),
 		receiveConfirmationEmail: [{ value: false, disabled: true }, [Validators.required]],
 	});
 
@@ -240,14 +234,14 @@ export class EmailComponent implements OnInit {
 
 	protected handleAttachmentsOnChange(event: Event): void {
 		const target = event.target as HTMLInputElement;
-		const attachmentsArray = this.emailForm.get('attachments') as FormArray;
+		const attachmentIds = this.emailForm.get('attachmentIds') as FormArray;
 
 		if (target.checked) {
-			attachmentsArray.push(new FormControl(target.value));
+			attachmentIds.push(new FormControl(target.value));
 			return;
 		}
 
-		const index = attachmentsArray.controls.findIndex((control) => control.value === target.value);
-		attachmentsArray.removeAt(index);
+		const index = attachmentIds.controls.findIndex((control) => control.value === target.value);
+		attachmentIds.removeAt(index);
 	}
 }
