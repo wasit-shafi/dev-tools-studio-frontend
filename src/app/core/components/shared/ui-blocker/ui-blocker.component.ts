@@ -17,9 +17,7 @@ export class UiBlockerComponent implements OnInit {
 
 	constructor() {}
 
-	protected blocker$!: Observable<IBlocker>;
+	protected blocker$: Observable<IBlocker> = this.store.select(uiFeature.selectBlocker);
 
-	ngOnInit(): void {
-		this.blocker$ = this.store.select(uiFeature.selectBlocker);
-	}
+	ngOnInit(): void {}
 }

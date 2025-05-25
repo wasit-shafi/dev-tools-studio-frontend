@@ -20,7 +20,9 @@ export const showBlockerEffect = createEffect(
 				userActions.deleteCredential,
 				userActions.addEmailTemplate,
 				userActions.editEmailTemplate,
-				userActions.deleteEmailTemplate
+				userActions.deleteEmailTemplate,
+				userActions.addAttachment,
+				userActions.deleteAttachment
 			),
 			exhaustMap(() => {
 				return of(uiActions.showBlocker());
@@ -62,7 +64,13 @@ export const hideBlockerEffect = createEffect(
 				userActions.editEmailTemplateFailure,
 
 				userActions.deleteEmailTemplateSuccess,
-				userActions.deleteEmailTemplateFailure
+				userActions.deleteEmailTemplateFailure,
+
+				userActions.addAttachmentSuccess,
+				userActions.addAttachmentFailure,
+
+				userActions.deleteAttachmentSuccess,
+				userActions.deleteAttachmentFailure
 			),
 			exhaustMap(() => {
 				return of(uiActions.hideBlocker());

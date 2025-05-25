@@ -1,12 +1,20 @@
 import { JsonPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import {
+	AbstractControl,
+	FormArray,
+	FormBuilder,
+	FormControl,
+	ReactiveFormsModule,
+	ValidationErrors,
+	Validators,
+} from '@angular/forms';
 import { ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { environment } from '@environments/';
 import { Store } from '@ngrx/store';
-import { ICredentialData, IEmailTemplateData } from '@userModels/';
+import { IAttachmentData, ICredentialData, IEmailTemplateData } from '@userModels/';
 import { userActions, userFeature } from '@userStore/';
 
 @Component({
@@ -43,6 +51,7 @@ export class EmailComponent implements OnInit {
 		CLOSING: [],
 		SIGNATURE: [],
 	};
+	protected attachmentList: IAttachmentData[] = [];
 
 	private readonly INITIAL_SMTP_CREDENTIALS = {
 		credentialType: 0,
@@ -58,7 +67,7 @@ export class EmailComponent implements OnInit {
 
 	protected readonly emailForm = this.formBuilder.nonNullable.group({
 		emailTemplateId: ['', [Validators.required]],
-		from: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
+		from: [{ value: '', disabled: true }, [Validators.required]],
 		dateTimeLocal: [{ value: '', disabled: true }, [Validators.required, this.customValidatorForDateTimeLocal]],
 		sendNow: [{ value: false, disabled: true }, [Validators.required]],
 		to: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
@@ -67,7 +76,7 @@ export class EmailComponent implements OnInit {
 		body: [{ value: '', disabled: true }, [Validators.required]],
 		closing: [{ value: '', disabled: true }, [Validators.required]],
 		signature: [{ value: '', disabled: true }, [Validators.required]],
-		attachments: this.formBuilder.array([this.formBuilder.control('')]),
+		attachments: this.formBuilder.array([]),
 		receiveConfirmationEmail: [{ value: false, disabled: true }, [Validators.required]],
 	});
 
@@ -76,6 +85,7 @@ export class EmailComponent implements OnInit {
 
 		this.store.dispatch(userActions.getCredentialList());
 		this.store.dispatch(userActions.getEmailTemplateList());
+		this.store.dispatch(userActions.getAttachmentList());
 
 		this.store.select(userFeature.selectCredentialList).subscribe({
 			next: (data) => {
@@ -145,6 +155,14 @@ export class EmailComponent implements OnInit {
 
 			this.emailForm.controls['dateTimeLocal'].updateValueAndValidity();
 		});
+
+		this.store.select(userFeature.selectAttachmentList).subscribe({
+			next: (data) => {
+				this.attachmentList = data ?? [];
+			},
+			error: () => {},
+			complete: () => {},
+		});
 	}
 
 	private handleEnableOrDisableEmailFormInputs(controlNames: string[], enableControl = true): void {
@@ -189,6 +207,7 @@ export class EmailComponent implements OnInit {
 
 	protected handleOnSubmitSendEmailForm(): void {
 		const url = `${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/email`;
+		// TODO(Wasit): Handle via NgRx
 
 		this.http
 			.post(url, {
@@ -217,5 +236,18 @@ export class EmailComponent implements OnInit {
 	protected handleOnFromEmailChange(selectedEmailId: string): void {
 		const item = this.credentialList.find((item) => item.emailId === selectedEmailId);
 		this.currentSmtpCredentials = item ? { ...item } : { ...this.INITIAL_SMTP_CREDENTIALS };
+	}
+
+	protected handleAttachmentsOnChange(event: Event): void {
+		const target = event.target as HTMLInputElement;
+		const attachmentsArray = this.emailForm.get('attachments') as FormArray;
+
+		if (target.checked) {
+			attachmentsArray.push(new FormControl(target.value));
+			return;
+		}
+
+		const index = attachmentsArray.controls.findIndex((control) => control.value === target.value);
+		attachmentsArray.removeAt(index);
 	}
 }

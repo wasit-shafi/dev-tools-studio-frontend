@@ -1,5 +1,7 @@
-<div class="min-h-100 overflow-x-auto">
-	@if (attachmentList$ | async; as attachmentList) {
+<div class="min-h-50 overflow-x-auto">
+	@let attachmentList = attachmentList$ | async;
+
+	@if (attachmentList?.length) {
 		<table class="table-zebra table">
 			<thead>
 				<tr>

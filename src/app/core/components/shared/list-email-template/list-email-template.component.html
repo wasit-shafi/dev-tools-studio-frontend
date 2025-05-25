@@ -1,4 +1,4 @@
-<div>
+<div class="min-h-50">
 	@for (emailTemplate of emailTemplateList$ | async; track $index) {
 		<div class="collapse-plus bg-base-100 border-base-300 collapse mb-2 border">
 			<input
@@ -81,5 +81,4 @@
 		</div>
 	}
 </div>
-
 <dts-edit-email-template #editEmailTemplateComponent></dts-edit-email-template>

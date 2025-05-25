@@ -46,6 +46,7 @@ export class SignupComponent {
 
 	handleOnSubmitSignupForm(event: Event, signupForm: NgForm): void {
 		event.preventDefault();
+		// TODO(Wasit): Handle via NgRx
 
 		const url = `${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/auth/signup`;
 

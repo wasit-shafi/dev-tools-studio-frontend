@@ -8,25 +8,31 @@
 				<!--  Display Name -->
 
 				<div class="flex gap-4">
-					<span class="basis-3xs">Display Name</span>
+					<span class="label basis-3xs">Display Name</span>
 					<span class="font-bold">{{ currentUser.displayName }}</span>
 				</div>
 				<!--  First Name -->
 
 				<div class="flex gap-4">
-					<span class="basis-3xs">First Name</span>
+					<span class="label basis-3xs">First Name</span>
 					<span class="font-bold">{{ currentUser.firstName }}</span>
 				</div>
 				<!--  Last Name -->
 
 				<div class="flex gap-4">
-					<span class="basis-3xs">Last Name</span>
+					<span class="label basis-3xs">Last Name</span>
 					<span class="font-bold">{{ currentUser.lastName }}</span>
+				</div>
+				<!-- Roles -->
+
+				<div class="flex gap-4">
+					<span class="label basis-3xs">Roles</span>
+					<span class="font-bold">{{ this.utils.getUserRoleNames(currentUser.roles) }}</span>
 				</div>
 				<!--  Email ID -->
 
 				<div class="flex gap-4">
-					<span class="basis-3xs">Email ID</span>
+					<span class="label basis-3xs">Email ID</span>
 					<span class="font-bold">
 						{{ currentUser.email }}
 
@@ -96,7 +102,7 @@
 				<!--  Mobile No -->
 
 				<div class="flex gap-4">
-					<span class="basis-3xs">Mobile No</span>
+					<span class="label basis-3xs">Mobile No</span>
 					<span class="font-bold">
 						{{ currentUser.countryCode }} {{ currentUser.mobileNumber }}
 
@@ -162,6 +168,12 @@
 							</div>
 						}
 					</span>
+				</div>
+				<!-- Country -->
+
+				<div class="flex gap-4">
+					<span class="label basis-3xs">Country</span>
+					<span class="font-bold">{{ this.utils.getCountryName(currentUser.country) }}</span>
 				</div>
 			}
 		</div>

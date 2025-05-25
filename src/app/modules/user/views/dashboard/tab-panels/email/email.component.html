@@ -37,7 +37,7 @@
 				Select email Account
 			</option>
 			@for (credential of credentialList; track $index) {
-				<option [value]="credential.emailId">{{ credential.emailId }}</option>
+				<option [value]="credential.emailId">{{ credential.emailId }} ({{ credential.displayName }})</option>
 			}
 		</select>
 		<!-- View Credentials -->
@@ -204,6 +204,28 @@
 				placeholder="Enter signature..."
 			></textarea>
 		</label>
+		<!-- Attachments -->
+
+		<details class="dropdown">
+			<summary class="btn m-1 w-full">Select Attachments</summary>
+			<div
+				class="menu dropdown-content bg-base-100 rounded-box z-1 w-52 w-full p-2 shadow-sm"
+				formArrayName="attachments"
+			>
+				@for (attachment of attachmentList; track $index) {
+					<label class="label mb-2">
+						<input
+							type="checkbox"
+							class="checkbox checkbox-neutral checkbox-xs"
+							[value]="attachment._id"
+							(change)="handleAttachmentsOnChange($event)"
+						/>
+						{{ attachment.fileName }} - ( {{ attachment.attachmentName }} )
+					</label>
+				}
+			</div>
+		</details>
+
 		<!-- Status/Confirmation Mail -->
 
 		<label class="label cursor-pointer justify-start gap-x-4 p-0">
@@ -218,15 +240,20 @@
 
 		<details class="bg-base-200 collapse">
 			<summary class="collapse-title text-xl font-medium">
-				Preview Full Email sending to <b>{{ emailForm.value.to }}</b>
+				<p class="text-sm">
+					<span class="label">Preview Full Email sending to </span>
+					<b> {{ emailForm.value.to }}</b>
+				</p>
+				<p class="text-sm">
+					<span class="label">Subject:</span> <b>{{ emailForm.value.subject }}</b>
+				</p>
 			</summary>
 			<div class="collapse-content border">
 				<p>{{ emailForm.value.dateTimeLocal }}</p>
-				<p>{{ emailForm.value.subject }}</p>
-				<p>{{ emailForm.value.salutation }}</p>
-				<p>{{ emailForm.value.body }}</p>
-				<p>{{ emailForm.value.closing }}</p>
-				<p>{{ emailForm.value.signature }}</p>
+				<pre>{{ emailForm.value.salutation }}</pre>
+				<pre>{{ emailForm.value.body }}</pre>
+				<pre>{{ emailForm.value.closing }}</pre>
+				<pre>{{ emailForm.value.signature }}</pre>
 			</div>
 		</details>
 		<!-- Wrapper for Reset & Submit button -->

@@ -124,6 +124,12 @@ export class Constants {
 		APP_USER: 3,
 	} as const satisfies Record<string, number>;
 
+	public readonly ACCESS_ROLES_NAMES = {
+		1: 'Super Admin',
+		2: 'Admin',
+		3: 'End User',
+	} as const satisfies Record<number, string>;
+
 	public readonly ACCESS_OPERATIONS = {
 		AND: '&&',
 		OR: '||',
