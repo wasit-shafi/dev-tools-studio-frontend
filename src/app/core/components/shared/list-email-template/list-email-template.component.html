@@ -31,30 +31,31 @@
 						/>
 					</button>
 				</div>
-				<div>
-					<span>subject:</span>
-					<span> {{ emailTemplate.subject }}</span>
+				<!-- Subject -->
+
+				<p class="whitespace-pre-wrap">{{ emailTemplate.subject }}</p>
+
+				<div class="my-3 rounded border p-3 shadow-xl">
+					<!-- Salutation -->
+
+					<p class="whitespace-pre-wrap">{{ emailTemplate.salutation }}</p>
+					<!-- Body -->
+
+					<p class="whitespace-pre-wrap">
+						{{ emailTemplate.body }}
+					</p>
+					<!-- Closing -->
+
+					<p class="whitespace-pre-wrap">{{ emailTemplate.closing }}</p>
+					<!-- Signature -->
+
+					<p class="whitespace-pre-wrap">{{ emailTemplate.signature }}</p>
 				</div>
+				<!-- Tags -->
+
 				<div>
-					<span>salutation:</span>
-					<span> {{ emailTemplate.salutation }}</span>
-				</div>
-				<div>
-					<span>body:</span>
-					<span> {{ emailTemplate.body }}</span>
-				</div>
-				<div>
-					<span>closing:</span>
-					<span> {{ emailTemplate.closing }}</span>
-				</div>
-				<div>
-					<span>signature:</span>
-					<span> {{ emailTemplate.signature }}</span>
-				</div>
-				<div>
-					<span>tags:</span>
 					@for (tag of emailTemplate.tags; track $index) {
-						<div class="badge badge-soft badge-primary mx-1">{{ tag }}</div>
+						<span class="badge badge-soft badge-primary mx-1">{{ tag }}</span>
 					}
 				</div>
 			</div>

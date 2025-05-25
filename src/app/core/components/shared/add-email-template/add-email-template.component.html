@@ -13,7 +13,7 @@
 	#addEmailTemplateDialog
 	class="modal"
 >
-	<div class="modal-box">
+	<div class="modal-box max-w-4xl">
 		<h3 class="mb-4 text-lg font-bold">Add New Email Template</h3>
 		<form
 			#addEmailTemplateForm="ngForm"
@@ -76,7 +76,7 @@
 					<span class="label-text">Body</span>
 				</div>
 				<textarea
-					class="textarea textarea-bordered textarea-lg w-full"
+					class="textarea textarea-bordered textarea-lg min-h-50 w-full"
 					placeholder="Enter Body..."
 					name="body"
 					[(ngModel)]="addEmailTemplateFormModel.body"
@@ -90,7 +90,7 @@
 					<span class="label-text">Closing</span>
 				</div>
 				<textarea
-					class="textarea textarea-bordered textarea-lg w-full"
+					class="textarea textarea-bordered textarea-lg min-h-24 w-full"
 					placeholder="Enter closing lines..."
 					name="closing"
 					[(ngModel)]="addEmailTemplateFormModel.closing"
