@@ -12,7 +12,7 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Login to DockerHub
+      - name: Login to Docker Hub
         env:
           DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
@@ -21,5 +21,5 @@ jobs:
       - name: Build New Docker Image
         run: docker build . -t wasitshafi700/dev-tools-studio-frontend:latest
 
-      - name: Push Latest Image on DockerHub
+      - name: Push Latest Image on Docker Hub
         run: docker push wasitshafi700/dev-tools-studio-frontend:latest

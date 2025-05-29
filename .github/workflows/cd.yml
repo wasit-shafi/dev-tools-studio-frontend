@@ -12,7 +12,7 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Pull latest image from DockerHub
+      - name: Pull latest image from Docker Hub
         run: sudo docker pull wasitshafi700/dev-tools-studio-frontend:latest
 
       - name: Remove existing docker container
