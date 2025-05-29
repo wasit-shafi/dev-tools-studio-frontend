@@ -1,0 +1,25 @@
+name: CI_PIPELINE
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Login to DockerHub
+        env:
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+      - name: Build New Docker Image
+        run: docker build . -t wasitshafi700/dev-tools-studio:latest
+
+      - name: Push Latest Image on DockerHub
+        run: docker push wasitshafi700/dev-tools-studio-frontend:latest
