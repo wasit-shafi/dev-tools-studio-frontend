@@ -19,7 +19,7 @@ jobs:
         run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
       - name: Build New Docker Image
-        run: docker build . -t wasitshafi700/dev-tools-studio:latest
+        run: docker build . -t wasitshafi700/dev-tools-studio-frontend:latest
 
       - name: Push Latest Image on DockerHub
         run: docker push wasitshafi700/dev-tools-studio-frontend:latest
