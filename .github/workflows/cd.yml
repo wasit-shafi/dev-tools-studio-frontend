@@ -1,0 +1,22 @@
+name: CD_PIPELINE
+
+on:
+  workflow_run:
+    workflows:
+      - CI_PIPELINE
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Pull latest image from DockerHub
+        run: sudo docker pull wasitshafi700/dev-tools-studio-frontend:latest
+
+      - name: Remove existing docker container
+        run: sudo docker rm -f wasitshafi700/dev-tools-studio-frontend
+        
+      - name: Run docker container
+        run: docker run -d -p 4200:80 --name dts-frontend wasitshafi700/dev-tools-studio-frontend
