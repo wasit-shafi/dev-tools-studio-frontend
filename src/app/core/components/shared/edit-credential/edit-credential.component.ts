@@ -1,9 +1,9 @@
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Constants } from '@app/core/shared';
-import { ICredentialData } from '@app/modules/user/models';
-import { userActions } from '@app/modules/user/store';
+import { Constants } from '@coreShared/';
 import { Store } from '@ngrx/store';
+import { ICredentialData } from '@userModels/';
+import { userActions } from '@userStore/';
 
 @Component({
 	selector: 'dts-edit-credential',

@@ -3,8 +3,22 @@
 
 	<div class="mb-6 rounded-lg bg-zinc-200 p-4 shadow-xl shadow-slate-500/30">
 		<h1 class="text-accent mb-6 text-2xl">Account</h1>
-		<div>
+		<div class="relative">
 			@if (currentUser$ | async; as currentUser) {
+				<span class="absolute -top-12 right-0">
+					<div class="avatar">
+						<div class="mask mask-squircle w-25">
+							<img
+								[src]="
+									currentUser.profilePicture ? currentUser.profilePicture : 'assets/images/profile-picture-fallback.svg'
+								"
+								alt="img"
+								priority
+							/>
+						</div>
+					</div>
+				</span>
+
 				<!--  Display Name -->
 
 				<div class="flex gap-4">

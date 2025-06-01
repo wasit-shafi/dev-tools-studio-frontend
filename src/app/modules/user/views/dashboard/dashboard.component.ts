@@ -2,8 +2,7 @@ import { AdminComponent } from '@adminViews/';
 import { Component, inject } from '@angular/core';
 import { HasPermissionDirective } from '@coreDirectives/';
 import { Constants } from '@coreShared/';
-
-import { ColorsComponent, EmailComponent, MetaTagsComponent, OpenGraphComponent } from './tab-panels';
+import { ColorsComponent, EmailComponent, MetaTagsComponent, OpenGraphComponent } from '@userViews/';
 
 @Component({
 	selector: 'dts-dashboard',

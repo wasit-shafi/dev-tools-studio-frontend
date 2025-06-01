@@ -3,7 +3,7 @@ import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { CustomHttpErrorResponse } from '@app/core/models';
+import { CustomHttpErrorResponse } from '@coreModels/';
 import { AuthService, PersistenceService, ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -80,6 +80,75 @@ export const signinFailureEffect = createEffect(
 	},
 	{ functional: true, dispatch: false }
 );
+// Signup
+
+export const signupEffect = createEffect(
+	(actions$ = inject(Actions), authService = inject(AuthService)) => {
+		return actions$.pipe(
+			ofType(authActions.signup),
+			exhaustMap((data) => {
+				return authService.postSignup(data).pipe(
+					map(({ message }) => {
+						return authActions.signupSuccess({ message });
+					}),
+					catchError((errorResponse: CustomHttpErrorResponse) => {
+						return of(authActions.signupFailure({ message: errorResponse.error.message }));
+					})
+				);
+			})
+		);
+	},
+	{ functional: true }
+);
+
+export const signupSuccessEffect = createEffect(
+	(actions$ = inject(Actions), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(authActions.signupSuccess),
+			tap(({ message }) => {
+				toastService.enqueueToastNotification({
+					message,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
+export const redirectAfterSignupEffect = createEffect(
+	(constants = inject(Constants), actions$ = inject(Actions), router = inject(Router)) => {
+		return actions$.pipe(
+			ofType(authActions.signupSuccess),
+			tap(() => {
+				router.navigate([constants.ROUTES.SIGNIN]);
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
+export const signupFailureEffect = createEffect(
+	(
+		actions$ = inject(Actions),
+		authService = inject(AuthService),
+		constants = inject(Constants),
+		toastService = inject(ToastService)
+	) => {
+		return actions$.pipe(
+			ofType(authActions.signupFailure),
+			tap(({ message }) => {
+				authService.handleResetSignupReCaptcha();
+
+				toastService.enqueueToastNotification({
+					message,
+					type: constants.ALERT_TYPE.ERROR,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
 // Auto Signin
 
 export const autoSigninSuccessEffect = createEffect(

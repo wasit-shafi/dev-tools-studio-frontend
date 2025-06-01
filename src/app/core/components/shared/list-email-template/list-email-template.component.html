@@ -35,7 +35,7 @@
 
 				<p class="whitespace-pre-wrap">{{ emailTemplate.subject }}</p>
 
-				<div class="my-3 rounded border p-3 shadow-xl">
+				<div class="my-3 rounded border bg-slate-300 p-3 shadow-xl">
 					<!-- Salutation -->
 
 					<p class="whitespace-pre-wrap">{{ emailTemplate.salutation }}</p>
@@ -51,13 +51,16 @@
 
 					<p class="whitespace-pre-wrap">{{ emailTemplate.signature }}</p>
 				</div>
+				<!-- TODO(Wasit): Complete the tag feature for email template searching -->
 				<!-- Tags -->
 
+				<!--
 				<div>
 					@for (tag of emailTemplate.tags; track $index) {
 						<span class="badge badge-soft badge-primary mx-1">{{ tag }}</span>
 					}
 				</div>
+			  -->
 			</div>
 		</div>
 	} @empty {

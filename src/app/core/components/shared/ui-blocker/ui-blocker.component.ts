@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { IBlocker } from '@coreModels/ui.model';
+import { IBlocker } from '@coreModels/';
 import { uiFeature } from '@coreStore/';
 import { Store } from '@ngrx/store';
 

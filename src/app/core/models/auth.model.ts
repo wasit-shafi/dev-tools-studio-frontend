@@ -26,6 +26,23 @@ export interface ISigninResponse extends IApiBaseResponse {
 	data: IPostSigninData;
 }
 
+export interface ISignupData {
+	firstName: string;
+	lastName: string;
+	email: string;
+	password: string;
+	confirmPassword: string;
+	countryCode: string;
+	mobileNumber: string;
+	country: string;
+	reCaptcha: string;
+}
+export interface ISignupResponse extends IApiBaseResponse {
+	data: {
+		_id: string;
+	};
+}
+
 export interface IForgotPasswordResponse extends IApiBaseResponse {
 	data: null;
 }

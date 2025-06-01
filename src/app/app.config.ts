@@ -5,8 +5,7 @@ import { ApplicationConfig, inject, isDevMode, provideAppInitializer, provideZon
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, Router } from '@angular/router';
-import { authInterceptor, loggingInterceptor } from '@coreInterceptors/';
-import { errorInterceptor } from '@coreInterceptors/error/error.interceptor';
+import { authInterceptor, errorInterceptor, loggingInterceptor } from '@coreInterceptors/';
 import { PersistenceService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { authActions, authFeature, uiFeature } from '@coreStore/';
@@ -17,8 +16,8 @@ import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideState, provideStore, Store } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { userFeature } from '@userStore/';
 import * as userEffects from '@userStore/user/user.effects';
-import { userFeature } from '@userStore/user/user.reducers';
 
 import { routes } from './app.routes';
 

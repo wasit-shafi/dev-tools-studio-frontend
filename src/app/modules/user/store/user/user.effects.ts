@@ -16,11 +16,60 @@ import {
 	IGetCredentialListResponse,
 	IGetEmailTemplateListResponse,
 	IPostCredentialResponse,
+	IPostEmailResponse,
 	IPostEmailTemplateResponse,
 } from '@userModels/';
 import { UserService } from '@userServices/';
 
 import { userActions } from './user.actions';
+
+export const sendEmailEffect = createEffect(
+	(actions$ = inject(Actions), userService = inject(UserService)) => {
+		return actions$.pipe(
+			ofType(userActions.sendEmail),
+			exhaustMap((sendEmailData) => {
+				return userService.postEmail(sendEmailData).pipe(
+					map((response: IPostEmailResponse) => {
+						return userActions.sendEmailSuccess({ message: response.message });
+					}),
+					catchError((errorResponse: CustomHttpErrorResponse) => {
+						return of(userActions.sendEmailFailure({ message: errorResponse.error.message }));
+					})
+				);
+			})
+		);
+	},
+	{ functional: true }
+);
+
+export const sendEmailSuccessEffect = createEffect(
+	(actions$ = inject(Actions), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(userActions.sendEmailSuccess),
+			tap(({ message }) => {
+				toastService.enqueueToastNotification({
+					message,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
+export const sendEmailFailureEffect = createEffect(
+	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(userActions.sendEmailFailure),
+			tap((error) => {
+				toastService.enqueueToastNotification({
+					message: error.message,
+					type: constants.ALERT_TYPE.ERROR,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
 
 export const getCredentialListEffect = createEffect(
 	(actions$ = inject(Actions), userService = inject(UserService)) => {

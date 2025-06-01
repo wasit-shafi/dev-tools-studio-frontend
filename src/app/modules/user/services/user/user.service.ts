@@ -12,12 +12,14 @@ import {
 	IEditCredentialResponse,
 	IEditEmailTemplateRequestBody,
 	IEditEmailTemplateResponse,
+	IEmailData,
 	IGetAttachmentListResponse,
 	IGetCredentialListResponse,
 	IGetCredentialResponse,
 	IGetEmailTemplateListResponse,
 	IPostCredentialRequestBody,
 	IPostCredentialResponse,
+	IPostEmailResponse,
 	IPostEmailTemplateRequestBody,
 	IPostEmailTemplateResponse,
 } from '@userModels/';
@@ -30,6 +32,12 @@ export class UserService {
 	private readonly http = inject(HttpClient);
 
 	constructor() {}
+	public postEmail(data: IEmailData): Observable<IPostEmailResponse> {
+		return this.http.post<IPostEmailResponse>(
+			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/email`,
+			data
+		);
+	}
 
 	public postCredential(data: IPostCredentialRequestBody): Observable<IPostCredentialResponse> {
 		return this.http.post<IPostCredentialResponse>(

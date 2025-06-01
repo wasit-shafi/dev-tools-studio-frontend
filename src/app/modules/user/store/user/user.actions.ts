@@ -5,12 +5,18 @@ import {
 	IAddEmailTemplate,
 	IAttachmentData,
 	ICredentialData,
+	IEmailData,
 	IEmailTemplateData,
 } from '@userModels/';
 
 export const userActions = createActionGroup({
 	source: 'User',
 	events: {
+		// Post Email
+
+		sendEmail: props<IEmailData>(),
+		sendEmailSuccess: props<{ message: string }>(),
+		sendEmailFailure: props<{ message: string }>(),
 		// Get Credential List
 
 		getCredentialList: emptyProps(),

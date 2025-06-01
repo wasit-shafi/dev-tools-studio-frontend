@@ -2,12 +2,12 @@
 	class="mx-auto mt-[30px] flex max-w-[400px] flex-col justify-center gap-4 rounded-lg bg-slate-100 p-3"
 	#signupForm="ngForm"
 	autocomplete="off"
-	(submit)="handleOnSubmitSignupForm($event, signupForm)"
+	(submit)="handleOnSubmitSignupForm($event)"
 >
 	<!-- First Name -->
 
 	<label
-		class="input input-bordered flex items-center gap-2"
+		class="input input-bordered flex w-full items-center gap-2"
 		for="firstName"
 	>
 		First Name
@@ -25,7 +25,7 @@
 	<!-- Last Name -->
 
 	<label
-		class="input input-bordered flex items-center gap-2"
+		class="input input-bordered flex w-full items-center gap-2"
 		for="lastName"
 	>
 		Last Name
@@ -41,7 +41,7 @@
 	<!-- Email -->
 
 	<label
-		class="input input-bordered flex items-center gap-2"
+		class="input input-bordered flex w-full items-center gap-2"
 		for="email"
 	>
 		Email
@@ -57,7 +57,7 @@
 	<!-- Password -->
 
 	<label
-		class="input input-bordered flex items-center gap-2"
+		class="input input-bordered flex w-full items-center gap-2"
 		for="password"
 	>
 		Password
@@ -74,7 +74,7 @@
 	<!-- Confirm Password -->
 
 	<label
-		class="input input-bordered flex items-center gap-2"
+		class="input input-bordered flex w-full items-center gap-2"
 		for="confirmPassword"
 	>
 		Verify Password
@@ -95,11 +95,10 @@
 			height="16"
 		/>
 	</label>
-
 	<!-- Country Code -->
 
 	<select
-		class="select select-bordered"
+		class="select select-bordered w-full"
 		name="countryCode"
 		[(ngModel)]="signupFormModel.countryCode"
 		required
@@ -120,7 +119,7 @@
 	<!-- Mobile Number -->
 
 	<label
-		class="input input-bordered flex items-center gap-2"
+		class="input input-bordered flex w-full items-center gap-2"
 		for="mobileNumber"
 	>
 		Mobile No
@@ -133,11 +132,10 @@
 			required
 		/>
 	</label>
-	<!-- <div class="flex gap-2"></div> -->
 	<!-- Country  -->
 
 	<select
-		class="select select-bordered"
+		class="select select-bordered w-full"
 		name="country"
 		[(ngModel)]="signupFormModel.country"
 		required
@@ -160,11 +158,11 @@
 	<re-captcha
 		class="mx-auto"
 		name="reCaptcha"
-		#reCaptcha
-		(errored)="handleReCaptchaErrored($event)"
-		(resolved)="handleReCaptchaResolved($event)"
 		[(ngModel)]="signupFormModel.reCaptcha"
 		[siteKey]="environment.reCaptchaSiteKey"
+		(errored)="handleReCaptchaErrored($event)"
+		(resolved)="handleReCaptchaResolved($event)"
+		#reCaptcha
 		errorMode="handled"
 		required
 	>
@@ -185,10 +183,3 @@
 		Already have an account? Signin
 	</a>
 </form>
-<div class="mt-10 mb-20 flex justify-center">
-	<ul class="steps steps-horizontal">
-		<li class="step step-success">&nbsp;&nbsp;Register&nbsp;&nbsp;</li>
-		<li class="step step-success">&nbsp;&nbsp;Verify Email&nbsp;&nbsp;</li>
-		<li class="step">&nbsp;&nbsp;Verify Phone&nbsp;&nbsp;</li>
-	</ul>
-</div>

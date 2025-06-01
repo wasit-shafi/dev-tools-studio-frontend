@@ -1,5 +1,5 @@
 import { inject, Injectable, OnDestroy } from '@angular/core';
-import { AppService } from '@coreServices/app/app.service';
+import { AppService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 
 // TODO: review how can we get below type from constants + need for separate *.model.ts file

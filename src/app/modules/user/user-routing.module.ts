@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Constants } from '@coreShared/constants';
+import { Constants } from '@coreShared/';
 import * as UserViews from '@userViews/';
 
 const constants = new Constants();

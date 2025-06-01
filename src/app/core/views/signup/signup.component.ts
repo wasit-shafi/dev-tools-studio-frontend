@@ -1,15 +1,16 @@
 import { RecaptchaComponent, RecaptchaErrorParameters, RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Component, inject, ViewChild } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { CustomHttpErrorResponse } from '@coreModels/';
+import { ISignupData } from '@coreModels/';
 import { AuthService, ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
+import { authActions } from '@coreStore/';
 import { Notifications } from '@coreUtils/';
 import { environment } from '@environments/';
+import { Store } from '@ngrx/store';
 
 @Component({
 	selector: 'dts-signup',
@@ -18,12 +19,12 @@ import { environment } from '@environments/';
 	templateUrl: './signup.component.html',
 	styleUrl: './signup.component.scss',
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit {
 	@ViewChild('reCaptcha') reCaptcha!: RecaptchaComponent;
 
 	private readonly authService = inject(AuthService);
-	private readonly http = inject(HttpClient);
 	private readonly router = inject(Router);
+	private readonly store = inject(Store);
 	private readonly toastService = inject(ToastService);
 	protected readonly constants = inject(Constants);
 	protected readonly notifications = inject(Notifications);
@@ -32,7 +33,7 @@ export class SignupComponent {
 
 	protected isConfirmPasswordVisible: boolean = false;
 
-	protected readonly signupFormModel = {
+	protected readonly signupFormModel: ISignupData = {
 		firstName: '',
 		lastName: '',
 		email: '',
@@ -44,31 +45,18 @@ export class SignupComponent {
 		reCaptcha: '',
 	};
 
-	handleOnSubmitSignupForm(event: Event, signupForm: NgForm): void {
+	ngOnInit(): void {
+		this.authService.handleRegisterCallbackOnSignupFailed(this.resetReCaptcha.bind(this));
+	}
+
+	protected resetReCaptcha(): void {
+		this.reCaptcha.reset();
+	}
+
+	protected handleOnSubmitSignupForm(event: Event): void {
 		event.preventDefault();
-		// TODO(Wasit): Handle via NgRx
 
-		const url = `${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/auth/signup`;
-
-		this.http.post(url, { ...this.signupFormModel }).subscribe({
-			next: (response: any) => {
-				if (response.success && response.code === this.constants.HTTP_STATUS_CODES.SUCCESSFUL.CREATED) {
-					this.toastService.enqueueToastNotification({
-						message: response.message,
-					});
-					this.router.navigate([this.constants.ROUTES.SIGNIN]);
-				}
-			},
-			error: (error: CustomHttpErrorResponse) => {
-				this.toastService.enqueueToastNotification({
-					message: error.error.message || error.message,
-					type: this.constants.ALERT_TYPE.ERROR,
-				});
-			},
-			complete: () => {},
-		});
-
-		// signupForm.reset();
+		this.store.dispatch(authActions.signup(this.signupFormModel));
 	}
 
 	handleReCaptchaResolved(captchaResponse: string | null): void {

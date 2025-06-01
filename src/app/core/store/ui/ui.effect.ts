@@ -5,16 +5,16 @@ import { authActions, uiActions } from '@coreStore/';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { userActions } from '@userStore/';
 
-// ui blocker
-
 export const showBlockerEffect = createEffect(
 	(actions$ = inject(Actions)) => {
 		return actions$.pipe(
 			ofType(
 				authActions.signin,
 				authActions.signout,
+				authActions.signup,
 				authActions.forgotPassword,
 				authActions.resetPassword,
+				userActions.sendEmail,
 				userActions.addCredential,
 				userActions.editCredential,
 				userActions.deleteCredential,
@@ -42,11 +42,17 @@ export const hideBlockerEffect = createEffect(
 				authActions.signoutSuccess,
 				authActions.signoutFailure,
 
+				authActions.signupSuccess,
+				authActions.signupFailure,
+
 				authActions.forgotPasswordSuccess,
 				authActions.forgotPasswordFailure,
 
 				authActions.resetPasswordSuccess,
 				authActions.resetPasswordFailure,
+
+				userActions.sendEmailSuccess,
+				userActions.sendEmailFailure,
 
 				userActions.addCredentialSuccess,
 				userActions.addCredentialFailure,

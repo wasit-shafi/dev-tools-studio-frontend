@@ -2,9 +2,10 @@ import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, OnInit } from '@angular/core';
-import { IAuthState, IForgotPasswordResponse, IResetPasswordResponse, ISigninResponse } from '@coreModels/';
-import { PersistenceService } from '@coreServices/';
-import { AppService } from '@coreServices/app/app.service';
+import {
+    IAuthState, IForgotPasswordResponse, IResetPasswordResponse, ISigninResponse, ISignupData, ISignupResponse
+} from '@coreModels/';
+import { AppService, PersistenceService } from '@coreServices/';
 import { Constants } from '@coreShared/';
 import { authFeature } from '@coreStore/';
 import { environment } from '@environments/';
@@ -23,6 +24,7 @@ export class AuthService implements OnInit {
 	private authState!: IAuthState;
 
 	public handleResetSigninReCaptcha!: () => void;
+	public handleResetSignupReCaptcha!: () => void;
 
 	constructor() {
 		// added isBrowser check to make sure below code snippet don't run on server side (SSR)
@@ -48,9 +50,20 @@ export class AuthService implements OnInit {
 		this.handleResetSigninReCaptcha = callback;
 	}
 
+	public handleRegisterCallbackOnSignupFailed(callback: () => void): void {
+		this.handleResetSignupReCaptcha = callback;
+	}
+
 	public postSignin(data: any): Observable<ISigninResponse> {
 		return this.http.post<ISigninResponse>(
 			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/auth/signin`,
+			data
+		);
+	}
+
+	public postSignup(data: ISignupData): Observable<ISignupResponse> {
+		return this.http.post<ISignupResponse>(
+			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/auth/signup`,
 			data
 		);
 	}

@@ -1,4 +1,4 @@
-import { IUserState } from '../../models';
+import { IUserState } from '@userModels/';
 
 export const initialUserState: IUserState = {
 	credentialList: null,

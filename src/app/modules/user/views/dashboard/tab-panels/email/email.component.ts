@@ -1,19 +1,15 @@
-import { JsonPipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import {
     AbstractControl, FormArray, FormBuilder, FormControl, ReactiveFormsModule, ValidationErrors, Validators
 } from '@angular/forms';
-import { ToastService } from '@coreServices/';
 import { Constants } from '@coreShared/';
-import { environment } from '@environments/';
 import { Store } from '@ngrx/store';
 import { IAttachmentData, ICredentialData, IEmailTemplateData } from '@userModels/';
 import { userActions, userFeature } from '@userStore/';
 
 @Component({
 	selector: 'dts-email',
-	imports: [ReactiveFormsModule, JsonPipe],
+	imports: [ReactiveFormsModule],
 	providers: [Constants, FormBuilder],
 	templateUrl: './email.component.html',
 	styleUrl: './email.component.scss',
@@ -21,9 +17,7 @@ import { userActions, userFeature } from '@userStore/';
 export class EmailComponent implements OnInit {
 	private readonly constants = inject(Constants);
 	private readonly formBuilder = inject(FormBuilder);
-	private readonly http = inject(HttpClient);
 	private readonly store = inject(Store);
-	private readonly toastService = inject(ToastService);
 
 	private readonly date = new Date();
 	// NOTE(Wasit): the min should strictly follow the format YYYY-MM-DDTHH:MM, used padStart to make sure the 0 are prefixed incase of value is less than 10 eg 2025-4-9T5:9 => 2025-04-09T05:09
@@ -62,8 +56,8 @@ export class EmailComponent implements OnInit {
 	protected readonly emailForm = this.formBuilder.nonNullable.group({
 		emailTemplateId: ['', [Validators.required]],
 		from: [{ value: '', disabled: true }, [Validators.required]],
-		dateTimeLocal: [{ value: '', disabled: true }, [Validators.required, this.customValidatorForDateTimeLocal]],
 		sendNow: [{ value: false, disabled: true }, [Validators.required]],
+		dateTimeLocal: [{ value: '', disabled: true }, [Validators.required, this.customValidatorForDateTimeLocal]],
 		to: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
 		subject: [{ value: '', disabled: true }, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
 		salutation: [{ value: '', disabled: true }, [Validators.required]],
@@ -200,31 +194,18 @@ export class EmailComponent implements OnInit {
 	}
 
 	protected handleOnSubmitSendEmailForm(): void {
-		const url = `${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/email`;
-		// TODO(Wasit): Handle via NgRx
+		const { emailTemplateId, ...data } = this.emailForm.getRawValue();
 
-		this.http
-			.post(url, {
-				...this.emailForm.value,
-				dateTimeLocal: this.emailForm.getRawValue().sendNow
-					? ''
-					: new Date(this.emailForm.getRawValue().dateTimeLocal).toISOString(),
+		//TODO(Wasit): temp fixed typing error for attachmentIds, need to set the type via generis for attachmentIds in reactive form
+		const attachmentIds: string[] = data.attachmentIds as string[];
+
+		this.store.dispatch(
+			userActions.sendEmail({
+				...data,
+				dateTimeLocal: data.sendNow ? '' : new Date(data.dateTimeLocal).toISOString(),
+				attachmentIds,
 			})
-			.subscribe({
-				next: (response: any) => {
-					// console.log('response ::', response);
-					this.toastService.enqueueToastNotification({
-						message: response.message,
-					});
-				},
-				error: (error) => {
-					// console.log('error :: ', error);
-					this.toastService.enqueueToastNotification({
-						message: error.error.message || error.message,
-						type: this.constants.ALERT_TYPE.ERROR,
-					});
-				},
-			});
+		);
 	}
 
 	protected handleOnFromEmailChange(selectedEmailId: string): void {

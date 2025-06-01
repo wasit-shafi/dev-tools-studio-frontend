@@ -1,12 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { FooterComponent, HeaderComponent } from '@coreComponents/';
-import { UiBlockerComponent } from '@coreComponents/shared/ui-blocker/ui-blocker.component';
-import { ToastService } from '@coreServices/';
-import { AppService } from '@coreServices/app/app.service';
+import { FooterComponent, HeaderComponent, UiBlockerComponent } from '@coreComponents/';
+import { AppService, ToastService } from '@coreServices/';
 import { Constants, Mocks } from '@coreShared/';
-import { environment } from '@environments/environment';
+import { environment } from '@environments/';
 
 @Component({
 	selector: 'dts-root',

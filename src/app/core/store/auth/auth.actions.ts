@@ -1,4 +1,4 @@
-import { IUser } from '@coreModels/';
+import { ISignupData, IUser } from '@coreModels/';
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { IAddProfilePicture } from '@userModels/';
 
@@ -10,6 +10,12 @@ export const authActions = createActionGroup({
 		signin: props<{ email: string; password: string; reCaptcha: string }>(),
 		signinSuccess: props<{ currentUser: IUser }>(),
 		signinFailure: props<{ message: string }>(),
+		// signup
+
+		signup: props<ISignupData>(),
+		signupSuccess: props<{ message: string }>(),
+		signupFailure: props<{ message: string }>(),
+
 		// auto signin (using access/refresh token)
 
 		autoSigninSuccess: props<{ currentUser: IUser }>(),

@@ -1,7 +1,7 @@
 import { tap } from 'rxjs';
 
 import { HttpEventType, HttpInterceptorFn } from '@angular/common/http';
-import { environment } from '@environments/environment';
+import { environment } from '@environments/';
 
 export const loggingInterceptor: HttpInterceptorFn = (request, next) => {
 	if (environment.production) {

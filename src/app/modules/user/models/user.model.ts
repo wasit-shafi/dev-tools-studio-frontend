@@ -1,5 +1,21 @@
 import { IApiBaseResponse } from '@coreModels/';
 
+export interface IEmailData {
+	from: string;
+	sendNow: boolean;
+	dateTimeLocal: string;
+	to: string;
+	subject: string;
+	salutation: string;
+	body: string;
+	closing: string;
+	signature: string;
+	attachmentIds: string[];
+	receiveConfirmationEmail: boolean;
+}
+
+export interface IPostEmailResponse extends IApiBaseResponse {}
+
 export interface IAddCredential {
 	credentialType: number;
 	displayName: string;
