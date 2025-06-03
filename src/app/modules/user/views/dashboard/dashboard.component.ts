@@ -2,7 +2,11 @@ import { AdminComponent } from '@adminViews/';
 import { Component, inject } from '@angular/core';
 import { HasPermissionDirective } from '@coreDirectives/';
 import { Constants } from '@coreShared/';
-import { ColorsComponent, EmailComponent, MetaTagsComponent, OpenGraphComponent } from '@userViews/';
+// TODO(wasit): review problem when importing via alias
+import { EmailComponent } from './tab-panels/email/email.component';
+import { ColorsComponent } from './tab-panels/colors/colors.component';
+import { MetaTagsComponent } from './tab-panels/meta-tags/meta-tags.component';
+import { OpenGraphComponent } from './tab-panels/open-graph/open-graph.component';
 
 @Component({
 	selector: 'dts-dashboard',

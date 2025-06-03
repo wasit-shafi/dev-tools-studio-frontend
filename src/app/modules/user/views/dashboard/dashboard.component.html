@@ -1,90 +1,65 @@
-<div class="">
-	<div
-		class="tabs tabs-lift tabs-sm"
-		role="tablist"
+<div class="tabs tabs-border bg-cyan-100">
+	<!-- Email Tab -->
+
+	<input
+		type="radio"
+		name="dashboard-tabs"
+		class="tab"
+		aria-label="Email"
+		checked
+	/>
+	<div class="tab-content px-5 py-10">
+		<dts-email></dts-email>
+	</div>
+	<!-- Admin Tab -->
+
+	<ng-container
+		*dtsHasPermission="{
+			roles: [constants.ACCESS_ROLES.ADMIN, constants.ACCESS_ROLES.SUPER_ADMIN],
+			operation: constants.ACCESS_OPERATIONS.OR,
+		}"
 	>
-		<!-- Admin Tab -->
-
-		<ng-container
-			*dtsHasPermission="{
-				roles: [constants.ACCESS_ROLES.ADMIN, constants.ACCESS_ROLES.SUPER_ADMIN],
-				operation: constants.ACCESS_OPERATIONS.OR,
-			}"
-		>
-			<input
-				class="tab [--tab-bg:lavender]"
-				name="tab-admin"
-				type="radio"
-				role="tab"
-				aria-label="Admin"
-			/>
-			<div
-				class="tab-content border-base-300 bg-[lavender] p-6"
-				role="tabpanel"
-			>
-				<dts-admin></dts-admin>
-			</div>
-		</ng-container>
-		<!-- Mail Tab -->
-
 		<input
-			class="tab [--tab-bg:lavender]"
-			name="tab-admin"
 			type="radio"
-			role="tab"
-			aria-label="Mail"
-			checked="checked"
+			name="dashboard-tabs"
+			class="tab"
+			aria-label="Admin"
 		/>
-		<div
-			class="tab-content border-base-300 bg-[lavender] p-6"
-			role="tabpanel"
-		>
-			<dts-email></dts-email>
+		<div class="tab-content px-5 py-10">
+			<dts-admin></dts-admin>
 		</div>
-		<!-- Colors Tab -->
+	</ng-container>
+	<!-- Colors Tab -->
 
-		<input
-			class="tab [--tab-bg:lavender]"
-			name="tab-admin"
-			type="radio"
-			role="tab"
-			aria-label="Colors"
-		/>
-		<div
-			class="tab-content border-base-300 bg-[lavender] p-6"
-			role="tabpanel"
-		>
-			<dts-colors></dts-colors>
-		</div>
-		<!-- Meta Tags Tab -->
+	<input
+		type="radio"
+		name="dashboard-tabs"
+		class="tab"
+		aria-label="Colors"
+	/>
+	<div class="tab-content px-5 py-10">
+		<dts-colors></dts-colors>
+	</div>
+	<!-- Meta Tags Tab -->
 
-		<input
-			class="tab [--tab-bg:lavender]"
-			name="tab-admin"
-			type="radio"
-			role="tab"
-			aria-label="Meta Tags"
-		/>
-		<div
-			class="tab-content border-base-300 bg-[lavender] p-6"
-			role="tabpanel"
-		>
-			<dts-meta-tags></dts-meta-tags>
-		</div>
-		<!-- Open Graph Tab -->
+	<input
+		type="radio"
+		name="dashboard-tabs"
+		class="tab"
+		aria-label="Meta tags"
+	/>
+	<div class="tab-content px-5 py-10">
+		<dts-meta-tags></dts-meta-tags>
+	</div>
+	<!-- Open Graph Tab -->
 
-		<input
-			class="tab [--tab-bg:lavender]"
-			name="tab-admin"
-			type="radio"
-			role="tab"
-			aria-label="Open Graph"
-		/>
-		<div
-			class="tab-content border-base-300 bg-[lavender] p-6"
-			role="tabpanel"
-		>
-			<dts-open-graph></dts-open-graph>
-		</div>
+	<input
+		type="radio"
+		name="dashboard-tabs"
+		class="tab"
+		aria-label="Open Graph"
+	/>
+	<div class="tab-content px-5 py-10">
+		<dts-open-graph></dts-open-graph>
 	</div>
 </div>

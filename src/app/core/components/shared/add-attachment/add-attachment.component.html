@@ -41,16 +41,16 @@
 
 			<div>
 				<label
-					class="mb-3 inline-block text-sm font-light"
+					class="label mb-3 inline-block text-sm font-light break-all whitespace-normal"
 					for="attachment"
 				>
-					Upload File less than 3MB (audio/*,video/*,image/*,.pdf,.docx,doc)
+					Upload File upto size of {{ constants.GLOBAL_MAX_FILE_SIZE_LIMIT_IN_MB }}MB ({{ allowedMimeForAttachment }})
 				</label>
 
 				<input
 					type="file"
 					class="file-input file-input-neutral w-full"
-					accept="audio/*,video/*,image/*,.pdf,.docx,doc"
+					[accept]="allowedMimeForAttachment"
 					id="attachment"
 					name="attachment"
 					required

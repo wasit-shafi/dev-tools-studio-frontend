@@ -18,6 +18,14 @@ export class AddAttachmentComponent {
 	protected readonly constants = inject(Constants);
 	private readonly store = inject(Store);
 
+	protected readonly allowedMimeForAttachment = [
+		...this.constants.ALLOWED_MIME_TYPES.IMAGES,
+		...this.constants.ALLOWED_MIME_TYPES.VIDEOS,
+		...this.constants.ALLOWED_MIME_TYPES.TEXT,
+		...this.constants.ALLOWED_MIME_TYPES.AUDIO,
+		...this.constants.ALLOWED_MIME_TYPES.DOCUMENTS,
+	];
+
 	private attachmentFile!: File;
 	private readonly INITIAL_ADD_ATTACHMENT_FORM_MODEL: { attachmentName: string; attachment: File | null } = {
 		attachmentName: '',

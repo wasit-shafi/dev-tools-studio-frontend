@@ -1,6 +1,6 @@
 <div class="item flex items-start justify-center">
 	<form
-		class="mx-auto mt-[30px] flex max-w-[800px] flex-col justify-center gap-4"
+		class="mx-auto flex w-[800px] flex-col items-start justify-center gap-4"
 		autocomplete="off"
 		[formGroup]="emailForm"
 		(submit)="handleOnSubmitSendEmailForm()"
@@ -50,35 +50,32 @@
 			<div
 				class="collapse-title text-primary-content peer-checked:text-secondary-content bg-slate-400 peer-checked:bg-slate-600"
 			>
-				View Credentials...
+				View Credentials
 			</div>
 			<div
 				class="collapse-content text-primary-content peer-checked:text-secondary-content bg-yellow-100 peer-checked:bg-yellow-600"
 			>
-				<div class="divider">{{ emailForm.getRawValue().from }}</div>
 				<div>
-					<div>
-						<span>Host:</span>
-						<span>{{ currentSmtpCredentials.host }}</span>
-					</div>
-					<div>
-						<span>Port:</span>
-						<span>{{ currentSmtpCredentials.port }}</span>
-					</div>
-					<div>
-						<span>Email ID:</span>
-						<span>{{ currentSmtpCredentials.emailId }}</span>
-					</div>
-					<div>
-						<span>Pass:</span>
-						<span>{{ currentSmtpCredentials.pass }}</span>
-					</div>
+					<span>Host: </span>
+					<span>{{ currentSmtpCredentials.host }}</span>
+				</div>
+				<div>
+					<span>Port: </span>
+					<span>{{ currentSmtpCredentials.port }}</span>
+				</div>
+				<div>
+					<span>Email ID: </span>
+					<span>{{ currentSmtpCredentials.emailId }}</span>
+				</div>
+				<div>
+					<span>Pass: </span>
+					<span>{{ currentSmtpCredentials.pass }}</span>
 				</div>
 			</div>
 		</div>
 		<!-- Send Now -->
 
-		<label class="label cursor-pointer justify-start gap-x-4 p-0">
+		<label class="label cursor-pointer">
 			<input
 				class="checkbox-neutral checkbox checkbox-xs"
 				type="checkbox"
@@ -170,7 +167,7 @@
 		</label>
 		<!-- Body -->
 
-		<label class="form-control">
+		<label class="form-control w-full">
 			<div class="label p-0 pb-1 pl-4">
 				<span class="label-text">Body</span>
 			</div>
@@ -182,7 +179,7 @@
 		</label>
 		<!-- Closing Line -->
 
-		<label class="form-control">
+		<label class="form-control w-full">
 			<div class="label p-0 pb-1 pl-4">
 				<span class="label-text">Closing Line</span>
 			</div>
@@ -194,7 +191,7 @@
 		</label>
 		<!-- Signature -->
 
-		<label class="form-control">
+		<label class="form-control w-full">
 			<div class="label p-0 pb-1 pl-4">
 				<span class="label-text">Your Signature</span>
 			</div>
@@ -206,8 +203,15 @@
 		</label>
 		<!-- Attachments -->
 
-		<details class="dropdown">
-			<summary class="btn m-1 w-full">Select Attachments</summary>
+		<details class="dropdown w-full">
+			<summary class="btn m-1 w-full">
+				<img
+					src="assets/images/paperclip.svg"
+					alt="attachment"
+					class="size-5"
+				/>
+				Select Attachments
+			</summary>
 			<div
 				class="menu dropdown-content bg-base-100 rounded-box z-1 w-52 w-full p-2 shadow-sm"
 				formArrayName="attachmentIds"
@@ -225,7 +229,6 @@
 				}
 			</div>
 		</details>
-
 		<!-- Status/Confirmation Mail -->
 
 		<label class="label cursor-pointer justify-start gap-x-4 p-0">
@@ -234,7 +237,7 @@
 				type="checkbox"
 				formControlName="receiveConfirmationEmail"
 			/>
-			<span class="label-text">Receive Status/Confirmation Mail Back</span>
+			<span class="label-text">Receive Updates/Confirmation Email</span>
 		</label>
 		<!-- Preview of the mail about to be sent -->
 
@@ -261,7 +264,7 @@
 		</details>
 		<!-- Wrapper for Reset & Submit button -->
 
-		<div class="flex gap-4">
+		<div class="flex w-full gap-4">
 			<button
 				class="btn flex-1"
 				type="reset"

@@ -1,7 +1,7 @@
-<div class="min-h-[600px] bg-slate-100 p-3">
+<div class="min-h-[600px] bg-cyan-100 p-3">
 	<!-- Account Section -->
 
-	<div class="mb-6 rounded-lg bg-zinc-200 p-4 shadow-xl shadow-slate-500/30">
+	<div class="mb-6 rounded-lg bg-cyan-200 p-4 shadow-xl shadow-slate-500/30">
 		<h1 class="text-accent mb-6 text-2xl">Account</h1>
 		<div class="relative">
 			@if (currentUser$ | async; as currentUser) {
@@ -10,7 +10,9 @@
 						<div class="mask mask-squircle w-25">
 							<img
 								[src]="
-									currentUser.profilePicture ? currentUser.profilePicture : 'assets/images/profile-picture-fallback.svg'
+									currentUser.profilePicture
+										? currentUser.profilePicture
+										: 'assets/images/outlined-profile-picture-fallback.svg'
 								"
 								alt="img"
 								priority
@@ -194,7 +196,7 @@
 	</div>
 	<!-- Credential Section -->
 
-	<div class="mb-6 rounded-lg bg-zinc-200 p-4 shadow-xl shadow-slate-500/30">
+	<div class="mb-6 rounded-lg bg-cyan-200 p-4 shadow-xl shadow-slate-500/30">
 		<div class="flex justify-between">
 			<h1 class="text-accent mb-6 text-2xl">Credentials</h1>
 			<dts-add-credential></dts-add-credential>
@@ -203,16 +205,16 @@
 	</div>
 	<!-- Email Templates Section -->
 
-	<div class="mb-6 rounded-lg bg-zinc-200 p-4 shadow-xl shadow-slate-500/30">
+	<div class="mb-6 rounded-lg bg-cyan-200 p-4 shadow-xl shadow-slate-500/30">
 		<div class="flex justify-between">
 			<h1 class="text-accent mb-6 text-2xl">Email Templates</h1>
 			<dts-add-email-template></dts-add-email-template>
 		</div>
 		<dts-list-email-template></dts-list-email-template>
 	</div>
-	<!-- Attachments  -->
+	<!-- Attachments -->
 
-	<div class="mb-6 rounded-lg bg-zinc-200 p-4 shadow-xl shadow-slate-500/30">
+	<div class="mb-6 rounded-lg bg-cyan-200 p-4 shadow-xl shadow-slate-500/30">
 		<div class="flex justify-between">
 			<h1 class="text-accent mb-6 text-2xl">File Attachments</h1>
 			<dts-add-attachment></dts-add-attachment>

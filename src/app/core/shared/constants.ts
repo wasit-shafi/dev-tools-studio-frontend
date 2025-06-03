@@ -157,6 +157,16 @@ export class Constants {
 		},
 	} as const;
 
+	public readonly GLOBAL_MAX_FILE_SIZE_LIMIT_IN_MB = 3;
+
+	public readonly ALLOWED_MIME_TYPES = {
+		IMAGES: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'],
+		VIDEOS: ['video/mp4'],
+		TEXT: ['text/plain'],
+		AUDIO: ['audio/mpeg'],
+		DOCUMENTS: ['application/pdf', 'application/msword'],
+	} as const;
+
 	public readonly CREDENTIAL_TYPE_MAPPING: Record<number, string> = {
 		[this.CREDENTIAL_TYPE.SMTP.VALUE]: this.CREDENTIAL_TYPE.SMTP.LABEL,
 		[this.CREDENTIAL_TYPE.OAUTH2.VALUE]: this.CREDENTIAL_TYPE.OAUTH2.LABEL,
