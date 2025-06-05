@@ -42,9 +42,9 @@ export class EmailComponent implements OnInit {
 	protected attachmentList: IAttachmentData[] = [];
 
 	private readonly INITIAL_SMTP_CREDENTIALS = {
-		credentialType: 0,
+		credentialType: '',
 		host: '',
-		port: 0,
+		port: '',
 		emailId: '',
 		pass: '',
 	};

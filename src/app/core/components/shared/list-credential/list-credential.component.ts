@@ -3,7 +3,9 @@ import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { EditCredentialComponent } from '@coreComponents/';
+import { ISettings } from '@coreModels/';
 import { Constants } from '@coreShared/';
+import { uiFeature } from '@coreStore/';
 import { Store } from '@ngrx/store';
 import { ICredentialData, IUserState } from '@userModels/';
 import { userActions, userFeature } from '@userStore/';
@@ -17,8 +19,11 @@ import { userActions, userFeature } from '@userStore/';
 })
 export class ListCredentialComponent implements OnInit {
 	@ViewChild('editCredentialComponent') editCredentialComponent!: EditCredentialComponent;
+
 	protected readonly constants = inject(Constants);
 	private readonly store = inject(Store);
+
+	protected readonly settings$: Observable<ISettings> = this.store.select(uiFeature.selectSettings);
 	protected readonly credentialList$: Observable<IUserState['credentialList']> = this.store.select(
 		userFeature.selectCredentialList
 	);

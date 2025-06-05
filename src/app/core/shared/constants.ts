@@ -8,7 +8,10 @@ export class Constants {
 
 	public readonly REGEX = {
 		EMAIL: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',
+		DIGITS_ONLY: '\\d*',
 	};
+
+	public readonly MASKED_CHAR_10: string = '**********';
 
 	private readonly ROUTES_PATHS: Record<string, string> = {
 		// GUEST USER ROUTES (UN-PROTECTED)
@@ -167,7 +170,7 @@ export class Constants {
 		DOCUMENTS: ['application/pdf', 'application/msword'],
 	} as const;
 
-	public readonly CREDENTIAL_TYPE_MAPPING: Record<number, string> = {
+	public readonly CREDENTIAL_TYPE_MAPPING: Record<string, string> = {
 		[this.CREDENTIAL_TYPE.SMTP.VALUE]: this.CREDENTIAL_TYPE.SMTP.LABEL,
 		[this.CREDENTIAL_TYPE.OAUTH2.VALUE]: this.CREDENTIAL_TYPE.OAUTH2.LABEL,
 	} as const;

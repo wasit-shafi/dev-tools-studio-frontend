@@ -4,6 +4,11 @@ export interface IBlocker {
 	secondaryText?: string;
 }
 
+export interface ISettings {
+	maskCredential: boolean;
+}
+
 export interface IUi {
 	blocker: IBlocker;
+	settings: ISettings;
 }

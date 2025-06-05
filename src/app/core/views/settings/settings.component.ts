@@ -1,12 +1,8 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
-	AddAttachmentComponent,
-	AddCredentialComponent,
-	AddEmailTemplateComponent,
-	ListAttachmentComponent,
-	ListCredentialComponent,
-	ListEmailTemplateComponent,
+    AddAttachmentComponent, AddCredentialComponent, AddEmailTemplateComponent, ListAttachmentComponent,
+    ListCredentialComponent, ListEmailTemplateComponent
 } from '@coreComponents/';
 import { Utils } from '@coreShared/';
 import { authFeature } from '@coreStore/';

@@ -5,5 +5,6 @@ export const uiActions = createActionGroup({
 	events: {
 		showBlocker: emptyProps(),
 		hideBlocker: emptyProps(),
+		toggleMaskCredential: emptyProps(),
 	},
 });

@@ -1,10 +1,14 @@
+import { Observable } from 'rxjs';
+
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ISettings } from '@coreModels/';
 import { Constants } from '@coreShared/';
+import { uiActions, uiFeature } from '@coreStore/';
 import { Store } from '@ngrx/store';
 import { IAddCredential } from '@userModels/';
-import { userActions } from '@userStore/user';
+import { userActions } from '@userStore/';
 
 @Component({
 	selector: 'dts-add-credential',
@@ -18,13 +22,14 @@ export class AddCredentialComponent {
 
 	protected readonly constants = inject(Constants);
 	private readonly store = inject(Store);
+	protected settings$: Observable<ISettings> = this.store.select(uiFeature.selectSettings);
 
 	private readonly INITIAL_ADD_CREDENTIAL_FORM_MODEL: IAddCredential = {
-		credentialType: 0,
+		credentialType: '',
 		displayName: '',
 		emailId: '',
 		host: '',
-		port: 0,
+		port: '',
 		pass: '',
 	};
 	protected addCredentialFormModel: IAddCredential = {
@@ -51,5 +56,9 @@ export class AddCredentialComponent {
 		this.addCredentialFormModel = {
 			...this.INITIAL_ADD_CREDENTIAL_FORM_MODEL,
 		};
+	}
+
+	protected handleToggleMaskCredential() {
+		this.store.dispatch(uiActions.toggleMaskCredential());
 	}
 }

@@ -17,11 +17,11 @@ export interface IEmailData {
 export interface IPostEmailResponse extends IApiBaseResponse {}
 
 export interface IAddCredential {
-	credentialType: number;
+	credentialType: string;
 	displayName: string;
 	emailId: string;
 	host: string;
-	port: number;
+	port: string;
 	pass: string;
 }
 

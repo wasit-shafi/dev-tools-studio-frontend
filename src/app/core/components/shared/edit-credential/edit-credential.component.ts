@@ -20,11 +20,11 @@ export class EditCredentialComponent {
 
 	private readonly INITIAL_EDIT_CREDENTIAL_FORM_MODEL: ICredentialData = {
 		_id: '',
-		credentialType: 0,
+		credentialType: '',
 		displayName: '',
 		emailId: '',
 		host: '',
-		port: 0,
+		port: '',
 		pass: '',
 	};
 	protected editCredentialFormModel: ICredentialData = {

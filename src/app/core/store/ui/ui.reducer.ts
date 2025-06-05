@@ -13,6 +13,9 @@ const reducer = createReducer(
 	on(uiActions.hideBlocker, (state, action): IUi => {
 		return { ...state, blocker: { ...state.blocker, isVisible: false } };
 	}),
+	on(uiActions.toggleMaskCredential, (state, action): IUi => {
+		return { ...state, settings: { ...state.settings, maskCredential: !state.settings.maskCredential } };
+	}),
 	// resetting to initial auth state on router navigation
 
 	on(routerNavigatedAction, (): IUi => {

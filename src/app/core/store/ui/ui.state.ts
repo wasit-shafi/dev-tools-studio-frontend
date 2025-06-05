@@ -6,4 +6,7 @@ export const initialUiState: IUi = {
 		primaryText: 'Loading',
 		secondaryText: '',
 	},
+	settings: {
+		maskCredential: true,
+	},
 };
