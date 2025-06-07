@@ -27,12 +27,13 @@ const reducer = createReducer(
 			...state,
 			currentUser: state.currentUser ? { ...state.currentUser, profilePicture: action.profilePicture } : null,
 		};
+	}),
+	on(routerNavigatedAction, (state, action): IAuthState => {
+		return {
+			...state,
+			forgotPasswordUi: initialAuthState.forgotPasswordUi,
+		};
 	})
-	// resetting to initial auth state on router navigation
-
-	// on(routerNavigatedAction, ():IAuthState => {
-	// 	return initialAuthState;
-	// })
 );
 
 export const authFeature = createFeature({

@@ -1,6 +1,6 @@
-<div class="min-h-50">
+<div class="min-h-50 bg-slate-100">
 	@for (emailTemplate of emailTemplateList$ | async; track $index) {
-		<div class="collapse-plus bg-base-100 border-base-300 collapse mb-2 border bg-cyan-100">
+		<div class="collapse-plus collapse mb-2 bg-slate-300">
 			<input
 				type="checkbox"
 				name="list-email-template-accordion"
@@ -35,7 +35,7 @@
 
 				<p class="whitespace-pre-wrap">{{ emailTemplate.subject }}</p>
 
-				<div class="my-3 rounded border border-orange-300 bg-orange-200 p-3 shadow-xl">
+				<div class="my-3 rounded border border-slate-700 bg-slate-400 p-3 shadow-xl">
 					<!-- Salutation -->
 
 					<p class="whitespace-pre-wrap">{{ emailTemplate.salutation }}</p>
@@ -57,7 +57,7 @@
 				<!--
 				<div>
 					@for (tag of emailTemplate.tags; track $index) {
-						<span class="badge badge-soft badge-primary mx-1">{{ tag }}</span>
+						<span class="badge badge-primary mx-1">{{ tag }}</span>
 					}
 				</div>
 			  -->
@@ -66,7 +66,7 @@
 	} @empty {
 		<div
 			role="alert"
-			class="alert alert-soft alert-info my-10"
+			class="alert alert-info my-10"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

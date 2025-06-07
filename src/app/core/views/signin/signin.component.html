@@ -1,18 +1,18 @@
 <form
-	class="mx-auto my-[30px] flex max-w-[400px] flex-col justify-center gap-4 rounded-lg bg-cyan-100 p-3"
+	class="mx-auto my-[30px] flex max-w-[400px] flex-col justify-center gap-4 rounded-lg bg-slate-100 p-3"
 	(submit)="handleOnSubmitSigninForm($event, signinForm)"
 	#signinForm="ngForm"
 	autocomplete="off"
 >
 	<div
 		role="alert"
-		class="alert alert-info alert-soft gap-1"
+		class="alert alert-info gap-1 px-2"
 	>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
 			viewBox="0 0 24 24"
-			class="stroke-info h-6 w-6 shrink-0"
+			class="h-6 w-6 shrink-0 stroke-current"
 		>
 			<path
 				stroke-linecap="round"
@@ -24,7 +24,7 @@
 		<span class="text-xs">
 			You can use <kbd class="kbd kbd-xs">{{ 'test@devtoolsstudio.com' }}</kbd> &
 			<kbd class="kbd kbd-xs">{{ 'Test@123' }}</kbd> as login credentials &
-			<b class="text-red-500">
+			<b class="text-red-700">
 				kindly don't mess-up with the settings or save any personal details in
 				<i class="underline">{{ 'test@devtoolsstudio.com' }}</i>
 				account!
