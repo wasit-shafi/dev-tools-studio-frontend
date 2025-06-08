@@ -1,4 +1,4 @@
-<div class="min-h-50 overflow-x-auto rounded-lg bg-slate-100">
+<div class="min-h-50 overflow-x-auto rounded-lg border border-slate-300 bg-slate-100">
 	@let attachmentList = attachmentList$ | async;
 
 	@if (attachmentList?.length) {
@@ -38,7 +38,7 @@
 	} @else {
 		<div
 			role="alert"
-			class="alert alert-info my-10"
+			class="alert alert-info m-2"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

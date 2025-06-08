@@ -40,6 +40,60 @@
 				<option [value]="credential.emailId">{{ credential.emailId }} ({{ credential.displayName }})</option>
 			}
 		</select>
+		<!-- Info Alert -->
+
+		<div
+			role="alert"
+			class="alert alert-info alert-soft mb-2 w-full gap-2 p-1 text-xs"
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				viewBox="0 0 24 24"
+				class="h-6 w-6 shrink-0 stroke-current"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+				></path>
+			</svg>
+			<span class="">
+				Use online free <b>Fake SMTP Server</b> providers such as
+				<a
+					target="_blank"
+					class="link link-primary link-hover"
+					href="https://ethereal.email/create"
+				>
+					ethereal
+				</a>
+				/
+				<a
+					target="_blank"
+					class="link link-primary link-hover"
+					href="https://mailtrap.io"
+				>
+					mailtrap
+				</a>
+				/
+				<a
+					target="_blank"
+					class="link link-primary link-hover"
+					href="https://mailosaur.com/"
+				>
+					mailosaur
+				</a>
+				to create Credentials for testing purposes. <b>Add New Credentials first</b> from
+				<a
+					class="link link-primary link-hover"
+					routerLink="/settings"
+				>
+					settings
+				</a>
+				to get started!
+			</span>
+		</div>
 		<!-- View Credentials -->
 
 		<div class="collapse">
@@ -204,7 +258,7 @@
 		<!-- Attachments -->
 
 		<details class="dropdown w-full">
-			<summary class="btn m-1 w-full">
+			<summary class="btn my-2 w-full">
 				<img
 					src="assets/images/paperclip.svg"
 					alt="attachment"
@@ -213,7 +267,7 @@
 				Select Attachments
 			</summary>
 			<div
-				class="menu dropdown-content bg-base-100 rounded-box z-1 w-52 w-full p-2 shadow-sm"
+				class="menu dropdown-content bg-base-100 rounded-box z-1 min-h-20 w-52 w-full border p-2 shadow-sm"
 				formArrayName="attachmentIds"
 			>
 				@for (attachment of attachmentList; track $index) {
@@ -224,8 +278,12 @@
 							[value]="attachment._id"
 							(change)="handleAttachmentsOnChange($event)"
 						/>
-						{{ attachment.fileName }} - ( {{ attachment.attachmentName }} )
+						{{ attachment.fileName }} - ({{ attachment.attachmentName }})
 					</label>
+				} @empty {
+					<p class="label flex flex-1 flex-wrap items-center justify-center text-center whitespace-normal">
+						No attachment added yet, to add new attachment goto to account settings.
+					</p>
 				}
 			</div>
 		</details>

@@ -1,7 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
 import {
-    AbstractControl, FormArray, FormBuilder, FormControl, ReactiveFormsModule, ValidationErrors, Validators
+	AbstractControl,
+	FormArray,
+	FormBuilder,
+	FormControl,
+	ReactiveFormsModule,
+	ValidationErrors,
+	Validators,
 } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { Constants } from '@coreShared/';
 import { Store } from '@ngrx/store';
 import { IAttachmentData, ICredentialData, IEmailTemplateData } from '@userModels/';
@@ -9,7 +16,7 @@ import { userActions, userFeature } from '@userStore/';
 
 @Component({
 	selector: 'dts-email',
-	imports: [ReactiveFormsModule],
+	imports: [ReactiveFormsModule, RouterLink],
 	providers: [Constants, FormBuilder],
 	templateUrl: './email.component.html',
 	styleUrl: './email.component.scss',
