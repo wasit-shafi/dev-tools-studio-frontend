@@ -299,27 +299,33 @@
 		</label>
 		<!-- Preview of the mail about to be sent -->
 
-		<details class="bg-base-200 collapse">
-			<summary class="collapse-title text-xl font-medium">
-				<p class="text-sm">
-					<span class="label">Preview Full Email sending to </span>
-					<b> {{ emailForm.value.to }}</b>
+		<div class="collapse">
+			<input
+				type="checkbox"
+				class="peer"
+			/>
+			<div
+				class="collapse-title text-primary-content peer-checked:text-secondary-content bg-slate-400 peer-checked:bg-slate-600"
+			>
+				Preview Email sending to<b> {{ emailForm.value.to }}</b>
+			</div>
+			<div
+				class="collapse-content text-primary-content peer-checked:text-secondary-content bg-yellow-100 peer-checked:bg-yellow-600"
+			>
+				<p class="">
+					Subject:<b>{{ emailForm.value.subject }}</b>
 				</p>
-				<p class="text-sm">
-					<span class="label">Subject:</span> <b>{{ emailForm.value.subject }}</b>
-				</p>
-			</summary>
-			<div class="collapse-content">
+				<br />
 				<!-- NOTE(Wasit): Keep the html preview in sync with backend (html content) -->
 
-				<p class="rounded border border-slate-700 bg-slate-400 whitespace-pre-wrap">
+				<p class="whitespace-pre-wrap">
 					{{ emailForm.value.salutation }}<br />
 					{{ emailForm.value.body }}<br />
 					{{ emailForm.value.closing }}<br /><br />
 					{{ emailForm.value.signature }}
 				</p>
 			</div>
-		</details>
+		</div>
 		<!-- Wrapper for Reset & Submit button -->
 
 		<div class="flex w-full gap-4">
