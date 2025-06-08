@@ -1,3 +1,4 @@
+import { providePrimeNG } from 'primeng/config';
 import { catchError, firstValueFrom, of, tap } from 'rxjs';
 
 import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
@@ -16,6 +17,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideState, provideStore, Store } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import Aura from '@primeng/themes/aura';
 import { userFeature } from '@userStore/';
 import * as userEffects from '@userStore/user/user.effects';
 
@@ -94,5 +96,10 @@ export const appConfig: ApplicationConfig = {
 		}),
 		Constants,
 		provideAnimationsAsync(),
+		providePrimeNG({
+			theme: {
+				preset: Aura,
+			},
+		}),
 	],
 };

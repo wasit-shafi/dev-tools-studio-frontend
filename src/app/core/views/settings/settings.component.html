@@ -5,20 +5,29 @@
 		<h1 class="text-primary mb-6 text-2xl">Account</h1>
 		<div class="relative">
 			@if (currentUser$ | async; as currentUser) {
-				<span class="absolute -top-12 right-0">
+				<span class="absolute -top-12 right-0 flex flex-col items-center gap-y-3">
 					<div class="avatar">
-						<div class="mask mask-squircle w-25">
+						<div class="ring-primary ring-offset-base-100 w-24 rounded-full p-0 ring-2 ring-offset-2">
 							<img
-								[src]="
-									currentUser.profilePicture
-										? currentUser.profilePicture
-										: 'assets/images/outlined-profile-picture-fallback.svg'
-								"
+								[src]="currentUser.profilePicture ? currentUser.profilePicture : 'assets/images/generic-user.jpg'"
 								alt="img"
 								priority
 							/>
 						</div>
 					</div>
+					<input
+						type="file"
+						class="hidden"
+						#profile_picture
+						(change)="handleUploadProfilePicture($event)"
+						[accept]="constants.ALLOWED_MIME_TYPES.IMAGES"
+					/>
+					<button
+						class="btn btn-outline btn-primary"
+						(click)="profile_picture.click()"
+					>
+						Upload Photo
+					</button>
 				</span>
 
 				<!--  Display Name -->

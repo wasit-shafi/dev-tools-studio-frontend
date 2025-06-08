@@ -1,5 +1,9 @@
 @use 'tailwindcss';
-@plugin 'daisyui';
+@plugin "daisyui" {
+	themes:
+		light --default,
+		light --prefersdark; // set light theme even if the browser UI appearance is set to dark mode theme
+}
 
 @theme {
 	--breakpoint-3xs: 300px;
