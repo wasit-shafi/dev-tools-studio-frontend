@@ -9,7 +9,7 @@ const routes: Routes = [
 	{
 		path: '',
 		component: UserViews.DashboardComponent,
-		title: `Welcome USERNAME - ${constants.PROJECT_NAME}`,
+		title: `Dashboard - ${constants.PROJECT_NAME}`,
 	},
 ];
 

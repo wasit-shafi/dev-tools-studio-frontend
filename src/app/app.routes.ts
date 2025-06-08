@@ -51,7 +51,7 @@ export const routes: Routes = [
 	{
 		path: constants.ROUTES.CONTACT,
 		component: CoreViews.ContactComponent,
-		title: `Contact Wasit - ${constants.PROJECT_NAME}`,
+		title: `Contact - ${constants.PROJECT_NAME}`,
 	},
 	// lazy load user module (for all the signin user)
 

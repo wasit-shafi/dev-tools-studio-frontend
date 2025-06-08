@@ -60,13 +60,27 @@ export class EmailComponent implements OnInit {
 		...this.INITIAL_SMTP_CREDENTIALS,
 	};
 
+	protected readonly CONSTRAINTS = {
+		SUBJECT: {
+			MIN_LENGTH: 5,
+			MAX_LENGTH: 200,
+		},
+	};
+
 	protected readonly emailForm = this.formBuilder.nonNullable.group({
 		emailTemplateId: ['', [Validators.required]],
 		from: [{ value: '', disabled: true }, [Validators.required]],
 		sendNow: [{ value: false, disabled: true }, [Validators.required]],
 		dateTimeLocal: [{ value: '', disabled: true }, [Validators.required, this.customValidatorForDateTimeLocal]],
 		to: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
-		subject: [{ value: '', disabled: true }, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+		subject: [
+			{ value: '', disabled: true },
+			[
+				Validators.required,
+				Validators.minLength(this.CONSTRAINTS.SUBJECT.MIN_LENGTH),
+				Validators.maxLength(this.CONSTRAINTS.SUBJECT.MAX_LENGTH),
+			],
+		],
 		salutation: [{ value: '', disabled: true }, [Validators.required]],
 		body: [{ value: '', disabled: true }, [Validators.required]],
 		closing: [{ value: '', disabled: true }, [Validators.required]],

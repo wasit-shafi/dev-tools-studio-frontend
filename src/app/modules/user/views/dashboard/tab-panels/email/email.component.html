@@ -195,10 +195,10 @@
 					Subject is required
 				}
 				@if (subject?.hasError('minlength')) {
-					Subject must be at-least 5 Character
+					Subject must be at-least {{ CONSTRAINTS.SUBJECT.MIN_LENGTH }} Character
 				}
 				@if (subject?.hasError('maxlength')) {
-					Subject Exceeds 20 Characters Limit
+					Subject Exceeds {{ CONSTRAINTS.SUBJECT.MIN_LENGTH }} Characters Limit
 				}
 			</div>
 		}
