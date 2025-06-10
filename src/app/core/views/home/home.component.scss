@@ -1,0 +1,19 @@
+::ng-deep {
+	p-galleria {
+		p-galleriaitem {
+			.p-galleria-nav-button,
+			.p-galleria-nav-button:not(.p-disabled):hover {
+				background-color: rgba(silver, 0.6);
+				border: 1px solid rgba(silver, 0.9);
+			}
+		}
+
+		p-galleriathumbnails {
+			.p-galleria-thumbnails {
+				.p-galleria-thumbnails-content {
+					background-color: lavender;
+				}
+			}
+		}
+	}
+}

@@ -70,6 +70,7 @@
 			[showItemNavigators]="true"
 			[responsiveOptions]="responsiveOptions"
 			[circular]="true"
+			[numVisible]="16"
 			[containerStyle]="{ 'max-width': '1000px' }"
 			[autoPlay]="true"
 			[showItemNavigatorsOnHover]="true"
@@ -78,21 +79,35 @@
 				#item
 				let-item
 			>
-				<!-- NOTE(Wasit): Keep containerStyle attribute's max-width property in sync with image width. Image width can't be greater then max width of container p-galleria  -->
+				<!-- NOTE(Wasit): Keep containerStyle attribute's max-width property in sync with image width. Image width can't be greater then max width of container p-galleria -->
 
-				<img
-					alt="project snapshots"
-					class="block h-[800px] w-[1000px] bg-slate-100"
-					[src]="item.itemImageSrc"
-				/>
+				@if (item?.itemLink) {
+					<a
+						[href]="item.itemLink"
+						target="_blank"
+						[title]="'Visit Link: ' + item.itemLink"
+					>
+						<img
+							alt="project snapshots"
+							class="block h-[800px] w-[1000px] bg-slate-100"
+							[src]="item.imageSrc"
+						/>
+					</a>
+				} @else {
+					<img
+						alt="project snapshots"
+						class="block h-[800px] w-[1000px] bg-slate-100"
+						[src]="item.imageSrc"
+					/>
+				}
 			</ng-template>
 			<ng-template
 				#thumbnail
 				let-item
 			>
 				<img
-					[src]="item.thumbnailImageSrc"
-					class="block size-10 rounded-sm border border-5 border-slate-300"
+					[src]="item.imageSrc"
+					class="block size-10 rounded-md border border-3 border-slate-900"
 					alt="thumbnail"
 				/>
 			</ng-template>
@@ -211,4 +226,42 @@
 			</a>
 		</p>
 	</div>
+	<!--  -->
+
+	<h1 class="text-primary p-3 text-3xl">Misc:</h1>
+	<ul class="marker:text-green ml-6 list-outside list-disc">
+		<li>
+			To view
+			<a
+				target="_blank"
+				class="link link-primary"
+				href="https://redis.io/cloud/"
+				>Redis Cloud</a
+			>
+			DB Data, install
+			<a
+				target="_blank"
+				class="link link-primary"
+				href="https://redis.io/insight/"
+				>Redis Insight</a
+			>
+		</li>
+		<li>
+			To view
+			<a
+				target="_blank"
+				class="link link-primary"
+				href="https://ngrx.io/guide/store#diagram"
+				>NgRx store</a
+			>
+			in your browser, install
+			<a
+				target="_blank"
+				class="link link-primary"
+				href="https://github.com/reduxjs/redux-devtools/?tab=readme-ov-file#redux-devtools"
+				>redux-devtools</a
+			>
+			extension.
+		</li>
+	</ul>
 </div>

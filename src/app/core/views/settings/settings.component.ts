@@ -1,12 +1,8 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
-	AddAttachmentComponent,
-	AddCredentialComponent,
-	AddEmailTemplateComponent,
-	ListAttachmentComponent,
-	ListCredentialComponent,
-	ListEmailTemplateComponent,
+    AddAttachmentComponent, AddCredentialComponent, AddEmailTemplateComponent, ListAttachmentComponent,
+    ListCredentialComponent, ListEmailTemplateComponent
 } from '@coreComponents/';
 import { Constants, Utils } from '@coreShared/';
 import { authActions, authFeature } from '@coreStore/';
@@ -41,7 +37,11 @@ export class SettingsComponent {
 			const formData = new FormData();
 
 			formData.append('profilePicture', target.files[0]);
-			this.store.dispatch(authActions.profilePicture({ formData }));
+			this.store.dispatch(authActions.addProfilePicture({ formData }));
 		}
+	}
+
+	protected handleDeleteProfilePicture() {
+		this.store.dispatch(authActions.deleteProfilePicture());
 	}
 }

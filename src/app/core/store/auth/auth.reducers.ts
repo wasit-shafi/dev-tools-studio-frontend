@@ -22,10 +22,16 @@ const reducer = createReducer(
 	on(authActions.autoSigninSuccess, (state, action): IAuthState => {
 		return { ...state, currentUser: action.currentUser };
 	}),
-	on(authActions.profilePictureSuccess, (state, action): IAuthState => {
+	on(authActions.addProfilePictureSuccess, (state, action): IAuthState => {
 		return {
 			...state,
 			currentUser: state.currentUser ? { ...state.currentUser, profilePicture: action.profilePicture } : null,
+		};
+	}),
+	on(authActions.deleteProfilePictureSuccess, (state, action): IAuthState => {
+		return {
+			...state,
+			currentUser: state.currentUser ? { ...state.currentUser, profilePicture: '' } : null,
 		};
 	}),
 	on(routerNavigatedAction, (state, action): IAuthState => {

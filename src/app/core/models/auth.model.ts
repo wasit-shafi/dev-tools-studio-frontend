@@ -51,6 +51,10 @@ export interface IResetPasswordResponse extends IApiBaseResponse {
 	data: null;
 }
 
+export interface IDeleteProfilePictureResponse extends IApiBaseResponse {
+	data: null;
+}
+
 export interface IForgotPasswordUi {
 	isEmailSent: boolean;
 }

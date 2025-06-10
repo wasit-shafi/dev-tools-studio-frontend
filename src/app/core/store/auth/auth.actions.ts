@@ -36,8 +36,13 @@ export const authActions = createActionGroup({
 		resetPasswordFailure: props<{ message: string }>(),
 		// add profile
 
-		profilePicture: props<IAddProfilePicture>(),
-		profilePictureSuccess: props<{ message: string; profilePicture: string }>(),
-		profilePictureFailure: props<{ message: string }>(),
+		addProfilePicture: props<IAddProfilePicture>(),
+		addProfilePictureSuccess: props<{ message: string; profilePicture: string }>(),
+		addProfilePictureFailure: props<{ message: string }>(),
+		// delete profile
+
+		deleteProfilePicture: emptyProps(),
+		deleteProfilePictureSuccess: props<{ message: string }>(),
+		deleteProfilePictureFailure: props<{ message: string }>(),
 	},
 });

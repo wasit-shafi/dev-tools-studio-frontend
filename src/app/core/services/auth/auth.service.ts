@@ -3,7 +3,8 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, OnInit } from '@angular/core';
 import {
-    IAuthState, IForgotPasswordResponse, IResetPasswordResponse, ISigninResponse, ISignupData, ISignupResponse
+    IAuthState, IDeleteProfilePictureResponse, IForgotPasswordResponse, IResetPasswordResponse, ISigninResponse,
+    ISignupData, ISignupResponse
 } from '@coreModels/';
 import { AppService, PersistenceService } from '@coreServices/';
 import { Constants } from '@coreShared/';
@@ -101,5 +102,11 @@ export class AuthService implements OnInit {
 
 	public postProfilePicture(data: any): Observable<any> {
 		return this.http.post(`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/profile-picture`, data);
+	}
+
+	public deleteProfilePicture(): Observable<IDeleteProfilePictureResponse> {
+		return this.http.delete<IDeleteProfilePictureResponse>(
+			`${environment.baseUrl}/${this.constants.API_PREFIX.API_V1}/user/profile-picture`
+		);
 	}
 }

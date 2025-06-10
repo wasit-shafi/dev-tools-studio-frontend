@@ -3,202 +3,218 @@
 
 	<div class="mb-6 rounded-lg bg-slate-200 p-4 shadow-xl shadow-slate-500/30">
 		<h1 class="text-primary mb-6 text-2xl">Account</h1>
-		<div class="relative">
+		<div class="">
 			@if (currentUser$ | async; as currentUser) {
-				<span class="absolute -top-12 right-0 flex flex-col items-center gap-y-3">
-					<div class="avatar">
-						<div class="ring-primary ring-offset-base-100 w-24 rounded-full p-0 ring-2 ring-offset-2">
-							<img
-								[src]="currentUser.profilePicture ? currentUser.profilePicture : 'assets/images/generic-user.jpg'"
-								alt="img"
-								priority
-							/>
+				<div class="wrap -mt-5 flex flex-col gap-2">
+					<!-- Profile Photo -->
+
+					<div class="flex flex-col items-center gap-y-3">
+						<div class="avatar">
+							<div class="ring-primary ring-offset-base-100 w-24 rounded-full p-0 ring-2 ring-offset-2">
+								<img
+									[src]="currentUser.profilePicture ? currentUser.profilePicture : 'assets/images/generic-user.jpg'"
+									alt="img"
+									priority
+								/>
+							</div>
+						</div>
+						<input
+							type="file"
+							class="hidden"
+							#profile_picture
+							(change)="handleUploadProfilePicture($event)"
+							[accept]="constants.ALLOWED_MIME_TYPES.IMAGES"
+						/>
+						<div class="flex gap-3">
+							<button
+								class="btn btn-outline btn-primary"
+								(click)="profile_picture.click()"
+							>
+								Upload Photo
+							</button>
+							<button
+								class="btn btn-outline btn-secondary"
+								(click)="handleDeleteProfilePicture()"
+								[disabled]="!currentUser?.profilePicture"
+							>
+								Delete Photo
+							</button>
 						</div>
 					</div>
-					<input
-						type="file"
-						class="hidden"
-						#profile_picture
-						(change)="handleUploadProfilePicture($event)"
-						[accept]="constants.ALLOWED_MIME_TYPES.IMAGES"
-					/>
-					<button
-						class="btn btn-outline btn-primary"
-						(click)="profile_picture.click()"
-					>
-						Upload Photo
-					</button>
-				</span>
+					<!-- User Details Section -->
 
-				<!--  Display Name -->
+					<div class="">
+						<!--  Display Name -->
 
-				<div class="flex gap-4">
-					<span class="label basis-3xs">Display Name</span>
-					<span class="font-bold">{{ currentUser.displayName }}</span>
-				</div>
-				<!--  First Name -->
+						<div class="flex gap-4">
+							<span class="label xs:basis-30 basis-25 sm:basis-35">Display Name</span>
+							<span class="font-bold">{{ currentUser.displayName }}</span>
+						</div>
+						<!--  First Name -->
 
-				<div class="flex gap-4">
-					<span class="label basis-3xs">First Name</span>
-					<span class="font-bold">{{ currentUser.firstName }}</span>
-				</div>
-				<!--  Last Name -->
+						<div class="flex gap-4">
+							<span class="label xs:basis-30 basis-25 sm:basis-35">First Name</span>
+							<span class="font-bold">{{ currentUser.firstName }}</span>
+						</div>
+						<!--  Last Name -->
 
-				<div class="flex gap-4">
-					<span class="label basis-3xs">Last Name</span>
-					<span class="font-bold">{{ currentUser.lastName }}</span>
-				</div>
-				<!-- Roles -->
+						<div class="flex gap-4">
+							<span class="label xs:basis-30 basis-25 sm:basis-35">Last Name</span>
+							<span class="font-bold">{{ currentUser.lastName }}</span>
+						</div>
+						<!-- Roles -->
 
-				<div class="flex gap-4">
-					<span class="label basis-3xs">Roles</span>
-					<span class="font-bold">{{ this.utils.getUserRoleNames(currentUser.roles) }}</span>
-				</div>
-				<!--  Email ID -->
+						<div class="flex gap-4">
+							<span class="label xs:basis-30 basis-25 sm:basis-35">Roles</span>
+							<span class="font-bold">{{ this.utils.getUserRoleNames(currentUser.roles) }}</span>
+						</div>
+						<!--  Email ID -->
 
-				<div class="flex gap-4">
-					<span class="label basis-3xs">Email ID</span>
-					<span class="font-bold">
-						{{ currentUser.email }}
+						<div class="flex gap-4">
+							<span class="label xs:basis-30 basis-25 sm:basis-35">Email ID</span>
+							<span class="font-bold">
+								{{ currentUser.email }}
 
-						@if (currentUser.isEmailVerified) {
-							<div class="badge badge-success badge-xs">
-								<svg
-									class="size-[1em]"
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 24 24"
-								>
-									<g
-										fill="currentColor"
-										stroke-linejoin="miter"
-										stroke-linecap="butt"
-									>
-										<circle
-											cx="12"
-											cy="12"
-											r="10"
-											fill="none"
-											stroke="currentColor"
-											stroke-linecap="square"
-											stroke-miterlimit="10"
-											stroke-width="2"
-										></circle>
-										<polyline
-											points="7 13 10 16 17 8"
-											fill="none"
-											stroke="currentColor"
-											stroke-linecap="square"
-											stroke-miterlimit="10"
-											stroke-width="2"
-										></polyline>
-									</g>
-								</svg>
-								Verified
-							</div>
-						} @else {
-							<div class="badge badge-error badge-xs">
-								<svg
-									class="size-[1em]"
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 24 24"
-								>
-									<g fill="currentColor">
-										<rect
-											x="1.972"
-											y="11"
-											width="20.056"
-											height="2"
-											transform="translate(-4.971 12) rotate(-45)"
-											fill="currentColor"
-											stroke-width="0"
-										></rect>
-										<path
-											d="m12,23c-6.065,0-11-4.935-11-11S5.935,1,12,1s11,4.935,11,11-4.935,11-11,11Zm0-20C7.038,3,3,7.037,3,12s4.038,9,9,9,9-4.037,9-9S16.962,3,12,3Z"
-											stroke-width="0"
-											fill="currentColor"
-										></path>
-									</g>
-								</svg>
-								Not Verified
-							</div>
-						}
-					</span>
-				</div>
-				<!--  Mobile No -->
+								@if (currentUser.isEmailVerified) {
+									<div class="badge badge-success badge-xs">
+										<svg
+											class="size-[1em]"
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 24 24"
+										>
+											<g
+												fill="currentColor"
+												stroke-linejoin="miter"
+												stroke-linecap="butt"
+											>
+												<circle
+													cx="12"
+													cy="12"
+													r="10"
+													fill="none"
+													stroke="currentColor"
+													stroke-linecap="square"
+													stroke-miterlimit="10"
+													stroke-width="2"
+												></circle>
+												<polyline
+													points="7 13 10 16 17 8"
+													fill="none"
+													stroke="currentColor"
+													stroke-linecap="square"
+													stroke-miterlimit="10"
+													stroke-width="2"
+												></polyline>
+											</g>
+										</svg>
+										Verified
+									</div>
+								} @else {
+									<div class="badge badge-secondary badge-xs">
+										<svg
+											class="size-[1em]"
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 24 24"
+										>
+											<g fill="currentColor">
+												<rect
+													x="1.972"
+													y="11"
+													width="20.056"
+													height="2"
+													transform="translate(-4.971 12) rotate(-45)"
+													fill="currentColor"
+													stroke-width="0"
+												></rect>
+												<path
+													d="m12,23c-6.065,0-11-4.935-11-11S5.935,1,12,1s11,4.935,11,11-4.935,11-11,11Zm0-20C7.038,3,3,7.037,3,12s4.038,9,9,9,9-4.037,9-9S16.962,3,12,3Z"
+													stroke-width="0"
+													fill="currentColor"
+												></path>
+											</g>
+										</svg>
+										Not Verified
+									</div>
+								}
+							</span>
+						</div>
+						<!--  Mobile No -->
 
-				<div class="flex gap-4">
-					<span class="label basis-3xs">Mobile No</span>
-					<span class="font-bold">
-						{{ currentUser.countryCode }} {{ currentUser.mobileNumber }}
+						<div class="flex gap-4">
+							<span class="label xs:basis-30 basis-25 sm:basis-35">Mobile No</span>
+							<span class="font-bold">
+								{{ currentUser.countryCode }} {{ currentUser.mobileNumber }}
 
-						@if (currentUser.isMobileNumberVerified) {
-							<div class="badge badge-success badge-xs">
-								<svg
-									class="size-[1em]"
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 24 24"
-								>
-									<g
-										fill="currentColor"
-										stroke-linejoin="miter"
-										stroke-linecap="butt"
-									>
-										<circle
-											cx="12"
-											cy="12"
-											r="10"
-											fill="none"
-											stroke="currentColor"
-											stroke-linecap="square"
-											stroke-miterlimit="10"
-											stroke-width="2"
-										></circle>
-										<polyline
-											points="7 13 10 16 17 8"
-											fill="none"
-											stroke="currentColor"
-											stroke-linecap="square"
-											stroke-miterlimit="10"
-											stroke-width="2"
-										></polyline>
-									</g>
-								</svg>
-								Verified
-							</div>
-						} @else {
-							<div class="badge badge-error badge-xs">
-								<svg
-									class="size-[1em]"
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 24 24"
-								>
-									<g fill="currentColor">
-										<rect
-											x="1.972"
-											y="11"
-											width="20.056"
-											height="2"
-											transform="translate(-4.971 12) rotate(-45)"
-											fill="currentColor"
-											stroke-width="0"
-										></rect>
-										<path
-											d="m12,23c-6.065,0-11-4.935-11-11S5.935,1,12,1s11,4.935,11,11-4.935,11-11,11Zm0-20C7.038,3,3,7.037,3,12s4.038,9,9,9,9-4.037,9-9S16.962,3,12,3Z"
-											stroke-width="0"
-											fill="currentColor"
-										></path>
-									</g>
-								</svg>
-								Not Verified
-							</div>
-						}
-					</span>
-				</div>
-				<!-- Country -->
+								@if (currentUser.isMobileNumberVerified) {
+									<div class="badge badge-success badge-xs">
+										<svg
+											class="size-[1em]"
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 24 24"
+										>
+											<g
+												fill="currentColor"
+												stroke-linejoin="miter"
+												stroke-linecap="butt"
+											>
+												<circle
+													cx="12"
+													cy="12"
+													r="10"
+													fill="none"
+													stroke="currentColor"
+													stroke-linecap="square"
+													stroke-miterlimit="10"
+													stroke-width="2"
+												></circle>
+												<polyline
+													points="7 13 10 16 17 8"
+													fill="none"
+													stroke="currentColor"
+													stroke-linecap="square"
+													stroke-miterlimit="10"
+													stroke-width="2"
+												></polyline>
+											</g>
+										</svg>
+										Verified
+									</div>
+								} @else {
+									<div class="badge badge-secondary badge-xs">
+										<svg
+											class="size-[1em]"
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 24 24"
+										>
+											<g fill="currentColor">
+												<rect
+													x="1.972"
+													y="11"
+													width="20.056"
+													height="2"
+													transform="translate(-4.971 12) rotate(-45)"
+													fill="currentColor"
+													stroke-width="0"
+												></rect>
+												<path
+													d="m12,23c-6.065,0-11-4.935-11-11S5.935,1,12,1s11,4.935,11,11-4.935,11-11,11Zm0-20C7.038,3,3,7.037,3,12s4.038,9,9,9,9-4.037,9-9S16.962,3,12,3Z"
+													stroke-width="0"
+													fill="currentColor"
+												></path>
+											</g>
+										</svg>
+										Not Verified
+									</div>
+								}
+							</span>
+						</div>
+						<!-- Country -->
 
-				<div class="flex gap-4">
-					<span class="label basis-3xs">Country</span>
-					<span class="font-bold">{{ this.utils.getCountryName(currentUser.country) }}</span>
+						<div class="flex gap-4">
+							<span class="label xs:basis-30 basis-25 sm:basis-35">Country</span>
+							<span class="font-bold">{{ this.utils.getCountryName(currentUser.country) }}</span>
+						</div>
+					</div>
 				</div>
 			}
 		</div>

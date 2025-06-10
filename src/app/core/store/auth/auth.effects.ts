@@ -344,20 +344,20 @@ export const resetPasswordFailureEffect = createEffect(
 );
 // Profile Picture
 
-export const profilePictureEffect = createEffect(
+export const addProfilePictureEffect = createEffect(
 	(actions$ = inject(Actions), authService = inject(AuthService)) => {
 		return actions$.pipe(
-			ofType(authActions.profilePicture),
+			ofType(authActions.addProfilePicture),
 			exhaustMap(({ formData }) => {
 				return authService.postProfilePicture(formData).pipe(
 					map((response) => {
-						return authActions.profilePictureSuccess({
+						return authActions.addProfilePictureSuccess({
 							message: response.message,
 							profilePicture: response.data.profilePicture,
 						});
 					}),
 					catchError((errorResponse: CustomHttpErrorResponse) => {
-						return of(authActions.profilePictureFailure({ message: errorResponse.error.message }));
+						return of(authActions.addProfilePictureFailure({ message: errorResponse.error.message }));
 					})
 				);
 			})
@@ -366,10 +366,10 @@ export const profilePictureEffect = createEffect(
 	{ functional: true }
 );
 
-export const profilePictureSuccessEffect = createEffect(
+export const addProfilePictureSuccessEffect = createEffect(
 	(actions$ = inject(Actions), toastService = inject(ToastService)) => {
 		return actions$.pipe(
-			ofType(authActions.profilePictureSuccess),
+			ofType(authActions.addProfilePictureSuccess),
 			tap(({ message }) => {
 				toastService.enqueueToastNotification({
 					message,
@@ -380,10 +380,60 @@ export const profilePictureSuccessEffect = createEffect(
 	{ functional: true, dispatch: false }
 );
 
-export const profilePictureFailureEffect = createEffect(
+export const addProfilePictureFailureEffect = createEffect(
 	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
 		return actions$.pipe(
-			ofType(authActions.profilePictureFailure),
+			ofType(authActions.addProfilePictureFailure),
+			tap((error) => {
+				toastService.enqueueToastNotification({
+					message: error.message,
+					type: constants.ALERT_TYPE.ERROR,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
+export const deleteProfilePictureEffect = createEffect(
+	(actions$ = inject(Actions), authService = inject(AuthService)) => {
+		return actions$.pipe(
+			ofType(authActions.deleteProfilePicture),
+			exhaustMap(() => {
+				return authService.deleteProfilePicture().pipe(
+					map((response) => {
+						return authActions.deleteProfilePictureSuccess({
+							message: response.message,
+						});
+					}),
+					catchError((errorResponse: CustomHttpErrorResponse) => {
+						return of(authActions.deleteProfilePictureFailure({ message: errorResponse.error.message }));
+					})
+				);
+			})
+		);
+	},
+	{ functional: true }
+);
+
+export const deleteProfilePictureSuccessEffect = createEffect(
+	(actions$ = inject(Actions), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(authActions.deleteProfilePictureSuccess),
+			tap(({ message }) => {
+				toastService.enqueueToastNotification({
+					message,
+				});
+			})
+		);
+	},
+	{ functional: true, dispatch: false }
+);
+
+export const deleteProfilePictureFailureEffect = createEffect(
+	(actions$ = inject(Actions), constants = inject(Constants), toastService = inject(ToastService)) => {
+		return actions$.pipe(
+			ofType(authActions.deleteProfilePictureFailure),
 			tap((error) => {
 				toastService.enqueueToastNotification({
 					message: error.message,
