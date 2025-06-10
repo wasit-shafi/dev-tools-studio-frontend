@@ -33,8 +33,8 @@ export class SigninComponent implements OnInit {
 	protected isPasswordVisible: boolean = false;
 
 	protected readonly signinFormModel = {
-		email: '',
-		password: '',
+		email: 'test@devtoolsstudio.com',
+		password: 'Test@123',
 		reCaptcha: '',
 	};
 

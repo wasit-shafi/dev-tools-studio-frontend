@@ -90,7 +90,13 @@ export class HomeComponent {
 				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749420147/dev-tools-studio/snapshots/diagrams/xca9ff8mdc2suw0qnfb9.png',
 			itemLink: 'https://app.eraser.io/workspace/cwZzopjoFs0wIiPvRI8X',
 		},
-		//
+		{
+			// snapshots/others: Github Project Board
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552216/dev-tools-studio/snapshots/others/pzfniwfsl0c0bpmkukmy.png',
+
+			itemLink: 'https://github.com/users/wasit-shafi/projects/5',
+		},
 		{
 			// snapshots/cicd: All workflows
 			imageSrc:
@@ -118,7 +124,6 @@ export class HomeComponent {
 				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749533433/dev-tools-studio/snapshots/cicd/ygabjr1nxjbk1nm3m2ov.png',
 			itemLink: 'https://hub.docker.com/repositories/wasitshafi700',
 		},
-		//
 		{
 			// snapshots/bullmq-and-redis: Redis Cloud
 			imageSrc:
@@ -139,8 +144,6 @@ export class HomeComponent {
 			imageSrc:
 				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749534017/dev-tools-studio/snapshots/bullmq-and-redis/aeukolkwtk0qm2iqqwvy.png',
 		},
-
-		//
 		{
 			// snapshots/others: MongoDB Atlas
 			imageSrc:
@@ -166,6 +169,72 @@ export class HomeComponent {
 			imageSrc:
 				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749533395/dev-tools-studio/snapshots/others/cblhllzhmodksplsqgdj.png',
 			itemLink: 'https://www.postman.com/wasitshafi/dev-tools-studio-public-wrokspace/overview',
+		},
+		{
+			// snapshots/website: Backend
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749553251/dev-tools-studio/snapshots/website/oawqr2qkx0n8frwejhir.png',
+			itemLink: environment.baseUrl,
+		},
+		{
+			// snapshots/website: Schedule Email Screen - 1
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552197/dev-tools-studio/snapshots/website/dkvh6jom93gryxz1jwle.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: Schedule Email Screen - 2
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552199/dev-tools-studio/snapshots/website/wehbevm95psnl0rhxjnp.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: Settings Screen - 1
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552198/dev-tools-studio/snapshots/website/homi3kre8zjjuotgp8xs.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: Settings Screen - 2
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552198/dev-tools-studio/snapshots/website/lkrpqp9dwksv67iucrx9.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: Settings Screen - 3
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552198/dev-tools-studio/snapshots/website/kzu9bkh77j4xw05lmk3o.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: NrGx Store
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552197/dev-tools-studio/snapshots/website/af1mydpnnlzweus2zxtf.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: Add New Credential
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552197/dev-tools-studio/snapshots/website/x3usgeithntlfcqokjt6.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: Add New Email Template
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552197/dev-tools-studio/snapshots/website/keewcfnprrvx3pxfmjjm.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: Add New Attachment
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552197/dev-tools-studio/snapshots/website/otqurmcswbwq3opopwxf.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: Reset Password Email
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749554425/dev-tools-studio/snapshots/website/q8byhqmedr3pmifsx8uf.png',
+			itemLink: 'http://3.110.46.93:4200/',
 		},
 	];
 }

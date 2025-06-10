@@ -1,5 +1,5 @@
-<nav>
-	<ul class="menu menu-horizontal flex h-9 flex-col gap-x-4 overflow-x-auto p-0">
+<nav class="">
+	<ul class="menu menu-horizontal flex justify-center gap-4 p-0">
 		<ng-template #NAV_ITEM_HOME>
 			<!-- Home -->
 
@@ -18,9 +18,9 @@
 				<div class="avatar p-0">
 					<div class="w-9 rounded-full">
 						<img
-							[src]="currentUser.profilePicture ? currentUser.profilePicture : 'assets/images/generic-user.jpg'"
-							alt="profile_img"
 							priority
+							alt="profile_img"
+							[src]="currentUser.profilePicture ? currentUser.profilePicture : 'assets/images/generic-user.png'"
 						/>
 					</div>
 				</div>
