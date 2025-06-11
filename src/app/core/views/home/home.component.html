@@ -3,9 +3,10 @@
 	<!-- Intro -->
 
 	<div class="text-sm">
-		<p class="">
-			Now Cold Emailing is just only click away, no overhead of re-typing the whole email or copy-pasting previously
-			used emails.<br />
+		<p class="text-lg">
+			Now Cold Emailing is just only one click away, no overhead of re-typing the whole email or copy-pasting previously
+			used emails. No need to login into your different accounts just to send email to others, all of it can now be
+			<b>managed from one account only!</b><br />
 			Create customizable email templates, attachments, send emails to others real-time or schedule it for later & send
 			it from your different accounts by adding your <b>SMTP/OAuth</b> Credentials.
 		</p>
@@ -66,7 +67,7 @@
 
 	<div class="card mt-5 flex items-center">
 		<p-galleria
-			[value]="images"
+			[value]="constants.snapshots"
 			[showItemNavigators]="true"
 			[responsiveOptions]="responsiveOptions"
 			[circular]="true"
@@ -77,154 +78,96 @@
 		>
 			<ng-template
 				#item
-				let-item
+				let-snapshot
 			>
 				<!-- NOTE(Wasit): Keep containerStyle attribute's max-width property in sync with image width. Image width can't be greater then max width of container p-galleria -->
 
-				@if (item?.itemLink) {
+				@if (snapshot?.itemLink) {
 					<a
-						[href]="item.itemLink"
+						[href]="snapshot.itemLink"
 						target="_blank"
-						[title]="'Visit Link: ' + item.itemLink"
+						[title]="'Visit Link: ' + snapshot.itemLink"
 					>
 						<img
 							alt="project snapshots"
 							class="block h-[800px] w-[1000px] bg-slate-100"
-							[src]="item.imageSrc"
+							[src]="snapshot.imageSrc"
+							fetchpriority="high"
 						/>
 					</a>
 				} @else {
 					<img
 						alt="project snapshots"
 						class="block h-[800px] w-[1000px] bg-slate-100"
-						[src]="item.imageSrc"
+						[src]="snapshot.imageSrc"
+						fetchpriority="high"
 					/>
 				}
 			</ng-template>
 			<ng-template
 				#thumbnail
-				let-item
+				let-snapshot
 			>
 				<img
-					[src]="item.imageSrc"
+					[src]="snapshot.imageSrc"
 					class="border-primary block size-10 rounded-md border border-3"
 					alt="thumbnail"
+					fetchpriority="high"
 				/>
 			</ng-template>
 		</p-galleria>
+	</div>
+	<!-- Info alert to visit snapshots screen -->
+
+	<div
+		role="alert"
+		class="alert my-2 flex justify-center gap-1"
+	>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			fill="none"
+			viewBox="0 0 24 24"
+			class="stroke-info h-6 w-6 shrink-0"
+		>
+			<path
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				stroke-width="2"
+				d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+			></path>
+		</svg>
+		<span class="">
+			Visit
+			<button
+				class="btn btn-xs btn-outline btn-info"
+				routerLink="/snapshots"
+			>
+				Snapshots
+			</button>
+			to view <b>above images in full resolution</b></span
+		>
 	</div>
 	<!-- Details -->
 
 	<h1 class="text-primary p-3 text-3xl">For More Info Refer:</h1>
 
 	<div class="flex flex-col gap-y-2 pl-6">
-		<!-- Backend Link -->
-		<p>
-			<b>Deployment Link (Backend): </b>
-			<a
-				class="link link-hover link-primary"
-				[href]="environment.baseUrl"
-				target="_blank"
-			>
-				{{ environment.baseUrl }}
-			</a>
-		</p>
-		<!-- Frontend -->
-
-		<p>
-			<b>Deployment Link (Frontend): </b>
-			<a
-				class="link link-hover link-primary"
-				href="http://3.110.46.93:4200"
-				target="_blank"
-			>
-				http://3.110.46.93:4200
-			</a>
-		</p>
-		<!-- Architecture Diagram -->
-
-		<p>
-			<b>Architecture Diagram: </b>
-			<a
-				class="link link-hover link-primary"
-				href="https://app.eraser.io/workspace/cwZzopjoFs0wIiPvRI8X"
-				target="_blank"
-			>
-				https://app.eraser.io/workspace/cwZzopjoFs0wIiPvRI8X
-			</a>
-		</p>
-		<!-- Postman Collection -->
-
-		<p>
-			<b>Postman Collection: </b>
-			<a
-				class="link link-hover link-primary"
-				href="https://www.postman.com/wasitshafi/dev-tools-studio-public-wrokspace/overview"
-				target="_blank"
-			>
-				https://www.postman.com/wasitshafi/dev-tools-studio-public-wrokspace/overview
-			</a>
-		</p>
-		<!-- Backend Source Code -->
-
-		<p>
-			<b>Backend Source Code: </b>
-			<a
-				class="link link-hover link-primary"
-				href="https://github.com/wasit-shafi/dev-tools-studio-backend"
-				target="_blank"
-			>
-				https://github.com/wasit-shafi/dev-tools-studio-backend
-			</a>
-		</p>
-		<!-- Frontend Source Code -->
-
-		<p>
-			<b>Frontend Source Code: </b>
-			<a
-				class="link link-hover link-primary"
-				href="https://github.com/wasit-shafi/dev-tools-studio-frontend"
-				target="_blank"
-			>
-				https://github.com/wasit-shafi/dev-tools-studio-frontend
-			</a>
-		</p>
-		<!-- GitHub Project Board -->
-
-		<p>
-			<b>Github Project Board: </b>
-			<a
-				class="link link-hover link-primary"
-				href="https://github.com/users/wasit-shafi/projects/5/views/1"
-				target="_blank"
-			>
-				https://github.com/users/wasit-shafi/projects/5/views/1
-			</a>
-		</p>
-		<!-- Backend Image -->
-
-		<p>
-			<b>Backend Image: </b>
-			<a
-				class="link link-hover link-primary"
-				href="https://hub.docker.com/repository/docker/wasitshafi700/dev-tools-studio-backend"
-				target="_blank"
-			>
-				https://hub.docker.com/repository/docker/wasitshafi700/dev-tools-studio-backend
-			</a>
-		</p>
-		<!-- Frontend Image -->
-
-		<p>
-			<b>Frontend Image: </b>
-			<a
-				class="link link-hover link-primary"
-				href="https://hub.docker.com/repository/docker/wasitshafi700/dev-tools-studio-frontend"
-				target="_blank"
-			>
-				https://hub.docker.com/repository/docker/wasitshafi700/dev-tools-studio-frontend
-			</a>
-		</p>
+		@for (item of referenceLinks; track $index) {
+			<div class="flex gap-3">
+				<span class="basis-62">
+					<b>{{ item.label }}</b>
+				</span>
+				<span class="flex-1">
+					<a
+						class="link link-hover link-primary break-all"
+						[href]="item.url"
+						target="_blank"
+					>
+						{{ item.url }}
+					</a>
+				</span>
+			</div>
+		}
 	</div>
 	<!-- Misc -->
 

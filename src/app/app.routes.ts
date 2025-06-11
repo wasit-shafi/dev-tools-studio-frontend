@@ -14,6 +14,13 @@ export const routes: Routes = [
 		component: CoreViews.HomeComponent,
 		title: `${constants.PROJECT_NAME}`,
 	},
+	// snapshots
+
+	{
+		path: constants.ROUTES.SNAPSHOTS,
+		component: CoreViews.Snapshots,
+		title: `Snapshots - ${constants.PROJECT_NAME}`,
+	},
 	// signup
 
 	{

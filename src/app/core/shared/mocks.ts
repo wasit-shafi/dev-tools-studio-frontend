@@ -5,6 +5,7 @@ export class Mocks {
 		guestUserRoutes: {
 			routeList: [
 				{ url: '', text: 'Home' },
+				{ url: 'snapshots', text: 'Snapshots' },
 				{ url: 'contact', text: 'Contact' },
 				{ url: 'signup', text: 'Sign Up' },
 				{ url: 'signin', text: 'Sign In' },

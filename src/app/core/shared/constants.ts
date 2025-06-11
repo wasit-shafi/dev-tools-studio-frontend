@@ -1,4 +1,8 @@
+import { environment } from '@environments/';
+
 export class Constants {
+	protected readonly environment = environment;
+
 	public readonly PROJECT_NAME = 'Dev Tools Studio';
 
 	public readonly API_PREFIX: Record<string, string> = {
@@ -22,6 +26,7 @@ export class Constants {
 		ROOT: '',
 		SIGNIN: 'signin',
 		SIGNUP: 'signup',
+		SNAPSHOTS: 'snapshots',
 		// LOGGED-IN USER ROUTES (PROTECTED)
 
 		DASHBOARD: 'dashboard',
@@ -45,6 +50,7 @@ export class Constants {
 		_RESET_PASSWORD: `/${this.ROUTES_PATHS.RESET_PASSWORD}`,
 		_SIGNIN: `/${this.ROUTES_PATHS.SIGNIN}`,
 		_SIGNUP: `/${this.ROUTES_PATHS.SIGNUP}`,
+		SNAPSHOTS: `${this.ROUTES_PATHS.SNAPSHOTS}`,
 		// LOGGED-IN USER ROUTES (PROTECTED)
 
 		DASHBOARD: this.ROUTES_PATHS.DASHBOARD,
@@ -174,6 +180,197 @@ export class Constants {
 		[this.CREDENTIAL_TYPE.SMTP.VALUE]: this.CREDENTIAL_TYPE.SMTP.LABEL,
 		[this.CREDENTIAL_TYPE.OAUTH2.VALUE]: this.CREDENTIAL_TYPE.OAUTH2.LABEL,
 	} as const;
+
+	public readonly snapshots: { imageSrc: string; itemLink?: string }[] = [
+		{
+			// snapshots/diagrams: All Architecture Diagrams image
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749506957/dev-tools-studio/snapshots/diagrams/xjzevaxf8fdhz8r86gyw.png',
+			itemLink: 'https://app.eraser.io/workspace/cwZzopjoFs0wIiPvRI8X',
+		},
+		{
+			// snapshots/diagrams: Data Modelling image
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749420146/dev-tools-studio/snapshots/diagrams/mkj39n7zl861puaa5agn.png',
+			itemLink: 'https://app.eraser.io/workspace/cwZzopjoFs0wIiPvRI8X',
+		},
+		{
+			// snapshots/diagrams: request to response flow image
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749420146/dev-tools-studio/snapshots/diagrams/qkhhv2zojctsheqjjjgk.png',
+			itemLink: 'https://app.eraser.io/workspace/cwZzopjoFs0wIiPvRI8X',
+		},
+		{
+			// snapshots/diagrams: POST:/email controller flow image
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749420147/dev-tools-studio/snapshots/diagrams/rcfpiv4bmlq5gce0jr0k.png',
+			itemLink: 'https://app.eraser.io/workspace/cwZzopjoFs0wIiPvRI8X',
+		},
+		{
+			// snapshots/diagrams: Backend Architecture (Development) image
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749506955/dev-tools-studio/snapshots/diagrams/yetvsvxy7wqgoqsbhcjv.png',
+			itemLink: 'https://app.eraser.io/workspace/cwZzopjoFs0wIiPvRI8X',
+		},
+		{
+			// snapshots/diagrams: Backend Architecture (Production) image
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749420145/dev-tools-studio/snapshots/diagrams/nud8eie9av2xadniq957.png',
+			itemLink: 'https://app.eraser.io/workspace/cwZzopjoFs0wIiPvRI8X',
+		},
+		{
+			// snapshots/diagrams: CICD workflow image
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749420147/dev-tools-studio/snapshots/diagrams/xca9ff8mdc2suw0qnfb9.png',
+			itemLink: 'https://app.eraser.io/workspace/cwZzopjoFs0wIiPvRI8X',
+		},
+		{
+			// snapshots/others: Github Project Board
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552216/dev-tools-studio/snapshots/others/pzfniwfsl0c0bpmkukmy.png',
+
+			itemLink: 'https://github.com/users/wasit-shafi/projects/5',
+		},
+		{
+			// snapshots/cicd: All workflows
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749533434/dev-tools-studio/snapshots/cicd/rt1sxzvcfskx6ube9ber.png',
+			itemLink: 'https://github.com/wasit-shafi/dev-tools-studio-backend/actions',
+		},
+		{
+			// snapshots/cicd: self hosted runner
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749533433/dev-tools-studio/snapshots/cicd/fncdodxpuerl7sm7eq0g.png',
+		},
+		{
+			// snapshots/cicd: github hosted runner
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749533433/dev-tools-studio/snapshots/cicd/qerfxdcjdcr4o4gyvruz.png',
+		},
+		{
+			// snapshots/cicd: Actions Usage Metrics
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749533433/dev-tools-studio/snapshots/cicd/qc0zru6m6nglgxqst2rb.png',
+		},
+		{
+			// snapshots/cicd: images on DockerHub
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749533433/dev-tools-studio/snapshots/cicd/ygabjr1nxjbk1nm3m2ov.png',
+			itemLink: 'https://hub.docker.com/repositories/wasitshafi700',
+		},
+		{
+			// snapshots/bullmq-and-redis: Redis Cloud
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749534016/dev-tools-studio/snapshots/bullmq-and-redis/wbkts17tjpcd6nqnagsy.png',
+		},
+		{
+			// snapshots/bullmq-and-redis: bullmq dashboard
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749534016/dev-tools-studio/snapshots/bullmq-and-redis/sczd2xggj9eje7vd3m4r.png',
+		},
+		{
+			// snapshots/bullmq-and-redis: email queue data
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749534017/dev-tools-studio/snapshots/bullmq-and-redis/xxowe9qfjakxrdq6vr6q.png',
+		},
+		{
+			// snapshots/bullmq-and-redis: redis db data
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749534017/dev-tools-studio/snapshots/bullmq-and-redis/aeukolkwtk0qm2iqqwvy.png',
+		},
+		{
+			// snapshots/others: MongoDB Atlas
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749533396/dev-tools-studio/snapshots/others/tijsfdbgnbyelonzzrqk.png',
+		},
+		{
+			// snapshots/others: EC2
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749533395/dev-tools-studio/snapshots/others/wlc8izmnmsb46xpphqos.png',
+		},
+		{
+			// snapshots/others: S3 - user attachments
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749533395/dev-tools-studio/snapshots/others/pddokrsla3nxxekrpmko.png',
+		},
+		{
+			// snapshots/others:
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749533395/dev-tools-studio/snapshots/others/yy1ybbu7c6rdemgxojne.png',
+		},
+		{
+			// snapshots/others: Postman API Collection image
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749533395/dev-tools-studio/snapshots/others/cblhllzhmodksplsqgdj.png',
+			itemLink: 'https://www.postman.com/wasitshafi/dev-tools-studio-public-wrokspace/overview',
+		},
+		{
+			// snapshots/website: Backend
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749553251/dev-tools-studio/snapshots/website/oawqr2qkx0n8frwejhir.png',
+			itemLink: environment.baseUrl,
+		},
+		{
+			// snapshots/website: Schedule Email Screen - 1
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552197/dev-tools-studio/snapshots/website/dkvh6jom93gryxz1jwle.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: Schedule Email Screen - 2
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552199/dev-tools-studio/snapshots/website/wehbevm95psnl0rhxjnp.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: Settings Screen - 1
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552198/dev-tools-studio/snapshots/website/homi3kre8zjjuotgp8xs.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: Settings Screen - 2
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552198/dev-tools-studio/snapshots/website/lkrpqp9dwksv67iucrx9.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: Settings Screen - 3
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552198/dev-tools-studio/snapshots/website/kzu9bkh77j4xw05lmk3o.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: NrGx Store
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552197/dev-tools-studio/snapshots/website/af1mydpnnlzweus2zxtf.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: Add New Credential
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552197/dev-tools-studio/snapshots/website/x3usgeithntlfcqokjt6.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: Add New Email Template
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552197/dev-tools-studio/snapshots/website/keewcfnprrvx3pxfmjjm.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: Add New Attachment
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552197/dev-tools-studio/snapshots/website/otqurmcswbwq3opopwxf.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+		{
+			// snapshots/website: Reset Password Email
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749554425/dev-tools-studio/snapshots/website/q8byhqmedr3pmifsx8uf.png',
+			itemLink: 'http://3.110.46.93:4200/',
+		},
+	];
 
 	// Referred from https://www.html-code-generator.com/javascript/array/country-names
 

@@ -1,8 +1,8 @@
 <nav class="">
 	<ul class="menu menu-horizontal flex justify-center gap-4 p-0">
-		<ng-template #NAV_ITEM_HOME>
-			<!-- Home -->
+		<!-- Home -->
 
+		<ng-template #NAV_ITEM_HOME>
 			<li [routerLink]="[constants.ROUTES.ROOT]">
 				<a
 					[routerLinkActive]="['menu-active']"
@@ -12,20 +12,31 @@
 				</a>
 			</li>
 		</ng-template>
+		<!-- Snapshots -->
+
+		<ng-template #NAV_SNAPSHOTS>
+			<li [routerLink]="[constants.ROUTES.SNAPSHOTS]">
+				<a [routerLinkActive]="['menu-active']"> Snapshots </a>
+			</li>
+		</ng-template>
+
 		@if (currentUser$ | async; as currentUser) {
 			<!-- Profile Picture -->
 			<li class="pointer-events-none">
 				<div class="avatar p-0">
 					<div class="w-9 rounded-full">
 						<img
-							priority
+							fetchpriority="high"
 							alt="profile_img"
 							[src]="currentUser.profilePicture ? currentUser.profilePicture : 'assets/images/generic-user.png'"
 						/>
 					</div>
 				</div>
 			</li>
-			<ng-container *ngTemplateOutlet="NAV_ITEM_HOME"> </ng-container>
+			<ng-container *ngTemplateOutlet="NAV_ITEM_HOME"></ng-container>
+
+			<ng-container *ngTemplateOutlet="NAV_SNAPSHOTS"></ng-container>
+
 			<!-- Dashboard -->
 
 			<li [routerLink]="[constants.ROUTES._DASHBOARD]">
@@ -54,6 +65,8 @@
 			</li>
 		} @else {
 			<ng-container *ngTemplateOutlet="NAV_ITEM_HOME"></ng-container>
+
+			<ng-container *ngTemplateOutlet="NAV_SNAPSHOTS"></ng-container>
 
 			<!-- Contact -->
 

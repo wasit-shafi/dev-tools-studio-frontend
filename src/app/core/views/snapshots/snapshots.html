@@ -1,0 +1,27 @@
+<div class="flex flex-col gap-y-10 bg-slate-100 p-4">
+	@for (snapshot of constants.snapshots; track $index) {
+	<div class="flex min-h-80 flex-col overflow-hidden rounded-lg border border-slate-400 bg-slate-200 shadow-md">
+		<img
+			alt="project snapshots"
+			[src]="snapshot.imageSrc"
+			fetchpriority="high"
+		/>
+		@if (snapshot?.itemLink) {
+		<div class="mt-auto bg-slate-300 px-2 py-5 text-center">
+			<a
+				[href]="snapshot.itemLink"
+				target="_blank"
+				class="link-primary text-xl break-all"
+			>
+				{{'Visit Link: ' + snapshot.itemLink}}
+			</a>
+		</div>
+		}
+	</div>
+
+	}
+	<p-scrolltop
+		[threshold]="1000"
+		[buttonProps]="{ severity: 'contrast', raised: true, rounded: true }"
+	/>
+</div>
