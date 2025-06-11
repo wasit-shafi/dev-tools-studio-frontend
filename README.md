@@ -1,1 +1,11 @@
+# 🔗 Links
 
+- **Deployment Link (Frontend):** http://3.110.46.93:4200
+- **Deployment Link (Backend):** http://3.110.46.93:3000
+- **Architecture Diagram:** https://app.eraser.io/workspace/cwZzopjoFs0wIiPvRI8X
+- **Postman Collection:** https://www.postman.com/wasitshafi/dev-tools-studio-public-wrokspace/overview
+- **Backend Docker Image:** https://hub.docker.com/repository/docker/wasitshafi700/dev-tools-studio-backend
+- **Frontend Docker Image:** https://hub.docker.com/repository/docker/wasitshafi700/dev-tools-studio-frontend
+- **Backend Source Code:** https://github.com/wasit-shafi/dev-tools-studio-backend
+- **Frontend Source Code:** https://github.com/wasit-shafi/dev-tools-studio-frontend
+- **Github Project Board:** https://github.com/users/wasit-shafi/projects/5/views/1

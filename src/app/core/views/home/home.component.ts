@@ -81,11 +81,11 @@ export class HomeComponent {
 			url: 'https://github.com/users/wasit-shafi/projects/5/views/1',
 		},
 		{
-			label: 'Backend Image:',
+			label: 'Backend Docker Image:',
 			url: 'https://hub.docker.com/repository/docker/wasitshafi700/dev-tools-studio-backend',
 		},
 		{
-			label: 'Frontend Image:',
+			label: 'Frontend Docker Image:',
 			url: 'https://hub.docker.com/repository/docker/wasitshafi700/dev-tools-studio-frontend',
 		},
 	];
