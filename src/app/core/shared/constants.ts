@@ -185,7 +185,7 @@ export class Constants {
 		{
 			// snapshots/diagrams: All Architecture Diagrams image
 			imageSrc:
-				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749506957/dev-tools-studio/snapshots/diagrams/xjzevaxf8fdhz8r86gyw.png',
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749718181/dev-tools-studio/snapshots/diagrams/a27mme4fl1aung3f1ezf.png',
 			itemLink: 'https://app.eraser.io/workspace/cwZzopjoFs0wIiPvRI8X',
 		},
 		{
@@ -198,6 +198,12 @@ export class Constants {
 			// snapshots/diagrams: request to response flow image
 			imageSrc:
 				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749420146/dev-tools-studio/snapshots/diagrams/qkhhv2zojctsheqjjjgk.png',
+			itemLink: 'https://app.eraser.io/workspace/cwZzopjoFs0wIiPvRI8X',
+		},
+		{
+			// snapshots/diagrams: Schedule Email Flow
+			imageSrc:
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749717589/dev-tools-studio/snapshots/diagrams/bhya95kxuutxxdki0gp8.png',
 			itemLink: 'https://app.eraser.io/workspace/cwZzopjoFs0wIiPvRI8X',
 		},
 		{
