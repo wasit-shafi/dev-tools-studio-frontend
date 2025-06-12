@@ -1,5 +1,5 @@
 <div class="bg-slate-100 p-3">
-	<h1 class="text-primary mb-5 text-center text-5xl">Welcome on Dev Tools Studio!!</h1>
+	<h1 class="text-primary mb-5 text-center text-2xl sm:text-4xl">Welcome on Dev Tools Studio!!</h1>
 	<!-- Intro -->
 
 	<div class="text-sm">
@@ -14,7 +14,7 @@
 	<!-- Get Started  -->
 
 	<ul class="list rounded-box mt-5 bg-slate-200 shadow-md">
-		<li class="text-primary p-4 pb-2 text-3xl tracking-wide">Get Started in few steps:</li>
+		<li class="text-primary p-4 pb-2 text-xl tracking-wide sm:text-3xl">Get Started in few steps:</li>
 
 		<li class="list-row">
 			<div class="text-4xl font-thin tabular-nums opacity-30">01</div>
@@ -65,7 +65,7 @@
 	</ul>
 	<!-- Galleria -->
 
-	<h1 class="text-primary p-3 text-3xl">Snapshots:</h1>
+	<h1 class="text-primary p-3 text-xl sm:text-3xl">Snapshots:</h1>
 	<div class="card flex items-center">
 		<p-galleria
 			[value]="constants.snapshots"
@@ -122,7 +122,7 @@
 
 	<div
 		role="alert"
-		class="alert my-2 flex justify-center gap-1"
+		class="alert bg-primary my-2 flex justify-center gap-1 text-white"
 	>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +140,7 @@
 		<span class="">
 			Visit
 			<button
-				class="btn btn-xs btn-outline btn-info"
+				class="btn btn-xs btn-secondary"
 				routerLink="/snapshots"
 			>
 				Snapshots
@@ -150,12 +150,12 @@
 	</div>
 	<!-- Details -->
 
-	<h1 class="text-primary p-3 text-3xl">For More Info Refer:</h1>
+	<h1 class="text-primary p-3 text-xl sm:text-3xl">For More Info Refer:</h1>
 
-	<div class="flex flex-col gap-y-2 pl-6">
+	<div class="flex flex-col gap-y-2 pl-5">
 		@for (item of referenceLinks; track $index) {
-			<div class="flex gap-3">
-				<span class="basis-62">
+			<div class="flex flex-col gap-x-3 sm:flex-row">
+				<span class="basis-auto sm:basis-58">
 					<b>{{ item.label }}</b>
 				</span>
 				<span class="flex-1">
@@ -172,7 +172,7 @@
 	</div>
 	<!-- Misc -->
 
-	<h1 class="text-primary p-3 text-3xl">Misc:</h1>
+	<h1 class="text-primary p-3 text-xl sm:text-3xl">Misc:</h1>
 	<ul class="marker:text-green ml-6 list-outside list-disc">
 		<li>
 			To view
