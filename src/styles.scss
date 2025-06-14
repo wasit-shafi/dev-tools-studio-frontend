@@ -18,6 +18,10 @@
 	--color-orangePeel: rgb(255, 153, 3); // color referred from daisyui logo
 }
 
+* {
+	text-underline-offset: 4px;
+}
+
 label:has(.ng-valid:not(textarea, input[type='checkbox'])),
 textarea.ng-valid,
 select.ng-valid {
