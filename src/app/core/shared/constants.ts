@@ -227,7 +227,7 @@ export class Constants {
 		{
 			// snapshots/diagrams: CICD workflow image
 			imageSrc:
-				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749420147/dev-tools-studio/snapshots/diagrams/xca9ff8mdc2suw0qnfb9.png',
+				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749786193/dev-tools-studio/snapshots/diagrams/wp00jb2zlbxyq7ufnlrr.png',
 			itemLink: 'https://app.eraser.io/workspace/cwZzopjoFs0wIiPvRI8X',
 		},
 		{
