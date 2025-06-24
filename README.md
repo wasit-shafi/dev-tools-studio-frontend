@@ -9,10 +9,11 @@
 - **Backend Source Code:** https://github.com/wasit-shafi/dev-tools-studio-backend
 - **Frontend Source Code:** https://github.com/wasit-shafi/dev-tools-studio-frontend
 - **Github Project Board:** https://github.com/users/wasit-shafi/projects/5/views/1
+- **YouTube Video About Dev Tools Studio Project:** https://youtu.be/HiqfIKH9ywE
 
 # Watch Video On YouTube
 
-[![Watch Video on Youtube](https://github.com/user-attachments/assets/a77838cc-0c6a-4c5c-9ae8-fefd0446ba0a)](https://www.youtube.com/watch?v=HiqfIKH9ywE)
+[![Watch Video on Youtube](https://github.com/user-attachments/assets/a77838cc-0c6a-4c5c-9ae8-fefd0446ba0a)](https://youtu.be/HiqfIKH9ywE)
 
 <img src="https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749886896/dev-tools-studio/snapshots/github/ytnkjuqjk79vgs22btnn.png"/>
 <img src="https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749886896/dev-tools-studio/snapshots/github/lcvioddfykhywmsroevk.png"/>
