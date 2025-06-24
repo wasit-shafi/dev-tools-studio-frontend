@@ -9,7 +9,7 @@
 - **Backend Source Code:** https://github.com/wasit-shafi/dev-tools-studio-backend
 - **Frontend Source Code:** https://github.com/wasit-shafi/dev-tools-studio-frontend
 - **Github Project Board:** https://github.com/users/wasit-shafi/projects/5/views/1
-- **YouTube Video About Dev Tools Studio Project:** https://youtu.be/HiqfIKH9ywE
+- **About Dev Tools Studio Project - YouTube Video:** https://youtu.be/HiqfIKH9ywE
 
 # Watch Video On YouTube
 
