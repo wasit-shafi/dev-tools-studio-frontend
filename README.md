@@ -10,7 +10,7 @@
 - **Frontend Source Code:** https://github.com/wasit-shafi/dev-tools-studio-frontend
 - **Github Project Board:** https://github.com/users/wasit-shafi/projects/5/views/1
 
-# Watch Video On Youtube
+# Watch Video On YouTube
 
 [![Watch Video on Youtube](https://github.com/user-attachments/assets/a77838cc-0c6a-4c5c-9ae8-fefd0446ba0a)](https://www.youtube.com/watch?v=HiqfIKH9ywE)
 
