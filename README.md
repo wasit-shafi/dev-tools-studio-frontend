@@ -12,8 +12,7 @@
 - **About Dev Tools Studio Project - YouTube Video:** https://youtu.be/HiqfIKH9ywE
 
 # Watch Video On YouTube
-
-[![Watch Video on Youtube](https://github.com/user-attachments/assets/a77838cc-0c6a-4c5c-9ae8-fefd0446ba0a)](https://youtu.be/HiqfIKH9ywE)
+[![Watch Video on Youtube](https://github.com/user-attachments/assets/fb1d1b72-2221-4d30-aaa3-ff4d9a64a148)](https://youtu.be/HiqfIKH9ywE)
 
 <img src="https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749886896/dev-tools-studio/snapshots/github/ytnkjuqjk79vgs22btnn.png"/>
 <img src="https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749886896/dev-tools-studio/snapshots/github/lcvioddfykhywmsroevk.png"/>
