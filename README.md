@@ -1,3 +1,5 @@
+$${\color{red}NOTE: Due \space to \space some \space security \space issues \space on \space AWS, \space I \space have \space terminated \space the \space EC2 \space instance \space on \space 26 \space June \space 2025 \space due \space to \space which \space the \space live \space project \space links \space will \space not \space be \space working \space temporarily, \space will \space restore \space it \space ASAP. \space Thank \space You}$$
+
 # 🔗 Links
 
 - **Deployment Link (Frontend):** http://3.110.46.93:4200
