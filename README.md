@@ -14,7 +14,7 @@ $${\color{red}NOTE: Due \space to \space some \space security \space issues \spa
 - **About Dev Tools Studio Project - YouTube Video:** https://youtu.be/HiqfIKH9ywE
 
 # Watch Video On YouTube
-[![Watch Video on Youtube](https://github.com/user-attachments/assets/fb1d1b72-2221-4d30-aaa3-ff4d9a64a148)](https://youtu.be/HiqfIKH9ywE)
+[![Watch Video on Youtube](https://github.com/user-attachments/assets/13c7851a-31d3-4514-87ea-14f2e7eb388c)](https://youtu.be/HiqfIKH9ywE)
 
 <img src="https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749886896/dev-tools-studio/snapshots/github/ytnkjuqjk79vgs22btnn.png"/>
 <img src="https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749886896/dev-tools-studio/snapshots/github/lcvioddfykhywmsroevk.png"/>
