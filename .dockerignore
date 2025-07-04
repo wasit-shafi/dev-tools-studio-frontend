@@ -1,0 +1,21 @@
+node_modules
+.angular
+.git
+.gitignore
+*.md
+dist
+# Very Important don't remove this (not to include any *.env file)!!
+**/*.env
+.vscode
+.idea
+src/public/temp
+**/*.DS_Store
+.github
+.prettierrc
+.prettierignore
+.postcssrc.json
+eslint.config.js
+Dockerfile
+Dockerfile.prod
+docker-compose.prod.yml
+docker-compose.yml
