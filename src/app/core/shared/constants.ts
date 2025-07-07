@@ -320,61 +320,61 @@ export class Constants {
 			// snapshots/website: Schedule Email Screen - 1
 			imageSrc:
 				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552197/dev-tools-studio/snapshots/website/dkvh6jom93gryxz1jwle.png',
-			itemLink: 'http://3.110.46.93:4200/',
+			itemLink: environment.frontendDeploymentUrl,
 		},
 		{
 			// snapshots/website: Schedule Email Screen - 2
 			imageSrc:
 				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552199/dev-tools-studio/snapshots/website/wehbevm95psnl0rhxjnp.png',
-			itemLink: 'http://3.110.46.93:4200/',
+			itemLink: environment.frontendDeploymentUrl,
 		},
 		{
 			// snapshots/website: Settings Screen - 1
 			imageSrc:
 				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552198/dev-tools-studio/snapshots/website/homi3kre8zjjuotgp8xs.png',
-			itemLink: 'http://3.110.46.93:4200/',
+			itemLink: environment.frontendDeploymentUrl,
 		},
 		{
 			// snapshots/website: Settings Screen - 2
 			imageSrc:
 				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552198/dev-tools-studio/snapshots/website/lkrpqp9dwksv67iucrx9.png',
-			itemLink: 'http://3.110.46.93:4200/',
+			itemLink: environment.frontendDeploymentUrl,
 		},
 		{
 			// snapshots/website: Settings Screen - 3
 			imageSrc:
 				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552198/dev-tools-studio/snapshots/website/kzu9bkh77j4xw05lmk3o.png',
-			itemLink: 'http://3.110.46.93:4200/',
+			itemLink: environment.frontendDeploymentUrl,
 		},
 		{
 			// snapshots/website: NrGx Store
 			imageSrc:
 				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552197/dev-tools-studio/snapshots/website/af1mydpnnlzweus2zxtf.png',
-			itemLink: 'http://3.110.46.93:4200/',
+			itemLink: environment.frontendDeploymentUrl,
 		},
 		{
 			// snapshots/website: Add New Credential
 			imageSrc:
 				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552197/dev-tools-studio/snapshots/website/x3usgeithntlfcqokjt6.png',
-			itemLink: 'http://3.110.46.93:4200/',
+			itemLink: environment.frontendDeploymentUrl,
 		},
 		{
 			// snapshots/website: Add New Email Template
 			imageSrc:
 				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552197/dev-tools-studio/snapshots/website/keewcfnprrvx3pxfmjjm.png',
-			itemLink: 'http://3.110.46.93:4200/',
+			itemLink: environment.frontendDeploymentUrl,
 		},
 		{
 			// snapshots/website: Add New Attachment
 			imageSrc:
 				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749552197/dev-tools-studio/snapshots/website/otqurmcswbwq3opopwxf.png',
-			itemLink: 'http://3.110.46.93:4200/',
+			itemLink: environment.frontendDeploymentUrl,
 		},
 		{
 			// snapshots/website: Reset Password Email
 			imageSrc:
 				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749554425/dev-tools-studio/snapshots/website/q8byhqmedr3pmifsx8uf.png',
-			itemLink: 'http://3.110.46.93:4200/',
+			itemLink: environment.frontendDeploymentUrl,
 		},
 	];
 

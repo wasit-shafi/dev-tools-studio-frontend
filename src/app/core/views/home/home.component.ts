@@ -54,7 +54,7 @@ export class HomeComponent {
 	protected readonly referenceLinks: { label: string; url: string }[] = [
 		{
 			label: 'Deployment Link (Frontend):',
-			url: 'http://3.110.46.93:4200',
+			url: environment.frontendDeploymentUrl,
 		},
 		{
 			label: 'Deployment Link (Backend):',
