@@ -53,12 +53,12 @@ export class HomeComponent {
 
 	protected readonly referenceLinks: { label: string; url: string }[] = [
 		{
-			label: 'Deployment Link (Frontend):',
-			url: environment.frontendDeploymentUrl,
-		},
-		{
 			label: 'Deployment Link (Backend):',
 			url: environment.baseUrl,
+		},
+		{
+			label: 'Deployment Link (Frontend):',
+			url: environment.frontendDeploymentUrl,
 		},
 		{
 			label: 'Architecture Diagram:',
