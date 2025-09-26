@@ -1,8 +1,11 @@
 import { providePrimeNG } from 'primeng/config';
 import { catchError, firstValueFrom, of, tap } from 'rxjs';
 
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { ApplicationConfig, inject, isDevMode, provideAppInitializer, provideZoneChangeDetection } from '@angular/core';
+import {
+    ApplicationConfig, inject, isDevMode, PLATFORM_ID, provideAppInitializer, provideZoneChangeDetection
+} from '@angular/core';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, Router } from '@angular/router';
@@ -31,6 +34,11 @@ export const appConfig: ApplicationConfig = {
 			const persistenceService = inject(PersistenceService);
 			const router = inject(Router);
 			const store = inject(Store);
+			const platformId = inject(PLATFORM_ID);
+			
+			if (isPlatformBrowser(platformId)) {
+				http.post(`${environment.baseUrl}/${constants.API_PREFIX.API_V1}/visitor-alert`, {}).subscribe();
+			}
 
 			// NOTE(Wasit): if there is no tokens then assuming user was not logged in previously
 
