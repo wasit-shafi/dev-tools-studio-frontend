@@ -11,6 +11,10 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
 	const persistenceService = inject(PersistenceService);
 	const store = inject(Store);
 
+	if (request.url.endsWith(constants.IPINFO_ENDPOINT)) {
+		return next(request);
+	}
+
 	let authState!: IAuthState;
 
 	store.select(authFeature.selectAuthState).subscribe({

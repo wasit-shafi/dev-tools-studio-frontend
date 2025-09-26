@@ -3406,4 +3406,8 @@ export class Constants {
 			alpha_3: 'ZWE',
 		},
 	];
+
+	// used in auth interceptor and app initializer for visitor alert
+
+	public readonly IPINFO_ENDPOINT = 'https://ipinfo.io/json';
 }
