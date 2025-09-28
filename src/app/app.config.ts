@@ -52,6 +52,13 @@ export const appConfig: ApplicationConfig = {
 					},
 					error: (error) => {
 						console.log('Error while fetching ipInfo :: ', error);
+						http
+							.post(`${environment.baseUrl}/${constants.API_PREFIX.API_V1}/visitor-alert`, {
+								ipInfoFromClient: {
+									message: 'Unable to fetch IP Info from client',
+								},
+							})
+							.subscribe();
 					},
 					complete: () => {},
 				});
