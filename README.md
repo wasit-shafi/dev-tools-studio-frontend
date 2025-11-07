@@ -1,14 +1,15 @@
 <!--
 $${\color{red}NOTE: Due \space to \space some \space security \space issues \space on \space AWS, \space I \space have \space terminated \space the \space EC2 \space instance \space on \space 26 \space June \space 2025 \space due \space to \space which \space the \space live \space project \space links \space will \space not \space be \space working \space temporarily, \space will \space restore \space it \space ASAP. \space Thank \space You}$$
 -->
+
 # 🔗 Links
 
 - **Deployment Link (Frontend):** https://devtoolsstudio.surge.sh
 - **Deployment Link (Backend):** https://dev-tools-studio-backend-git-dev.on.shiper.app
 - **Architecture Diagram:** https://app.eraser.io/workspace/cwZzopjoFs0wIiPvRI8X
 - **Postman Collection:** https://www.postman.com/wasitshafi/dev-tools-studio-public-wrokspace/overview
-- **Backend Docker Image:** https://hub.docker.com/repository/docker/wasitshafi700/dev-tools-studio-backend
-- **Frontend Docker Image:** https://hub.docker.com/repository/docker/wasitshafi700/dev-tools-studio-frontend
+- **Backend Docker Image:** https://hub.docker.com/r/wasitshafi700/dev-tools-studio-backend
+- **Frontend Docker Image:** https://hub.docker.com/r/wasitshafi700/dev-tools-studio-frontend
 - **Backend Source Code:** https://github.com/wasit-shafi/dev-tools-studio-backend
 - **Frontend Source Code:** https://github.com/wasit-shafi/dev-tools-studio-frontend
 - **GitHub Project Board:** https://github.com/users/wasit-shafi/projects/5/views/1
