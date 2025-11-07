@@ -82,11 +82,11 @@ export class HomeComponent {
 		},
 		{
 			label: 'Backend Docker Image:',
-			url: 'https://hub.docker.com/repository/docker/wasitshafi700/dev-tools-studio-backend',
+			url: 'https://hub.docker.com/r/wasitshafi700/dev-tools-studio-backend',
 		},
 		{
 			label: 'Frontend Docker Image:',
-			url: 'https://hub.docker.com/repository/docker/wasitshafi700/dev-tools-studio-frontend',
+			url: 'https://hub.docker.com/r/wasitshafi700/dev-tools-studio-frontend',
 		},
 	];
 }
