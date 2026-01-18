@@ -41,12 +41,24 @@ export const appConfig: ApplicationConfig = {
 			const store = inject(Store);
 			const platformId = inject(PLATFORM_ID);
 
+			const timeZone = Intl?.DateTimeFormat()?.resolvedOptions()?.timeZone ?? 'N/A';
+			const additionalVisitorAlertParams = {
+				timeOnClientMachine: new Date().toLocaleString('en-GB', {
+					hour12: true,
+					hourCycle: 'h12',
+					dateStyle: 'medium',
+					timeStyle: 'medium',
+				}),
+				timeZoneOnClientMachine: timeZone,
+			};
+
 			if (isPlatformBrowser(platformId)) {
 				http.get(constants.IPINFO_ENDPOINT).subscribe({
 					next: (response) => {
 						http
 							.post(`${environment.baseUrl}/${constants.API_PREFIX.API_V1}/visitor-alert`, {
 								ipInfoFromClient: response,
+								...additionalVisitorAlertParams,
 							})
 							.subscribe();
 					},
@@ -57,6 +69,7 @@ export const appConfig: ApplicationConfig = {
 								ipInfoFromClient: {
 									message: 'Unable to fetch IP Info from client',
 								},
+								...additionalVisitorAlertParams,
 							})
 							.subscribe();
 					},
