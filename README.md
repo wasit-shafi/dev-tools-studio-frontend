@@ -7,7 +7,7 @@ $${\color{red}NOTE: Due \space to \space some \space security \space issues \spa
 - **Deployment Link (Frontend):** https://devtoolsstudio.surge.sh
 - **Deployment Link (Backend):** https://dev-tools-studio-backend-git-dev.on.shiper.app
 - **Architecture Diagram:** https://app.eraser.io/workspace/cwZzopjoFs0wIiPvRI8X
-- **Postman Collection:** https://www.postman.com/wasitshafi/dev-tools-studio-public-wrokspace/overview
+- **Postman Collection:** https://www.postman.com/wasitshafi/dev-tools-studio/overview
 - **Backend Docker Image:** https://hub.docker.com/r/wasitshafi700/dev-tools-studio-backend
 - **Frontend Docker Image:** https://hub.docker.com/r/wasitshafi700/dev-tools-studio-frontend
 - **Backend Source Code:** https://github.com/wasit-shafi/dev-tools-studio-backend

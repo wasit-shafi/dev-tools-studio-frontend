@@ -308,7 +308,7 @@ export class Constants {
 			// snapshots/others: Postman API Collection image
 			imageSrc:
 				'https://res.cloudinary.com/dtlx6i2m7/image/upload/v1749533395/dev-tools-studio/snapshots/others/cblhllzhmodksplsqgdj.png',
-			itemLink: 'https://www.postman.com/wasitshafi/dev-tools-studio-public-wrokspace/overview',
+			itemLink: 'https://www.postman.com/wasitshafi/dev-tools-studio/overview',
 		},
 		{
 			// snapshots/website: Backend
