@@ -3,8 +3,8 @@
 	"version": "0.0.0",
 	"scripts": {
 		"ng": "ng",
-		"start": "ng serve",
-		"start:prod": "ng serve --configuration=production",
+		"dev": "ng serve",
+		"start": "ng serve --configuration=production",
 		"build": "ng build",
 		"test": "ng test",
 		"format-codebase": "npx prettier --write .",
