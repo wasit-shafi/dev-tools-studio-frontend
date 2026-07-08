@@ -66,7 +66,7 @@ export class HomeComponent {
 		},
 		{
 			label: 'Postman Collection:',
-			url: 'https://www.postman.com/wasitshafi/dev-tools-studio/overview',
+			url: 'https://www.postman.com/wasit-shafi-wani/dev-tools-studio/overview',
 		},
 		{
 			label: 'Backend Source Code:',
